@@ -1,0 +1,8 @@
+<div>Story Feed</div>
+<ul>
+  <% @stories.each do |story| %>
+      <li>
+        <a href="<%= story_url(story) %>"><%= story.title %></a>
+      </li>
+  <% end %>
+</ul>

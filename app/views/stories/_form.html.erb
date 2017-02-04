@@ -1,0 +1,10 @@
+<form class="" action="<%= url %>" method="POST">
+  <input type="hidden" name="_method" value="<%= method %>">
+  <input type="hidden"
+    name="authenticity_token"
+    value="<%= form_authenticity_token %>">
+  <input type="text" name="story[title]" value="<%= @story.title %>">
+  <textarea name="story[content]" rows="8" cols="80" value="<%= @story.content %>"></textarea>
+
+  <input type="submit" value="Submit">
+</form>

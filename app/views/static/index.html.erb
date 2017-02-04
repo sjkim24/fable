@@ -1,0 +1,21 @@
+<div>
+  hello there
+  <br></br>
+  <a href="<%= new_user_registration_url %>">Sign Up</a>
+  <br></br>
+  <% if user_signed_in? %>
+    <div>
+      <form class="" action="<%= destroy_user_session_url %>" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <input type="hidden"
+               name="authenticity_token"
+               value="<%= form_authenticity_token %>">
+          <button>Logout</button>
+      </form>
+    </div>
+  <% else %>
+    <a href="<%= new_user_session_url %>">Login</a>
+  <% end %>
+
+  <a href="<%= new_story_url%>">Create Your Story</a>
+</div>
