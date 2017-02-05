@@ -10,6 +10,7 @@
   <a href="<%= new_user_registration_url %>">Sign Up</a>
   <br></br>
   <% if user_signed_in? %>
+    <a href="<%= user_url(current_user) %>">Your Profile</a>
     <div>
       <form class="" action="<%= destroy_user_session_url %>" method="post">
         <input type="hidden" name="_method" value="delete">
@@ -22,7 +23,6 @@
   <% end %>
 
   <a href="<%= new_story_url%>">Create Your Story</a>
-  <a href="<%= user_url(current_user) %>">Your Profile</a>
   <%= yield %>
 </body>
 </html>

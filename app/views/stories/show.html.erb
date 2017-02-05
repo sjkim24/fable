@@ -1,8 +1,25 @@
 <%= render partial: "show", locals: { story: @story } %>
 
 <div class="">
-  <%= binding.pry %>
-  
+  <div>
+    <div><%= @likes.count %> likes</div>
+    <div>
+      <% if @liked %>
+        <form class="" action="<%= story_like_url %>" method="post">
+          <input type="hidden" name="_method" value="delete">
+          <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+          <input type="hidden" name="story_like[id]" value="<%= @current_user_like[0].id %>">
+          
+          <input type="submit" value="Unlike">
+        </form>
+      <% else %>
+        <form class="" action="<%= story_story_likes_url(@story.id) %>" method="post">
+          <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+          <input type="submit" value="Like">
+        </form>
+      <% end %>
+    </div>
+  </div>
   <div class="">Comment on this story</div>
   <%= render partial: "comments/form", locals: { url: story_comments_url(@story.id), method: "post"} %>
 </div>

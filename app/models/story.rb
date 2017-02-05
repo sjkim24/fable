@@ -3,5 +3,5 @@ class Story < ActiveRecord::Base
 
   belongs_to :user
   has_many :comments, dependent: :destroy
-  has_many :likes, dependent: :destroy
+  has_many :likes, class_name: "StoryLike", foreign_key: :story_id, dependent: :destroy
 end

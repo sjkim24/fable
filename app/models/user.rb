@@ -9,5 +9,5 @@ class User < ActiveRecord::Base
 
   has_many :stories, dependent: :destroy
   has_many :comments, dependent: :destroy
-  has_many :likes, dependent: :destroy
+  has_many :likes, class_name: "StoryLike", foreign_key: :user_id, dependent: :destroy
 end
