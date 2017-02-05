@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :users, only: [:show]
 
   resources :stories do
-    resources :comments, only: [:index, :new, :create]
+    resources :comments, only: [:new, :create]
   end
 
   resources :comments, only: [:show, :edit, :update, :destroy]

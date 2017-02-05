@@ -1,9 +1,11 @@
+<br>
 <div>
   <%= @story.title %>
 </div>
 <div>
   <%= @story.content %>
 </div>
+<br>
 <% if @story.user_id === current_user.id %>
   <a href="<%= edit_story_url %>">Edit</a>
   <button>
@@ -15,3 +17,4 @@
     </form>
   </button>
 <% end %>
+<br>

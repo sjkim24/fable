@@ -1,9 +1,19 @@
 class CommentsController < ApplicationController
+  # shows user's all comments in profile page
+  def index
+    if params.has_key?(:user_id)
+      @comments = Comment.where(user_id: params[:user_id])
+    else
+      @comments = Comment.all
+    end
+
+    render :index
+  end
 
   def create
-    @comment = Comment.new(story_params)
-
+    @comment = Comment.new(comment_params)
     @comment.user_id = current_user.id
+    @comment.story_id = params[:story_id]
 
     if @comment.save!
       redirect_to story_url(@comment.story_id)
@@ -48,7 +58,7 @@ class CommentsController < ApplicationController
   private
     def comment_params
       params.require(:comment)
-        .permit(:title, :content)
+        .permit(:content)
     end
 
 end

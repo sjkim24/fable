@@ -22,6 +22,7 @@
   <% end %>
 
   <a href="<%= new_story_url%>">Create Your Story</a>
+  <a href="<%= user_url(current_user) %>">Your Profile</a>
   <%= yield %>
 </body>
 </html>

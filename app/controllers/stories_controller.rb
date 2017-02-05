@@ -6,7 +6,6 @@ class StoriesController < ApplicationController
   end
 
   def create
-    # binding.pry
     @title = "Fable | Share your tales with the world"
     @story = Story.new(story_params)
 
@@ -31,7 +30,9 @@ class StoriesController < ApplicationController
   end
 
   def show
+    binding.pry
     @story = Story.find(params[:id])
+
     render :show
   end
 

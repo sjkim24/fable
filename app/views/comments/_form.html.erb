@@ -1,0 +1,15 @@
+<form class="" action="<%= url %>" method="POST">
+  <input type="hidden" name="_method" value="<%= method %>">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+  <textarea name="comment[content]" rows="8" cols="80">
+    <% if @comment %>
+      <%= @comment.content %>
+    <% end %>
+  </textarea>
+  <% if method.downcase === "post" %>
+    <input type="submit" value="Submit">
+  <% else %>
+    <input type="submit" value="Update">
+  <% end %>
+</form>
