@@ -4,7 +4,14 @@
 <div>
   <%= @story.content %>
 </div>
-<!-- <% if @story.user_id === current_user.id %>
-  <form class="" action="index.html" method="post">
+<% if @story.user_id === current_user.id %>
+  <a href="<%= edit_story_url %>">Edit</a>
+  <button>
+    <form class="" action="<%= story_url %>" method="post">
+      <input type="hidden" name="_method" value="delete">
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 
-  </form> -->
+      <input type="submit" name="" value="Delete">
+    </form>
+  </button>
+<% end %>

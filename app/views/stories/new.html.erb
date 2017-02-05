@@ -1,1 +1,1 @@
-<%= render "form", story: @story, action: :new %>
+<%= render partial: "form", locals: { story: @story, url: stories_url, method: "POST" }%>

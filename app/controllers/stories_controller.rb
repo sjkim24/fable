@@ -12,7 +12,7 @@ class StoriesController < ApplicationController
 
     @story.user_id = current_user.id
 
-    if @story.save
+    if @story.save!
       redirect_to story_url(@story)
     else
       flash.now[:errors] = @story.errors.full_messages
@@ -47,8 +47,11 @@ class StoriesController < ApplicationController
   end
 
   def destroy
-    # @story = Story.find(params[:id])
+    @story = Story.find(params[:id])
+    @story.destory
 
+    redirect_to stories_url
+    # binding.pry
   end
 
   private

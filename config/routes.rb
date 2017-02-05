@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   root to: "static#index"
   devise_for :users
 
+  resources :users, only: [:show]
+
   resources :stories do
     resources :comments, only: [:index, :new, :create]
   end
