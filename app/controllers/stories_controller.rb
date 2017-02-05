@@ -32,7 +32,6 @@ class StoriesController < ApplicationController
 
   def show
     @story = Story.find(params[:id])
-
     render :show
   end
 
@@ -41,7 +40,7 @@ class StoriesController < ApplicationController
     if @story.update_attributes(story_params)
       redirect_to story_url(@story)
     else
-      flash.now[:errors] = @cat.errors.full_messages
+      flash.now[:errors] = @story.errors.full_messages
       render :edit
     end
   end
@@ -49,9 +48,7 @@ class StoriesController < ApplicationController
   def destroy
     @story = Story.find(params[:id])
     @story.destory
-
     redirect_to stories_url
-    # binding.pry
   end
 
   private

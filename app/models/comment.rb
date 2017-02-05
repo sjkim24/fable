@@ -5,5 +5,6 @@ class Comment < ActiveRecord::Base
   belongs_to :story
 
   has_many :replies, class_name: "Comment",
-                     foreign_key: "parent_comment_id"
+                     foreign_key: "parent_comment_id",
+                     dependent: :destroy
 end

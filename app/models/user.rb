@@ -7,6 +7,6 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
          #, :trackable, :validatablegmail
 
-  has_many :stories
-  has_many :comments
+  has_many :stories, dependent: :destroy
+  has_many :comments, dependent: :destroy
 end
