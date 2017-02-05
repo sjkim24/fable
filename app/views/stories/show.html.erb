@@ -1,13 +1,15 @@
 <%= render partial: "show", locals: { story: @story } %>
 
 <div class="">
+  <%= binding.pry %>
+  
   <div class="">Comment on this story</div>
   <%= render partial: "comments/form", locals: { url: story_comments_url(@story.id), method: "post"} %>
 </div>
 
 <div class="">Comments for story id <%= @story.id %></div>
 <ul>
-  <% @story.comments.each do |comment| %>
+  <% @comments.each do |comment| %>
     <li>
       <div class=""><%= comment.content %></div>
       <div class="">by <a href="<%= user_url(comment.user.id) %>"><%= comment.user.username %></a></div>

@@ -1,5 +1,6 @@
 class StoriesController < ApplicationController
   # before_action :user_signed_in?
+
   def index
     @stories = Story.all
     render :index
@@ -26,13 +27,15 @@ class StoriesController < ApplicationController
 
   def edit
     @story = Story.find(params[:id])
+    @comments = @story.comments
     render :edit
   end
 
   def show
-    binding.pry
     @story = Story.find(params[:id])
-
+    @comments = @story.comments
+    @likes = @story.likes
+    
     render :show
   end
 

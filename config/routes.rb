@@ -5,8 +5,10 @@ Rails.application.routes.draw do
   resources :users, only: [:show]
 
   resources :stories do
-    resources :comments, only: [:new, :create]
+    resources :likes, only: [:create]
+    resources :comments, only: [:create, :new]
   end
 
+  resources :likes, only: [:destroy]
   resources :comments, only: [:show, :edit, :update, :destroy]
 end
