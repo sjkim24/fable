@@ -7,6 +7,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <a href="<%= root_url %>">Home</a>
   <a href="<%= new_user_registration_url %>">Sign Up</a>
   <br></br>
   <% if user_signed_in? %>

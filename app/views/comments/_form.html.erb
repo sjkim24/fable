@@ -1,7 +1,10 @@
 <form class="" action="<%= url %>" method="POST">
   <input type="hidden" name="_method" value="<%= method %>">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-
+  <% if parent_id %>
+    <input type="hidden" name="comment[parent_id]" value="<%= parent_id %>">
+  <% end %>
+  
   <textarea name="comment[content]" rows="8" cols="80">
     <% if @comment %>
       <%= @comment.content %>
