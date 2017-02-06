@@ -33,7 +33,7 @@ class StoriesController < ApplicationController
 
   def show
     @story = Story.find(params[:id])
-    @comments = @story.comments    
+    @comments = @story.get_comments_only
     @story_likes = @story.likes
     
     # implement this later

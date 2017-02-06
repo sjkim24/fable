@@ -39,6 +39,17 @@
         
         <%= render partial: "comments/form", locals: { url: story_comments_url(@story.id), parent_comment_id: comment.id, method: "post" } %>
         <%= render partial: "likes/comment_like_form", locals: { url: url, comment_liked: comment_liked, like_id: comment_like_id, story_or_comment: comment, method: req_method } %>
+        <div>
+          <div>Replies to comment id: <%= comment.id %>, title: <%= comment.content %></div>
+          <ul>
+            <% comment.get_replies.each do |reply|  %>
+              <li>
+                <div class=""><%= reply.content%></div>
+                <div class="">by <a href="<%= user_url(reply.user.id) %>"><%= reply.user.username %></a></div>
+              </li>
+            <% end %>
+          </ul>
+        </div>
       </div>
     </li>
   <% end %>

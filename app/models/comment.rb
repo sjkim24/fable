@@ -8,6 +8,11 @@ class Comment < ActiveRecord::Base
                      foreign_key: "parent_comment_id",
                      dependent: :destroy
                      
+  # gets comment's replies only
+  def get_replies
+    self.replies.order("created_at ASC")
+  end                   
+                     
   # refactor these into a module
   # Comment model also has the exact same funcitons
   

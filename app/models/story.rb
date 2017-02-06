@@ -9,6 +9,11 @@ class Story < ActiveRecord::Base
   # refactor these into a module
   # Comment model also has the exact same funcitons
   
+  # gets story's comments only, no replies to story's comments
+  def get_comments_only
+    self.comments.where(parent_comment_id: nil)
+  end
+  
   # checks if the story has been liked by current user
   def liked?(story_id, user_id)
    !StoryLike.where(story_id: story_id, user_id: user_id).empty?
