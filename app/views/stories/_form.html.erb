@@ -1,11 +1,11 @@
-<form class="" action="<%= url %>" method="POST">
+<form class="" action="<%= url %>" method="post">
   <input type="hidden" name="_method" value="<%= method %>">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 
   <input type="text" name="story[title]" value="<%= @story.title %>">
   <textarea name="story[content]" rows="8" cols="80"><%= @story.content %></textarea>
 
-  <% if method === "POST" %>
+  <% if method === "post" %>
     <input type="submit" value="Submit">
   <% else %>
     <input type="submit" value="Update">

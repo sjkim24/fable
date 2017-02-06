@@ -1,0 +1,13 @@
+<form class="" action="<%= url %>" method="post">
+  <input type="hidden" name="_method" value="<%= method %>">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <% if method == "delete" %>
+    <input type="hidden" name="story_like[id]" value="<%= like_id %>">
+  <% end %>
+  
+  <% if story_liked %>
+    <input type="submit" value="Unlike">
+  <% else %>
+    <input type="submit" value="Like">
+  <% end %>
+</form>

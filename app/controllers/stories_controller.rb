@@ -34,12 +34,16 @@ class StoriesController < ApplicationController
   def show
     @story = Story.find(params[:id])
     @comments = @story.comments    
-    @likes = @story.likes
+    @story_likes = @story.likes
     # current user's story like object stored in an array
-    @current_user_like = StoryLike.where(user_id: current_user.id, story_id: @story.id)
-    # boolean value of whether the current user liked this current story or not
-    @liked = !@current_user_like.empty?
     
+    # StoryLike.liked?(current_user.id, @story.class.name.downcase, @story_id)
+    # @current_user_like = StoryLike.where(user_id: current_user.id, story_id: @story.id)
+    # boolean value of whether the current user liked this current story or not
+    # @current_user_like[0].liked?
+    @story_liked = @story.liked?(@story.id, current_user.id)
+    @like_id = @story.like_id(@story.id, current_user.id) if @story_liked
+        
     render :show
   end
 
