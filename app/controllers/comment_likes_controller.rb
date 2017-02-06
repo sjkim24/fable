@@ -1,26 +1,24 @@
 class CommentLikesController < ApplicationController
   
-  # redo this function
   def create
     @like = CommentLike.new(user_id: current_user.id, comment_id: params[:comment_id])
+    @story_id = Comment.find(params[:comment_id]).story.id
     
     if @like.save!
-      redirect_to story_url(params[:story_id])
+      redirect_to story_url(@story_id)
     else
       flash.now[:errors] = @like.errors.full_messages
     end
   end
   
-  # redo this function
   def destroy
-    # # complete unliking a story
-    # binding.pry
-    # @liked = Like.where(user_id: current_user.id, story_id: @story.id).
-    # @like.destroy
-    # 
+    @like = CommentLike.find(params[:comment_like][:id])
     
-    binding.pry
-    redirect_to story_url(params[:story_id])
+    if @like.destroy
+      redirect_to story_url(params[:id])
+    else
+      flash.now[:errors] = "Error"
+    end
   end
-
+  
 end

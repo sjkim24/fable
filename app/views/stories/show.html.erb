@@ -32,7 +32,7 @@
           <% req_method = "delete" %>
           <% comment_like_id = comment.like_id(comment.id, current_user.id) %>
         <% else %>
-          <% url = story_comment_likes_url(@story.id) %>
+          <% url = comment_comment_likes_url(comment.id) %>
           <% req_method = "post" %>
           <% comment_like_id = nil %>
         <% end %>
