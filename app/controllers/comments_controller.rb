@@ -39,7 +39,7 @@ class CommentsController < ApplicationController
   end
 
   def update
-    @comment = Comment.find(params[:id])
+    @comment = Comment.find(params[:comment][:id])
     if @comment.update_attributes(comment_params)
       redirect_to story_url(@comment.user_id)
     else
@@ -49,7 +49,7 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @comment = Comment.find(params[:id])
+    @comment = Comment.find(params[:comment][:id])
     story_id = @comment.story_id
     @comment.destroy
     redirect_to story_url(story_id)

@@ -25,6 +25,7 @@
     <li>
       <div class=""><%= comment.content %></div>
       <div class="">by <a href="<%= user_url(comment.user.id) %>"><%= comment.user.username %></a></div>
+      <%= render partial: "comments/destroy", locals: { id: comment.id } %>
       <div class="">
         <% comment_liked = comment.liked?(comment.id, current_user.id) %>
         <% if comment_liked %>
@@ -43,9 +44,21 @@
           <div>Replies to comment id: <%= comment.id %>, title: <%= comment.content %></div>
           <ul>
             <% comment.get_replies.each do |reply|  %>
+              <% comment_liked = reply.liked?(reply.id, current_user.id) %>
+              <% if comment_liked %>
+                <% url = comment_like_url %>
+                <% req_method = "delete" %>
+                <% comment_like_id = reply.like_id(reply.id, current_user.id) %>
+              <% else %>
+                <% url = comment_comment_likes_url(reply.id) %>
+                <% req_method = "post" %>
+                <% comment_like_id = nil %>
+              <% end %>
               <li>
                 <div class=""><%= reply.content%></div>
                 <div class="">by <a href="<%= user_url(reply.user.id) %>"><%= reply.user.username %></a></div>
+                <%= render partial: "likes/comment_like_form", locals: { url: url, comment_liked: comment_liked, like_id: comment_like_id, story_or_comment: comment, method: req_method } %>
+                <%= render partial: "comments/destroy", locals: { id: reply.id } %>
               </li>
             <% end %>
           </ul>

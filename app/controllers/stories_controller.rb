@@ -56,7 +56,7 @@ class StoriesController < ApplicationController
 
   def destroy
     @story = Story.find(params[:id])
-    @story.destory
+    @story.destroy
     redirect_to stories_url
   end
 
