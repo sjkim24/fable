@@ -1,11 +1,9 @@
-<div>Welcome <%= @user.username %>, here are your stories<div>
+<div>Welcome <%= @user.username %>, here is your profile<div>
 <ul>
-  <% @user.stories.each do |story| %>
-    <li>
-      <a href="<%= story_url(story) %>">
-        <div>Title: <%= story.title %></div>
-        <div>Content: <%= story.content %></div>
-      </a>
-    </li>
-  <% end %>
+  <li>
+    <a href="http://localhost:3000/users/1/stories">Stories</a>
+  </li>
+  <li>
+    <a href="http://localhost:3000/users/1/comments">Comments</a>
+  </li>
 </ul>

@@ -1,0 +1,9 @@
+<form class="" action="<%= comment_url %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+  <textarea name="comment[content]" rows="8" cols="80"><%= @comment.content %></textarea>
+  <input type="hidden" name="comment[parent_comment_id]" value="<%= @comment.parent_comment_id %>">
+  
+  <input type="submit" value="Update">
+</form>

@@ -1,0 +1,10 @@
+<div>Welcome <%= @user.username %>, here are your comments<div>
+<ul>
+  <% @comments.each do |comment| %>
+    <li>
+      <a href="<%= comment_url(comment.id) %>">
+        <div>Content: <%= comment.content %></div>
+      </a>
+    </li>
+  <% end %>
+</ul>

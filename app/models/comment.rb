@@ -1,5 +1,6 @@
 class Comment < ActiveRecord::Base
   validates :content, :user_id, :story_id, presence: true
+  validates :parent_comment_id, presence: true, allow_nil: true
 
   belongs_to :user
   belongs_to :story

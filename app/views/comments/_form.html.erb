@@ -1,3 +1,4 @@
+<%= binding.pry %>
 <form class="" action="<%= url %>" method="POST">
   <input type="hidden" name="_method" value="<%= method %>">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
@@ -12,7 +13,9 @@
   </textarea>
   <% if method.downcase === "post" %>
     <input type="submit" value="Submit">
-  <% else %>
+  <% elsif method.downcase === "patch" %>
+    <%= binding.pry %>
+    <input type="hidden" name="comment[id]" value="<%= @comment.id %>">
     <input type="submit" value="Update">
   <% end %>
 </form>

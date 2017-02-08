@@ -29,19 +29,20 @@ class CommentsController < ApplicationController
   end
 
   def edit
-    @comment.find(params[:id])
+    # binding.pry
+    @comment = Comment.find(params[:id])
     render :edit
   end
 
   def show
-    @show = Show.find(params[:id])
-    render :shoe
+    @comment = Comment.find(params[:id])
+    render :show
   end
 
   def update
-    @comment = Comment.find(params[:comment][:id])
+    @comment = Comment.find(params[:id])
     if @comment.update_attributes(comment_params)
-      redirect_to story_url(@comment.user_id)
+      redirect_to comment_url(@comment.user_id)
     else
       flash.now[:errors] = @story.errors.full_messages
       render :edit

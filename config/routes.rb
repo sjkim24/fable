@@ -15,4 +15,7 @@ Rails.application.routes.draw do
   
   resources :comment_likes, only: [:destroy]
   resources :story_likes, only: [:destroy]
+  
+  get 'users/:id/stories', :to => 'users#user_stories'
+  get 'users/:id/comments', :to => 'users#user_comments'
 end
