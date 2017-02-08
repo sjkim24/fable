@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  validates :username, :email, :encrypted_password, :sign_in_count, presence: true
+  validates :email, :encrypted_password, :sign_in_count, presence: true
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
