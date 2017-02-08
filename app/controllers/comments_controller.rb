@@ -29,7 +29,6 @@ class CommentsController < ApplicationController
   end
 
   def edit
-    # binding.pry
     @comment = Comment.find(params[:id])
     render :edit
   end

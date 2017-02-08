@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 20170205181341) do
   add_index "story_likes", ["user_id", "story_id"], name: "index_story_likes_on_user_id_and_story_id", unique: true, using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "username",                            null: false
+    t.string   "username",               default: ""
     t.string   "user_desc",              default: ""
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
