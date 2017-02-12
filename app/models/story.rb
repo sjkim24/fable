@@ -3,8 +3,9 @@ class Story < ActiveRecord::Base
 
   belongs_to :user
   
-  has_many :comments, dependent: :destroy
-  has_many :likes, class_name: "StoryLike", foreign_key: :story_id, dependent: :destroy
+  has_many :comments
+  has_many :story_likes, dependent: :destroy
+  has_many :bookmarks, dependent: :destroy
   
   # refactor these into a module
   # Comment model also has the exact same funcitons
@@ -22,5 +23,9 @@ class Story < ActiveRecord::Base
   # returns id of like object made with curernt story.id and current_user.id
   def like_id(story_id, user_id)
     StoryLike.where(story_id: story_id, user_id: user_id)[0].id
+  end
+  
+  def bookmarked?(story_id, user_id)
+    !Bookmark.where(story_id: story_id, user_id: user_id).empty?
   end
 end

@@ -2,11 +2,16 @@ Rails.application.routes.draw do
   root to: "static#index"
   devise_for :users
 
-  resources :users, only: [:show]
+  resources :users, only: [:show] do
+    resources :stories, only: [:index]
+    resources :comments, only: [:index]
+    resources :bookmarks, only: [:index]
+  end
 
   resources :stories do
-    resources :story_likes, only: [:create]
     resources :comments, only: [:create, :new]
+    resources :story_likes, only: [:create]
+    resources :bookmarks, only: [:create]
   end
   
   resources :comments, only: [:show, :edit, :update, :destroy] do
@@ -15,6 +20,7 @@ Rails.application.routes.draw do
   
   resources :comment_likes, only: [:destroy]
   resources :story_likes, only: [:destroy]
+  resources :bookmarks, only: [:destroy]
   
   get 'users/:id/stories', :to => 'users#user_stories'
   get 'users/:id/comments', :to => 'users#user_comments'

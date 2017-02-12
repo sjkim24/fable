@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
          #, :trackable, :validatablegmail
 
   has_many :stories, dependent: :destroy
-  has_many :comments, dependent: :destroy
-  has_many :likes, class_name: "StoryLike", foreign_key: :user_id, dependent: :destroy
+  has_many :comments
+  has_many :story_likes, dependent: :destroy
+  has_many :comment_likes, dependent: :destroy
+  has_many :bookmarks, dependent: :destroy
 end

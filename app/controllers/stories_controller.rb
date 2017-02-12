@@ -34,11 +34,12 @@ class StoriesController < ApplicationController
   def show
     @story = Story.find(params[:id])
     @comments = @story.get_comments_only
-    @story_likes = @story.likes
+    @story_likes = @story.story_likes
     
     # implement this later
     # StoryLike.liked?(current_user.id, @story.class.name.downcase, @story_id)
     @story_liked = @story.liked?(@story.id, current_user.id)
+    @story_bookmarked = @story.bookmarked?(@story.id, current_user.id)
     @like_id = @story.like_id(@story.id, current_user.id) if @story_liked
         
     render :show
@@ -55,6 +56,7 @@ class StoriesController < ApplicationController
   end
 
   def destroy
+    binding.pry
     @story = Story.find(params[:id])
     @story.destroy
     redirect_to stories_url

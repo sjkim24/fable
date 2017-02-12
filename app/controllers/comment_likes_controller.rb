@@ -17,7 +17,7 @@ class CommentLikesController < ApplicationController
     if @like.destroy
       redirect_to story_url(params[:id])
     else
-      flash.now[:errors] = "Error"
+      flash.now[:errors] = @like.errors.full_messages
     end
   end
   

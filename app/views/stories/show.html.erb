@@ -12,8 +12,16 @@
       <% req_method = "post" %>
       <% story_like_id = nil %>
     <% end %>
+    
+    <% if @story_bookmarked %>
+      <% bookmark = Bookmark.where(user_id: current_user.id, story_id: @story.id)[0] %>
+      <% bookmark_url, bookmark_req  = bookmark_url(bookmark), "delete" %>
+    <% else %>
+      <% bookmark_url, bookmark_req = story_bookmarks_url(@story.id), "post" %>
+    <% end %>
 
     <%= render partial: "likes/story_like_form", locals: { url: url, story_liked: @story_liked, like_id: story_like_id, story_or_comment: @story, method: req_method } %>
+    <%= render partial: "bookmarks/form", locals: { bookmark_url: bookmark_url, method: bookmark_req } %>
   </div>
   <div class="">Comment on this story</div>
   <%= render partial: "comments/form", locals: { url: story_comments_url(@story.id), parent_comment_id: nil, method: "post" } %>
