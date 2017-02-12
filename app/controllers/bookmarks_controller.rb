@@ -1,7 +1,10 @@
 class BookmarksController < ApplicationController
   
   def index
-    @bookmarks = Bookmark.where(user_id: params[:id])
+    @bookmarks = Bookmark.where(user_id: params[:user_id])
+    @user = User.find(params[:user_id])
+    
+    render :index
   end
   
   def create
@@ -15,7 +18,6 @@ class BookmarksController < ApplicationController
   end
   
   def destroy
-    binding.pry
     @bookmark = Bookmark.find(params[:id])
     @story_id = @bookmark.story_id
     

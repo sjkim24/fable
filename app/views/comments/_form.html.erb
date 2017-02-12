@@ -13,7 +13,6 @@
   <% if method.downcase === "post" %>
     <input type="submit" value="Submit">
   <% elsif method.downcase === "patch" %>
-    <%= binding.pry %>
     <input type="hidden" name="comment[id]" value="<%= @comment.id %>">
     <input type="submit" value="Update">
   <% end %>

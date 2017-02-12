@@ -1,0 +1,14 @@
+<div>Welcome <%= @user.username %>, here are your bookmarked stories<div>
+<ul>
+  <% @comments.each do |comment| %>
+    <% if comment.story %>
+      <li>    
+        <% story = Story.find(comment.story) %>
+        <a href="<%= story_url(story) %>">
+          <div>Title: <%= story.title %></div>
+          <div>Content: <%= story.content %></div>
+        </a>
+      </li>
+    <% end %>
+  <% end %>
+</ul>

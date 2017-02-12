@@ -1,5 +1,29 @@
 class UsersController < ApplicationController
   
+  def show
+    @user = User.find(params[:id])
+    @comments = @user.comments
+    @stories = @user.stories
+    
+    render :show
+  end
+  
+  def edit
+    @user = User.find(params[:id])
+    
+    render :edit
+  end
+  
+  def update
+    @user = User.find(params[:id])
+    if @user.update_attributes(user_params)
+      redirect_to user_url(@user)
+    else
+      flash.now[:errors] = @user.errros.full_messages
+      render :edit
+    end
+  end
+  
   def user_stories
     @user = User.find(params[:id])
     @stories = @user.stories
@@ -14,14 +38,15 @@ class UsersController < ApplicationController
     render :user_comments
   end
   
-  def show
+  def user_bookmarks
     @user = User.find(params[:id])
-    @comments = @user.comments
-    @stories = @user.stories
+    @bookmarks = @user.bookmarks
+    
+    render :user_bookmarks
   end
-
+  
   private
-    def users_params
-      params.require(:person).permit(:username, :user_desc)
+    def user_params
+      params.require(:user).permit(:username, :user_desc, :photo)
     end
 end

@@ -56,7 +56,6 @@ class StoriesController < ApplicationController
   end
 
   def destroy
-    binding.pry
     @story = Story.find(params[:id])
     @story.destroy
     redirect_to stories_url

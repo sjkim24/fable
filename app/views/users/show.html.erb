@@ -1,9 +1,21 @@
-<div>Welcome <%= @user.username %>, here is your profile<div>
+<div>Username: <%= @user.username %><div>
+<div>About yourself: <%= @user.user_desc %><div>
+<img src="<%= @user.photo.url %>" alt="">
 <ul>
+  <% id = @user.id %>
   <li>
-    <a href="http://localhost:3000/users/1/stories">Stories</a>
+    <a href="<%= edit_user_url(@user) %>">Edit profile</a>
   </li>
   <li>
-    <a href="http://localhost:3000/users/1/comments">Comments</a>
+    <% link1 = "/users/" + @user.id.to_s + "/stories" %>
+    <a href="<%= link1 %>">Stories</a>
+  </li>
+  <li>
+    <% link2 = "/users/" + @user.id.to_s + "/comments" %>
+    <a href="<%= link2 %>">Comments</a>
+  </li>
+  <li>
+    <% link3 = "/users/" + @user.id.to_s + "/bookmarks" %>
+    <a href="<%= user_bookmarks_url(@user.id) %>">Bookmarks</a>
   </li>
 </ul>

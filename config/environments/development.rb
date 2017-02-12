@@ -40,4 +40,15 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+  # config.paperclip_defaults = {
+  #   :url => ':s3_domain_url',
+  #   # path: '/:user/:attachment/:id/:style/:filename',
+  #   :default_url => '/images/user_default.png',
+  #   :storage => :s3,
+  #   :bucket => ENV['AWS_DEV_BUCKET'],
+  #   :s3_credentials => {
+  #     :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
+  #     :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
+  #   }
+  # }
 end

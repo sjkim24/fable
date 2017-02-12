@@ -3,6 +3,7 @@ class CommentsController < ApplicationController
   def index
     if params.has_key?(:user_id)
       @comments = Comment.where(user_id: params[:user_id])
+      @user = User.find(params[:user_id])
     else
       @comments = Comment.all
     end
