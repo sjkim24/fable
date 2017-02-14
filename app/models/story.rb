@@ -1,6 +1,9 @@
 class Story < ActiveRecord::Base
   validates :title, :content, presence: true
-
+  
+  has_attached_file :banner_image
+  validates_attachment :banner_image, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png"] }
+  
   belongs_to :user
   
   has_many :comments

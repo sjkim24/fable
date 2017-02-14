@@ -1,10 +1,11 @@
-<form class="" action="<%= url %>" method="post">
+<form class="" action="<%= url %>" method="post" enctype="multipart/form-data">
   <input type="hidden" name="_method" value="<%= method %>">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 
   <input type="text" name="story[title]" value="<%= @story.title %>">
   <textarea name="story[content]" rows="8" cols="80"><%= @story.content %></textarea>
-
+  <input type="file" name="story[banner_image]" value="">
+  
   <% if method === "post" %>
     <input type="submit" value="Submit">
   <% else %>
