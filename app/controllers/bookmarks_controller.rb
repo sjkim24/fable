@@ -10,7 +10,7 @@ class BookmarksController < ApplicationController
   def create
     @bookmark = Bookmark.new(user_id: current_user.id, story_id: params[:story_id])
     
-    if @bookmark.save!
+    if @bookmark.save
       redirect_to story_url(params[:story_id])
     else
       flash.now[:errors] = @bookmark.errors.full_messages

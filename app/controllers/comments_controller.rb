@@ -16,7 +16,7 @@ class CommentsController < ApplicationController
     @comment.user_id = current_user.id
     @comment.story_id = params[:story_id]
 
-    if @comment.save!
+    if @comment.save
       redirect_to story_url(@comment.story_id)
     else
       flash.now[:errors] = @comment.errors.full_messages

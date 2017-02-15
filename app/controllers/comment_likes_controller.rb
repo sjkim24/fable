@@ -4,7 +4,7 @@ class CommentLikesController < ApplicationController
     @like = CommentLike.new(user_id: current_user.id, comment_id: params[:comment_id])
     @story_id = Comment.find(params[:comment_id]).story.id
     
-    if @like.save!
+    if @like.save
       redirect_to story_url(@story_id)
     else
       flash.now[:errors] = @like.errors.full_messages

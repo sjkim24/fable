@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resources :stories, only: [:index]
     resources :comments, only: [:index]
     resources :bookmarks, only: [:index]
+    resources :follows, only: [:create, :destroy]
   end
 
   resources :stories do

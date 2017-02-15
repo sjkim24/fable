@@ -15,5 +15,6 @@ class User < ActiveRecord::Base
   has_many :story_likes, dependent: :destroy
   has_many :comment_likes, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
-
+  has_many :followings, class_name: "Follow", foreign_key: :follower_id, dependent: :destroy
+  has_many :followers, class_name: "Follow", foreign_key: :following_id, dependent: :destroy
 end
