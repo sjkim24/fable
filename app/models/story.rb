@@ -9,6 +9,8 @@ class Story < ActiveRecord::Base
   has_many :comments
   has_many :story_likes, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
+  has_many :taggings
+  has_many :tags, through: :taggings, source: :tag
   
   # refactor these into a module
   # Comment model also has the exact same funcitons
