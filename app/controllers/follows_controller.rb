@@ -1,24 +1,23 @@
 class FollowsController < ApplicationController
   
   def create
-    @follow = Follow.new(follow_params)
+    @follow = Follow.new(follower_id: current_user.id, following_id: params[:user_id])
     
     if @follow.save
-      binding.pry
-      redirect_to user_url()
+      redirect_to user_url(params[:user_id])
     else
-      
+      flash.now[:errors] = "Error"
     end
   end
   
   def destroy
+    @follow = Follow.find(params[:id])
+    user_id = @follow.following_id
     
-  end
-  
-  private
-    def follow_params
-      params.require(:follow)
-        .permit(:follower_id, :following_id)
-      end
+    if @follow.destroy
+      redirect_to user_url(user_id)
+    else
+      flash.now[:errors] = "Error"
     end
+  end
 end

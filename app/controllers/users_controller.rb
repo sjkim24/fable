@@ -5,6 +5,10 @@ class UsersController < ApplicationController
     @comments = @user.comments
     @stories = @user.stories
     
+    if @user.following?(current_user.id, @user.id)
+      @follow = Follow.where(follower_id: current_user.id, following_id: @user.id)[0]
+    end
+    
     render :show
   end
   

@@ -1,7 +1,10 @@
 class User < ActiveRecord::Base
   validates :email, :encrypted_password, :sign_in_count, presence: true
   
-  has_attached_file :photo, styles: { thumb: '100x100>', square: '200x200#', medium: '300x300>' }
+  has_attached_file :photo, 
+    styles: { thumb: '100x100>', square: '200x200#', medium: '300x300>' }
+    # ,
+    # :default_url => "/images/default_:style_user_default.png"
   validates_attachment :photo, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png"] }
   
   # Include default devise modules. Others available are:
@@ -22,4 +25,7 @@ class User < ActiveRecord::Base
   has_many :following_relationships, class_name: "Follow", foreign_key: :follower_id, dependent: :destroy
   has_many :followings, through: :following_relationships, source: :following
   
+  def following?(current_user_id, user_id)
+    Follow.where(follower_id: current_user_id, following_id: user_id).present?
+  end
 end

@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     resources :stories, only: [:index]
     resources :comments, only: [:index]
     resources :bookmarks, only: [:index]
-    resources :follows, only: [:create, :destroy]
+    resources :follows, only: [:create]
   end
 
   resources :stories do
@@ -22,8 +22,11 @@ Rails.application.routes.draw do
   resources :comment_likes, only: [:destroy]
   resources :story_likes, only: [:destroy]
   resources :bookmarks, only: [:destroy]
+  resources :follows, only: [:destroy]
   
   get 'users/:id/stories', :to => 'users#user_stories'
   get 'users/:id/comments', :to => 'users#user_comments'
   get 'users/:id/bookmarks', :to => 'users#user_bookmarks'
+  get 'users/:id/followers', :to => 'users#user_followers'
+  get 'users/:id/followings', :to => 'users#user_followings'
 end
