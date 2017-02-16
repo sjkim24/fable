@@ -50,6 +50,9 @@ group :development do
   gem 'binding_of_caller'
   gem 'pry-rails'
   gem 'quiet_assets'
+  
+  # notifies of n + 1 querry problems
+  gem 'bullet'
 end
 
 group :production do

@@ -4,6 +4,7 @@ class FollowsController < ApplicationController
     @follow = Follow.new(follow_params)
     
     if @follow.save
+      binding.pry
       redirect_to user_url()
     else
       
