@@ -1,29 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Mymedium</title>
+  <title>Fable - Share your stories</title>
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <a href="<%= root_url %>">Home</a>
-  <a href="<%= new_user_registration_url %>">Sign Up</a>
-  <br></br>
-  <% if user_signed_in? %>
-    <a href="<%= user_url(current_user) %>">Your Profile</a>
-    <div>
-      <form class="" action="<%= destroy_user_session_url %>" method="post">
-        <input type="hidden" name="_method" value="delete">
-        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-          <button>Logout</button>
-      </form>
-    </div>
-  <% else %>
-    <a href="<%= new_user_session_url %>">Login</a>
-  <% end %>
-
-  <a href="<%= new_story_url%>">Create Your Story</a>
+  
   <%= yield %>
+  
 </body>
 </html>
