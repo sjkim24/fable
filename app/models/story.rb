@@ -14,14 +14,10 @@ class Story < ActiveRecord::Base
   
   # refactor these into a module
   # Comment model also has the exact same funcitons
-  
-  # gets story's comments only, no replies to story's comments
-  def get_comments_only
-    self.comments.where(parent_comment_id: nil)
-  end
-  
-  # checks if the story has been liked by current user
+
+  # checks if the story has been liked by the current user
   def liked?(story_id, user_id)
+    binding.pry
    !StoryLike.where(story_id: story_id, user_id: user_id).empty?
   end
   
@@ -32,5 +28,46 @@ class Story < ActiveRecord::Base
   
   def bookmarked?(story_id, user_id)
     !Bookmark.where(story_id: story_id, user_id: user_id).empty?
+  end
+  
+  def has_image?
+    !self.banner_image_file_name.nil?
+  end
+  
+  # gets story's comments only; no replies to the story's comments
+  def get_comments_only
+    self.comments.where(parent_comment_id: nil)
+  end
+  
+  def published_date
+    date_hash = {
+      "1" => "Jan",
+      "2" => "Feb",
+      "3" => "Mar",
+      "4" => "Apr",
+      "5" => "May",
+      "6" => "Jun",
+      "7" => "Jul",
+      "8" => "Aug",
+      "9" => "Sep",
+      "10" => "Oct",
+      "11" => "Nov",
+      "12" => "Dec"
+    }
+    
+    month = date_hash[self.created_at.month.to_s]
+    day = self.created_at.day.to_s
+    
+    return month + " " + day
+  end
+  
+  # this function needs fix/refactoring once i figure out how i'm going
+  # to structure my content format between rails and react
+  def read_time
+    (self.content.split(" ").count.to_f / 275).round
+  end
+  
+  def main_tag
+    self.tags.first.nil? ? nil : self.tags.first.tag_desc
   end
 end

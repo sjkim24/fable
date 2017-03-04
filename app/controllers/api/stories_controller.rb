@@ -1,6 +1,8 @@
 class Api::StoriesController < ApplicationController
   # before_action :user_signed_in?
 
+  # later, create jobs to get fetch fresh stories on daily basis
+  # also, look into medium api to fetch some posts
   def index
     @stories = Story.all
     render :index
@@ -38,8 +40,8 @@ class Api::StoriesController < ApplicationController
     
     # implement this later
     # StoryLike.liked?(current_user.id, @story.class.name.downcase, @story_id)
-    @story_liked = @story.liked?(@story.id, current_user.id)
-    @story_bookmarked = @story.bookmarked?(@story.id, current_user.id)
+    @story_liked = current_user.nil? ? false : @story.liked?(@story.id, current_user.id)
+    @story_bookmarked = current_user.nil? ? false : @story.bookmarked?(@story.id, current_user.id)
     @like_id = @story.like_id(@story.id, current_user.id) if @story_liked
         
     render :show

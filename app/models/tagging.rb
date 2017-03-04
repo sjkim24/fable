@@ -1,4 +1,4 @@
-class Tagging < AcitveRecord::Base
+class Tagging < ActiveRecord::Base
   validates :story_id, :tag_id, presence: true
   validates_uniqueness_of :story_id, scope: :tag_id
   
