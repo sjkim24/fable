@@ -1,4 +1,4 @@
-class TaggingsController < ApplicationController
+class Api::TaggingsController < ApplicationController
   
   def create
     

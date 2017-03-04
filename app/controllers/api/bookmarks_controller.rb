@@ -1,4 +1,4 @@
-class BookmarksController < ApplicationController
+class Api::BookmarksController < ApplicationController
   
   def index
     @bookmarks = Bookmark.where(user_id: params[:user_id])

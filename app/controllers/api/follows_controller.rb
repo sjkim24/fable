@@ -1,4 +1,4 @@
-class FollowsController < ApplicationController
+class Api::FollowsController < ApplicationController
   
   def create
     @follow = Follow.new(follower_id: current_user.id, following_id: params[:user_id])

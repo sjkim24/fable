@@ -1,4 +1,4 @@
-class CommentsController < ApplicationController
+class Api::CommentsController < ApplicationController
   # shows user's all comments in profile page
   def index
     if params.has_key?(:user_id)

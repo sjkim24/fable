@@ -1,4 +1,4 @@
-class StoryLikesController < ApplicationController
+class Api::StoryLikesController < ApplicationController
 
   def create
     @like = StoryLike.new(user_id: current_user.id, story_id: params[:story_id])

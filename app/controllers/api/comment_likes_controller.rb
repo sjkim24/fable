@@ -1,4 +1,4 @@
-class CommentLikesController < ApplicationController
+class Api::CommentLikesController < ApplicationController
   
   def create
     @like = CommentLike.new(user_id: current_user.id, comment_id: params[:comment_id])
