@@ -1,16 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom";
-// import { Provider } from 'react-redux';
-// import { createStore, applyMiddleware } from 'redux';
-// import { Router, browserHistory } from 'react-router';
-// import reducers from './reducers';
-// import routes from './routes';
-// import promise from "redux-promise";
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import { Router, browserHistory } from 'react-router';
+import reducers from './reducers';
+import routes from './routes';
 
-// const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
+const createStoreWithMiddleware = applyMiddleware()(createStore);
 
-document.addEventListener("DOMContentLoaded", () => {
-  const root = document.getElementById("main");
-  
-  ReactDOM.render(<div>Hello World!!!</div>, root);
+document.addEventListener("DOMContentLoaded", () => {  
+  ReactDOM.render(
+    <Provider store={createStoreWithMiddleware(reducers)}>
+      <Router history={browserHistory} routes={routes} />
+    </Provider>
+    , document.querySelector("#main")
+  );
 });
