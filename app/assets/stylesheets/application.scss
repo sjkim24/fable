@@ -13,8 +13,12 @@
  *= require_tree .
  *= require_self
  */
-
-@import "reset";
-@import "sass_variables";
-@import "navbar";
-@import "landing";
+ 
+   @import url('https://fonts.googleapis.com/css?family=Roboto'); // font
+   @import "definitions";
+   @import "sass_variables";
+   @import "reset";
+   @import "main";
+   @import "header";
+   @import "navbar";
+   @import "landing";

@@ -1,0 +1,49 @@
+.nav-bar {
+  border-bottom: 2px solid gray;   // sass_var
+  padding-bottom: 5px;
+  padding-top: 5px;
+}
+
+.nav-bar-hamburger-menu {
+  width: 30px;
+}
+
+.nav-bar-links-container {
+  display: none;
+  font-size: 14px;
+  height: 40px;
+}
+
+.nav-bar-link {
+  color: gray; // sass_var
+}
+
+.nav-bar-link:hover {
+  color: #000000;
+}
+
+// tablet break point //
+@media (min-width: 768px) and (max-width: 989px) {
+  .nav-bar-hamburger-menu {
+    display: none;
+  }
+  
+  .nav-bar-links-container {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+// desktop break point //
+@media (min-width: 990px) {
+  .nav-bar-hamburger-menu {
+    display: none;
+  }
+  
+  .nav-bar-links-container {
+    align-items: center;
+    display: flex;
+    justify-content: space-around;
+  }
+}
