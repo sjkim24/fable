@@ -1,7 +1,8 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from "redux";
+import StoriesReducer from "./reducer_stories.jsx";
 
 const rootReducer = combineReducers({
-  state: (state = {}) => state
+  stories: StoriesReducer
 });
 
 export default rootReducer;
