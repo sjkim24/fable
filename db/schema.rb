@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170216032917) do
+ActiveRecord::Schema.define(version: 20170314234353) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 20170216032917) do
     t.string   "banner_image_content_type"
     t.integer  "banner_image_file_size"
     t.datetime "banner_image_updated_at"
+    t.string   "subtitle"
   end
 
   create_table "story_likes", force: :cascade do |t|

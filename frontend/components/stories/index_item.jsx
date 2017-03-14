@@ -3,7 +3,9 @@ import React from 'react';
 const StoriesIndexItem = function() {
   console.log("hit");
   return (
-    <li>hello</li>
+    <li>
+      hello
+    </li>
   );
 };
 
