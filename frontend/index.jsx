@@ -7,9 +7,8 @@ import reducers from './reducers';
 import routes from './routes';
 import promise from 'redux-promise';
 
-const createStoreWithMiddleware = applyMiddleware(
-  promise
-)(createStore);
+// make sure all actions flow through the promise middleware before reaching the reducers
+const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
 document.addEventListener("DOMContentLoaded", () => {  
   ReactDOM.render(
