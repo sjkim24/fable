@@ -31,7 +31,6 @@ class StoriesIndexItem extends Component {
   }
   
   renderBannerImg() {
-    console.log(this.props.story.image_url);
     if (this.props.story.image_url) {
       const style = { backgroundImage: `url(${this.props.story.image_url})`}
       
