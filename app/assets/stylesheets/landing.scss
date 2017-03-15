@@ -1,0 +1,117 @@
+.stories {
+  border: 1px solid yellow;
+  margin: 25px auto 0px auto;
+  width: 90%;
+}
+
+.stories-item {
+  border: 1px solid blue;
+  margin-bottom: 25px;
+  padding: 10px;
+}
+
+.stories-item-header {
+  border: 1px solid red;
+  height: 50px;
+}
+
+.stories-item-user-img {
+  border-radius: 50%;
+  float: left;
+  height: 36px;
+  margin: 7px 10px 7px 7px;
+  width: 36px;
+}
+
+.stories-item-username-pub-rt-container {
+  float: left;
+}
+
+.stories-item-username-pub-rt-container {
+  margin-top: 6.5px;
+}
+
+.stories-item-username {
+  color: #02b875;
+  display: inline-block;
+  font-size: 12px;
+  letter-spacing: 0.03em;
+  
+  &:hover {
+    color: #00ab6b;
+  }
+}
+
+.stories-item-published-date {
+  float: left;
+  font-size: 12px;
+  letter-spacing: 0.03em;
+  margin-right: 4px;
+}
+
+.stories-item-kdot {
+  float: left;
+  font-size: 12px;
+  margin-right: 4px;
+}
+
+.stories-item-read-time {
+  float: left;
+  font-size: 12px;
+  letter-spacing: 0.03em;
+}
+
+.stories-item-banner-img {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 150px;
+  margin-top: 15px;
+}
+
+.stories-item-title {
+  font-size: 18px;
+  letter-spacing: 0.01em;
+  margin: 15px 0 5px 0;
+}
+
+.stories-item-subtitle {
+  color: gray;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  margin-bottom: 10px;
+}
+
+.stories-item-snippet {
+  letter-spacing: 0.01em;
+  margin-bottom: 20%;
+}
+
+.stories-item-like {
+  float: left;
+  width: 50%;
+}
+
+.stories-item-resp-book {
+  float: left;
+  width: 50%;
+}
+
+.stories-item-like-heart-img {
+  float: left;
+  margin-right: 8px;
+}
+
+.stories-item-like-count {
+  float: left;
+}
+
+.stories-item-responses {
+  float: right;
+  margin-right: 8px;
+}
+
+.stories-item-bookmark {
+  float: right;
+}

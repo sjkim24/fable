@@ -1,6 +1,18 @@
 import React, { Component } from 'react';
 
 class StoriesIndexItem extends Component {
+  renderSubtitle() {
+    const subtitle = this.props.story.subtitle;
+    
+    if (subtitle && subtitle.length > 20) {
+      return <h4 className="stories-item-subtitle">
+        {`${subtitle.split(" ").slice(0,20).join(" ")} ...`}
+      </h4>;
+    } else if (subtitle) {
+      return <h4 className="stories-item-subtitle">{subtitle}</h4>;  
+    }
+  }
+  
   renderSnippet() {
     // a story has...
     // banner img, title and subtitle -> no snippet
@@ -14,46 +26,53 @@ class StoriesIndexItem extends Component {
     if (shouldRender) {
       const content = this.props.story.content.split(" ").slice(0,20).join(" ");
       
-      return <p className="story-snippet">{`${content} ...`}</p>;
-    }
-  }
-  
-  renderSubtitle() {
-    if (this.props.story.subtitle) {
-      return <h4 className="story-subtitle">subtitle</h4>;
+      return <p className="stories-item-snippet">{`${content} ...`}</p>;
     }
   }
   
   renderBannerImg() {
-    if (this.props.story.user_image_url) {
-      return <img src={`${this.props.story.user_image_url}`} className="story-banner-img"/>;
+    console.log(this.props.story.image_url);
+    if (this.props.story.image_url) {
+      const style = { backgroundImage: `url(${this.props.story.image_url})`}
+      
+      return <div style={style} className="stories-item-banner-img"/>;
     }
+  }
+  
+  renderResponsesCount() {
+    const count = this.props.story.comments_count;
+    
+    return count < 2 ?  `${count} response` : `${count} responses`;
   }
   
   render() {
     return (
-      <li className="story">
-        <div className="story-header">
-          <img src={this.props.story.user_image_url} className="story-user-img" />
-          <a href="">{this.props.story.username}</a>
-          <div className="story-published-date">{this.props.story.published_date}</div>
-          <div className="story-kdot">{"\u2022"}</div>
-          <div className="story-read-time">{this.props.story.read_time}</div>
+      <li className="stories-item">
+        <div className="stories-item-header group">
+          <img src={this.props.story.user_image_url} className="stories-item-user-img" />
+          <div className="stories-item-username-pub-rt-container group">
+            <a href="" className="stories-item-username">{this.props.story.username}</a>
+            <div className="stories-item-pub-rt-container group">
+              <div className="stories-item-published-date">{this.props.story.published_date}</div>
+              <div className="stories-item-kdot">{"\u2022"}</div>
+              <div className="stories-item-read-time">{`${this.props.story.read_time} min read`}</div>
+            </div>
+          </div>
         </div>
-        <div className="story-details">
-          <h3 className="story-title">story title</h3>
-          {this.renderSubtitle()}
+        <div className="stories-item-details">
           {this.renderBannerImg()}
+          <h3 className="stories-item-title">{this.props.story.title}</h3>
+          {this.renderSubtitle()}
           {this.renderSnippet()}
         </div>
-        <div className="story-footer">
-          <div className="story-like">
-            <div>Heart</div>
-            <div>{this.props.story.likes_count}</div>
+        <div className="stories-item-footer group">
+          <div className="stories-item-like">
+            <div className="stories-item-like-heart-img">Hrt</div>
+            <div className="stories-item-like-count">{this.props.story.likes_count}</div>
           </div>
-          <div className="story-resp-book">
-            <div>{this.props.comments_count}</div>
-            <div>Bookmark</div>
+          <div className="stories-item-resp-book group">
+            <div className="stories-item-bookmark">BM</div>
+            <div className="stories-item-responses">{this.renderResponsesCount()}</div>
           </div>
         </div>
       </li>

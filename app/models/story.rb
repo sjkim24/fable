@@ -1,5 +1,6 @@
 class Story < ActiveRecord::Base
   validates :title, :content, presence: true
+  validates :title, :subtitle, length: { maximum: 200 }
   
   has_attached_file :banner_image
   validates_attachment :banner_image, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png"] }
