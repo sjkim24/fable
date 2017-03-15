@@ -20,7 +20,7 @@ class StoriesIndex extends Component {
   
   render() {
     return (
-      <ul>
+      <ul className="stories">
         {this.renderStories()}
       </ul>
     );
