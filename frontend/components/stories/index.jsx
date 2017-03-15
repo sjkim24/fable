@@ -18,10 +18,42 @@ class StoriesIndex extends Component {
     return stories;
   }
   
+  renderRecommendations() {
+    return (
+      <ul className="stories-recs">
+        <li className="stories-rec stories-rec-1">
+          <div className="stories-rec-category">Top Stories</div>
+          <ul className="stories-rec-items-container">
+            <li className="stories-rec-item">1</li>
+            <li className="stories-rec-item">2</li>
+            <li className="stories-rec-item">3</li>
+          </ul>
+        </li>
+        <li className="stories-rec stories-rec-2">
+          <div className="stories-rec-category">Top Sports</div>
+          <ul className="stories-rec-items-container">
+            <li className="stories-rec-item">1</li>
+            <li className="stories-rec-item">2</li>
+            <li className="stories-rec-item">3</li>
+          </ul>
+        </li>
+        <li className="stories-rec stories-rec-2">
+          <div className="stories-rec-category">Top Technology</div>
+          <ul className="stories-rec-items-container">
+            <li className="stories-rec-item">1</li>
+            <li className="stories-rec-item">2</li>
+            <li className="stories-rec-item">3</li>
+          </ul>
+        </li>
+      </ul>
+    );
+  }
+  
   render() {
     return (
       <ul className="stories">
         {this.renderStories()}
+        {this.renderRecommendations()}
       </ul>
     );
   }

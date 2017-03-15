@@ -4,6 +4,8 @@
   width: 90%;
 }
 
+// story item //
+
 .stories-item {
   border: 1px solid blue;
   margin-bottom: 25px;
@@ -19,7 +21,7 @@
   border-radius: 50%;
   float: left;
   height: 36px;
-  margin: 7px 10px 7px 7px;
+  margin: 7px 10px 7px 0px;
   width: 36px;
 }
 
@@ -114,4 +116,10 @@
 
 .stories-item-bookmark {
   float: right;
+}
+
+// recommendations //
+
+.stories-recs {
+  display: none;
 }
