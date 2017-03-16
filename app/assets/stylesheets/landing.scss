@@ -1,3 +1,4 @@
+// COPY PASTE
 .stories {
   margin: 25px auto 0px auto;
   width: 90%;
@@ -107,6 +108,10 @@
   margin-right: 8px;
 }
 
+.stories-item-like-heart-path {
+  d: $heart-d;
+}
+
 .stories-item-like-count {
   color: rgba(0, 0, 0, 0.44);
   float: left;
@@ -120,6 +125,10 @@
 
 .stories-item-bookmark {
   float: right;
+}
+
+.stories-item-bookmark-path {
+  d: $bookmark-d;
 }
 
 // recommendations //

@@ -1,3 +1,5 @@
+// copy paste
+
 import React, { Component } from 'react';
 
 class StoriesIndexItem extends Component {
@@ -66,11 +68,15 @@ class StoriesIndexItem extends Component {
         </div>
         <div className="stories-item-footer group">
           <div className="stories-item-like">
-            <div className="stories-item-like-heart-img">Hrt</div>
+            <svg className="stories-item-like-heart-img">
+              <path className="stories-item-like-heart-path"/>
+            </svg>
             <div className="stories-item-like-count">{this.props.story.likes_count}</div>
           </div>
           <div className="stories-item-resp-book group">
-            <div className="stories-item-bookmark">BM</div>
+            <svg className="stories-item-bookmark">
+              <path className="stories-item-bookmark-path" />
+            </svg>
             <div className="stories-item-responses">{this.renderResponsesCount()}</div>
           </div>
         </div>

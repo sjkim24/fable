@@ -1,12 +1,17 @@
+// COPY PASTE
 .nav-bar {
   background-color: #FFFFFF;
-  border-bottom: 2px solid gray;   // sass_var
+  border-bottom: 2px solid #FAFAFA;
   padding-bottom: 5px;
   padding-top: 5px;
 }
 
 .nav-bar-hamburger-menu {
   width: 30px;
+}
+
+.nav-bar-hamburger-menu:hover {
+  cursor: pointer;
 }
 
 .nav-bar-links-container {
@@ -16,7 +21,7 @@
 }
 
 .nav-bar-link {
-  color: gray; // sass_var
+  color: #FAFAFA;
 }
 
 .nav-bar-link:hover {

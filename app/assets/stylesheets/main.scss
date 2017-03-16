@@ -1,7 +1,9 @@
 #main {
-  background-color: #FAFAFA;
+  background-color: $gray;
   border: 1px solid orange;
-  font-family: 'Roboto', sans-serif; // $sans-serif
+  font-family: $sans-serif;
   max-width: 1000px !important;
   width: 100%;
 }
+
+// COPY PASTE
