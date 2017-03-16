@@ -4,8 +4,9 @@ import Header from './base/header.jsx';
 import NavBar from './nav_bar/nav_bar.jsx'
 import Modal from "./base/modal.jsx";
 
-export default class App extends Component {
+class App extends Component {
   render() {
+    // console.log(this.props.modal);
     return (
       <div className="app">
         <Header />
@@ -16,3 +17,5 @@ export default class App extends Component {
     );
   }
 }
+
+export default App;

@@ -1,7 +1,5 @@
-// modal component takes these props: 
-// name
-
 // COPY PASTE
+
 import React, { Component } from 'react';
 
 import { connect } from "react-redux";
@@ -10,6 +8,16 @@ import { toggleModal } from "../../actions/modal_toggle";
 import AuthSelections from "../auth/auth_selections.jsx";
 
 class Modal extends Component {
+  constructor() {
+    super();
+    
+    this.toggleModal = this.toggleModal.bind(this);
+  }
+  
+  toggleModal() {
+    this.props.toggleModal(null);
+  }
+  
   renderContent(content) {
     switch(content) {
       case "auth":
@@ -18,11 +26,15 @@ class Modal extends Component {
   }
   
   render() {
+    const content = this.props.modal.content;
     const modalDisplay = this.props.modal.active ? "" : "hidden";
     
     return (
-      <div className={`modal modal-${this.props.name} ${modalDisplay}`}>
-        {this.renderContent(this.props.modal.content)}
+      <div className={`modal modal-${content} ${modalDisplay}`}>
+        <div onClick={this.toggleModal} className="modal-close-btn">X</div>
+        <div className={`modal-inner modal-inner-${content}`}>
+          {this.renderContent(content)}
+        </div>
       </div>
     );
   }
@@ -37,5 +49,3 @@ function mapStateToProps(state) {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Modal);
-
-// export default Modal;
