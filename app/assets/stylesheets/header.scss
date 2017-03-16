@@ -2,8 +2,8 @@
 
 .header {
   background-color: #FFFFFF;
-  border-bottom: 1px solid $gray;
-  height: 65px;
+  border-bottom: 1px solid $light-gray;
+  height: 50px;
 }
 
 .header-list-left {
@@ -34,6 +34,10 @@
   font-size: 12px;
   margin: 0 10px;
   opacity: 0.75; 
+}
+
+.header-list-auth-link {
+  font-size: 14px;
 }
 
 .header-list-auth-link:hover {
