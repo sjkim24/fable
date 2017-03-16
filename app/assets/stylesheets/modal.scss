@@ -1,28 +1,29 @@
 // copy paste
-
+// modal
 .modal {
-  width: 100%;
+  background: $overlay-gray;
   height: 100%;
   left: 0;
-  top: 0;
-  background: $overlay-gray;
-  z-index: 10;
   position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 10;
 }
 
 .modal-inner-auth {
   background-color: #FFFFFF;
   border: 1px solid black;
-  max-width: 520px;
+  left: 50%;
+  max-width: 400px;
   position: fixed;
   top: 50%;
-  transform: translate(0, -50%);
-  width: 100%;
+  transform: translate(-50%, -50%);
+  width: 95%;
 }
 
 .modal-close-btn {
-  color: red;
-  font-size: 20px;
+  color: #FFFFFF;
+  font-size: 24px;
   position: fixed;
   right: 10px;
   top: 10px;
@@ -30,4 +31,69 @@
 
 .modal-close-btn:hover {
   cursor: pointer;
+}
+
+// auth selections
+.auth-selections {
+  font-size: 14px;
+}
+
+.auth-selections-logo {
+  background: $light-gray;
+}
+
+.auth-selections-logo-img {
+  margin: 0 auto;
+  padding: 25px 0;
+  width: 30%;
+}
+
+.auth-selections-header, .auth-selections-footer {
+  color: $dark-gray;
+  letter-spacing: 0.01em;
+  line-height: 18px;
+  margin: 20px 0;
+  padding: 0 20px;
+}
+
+.auth-selections-btns-container {
+  padding: 0 15px;
+}
+
+.auth-selections-btn {
+  border-radius: 2px;
+  color: #FFFFFF;
+  margin: 20px 0;
+  padding: 20px;
+}
+
+.auth-selections-btn-guest {
+  background: $sky-blue;
+}
+
+.auth-selections-btn-guest:hover {
+  background: $sky-blue-hover;
+  cursor: pointer;
+  transition: background 0.25s ease-in;
+}
+
+.auth-selections-btn-signin {
+  background: $stormy;
+}
+
+.auth-selections-btn-signin:hover {
+  background: $stormy-hover;
+  cursor: pointer;
+  transition: background 0.25s ease-in;
+}
+
+.auth-selections-link-signup {
+  color: $blue;
+  text-align: center;
+}
+
+.auth-selections-link-signup:hover {
+  color: $dark-blue;
+  cursor: pointer;
+  transition: 1s color ease-in-out;
 }

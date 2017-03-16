@@ -31,7 +31,7 @@ class Modal extends Component {
     
     return (
       <div className={`modal modal-${content} ${modalDisplay}`}>
-        <div onClick={this.toggleModal} className="modal-close-btn">X</div>
+        <div onClick={this.toggleModal} className="modal-close-btn">x</div>
         <div className={`modal-inner modal-inner-${content}`}>
           {this.renderContent(content)}
         </div>

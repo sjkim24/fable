@@ -19,14 +19,32 @@ class AuthSelections extends Component {
   
   render() {
     return (
-      <div>
-        <div>Sign in to Fable to connect with voices and perspectives that matter.</div>
-        <ul>
-          <li onClick={(event) => this.renderAuthComponent(event, "guest")}>sign in as guest</li>
-          <li onClick={(event) => this.renderAuthComponent(event, "signup")}>sign up</li>
-          <li onClick={(event) => this.renderAuthComponent(event, "signin")}>sign in</li>
+      <div className="auth-selections">
+        <div className="auth-selections-logo">
+          <img 
+            src="/images/logo_500_500.png" 
+            alt="fable logo" 
+            className="auth-selections-logo-img" />
+        </div>
+        <div className="auth-selections-header">Sign in to Fable to connect with voices and perspectives that matter.</div>
+        <ul className="auth-selections-btns-container">
+          <li 
+            className="auth-selections-btn auth-selections-btn-guest" 
+            onClick={(event) => this.renderAuthComponent(event, "guest")}>
+            Sign in as Guest
+          </li>
+          <li 
+            className="auth-selections-btn auth-selections-btn-signin" 
+            onClick={(event) => this.renderAuthComponent(event, "signup")}>
+            Sign in with Email
+          </li>
+          <li 
+            className="auth-selections-link auth-selections-link-signup" 
+            onClick={(event) => this.renderAuthComponent(event, "signin")}>
+            Sign up with email
+          </li>
         </ul>
-        <div>To use Fable you must have cookies enabled.</div>
+        <div className="auth-selections-footer">To use Fable you must have cookies enabled.</div>
       </div>
     );
   }

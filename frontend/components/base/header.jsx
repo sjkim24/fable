@@ -9,8 +9,8 @@ import { toggleModal } from "../../actions/modal_toggle";
 
 class Header extends Component {
   constructor() {
-    super()
-    this.state = { modalActive: false };
+    super();
+    
     this.toggleAuthModal = this.toggleAuthModal.bind(this);
   }
   
