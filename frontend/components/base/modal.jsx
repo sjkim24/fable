@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
-
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { toggleModal } from "../../actions/modal_toggle";
 import { refillModal } from "../../actions/modal_refill";
 import AuthSelections from "../auth/auth_selections.jsx";
+import SignInForm from "../auth/sign_in_form.jsx";
+
 class Modal extends Component {
   constructor() {
     super();
@@ -26,10 +27,9 @@ class Modal extends Component {
   renderContent(content) {
     switch(content) {
       case "auth-selections":
-        console.log(this.props.refillModal);
         return <AuthSelections refillModal={this.props.refillModal} />;
       case "auth-signin":
-        return "sign in form!!!";
+        return <SignInForm />
     }
   }
   

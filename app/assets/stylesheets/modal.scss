@@ -1,4 +1,4 @@
-// modal
+// modal //
 .modal {
   background: $overlay-gray;
   height: 100%;
@@ -9,11 +9,17 @@
   z-index: 10;
 }
 
-.modal-inner-auth-selections {
+.modal-header {
+  background: $lighter-gray;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.modal-inner {
   background-color: #FFFFFF;
-  border-radius: 2px;
+  border-radius: 5px;
   left: 50%;
-  max-width: 400px;
+  max-width: 420px;
   position: fixed;
   top: 50%;
   transform: translate(-50%, -50%);
@@ -32,13 +38,9 @@
   cursor: pointer;
 }
 
-// auth selections
+// auth selections //
 .auth-selections {
   font-size: 14px;
-}
-
-.auth-selections-logo {
-  background: $lighter-gray;
 }
 
 .auth-selections-logo-img {
@@ -47,10 +49,10 @@
   width: 30%;
 }
 
-.auth-selections-header, .auth-selections-footer {
+.auth-selections-desc, .auth-selections-footer {
   color: $dark-gray;
   letter-spacing: 0.01em;
-  line-height: 18px;
+  line-height: 20px;
   margin: 20px 0;
   padding: 0 20px;
 }
@@ -96,3 +98,48 @@
   cursor: pointer;
   transition: 1s color ease-in-out;
 }
+
+// signin form //
+.sign-in-form-header {
+  font-size: 16px;
+  font-weight: 900;
+  line-height: 22px;
+  padding: 20px;
+}
+
+.sign-in-form {
+  padding: 30px;
+}
+
+.sign-in-input-label {
+  color: $dark-gray;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.sign-in-input {
+  border-bottom: 1px solid $light-gray;
+  color: $dark-gray;
+  font-size: 14px;
+  margin-bottom: 20px;
+  padding: 5px 0;
+  width: 100%;
+}
+
+.sign-in-button {
+  background: $blue;
+  border-radius: 2px;
+  color: #FFFFFF;
+  display: block;
+  font-size: 16px;
+  margin: 0 auto;
+  padding: 8px;
+}
+
+.sign-in-button:hover {
+  color: #FFFFFF;
+  background: $dark-blue;
+}
+
+// since it's a modal, change font-sizes first and see if any dimensions need changes
+// most likely not bc modal has a max width of 420px;

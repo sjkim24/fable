@@ -2,7 +2,6 @@ import React, { Component } from "react";
 
 class AuthSelections extends Component {
   renderAuthComponent(event, selection) {
-    console.log(selection)
     switch(selection) {
       case "guest":
         // send a session post request to sign in with guest account
@@ -20,13 +19,13 @@ class AuthSelections extends Component {
   render() {
     return (
       <div className="auth-selections">
-        <div className="auth-selections-logo">
+        <div className="modal-header auth-selections-logo">
           <img 
             src="/images/logo_500_500.png" 
             alt="fable logo" 
             className="auth-selections-logo-img" />
         </div>
-        <div className="auth-selections-header">Sign in to Fable to connect with voices and perspectives that matter.</div>
+        <div className="auth-selections-desc">Sign in to Fable to connect with voices and perspectives that matter.</div>
         <ul className="auth-selections-btns-container">
           <li 
             className="auth-selections-btn auth-selections-btn-guest" 
