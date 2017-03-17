@@ -1,5 +1,3 @@
-// COPY PASTED
-
 import React, { Component } from "react";
 
 class SearchButton extends Component {

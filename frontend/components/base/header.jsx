@@ -1,4 +1,3 @@
-// COPY PASTE
 import React, { Component } from "react";
 import SearchButton from "../nav_bar/search_button.jsx";
 import Modal from "./modal.jsx";

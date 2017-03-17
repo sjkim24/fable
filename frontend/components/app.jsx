@@ -1,4 +1,3 @@
-// copy paste
 import React, { Component } from 'react';
 import Header from './base/header.jsx';
 import NavBar from './nav_bar/nav_bar.jsx'

@@ -1,5 +1,3 @@
-// copy paste
-
 import React, { Component } from 'react';
 
 class StoriesIndexItem extends Component {

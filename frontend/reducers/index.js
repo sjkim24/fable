@@ -1,4 +1,3 @@
-// copy paste
 import { combineReducers } from "redux";
 import StoriesReducer from "./reducer_stories";
 import ModalReducer from "./reducer_modal";

@@ -1,4 +1,3 @@
-// copy paste
 import React, { Component } from "react";
 
 class AuthSelections extends Component {
