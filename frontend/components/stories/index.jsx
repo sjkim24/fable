@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { fetchStories } from "../../actions/stories_index"; // this is the action creator we want to call
+import { fetchStories } from "../../actions/stories_fetch"; // this is the action creator we want to call
 import StoriesIndexItem from "./index_item.jsx";
 // import { Link } from react-router"; // 
 

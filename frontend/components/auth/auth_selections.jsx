@@ -13,6 +13,7 @@ class AuthSelections extends Component {
         return;
       case "signin":
         // render signin form component
+        this.props.refillModal("auth-signin")
         return;
     }
   }
@@ -35,16 +36,16 @@ class AuthSelections extends Component {
           </li>
           <li 
             className="auth-selections-btn auth-selections-btn-signin" 
-            onClick={(event) => this.renderAuthComponent(event, "signup")}>
+            onClick={(event) => this.renderAuthComponent(event, "signin")}>
             Sign in with Email
           </li>
           <li 
             className="auth-selections-link auth-selections-link-signup" 
-            onClick={(event) => this.renderAuthComponent(event, "signin")}>
+            onClick={(event) => this.renderAuthComponent(event, "signup")}>
             Sign up with email
           </li>
         </ul>
-        <div className="auth-selections-footer">To use Fable you must have cookies enabled.</div>
+        <div className="auth-selections-footer">If you don't have an acocunt, you can click on the "Sign in as Guest" button</div>
       </div>
     );
   }

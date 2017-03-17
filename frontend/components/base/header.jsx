@@ -15,7 +15,7 @@ class Header extends Component {
   }
   
   toggleAuthModal() {
-    this.props.toggleModal("auth");
+    this.props.toggleModal("auth-selections");
   }
   
   render() {

@@ -74,7 +74,7 @@ class StoriesIndexItem extends Component {
             <div className="stories-item-like-count">{this.props.story.likes_count}</div>
           </div>
           <div className="stories-item-resp-book group">
-            <svg className="stories-item-bookmark">
+            <svg className="stories-item-bookmark" width="25" height="25">
               <path className="stories-item-bookmark-path" />
             </svg>
             <div className="stories-item-responses">{this.renderResponsesCount()}</div>

@@ -1,5 +1,5 @@
 // copy paste
-import { FETCH_STORIES } from "../actions/stories_index";
+import { FETCH_STORIES } from "../actions/stories_fetch";
 
 const INITIAL_STATE = { all: [], story: null };
 
