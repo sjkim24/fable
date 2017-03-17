@@ -25,20 +25,22 @@ class Header extends Component {
     const storyLinkDisplay = "hidden"
     return(
       <header className="header padding-side group">
-        <div className="header-list-left header-list-logo">
-          <img src="/images/logo_500_500.png" alt="fable logo" className="header-list-logo-img"/>
+        <div className="header-inner group">
+          <div className="header-list-left header-list-logo">
+            <img src="/images/logo_500_500.png" alt="fable logo" className="header-list-logo-img"/>
+          </div>
+          <ul className="header-list-right">
+            <li className="header-list-auth-story-link">
+              <div onClick={this.toggleAuthModal}className={`header-list-auth-link ${authLinkDisplay}`}>
+                Signin / Signup
+              </div>
+              <a href="" className={`header-list-story-link ${storyLinkDisplay}`}>Write a story</a>
+            </li>
+            <li className="header-list-search">
+              <SearchButton />
+            </li>
+          </ul>
         </div>
-        <ul className="header-list-right">
-          <li className="header-list-auth-story-link">
-            <div onClick={this.toggleAuthModal}className={`header-list-auth-link ${authLinkDisplay}`}>
-              Signin / Signup
-            </div>
-            <a href="" className={`header-list-story-link ${storyLinkDisplay}`}>Write a story</a>
-          </li>
-          <li className="header-list-search">
-            <SearchButton />
-          </li>
-        </ul>
       </header>
     );
   }

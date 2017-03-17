@@ -1,7 +1,19 @@
 .header {
   background-color: #FFFFFF;
   border-bottom: 1px solid rgba(0, 0, 0, 0.10);
+  box-sizing: border-box;
   height: 50px;
+  left: 50%;
+  position: fixed;
+  top: 0;
+  transform: translate(-50%, 0);
+  width: 100%;
+}
+
+.header-inner {
+  margin: 0 auto;
+  max-width: 1000px !important;
+  width: 100%;
 }
 
 .header-list-left {

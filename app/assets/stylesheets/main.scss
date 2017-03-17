@@ -1,7 +1,16 @@
 #main {
   background-color: $main-background-gray;
-  border: 1px solid orange;
   font-family: $sans-serif;
-  max-width: 1000px !important;
   width: 100%;
+}
+
+.app {
+  padding-top: $navbar-height-mobile;
+  margin: 0 auto;
+}
+
+@media (min-width: 990px) {
+  .app {
+    padding-top: $navbar-height-desktop;
+  }
 }

@@ -5,9 +5,10 @@ import Modal from "./base/modal.jsx";
 
 class App extends Component {
   render() {
-    // console.log(this.props.modal);
+    
     return (
       <div className="app">
+        <div id="filler"></div>
         <Header />
         <NavBar />
         <Modal />
@@ -15,6 +16,6 @@ class App extends Component {
       </div>
     );
   }
-}
+};
 
 export default App;

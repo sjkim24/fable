@@ -9,8 +9,10 @@ class NavBar extends Component {
 
     return(
       <nav className="nav-bar padding-side">
-        <img src="/images/hamburger_menu.png" alt="hamburger menu" className="nav-bar-hamburger-menu" />
-        <NavBarLinks />
+        <div className="nav-bar-inner group">
+          <img src="/images/hamburger_menu.png" alt="hamburger menu" className="nav-bar-hamburger-menu" />
+          <NavBarLinks />
+        </div>
       </nav>
     );
   }
