@@ -27,10 +27,10 @@ class AuthSelections extends Component {
     switch(selection) {
       case "signup":
         // render signup form component
+        this.props.refillModal("auth-signup");
         return;
       case "signin":
         // render signin form component
-        this.props.refillModal("auth-signin");
         return;
     }
   }

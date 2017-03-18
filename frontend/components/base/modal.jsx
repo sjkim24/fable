@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import { toggleModal } from "../../actions/modal_toggle";
 import { refillModal } from "../../actions/modal_refill";
 import AuthSelections from "../auth/auth_selections.jsx";
-import SignInForm from "../auth/sign_in_form.jsx";
+import SignUpForm from "../auth/sign_in_form.jsx";
 
 class Modal extends Component {
   constructor() {
@@ -28,9 +28,12 @@ class Modal extends Component {
     switch(content) {
       case "auth-selections":
         return <AuthSelections refillModal={this.props.refillModal} />;
+      case "auth-signup":
+        return <SignUpForm />;
       case "auth-signin":
-        return <SignInForm />
-    }
+        console.log("auth-signin");
+        break;
+    };
   }
   
   render() {
