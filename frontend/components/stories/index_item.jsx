@@ -63,6 +63,7 @@ class StoriesIndexItem extends Component {
           <h3 className="stories-item-title">{this.props.story.title}</h3>
           {this.renderSubtitle()}
           {this.renderSnippet()}
+          <div>Read more link</div>
         </div>
         <div className="stories-item-footer group">
           <div className="stories-item-like">

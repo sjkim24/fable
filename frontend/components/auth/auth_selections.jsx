@@ -1,17 +1,36 @@
 import React, { Component } from "react";
+import axios from "axios";
 
 class AuthSelections extends Component {
+  constructor() {
+    super();
+    
+    this.state = { token: "" };
+    this.loginAsGuest = this.loginAsGuest.bind(this);
+  }
+  
+  loginAsGuest() {
+    console.log("logging in as Guest!");
+    axios.post("/users/sign_in", {
+      email: "guest@email.com",
+      password: "hello123"
+    })
+    .then(function(response) {
+      console.log(response);
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
+  }
+  
   renderAuthComponent(event, selection) {
     switch(selection) {
-      case "guest":
-        // send a session post request to sign in with guest account
-        return;
       case "signup":
         // render signup form component
         return;
       case "signin":
         // render signin form component
-        this.props.refillModal("auth-signin")
+        this.props.refillModal("auth-signin");
         return;
     }
   }
@@ -29,7 +48,7 @@ class AuthSelections extends Component {
         <ul className="auth-selections-btns-container">
           <li 
             className="auth-selections-btn auth-selections-btn-guest" 
-            onClick={(event) => this.renderAuthComponent(event, "guest")}>
+            onClick={this.loginAsGuest}>
             Sign in as Guest
           </li>
           <li 
@@ -46,6 +65,10 @@ class AuthSelections extends Component {
         <div className="auth-selections-footer">If you don't have an acocunt, you can click on the "Sign in as Guest" button</div>
       </div>
     );
+  }
+  
+  componentDidMont() {
+    this.setState({token: $('meta[name=csrf-token]').attr('content')})
   }
 };
 

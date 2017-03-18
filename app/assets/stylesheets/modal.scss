@@ -75,7 +75,6 @@
 .auth-selections-btn-guest:hover {
   background: $sky-blue-hover;
   cursor: pointer;
-  transition: background 0.25s ease-in;
 }
 
 .auth-selections-btn-signin {
@@ -85,7 +84,6 @@
 .auth-selections-btn-signin:hover {
   background: $stormy-hover;
   cursor: pointer;
-  transition: background 0.25s ease-in;
 }
 
 .auth-selections-link-signup {
@@ -96,7 +94,7 @@
 .auth-selections-link-signup:hover {
   color: $dark-blue;
   cursor: pointer;
-  transition: 1s color ease-in-out;
+  text-decoration: underline;
 }
 
 // signin form //
