@@ -39,6 +39,8 @@ class StoriesIndexItem extends Component {
   }
   
   renderResponsesCount() {
+    // this.props.story.liked
+    // this.props.story.bookmarked
     const count = this.props.story.comments_count;
     
     return count < 2 ?  `${count} response` : `${count} responses`;
@@ -67,9 +69,11 @@ class StoriesIndexItem extends Component {
         </div>
         <div className="stories-item-footer group">
           <div className="stories-item-like">
-            <svg className="stories-item-like-heart-img">
-              <path className="stories-item-like-heart-path"/>
-            </svg>
+            <div className="stories-item-like-heart-img-container">
+              <svg className="stories-item-like-heart-img">
+                <path className="stories-item-like-heart-path"/>
+              </svg>
+            </div>
             <div className="stories-item-like-count">{this.props.story.likes_count}</div>
           </div>
           <div className="stories-item-resp-book group">

@@ -18,7 +18,6 @@ class Story < ActiveRecord::Base
 
   # checks if the story has been liked by the current user
   def liked?(story_id, user_id)
-    binding.pry
    !StoryLike.where(story_id: story_id, user_id: user_id).empty?
   end
   

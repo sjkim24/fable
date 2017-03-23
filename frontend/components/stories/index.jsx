@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { fetchStories } from "../../actions/stories_fetch"; // this is the action creator we want to call
+import { fetchStories } from "../../actions/stories_fetch";
 import StoriesIndexItem from "./index_item.jsx";
 // import { Link } from react-router"; // 
 
@@ -50,6 +50,7 @@ class StoriesIndex extends Component {
   }
   
   render() {
+    console.log("yo");
     return (
       <ul className="stories">
         {this.renderStories()}
