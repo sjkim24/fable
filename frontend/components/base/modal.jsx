@@ -27,7 +27,9 @@ class Modal extends Component {
   renderContent(content) {
     switch(content) {
       case "auth-selections":
-        return <AuthSelections refillModal={this.props.refillModal} />;
+        return <AuthSelections 
+          toggleModal={this.toggleModal}
+          refillModal={this.props.refillModal} />;
       case "auth-signup":
         return <SignUpForm />;
       case "auth-signin":

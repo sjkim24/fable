@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { fetchStories } from "../../actions/stories_fetch";
 
 class AuthSelections extends Component {
   constructor() {
@@ -10,13 +13,22 @@ class AuthSelections extends Component {
   }
   
   loginAsGuest() {
-    console.log("logging in as Guest!");
+    const that = this;
     axios.post("/users/sign_in", {
-      email: "guest@email.com",
-      password: "hello123"
+      user: {
+        email: "guest@email.com",
+        password: "hello123"
+      },
+      authenticity_token: this.state.token
     })
     .then(function(response) {
-      console.log(response);
+      // close modal
+      that.props.toggleModal();
+      // fetch current stories again with updated data on likes and bookmark
+      if ($(".stories")[0]) {
+        that.props.fetchStories();
+      } // else if story show, fetch that story 1 more time
+      
     })
     .catch(function(error) {
       console.log(error);
@@ -36,6 +48,7 @@ class AuthSelections extends Component {
   }
   
   render() {
+    console.log("authie auth");
     return (
       <div className="auth-selections">
         <div className="modal-header auth-selections-logo">
@@ -67,9 +80,13 @@ class AuthSelections extends Component {
     );
   }
   
-  componentDidMont() {
-    this.setState({token: $('meta[name=csrf-token]').attr('content')})
+  componentDidMount() {
+    this.setState({ token: $('meta[name=csrf-token]').attr('content') });
   }
 };
 
-export default AuthSelections;
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ fetchStories }, dispatch);
+}
+
+export default connect(null, mapDispatchToProps)(AuthSelections);

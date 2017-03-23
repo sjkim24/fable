@@ -1,6 +1,18 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
+import axios from "axios";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { fetchStories } from "../../actions/stories_fetch";
 
 class StoriesIndexItem extends Component {
+  constructor() {
+    super();
+    
+    this.state = { token: "" };
+    this.toggleLike = this.toggleLike.bind(this);
+    this.toggleBookmark = this.toggleBookmark.bind(this);
+  }
+  
   renderSubtitle() {
     const subtitle = this.props.story.subtitle;
     
@@ -39,12 +51,54 @@ class StoriesIndexItem extends Component {
   }
   
   renderResponsesCount() {
+    // this.props.story.liked
+    // this.props.story.bookmarked
     const count = this.props.story.comments_count;
     
     return count < 2 ?  `${count} response` : `${count} responses`;
   }
   
+  toggleLike() {
+    // if current user isn't null
+    const that = this;
+    let url;
+    let method;
+
+    if (this.props.story.liked) {
+      url = "/api/story_likes/destory";
+      method = "delete";
+    } else {
+      url = `/api/stories/${this.props.story.id}/story_likes`;
+      method = "post";
+    }
+    
+    axios({
+      method: method,
+      url: url,
+      data: { 
+        story_like: { story_id: `${this.props.story.id}`},
+        authenticity_token: this.state.token 
+      }
+    })
+    .then(function(response) {
+      that.prop.fetchStories();
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
+    // else render login form
+  }
+  
+  toggleBookmark() {
+    console.log("bookmark clicked");
+  }
+  
   render() {
+    const heartName = this.props.story.liked ? "filled_heart" : "empty_heart";
+    const bookmarkName = this.props.story.bookmarked ? "filled_bookmark" : "empty_bookmark";
+    const heartImgSrc = `/images/icons/${heartName}.png`;
+    const bookmarkImgSrc = `/images/icons/${bookmarkName}.png`;
+    
     return (
       <li className="stories-item">
         <div className="stories-item-header group">
@@ -63,25 +117,29 @@ class StoriesIndexItem extends Component {
           <h3 className="stories-item-title">{this.props.story.title}</h3>
           {this.renderSubtitle()}
           {this.renderSnippet()}
-          <div>Read more link</div>
+          <a href="#" className="stories-item-read-more">Read more...</a>
         </div>
         <div className="stories-item-footer group">
           <div className="stories-item-like">
-            <svg className="stories-item-like-heart-img">
-              <path className="stories-item-like-heart-path"/>
-            </svg>
+            <img src={heartImgSrc} onClick={this.toggleLike} className="stories-item-like-heart-img" />
             <div className="stories-item-like-count">{this.props.story.likes_count}</div>
           </div>
           <div className="stories-item-resp-book group">
-            <svg className="stories-item-bookmark" width="25" height="25">
-              <path className="stories-item-bookmark-path" />
-            </svg>
+            <img src={bookmarkImgSrc} onClick={this.toggleBookmark} className="stories-item-bookmark" />
             <div className="stories-item-responses">{this.renderResponsesCount()}</div>
           </div>
         </div>
       </li>
     );
   }
+  
+  componentDidMount() {
+    this.setState({ token: $('meta[name=csrf-token]').attr('content') });
+  }
 };
 
-export default StoriesIndexItem;
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ fetchStories }, dispatch);
+}
+
+export default connect(null, mapDispatchToProps)(StoriesIndexItem);
