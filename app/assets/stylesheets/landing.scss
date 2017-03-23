@@ -91,7 +91,12 @@
 
 .stories-item-snippet {
   letter-spacing: 0.01em;
-  margin-bottom: 20%;
+  margin-bottom: 10px;
+}
+
+.stories-item-read-more {
+  color: $gray;
+  font-size: 12px;
 }
 
 .stories-item-like {
@@ -106,24 +111,28 @@
 
 .stories-item-like-heart-img {
   float: left;
-  height: 25px;
+  height: 20px;
   margin-right: 8px;
-  width: 25px;
+  width: 20px;
 }
 
-.stories-item-like-heart-path {
-  d: $heart-d;
+.stories-item-like-heart-img:hover {
+  cursor: pointer;
 }
 
 .stories-item-like-count {
   color: rgba(0, 0, 0, 0.44);
   float: left;
+  font-size: 16px;
+  padding-top: 1px;
 }
 
 .stories-item-responses {
   color: rgba(0, 0, 0, 0.44);
   float: right;
+  font-size: 16px;
   margin-right: 8px;
+  padding-top: 2px;
 }
 
 .stories-item-bookmark {
@@ -132,8 +141,12 @@
   width: 25px;
 }
 
-.stories-item-bookmark-path {
-  d: $bookmark-d;
+.stories-item-bookmark:hover {
+  cursor: pointer;
+}
+
+.stories-item-footer {
+  padding-top: 10px;
 }
 
 // recommendations //

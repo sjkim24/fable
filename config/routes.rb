@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     end
     
     resources :comment_likes, only: [:destroy]
-    resources :story_likes, only: [:destroy]
+    delete 'story_likes/destory', :to => 'story_likes#destroy'
     resources :bookmarks, only: [:destroy]
     resources :follows, only: [:destroy]
   end

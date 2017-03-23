@@ -69,16 +69,3 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(StoriesIndex);
-
-// function mapDispatchToProps(dispatch) {
-//   return bindActionCreators({ fetchPosts }, dispatch);
-// }
-// 
-// export default connect(null, mapDispatchToProps)(PostsIndex);
-
-// to below
-// export default connect(null, { fetchPosts: fetchPosts })(PostsIndex);
-
-//to below
-// export default connect(null, { fetchPosts })(PostsIndex);
-// an line 3 gets commented since we don"t need the syntax "bindActionCreators"

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { fetchStories } from "../../actions/stories_fetch";
 
@@ -13,9 +12,7 @@ class AuthSelections extends Component {
   }
   
   loginAsGuest() {
-    // debugger
     const that = this;
-    console.log("logging in as Guest!");
     axios.post("/users/sign_in", {
       user: {
         email: "guest@email.com",
@@ -87,9 +84,9 @@ class AuthSelections extends Component {
   }
 };
 
-// export default AuthSelections;
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({ fetchStories }, dispatch);
 }
 
-export default connect(null, mapDispatchToProps)(AuthSelections);
+export default AuthSelections;
+// export default connect(null, mapDispatchToProps)(AuthSelections);

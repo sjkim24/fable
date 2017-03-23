@@ -2,21 +2,21 @@ class Api::StoryLikesController < ApplicationController
 
   def create
     @like = StoryLike.new(user_id: current_user.id, story_id: params[:story_id])
-    
+
     if @like.save
-      redirect_to story_url(params[:story_id])
+      render json: @like
     else
-      flash.now[:errors] = @like.errors.full_messages
+      render json: "Error"
     end
   end
 
   def destroy
-    @like = StoryLike.find(params[:story_like][:id])
-    
+    story_id = params[:story_like][:story_id]
+    @like = StoryLike.where(user_id: current_user.id, story_id: story_id)[0]
     if @like.destroy
-      redirect_to story_url(params[:id])
+      render json: @like
     else
-      flash.now[:errors] = "Error"
+      render json: "Error"
     end
   end
 
