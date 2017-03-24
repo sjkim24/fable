@@ -100,7 +100,7 @@
 }
 
 .stories-item-read-more {
-  color: $light-gray;
+  color: $lighter-gray;
   font-size: 12px;
   letter-spacing: 0.05em;
 }
@@ -127,14 +127,14 @@
 }
 
 .stories-item-like-count {
-  color: $light-gray;
+  color: $lighter-gray;
   float: left;
   font-size: 14px;
   margin-top: 3px;
 }
 
 .stories-item-responses {
-  color: $light-gray;
+  color: $lighter-gray;
   float: right;
   font-size: 14px;
   margin: 3px 8px 0px 0px;
@@ -167,6 +167,16 @@
     padding: 20px;
   }
   
+  .stories-item-username {
+    font-size: 16px;
+  }
+  
+  .stories-item-published-date, .stories-item-kdot, 
+  .stories-item-read-time, .stories-item-read-more, 
+  .stories-item-like-count, .stories-item-responses {
+    font-size: 14px;
+  }
+  
   .stories-item-title {
     font-size: 29px;
   }
@@ -178,6 +188,11 @@
   .stories-item-snippet {
     font-size: 18px;
   }
+  
+  .stories-item-read-more {
+    font-size: 14px;
+  }
+  
 }
 
 // desktop breakpoint //
