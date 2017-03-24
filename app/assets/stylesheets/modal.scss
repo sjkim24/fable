@@ -10,7 +10,7 @@
 }
 
 .modal-header {
-  background: $lighter-gray;
+  background: $yellow;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
 }
@@ -69,30 +69,30 @@
 }
 
 .auth-selections-btn-guest {
-  background: $sky-blue;
+  background: $yellow;
 }
 
 .auth-selections-btn-guest:hover {
-  background: $sky-blue-hover;
+  background: $yellow;
   cursor: pointer;
 }
 
 .auth-selections-btn-signin {
-  background: $stormy;
+  background: $yellow;
 }
 
 .auth-selections-btn-signin:hover {
-  background: $stormy-hover;
+  background: $yellow;
   cursor: pointer;
 }
 
 .auth-selections-link-signup {
-  color: $blue;
+  color: $yellow;
   text-align: center;
 }
 
 .auth-selections-link-signup:hover {
-  color: $dark-blue;
+  color: $dark-yellow;
   cursor: pointer;
   text-decoration: underline;
 }
@@ -125,7 +125,7 @@
 }
 
 .sign-up-button {
-  background: $blue;
+  background: $yellow;
   border-radius: 2px;
   color: #FFFFFF;
   display: block;
@@ -136,8 +136,5 @@
 
 .sign-up-button:hover {
   color: #FFFFFF;
-  background: $dark-blue;
+  background: $dark-yellow;
 }
-
-// since it's a modal, change font-sizes first and see if any dimensions need changes
-// most likely not bc modal has a max width of 420px;

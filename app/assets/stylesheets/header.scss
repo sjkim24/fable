@@ -4,6 +4,7 @@
   box-sizing: border-box;
   height: 50px;
   left: 50%;
+  padding: 10px;
   position: fixed;
   top: 0;
   transform: translate(-50%, 0);
@@ -23,53 +24,42 @@
 }
 
 .header-list-right {
-  display: flex;
   float: right;
-  margin-top: 14px;
-  align-items: center;
 }
 
 .header-list-logo {
-  padding: 5px;
-  flex: 0 0 40px;
+  width: 30px;
 }
 
 .header-list-logo:hover {
   cursor: pointer;
+  margin-top: 2px
 }
 
 .header-list-auth-story-link {
-  color: $blue;
-  flex: 1 1 auto;
-  text-align: right;
-  font-size: 12px;
-  margin: 0 10px;
-  opacity: 0.75; 
-}
-
-.header-list-auth-link {
+  color: $yellow;
+  float: left;
   font-size: 14px;
+  margin: 6px 10px 0px 10px;
+  padding-bottom: 3px;
 }
 
-.header-list-auth-link:hover {
-  color: $dark-blue;
+.header-list-auth-story-link:hover {
+  color: $dark-yellow;
   cursor: pointer;
-  transition: color 0.5s ease-in-out;
+  border-bottom: 1px solid $dark-yellow;
 }
 
 .header-list-search {
-  box-sizing: border-box;
-  flex: 0 0 25px;
+  float: left;
   height: 25px;
-  text-align: right;
+  margin-top: 2px;
+  width: 25px;
 }
 
-.header-list-search {
+.header-list-search:hover {
   cursor: pointer;
-}
-
-.header-list-search-icon-path {
-  d: $search-d;
+  margin-top: 4px;
 }
 
 // .header-list-notification,
