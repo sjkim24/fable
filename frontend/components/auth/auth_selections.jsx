@@ -48,7 +48,6 @@ class AuthSelections extends Component {
   }
   
   render() {
-    console.log("authie auth");
     return (
       <div className="auth-selections">
         <div className="modal-header auth-selections-logo">

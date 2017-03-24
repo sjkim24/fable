@@ -8,7 +8,6 @@ class Api::BookmarksController < ApplicationController
   end
   
   def create
-    binding.pry
     story_id = params[:bookmark][:story_id]
     @bookmark = Bookmark.new(user_id: current_user.id, story_id: story_id)
     

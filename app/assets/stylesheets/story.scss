@@ -1,44 +1,149 @@
 // story //
 .story {
   background: #FFFFFF;
-  margin: 40px auto 0px auto;
-  width: 90%;
+  margin: 0px auto;
+  padding-top: 50px;
+  width: 100%
+}
+
+.story-header {
+  margin-bottom: 30px;
+  padding: 0px 10px;
 }
 
 .story-user-img-container {
   float: left;
 }
 
-.story-info-container {
-  float: left;
-}
-
 .story-user-img {
   border-radius: 50px;
-  height: 40px;
-  width: 40px;
+  height: 60px;
+  width: 60px;
+}
+
+.story-info-container {
+  float: left;
+  margin-left: 10px;
+  width: calc(100% - 70px); // 70px = img width + margin-left
 }
 
 .story-username {
+  color: $yellow;
   float: left;
+  font-size: 12px;
+  margin: 0px 20px 5px 0px;
+}
+
+.story-username:hover {
+  color: $dark-yellow;
 }
 
 .story-follow {
-  float: left;
+  display: none;
 }
 
-.story-tag {
+.story-user-desc {
+  color: $lighter-gray;
   float: left;
+  font-size: 12px;
+  margin: 5px 0px;
+  width: 100%;
+}
+
+.story-published-date-min-read {
+  color: $lighter-gray;
 }
 
 .story-published-date {
   float: left;
+  font-size: 12px;
 }
 
 .story-kdot {
   float: left;
+  font-size: 12px;
+  margin: 0 5px;
 }
 
 .story-read-time {
   float: left;
+  font-size: 12px;
+}
+
+.story-title {
+  font-weight: bold;
+  font-size: 28px;
+  padding: 0px 10px;
+}
+
+.story-subtitle {
+  color: $lighter-gray;
+  font-size: 24px;
+  margin: 5px 0px 20px 0px;
+  padding: 0px 10px;
+}
+
+.story-banner-img {
+  
+}
+
+.story-content {
+  font-size: 18px;
+  padding: 0px 10px;
+}
+
+@media (min-width: 768px) {
+  .story-header {
+    margin: 0px auto 30px auto;
+    max-width: 740px;
+  }
+  
+  .story-username {
+    font-size: 18px
+  }
+  
+  .story-follow {
+    border: 1px solid $yellow;
+    border-radius: 10px;
+    color: $yellow;
+    display: block;
+    float: left;
+    font-size: 14px;
+    margin-top: 1.5px;
+    padding: 2px 10px;
+  }
+  
+  .story-user-desc {
+    font-size: 16px;
+  }
+  
+  .story-published-date {
+    font-size: 16px;
+  }
+  
+  .story-kdot {
+    font-size: 16px;
+  }
+  
+  .story-read-time {
+    font-size: 16px;
+  }
+  
+  .story-title {
+    font-size: 42px;
+    margin: 0 auto;
+    max-width: 700px;
+  }
+  
+  .story-subtitle {
+    font-size: 29px;
+    margin: 5px auto 20px auto;
+    max-width: 700px;
+  }
+  
+  .story-content {
+    font-size: 23px;
+    margin: 0 auto;
+    max-width: 700px;
+  }
 }
