@@ -12,6 +12,7 @@
   border-radius: 2px;
   box-shadow: 0 1px 4px rgba(0,0,0,0.2);
   margin-bottom: 25px;
+  max-width: 660px;
   padding: 10px;
 }
 
@@ -95,8 +96,9 @@
 }
 
 .stories-item-read-more {
-  color: $gray;
+  color: $light-gray;
   font-size: 12px;
+  letter-spacing: 0.05em;
 }
 
 .stories-item-like {
@@ -121,18 +123,17 @@
 }
 
 .stories-item-like-count {
-  color: rgba(0, 0, 0, 0.44);
+  color: $light-gray;
   float: left;
-  font-size: 16px;
-  padding-top: 1px;
+  font-size: 14px;
+  margin-top: 3px;
 }
 
 .stories-item-responses {
-  color: rgba(0, 0, 0, 0.44);
+  color: $light-gray;
   float: right;
-  font-size: 16px;
-  margin-right: 8px;
-  padding-top: 2px;
+  font-size: 14px;
+  margin: 3px 8px 0px 0px;
 }
 
 .stories-item-bookmark {
@@ -153,4 +154,18 @@
 
 .stories-recs {
   display: none;
+}
+
+@media (min-width: 768px) {
+  .stories-item-title {
+    font-size: 29px;
+  }
+  
+  .stories-item-subtitle {
+    font-size: 23px;
+  }
+  
+  .stories-item-snippet {
+    font-size: 18px;
+  }
 }
