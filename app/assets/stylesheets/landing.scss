@@ -179,18 +179,25 @@
   
   .stories-item-title {
     font-size: 29px;
+    margin: 25px 0 10px 0;
   }
   
   .stories-item-subtitle {
     font-size: 23px;
+    margin-bottom: 20px;
   }
   
   .stories-item-snippet {
     font-size: 18px;
+    margin-bottom: 30px;
   }
   
   .stories-item-read-more {
     font-size: 14px;
+  }
+  
+  .stories-item-footer {
+    padding-top: 30px;
   }
   
 }
