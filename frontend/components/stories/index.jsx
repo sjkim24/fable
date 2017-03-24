@@ -4,7 +4,6 @@ import { bindActionCreators } from "redux";
 import { fetchStories } from "../../actions/stories_fetch";
 import StoriesIndexItem from "./index_item.jsx";
 import RecsIndex from "../recommendations/index.jsx";
-// import { Link } from react-router"; // 
 
 class StoriesIndex extends Component {
   componentWillMount() {

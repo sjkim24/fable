@@ -3,6 +3,7 @@ import axios from "axios";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { fetchStories } from "../../actions/stories_fetch";
+import { Link } from "react-router";
 
 class StoriesIndexItem extends Component {
   constructor() {
@@ -119,6 +120,7 @@ class StoriesIndexItem extends Component {
   }
   
   render() {
+    const story = this.props.story;
     const heartName = this.props.story.liked ? "filled_heart" : "empty_heart";
     const bookmarkName = this.props.story.bookmarked ? "filled_bookmark" : "empty_bookmark";
     const heartImgSrc = `/images/icons/${heartName}.png`;
@@ -127,27 +129,27 @@ class StoriesIndexItem extends Component {
     return (
       <li className="stories-item">
         <div className="stories-item-header group">
-          <img src={this.props.story.user_image_url} className="stories-item-user-img" />
+          <img src={story.user_image_url} className="stories-item-user-img" />
           <div className="stories-item-username-pub-rt-container group">
-            <a href="" className="stories-item-username">{this.props.story.username}</a>
+            <a href="" className="stories-item-username">{story.username}</a>
             <div className="stories-item-pub-rt-container group">
-              <div className="stories-item-published-date">{this.props.story.published_date}</div>
+              <div className="stories-item-published-date">{story.published_date}</div>
               <div className="stories-item-kdot">{"\u2022"}</div>
-              <div className="stories-item-read-time">{`${this.props.story.read_time} min read`}</div>
+              <div className="stories-item-read-time">{`${story.read_time} min read`}</div>
             </div>
           </div>
         </div>
         <div className="stories-item-details">
           {this.renderBannerImg()}
-          <h3 className="stories-item-title">{this.props.story.title}</h3>
+          <h3 className="stories-item-title">{story.title}</h3>
           {this.renderSubtitle()}
           {this.renderSnippet()}
-          <a href="#" className="stories-item-read-more">Read more...</a>
+          <Link to={`/stories/${story.id}`} className="stories-item-read-more">Read more...</Link>
         </div>
         <div className="stories-item-footer group">
           <div className="stories-item-like">
             <img src={heartImgSrc} onClick={this.toggleLike} className="stories-item-like-heart-img" />
-            <div className="stories-item-like-count">{this.props.story.likes_count}</div>
+            <div className="stories-item-like-count">{story.likes_count}</div>
           </div>
           <div className="stories-item-resp-book group">
             <img src={bookmarkImgSrc} onClick={this.toggleBookmark} className="stories-item-bookmark" />
