@@ -46,7 +46,7 @@ class RecsIndex extends Component {
         </li>
         <li className="rec-tags">
           <div className="rec-category">Tags you follow</div>
-          <ul className="rec-tags-container">
+          <ul className="rec-tags-container group">
             <li className="rec-tag tag">Sports</li>
             <li className="rec-tag tag">Business</li>
             <li className="rec-tag tag">Science</li>
