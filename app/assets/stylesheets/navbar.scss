@@ -42,7 +42,7 @@
 }
 
 // tablet break point //
-@media (min-width: 768px) and (max-width: 989px) {
+@media (min-width: 768px) and (max-width: 999px) {
   .nav-bar-hamburger-menu {
     display: none;
   }
@@ -55,7 +55,7 @@
 }
 
 // desktop break point //
-@media (min-width: 990px) {
+@media (min-width: 1000px) {
   .nav-bar-hamburger-menu {
     display: none;
   }

@@ -1,9 +1,13 @@
+// storis-recs //
+.stories-recs-container {
+  margin: 40px auto 0px auto;
+}
+
 // stories //
 .stories {
-  margin: 25px auto 0px auto;
+  margin: 0 auto;
   max-width: 660px;
   width: 90%;
-  margin: 40px auto 0px auto;
 }
 
 // stories item //
@@ -152,11 +156,17 @@
 
 // recommendations //
 
-.stories-recs {
+.recs {
   display: none;
 }
 
+// tablet breakpoint //
 @media (min-width: 768px) {
+  // stories item //
+  .stories-item {
+    padding: 20px;
+  }
+  
   .stories-item-title {
     font-size: 29px;
   }
@@ -167,5 +177,46 @@
   
   .stories-item-snippet {
     font-size: 18px;
+  }
+}
+
+// desktop breakpoint //
+@media (min-width: 1000px) {
+  // stories recs //
+  .stories-recs-container {
+    width: 1000px;
+  }
+  
+  // stories //
+  .stories {
+    float: left;
+    margin: 0;
+  }
+  
+  // recommendations //
+  .recs {
+    display: block;
+    float: left;
+    padding-left: 18px;
+    width: 322px;
+  }
+  
+  .rec {
+    margin-bottom: 50px;
+  }
+  
+  .rec-item {
+    margin-bottom: 20px;
+  }
+  
+  .rec-category {
+    border-bottom: 1px solid $gray;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+  }
+  
+  .rec-tag {
+    float: left;
+    margin: 0px 10px 10px 0px;
   }
 }

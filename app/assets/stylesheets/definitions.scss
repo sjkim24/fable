@@ -1,16 +1,11 @@
-.float-left {
-  float: left;
-}
-
-.padding-side {
-  padding-left: 10px;
-  padding-right: 10px;
-}
-
-.green {
-  color: #02b875;
-}
-
 .hidden {
   display: none !important;
+}
+
+.tag {
+  background: #FFFFFF;
+  border: 1px solid $light-gray;
+  border-radius: 3px;
+  height: 22px;
+  padding: 5px 10px;
 }

@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { fetchStories } from "../../actions/stories_fetch";
 import StoriesIndexItem from "./index_item.jsx";
+import RecsIndex from "../recommendations/index.jsx";
 // import { Link } from react-router"; // 
 
 class StoriesIndex extends Component {
@@ -12,7 +13,7 @@ class StoriesIndex extends Component {
   
   renderStories() {
     const stories = this.props.stories.map((story,i) => {
-      return <StoriesIndexItem key={i} story={story} />
+      return <StoriesIndexItem key={`story-${i}`} story={story} />
     });
     
     return stories;
@@ -20,42 +21,18 @@ class StoriesIndex extends Component {
   
   renderRecommendations() {
     return (
-      <ul className="stories-recs">
-        <li className="stories-rec stories-rec-1">
-          <div className="stories-rec-category">Top Stories</div>
-          <ul className="stories-rec-items-container">
-            <li className="stories-rec-item">1</li>
-            <li className="stories-rec-item">2</li>
-            <li className="stories-rec-item">3</li>
-          </ul>
-        </li>
-        <li className="stories-rec stories-rec-2">
-          <div className="stories-rec-category">Top Sports</div>
-          <ul className="stories-rec-items-container">
-            <li className="stories-rec-item">1</li>
-            <li className="stories-rec-item">2</li>
-            <li className="stories-rec-item">3</li>
-          </ul>
-        </li>
-        <li className="stories-rec stories-rec-2">
-          <div className="stories-rec-category">Top Technology</div>
-          <ul className="stories-rec-items-container">
-            <li className="stories-rec-item">1</li>
-            <li className="stories-rec-item">2</li>
-            <li className="stories-rec-item">3</li>
-          </ul>
-        </li>
-      </ul>
+      <RecsIndex />
     );
   }
   
   render() {
-    console.log("yo");
     return (
-      <ul className="stories">
-        {this.renderStories()}
+      <div className="stories-recs-container group">
+        <ul className="stories">
+          {this.renderStories()}
+        </ul>
         {this.renderRecommendations()}
-      </ul>
+      </div>
     );
   }
 }
