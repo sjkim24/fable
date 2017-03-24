@@ -20,9 +20,10 @@ json.array! @stories do |story|
   if (current_user)
     json.liked story.liked?(story.id, current_user.id)
     json.bookmarked story.bookmarked?(story.id, current_user.id)
+    json.following_author story.following_author?(story.user.id, current_user.id)
   else
     json.liked false
     json.bookmarked false
+    json.following_author false
   end
-  json.following_author story.following_author?(story.user.id, current_user.id)
 end 
