@@ -2,9 +2,9 @@ class User < ActiveRecord::Base
   validates :email, :encrypted_password, :sign_in_count, presence: true
   
   has_attached_file :photo, 
-    styles: { thumb: '100x100>', square: '200x200#', medium: '300x300>' }
-    # ,
-    # :default_url => "/images/default_:style_user_default.png"
+    styles: { thumb: '100x100>', square: '200x200#', medium: '300x300>' },
+    :default_url => "/images/user_default.png"
+    
   validates_attachment :photo, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png"] }
   
   # Include default devise modules. Others available are:

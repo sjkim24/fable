@@ -22,7 +22,7 @@ class StoryShow extends Component {
     console.log(story);
     return (
       <div className="story">
-        <div className="story-header">
+        <div className="story-header group">
           <Link to={`/users/@${story.username}`} className="story-user-img-container">
             <img src={story.user_image_url} alt="user img" className="story-user-img" />
           </Link>
