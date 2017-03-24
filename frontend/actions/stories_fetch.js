@@ -11,4 +11,4 @@ export function fetchStories() {
     type: FETCH_STORIES,
     payload: request
   };
-}
+};

@@ -38,13 +38,14 @@
 }
 
 .stories-item-username {
-  color: #02b875;
+  color: $yellow;
   display: inline-block;
   font-size: 12px;
   letter-spacing: 0.03em;
   
   &:hover {
-    color: #00ab6b;
+    color: $dark-yellow;
+    cursor: pointer;
   }
 }
 

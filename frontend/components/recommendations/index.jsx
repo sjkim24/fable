@@ -57,7 +57,7 @@ class RecsIndex extends Component {
       </ul>
     );
   }
-}
+};
 // {this.renderRecs()} use this instead of lists later
 
 export default RecsIndex;

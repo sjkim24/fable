@@ -3,6 +3,7 @@ import axios from "axios";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { fetchStories } from "../../actions/stories_fetch";
+import { setStory } from "../../actions/story_set";
 import { Link } from "react-router";
 
 class StoriesIndexItem extends Component {
@@ -10,6 +11,7 @@ class StoriesIndexItem extends Component {
     super();
     
     this.state = { token: "" };
+    this.setStory = this.setStory.bind(this);
     this.toggleLike = this.toggleLike.bind(this);
     this.toggleBookmark = this.toggleBookmark.bind(this);
   }
@@ -55,6 +57,10 @@ class StoriesIndexItem extends Component {
     const count = this.props.story.comments_count;
     
     return count < 2 ?  `${count} response` : `${count} responses`;
+  }
+  
+  setStory() {
+    this.props.setStory(this.props.story);
   }
   
   toggleLike() {
@@ -129,9 +135,11 @@ class StoriesIndexItem extends Component {
     return (
       <li className="stories-item">
         <div className="stories-item-header group">
-          <img src={story.user_image_url} className="stories-item-user-img" />
+          <Link to={`/users/@${story.username}`}>
+            <img src={story.user_image_url} className="stories-item-user-img" />
+          </Link>
           <div className="stories-item-username-pub-rt-container group">
-            <a href="" className="stories-item-username">{story.username}</a>
+            <Link to={`/users/@${story.username}`} className="stories-item-username">{story.username}</Link>
             <div className="stories-item-pub-rt-container group">
               <div className="stories-item-published-date">{story.published_date}</div>
               <div className="stories-item-kdot">{"\u2022"}</div>
@@ -139,13 +147,13 @@ class StoriesIndexItem extends Component {
             </div>
           </div>
         </div>
-        <div className="stories-item-details">
+        <Link to={`/stories/${story.id}`}>
           {this.renderBannerImg()}
           <h3 className="stories-item-title">{story.title}</h3>
           {this.renderSubtitle()}
           {this.renderSnippet()}
-          <Link to={`/stories/${story.id}`} className="stories-item-read-more">Read more...</Link>
-        </div>
+          <div className="stories-item-read-more" onClick={this.setStory}>Read more...</div>
+        </Link>
         <div className="stories-item-footer group">
           <div className="stories-item-like">
             <img src={heartImgSrc} onClick={this.toggleLike} className="stories-item-like-heart-img" />
@@ -166,7 +174,7 @@ class StoriesIndexItem extends Component {
 };
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchStories }, dispatch);
-}
+  return bindActionCreators({ fetchStories, setStory }, dispatch);
+};
 
 export default connect(null, mapDispatchToProps)(StoriesIndexItem);

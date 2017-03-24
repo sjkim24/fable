@@ -2,15 +2,26 @@ import React, { Component } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-// import { fetchStories } from "../../actions/stories_fetch";
+import { setStory } from "../../actions/story_set";
 import { Link } from "react-router";
 
 class StoryShow extends Component {
   render() {
+    console.log(this.props.story);
     return (
-      <div>Story Show!</div>
+      <div className="story">
+        Story Show!
+      </div>
     );
   }
-}
+};
 
-export default StoryShow;
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ setStory }, dispatch);
+};
+
+function mapStateToProps(state) {
+  return { story: state.stories.story };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(StoryShow);

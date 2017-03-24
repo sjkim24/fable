@@ -34,14 +34,14 @@ class StoriesIndex extends Component {
       </div>
     );
   }
-}
+};
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({ fetchStories }, dispatch);
-}
+};
 
 function mapStateToProps(state) {
   return { stories: state.stories.all };
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(StoriesIndex);
