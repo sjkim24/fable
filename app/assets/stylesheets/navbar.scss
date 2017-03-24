@@ -30,6 +30,26 @@
   padding-top: 2px;
 }
 
+.sliding-menu {
+  background: $overlay-gray;
+  position: absolute;
+}
+
+.sliding-menu-inner {
+  background: #FFFFFF;
+  width: 150px;
+}
+
+.sliding-menu-hidden {
+  left: -150px;
+  top: 0;
+}
+
+.sliding-menu-active {
+  left: 0;
+  transition: left 1s ease;
+}
+
 .nav-bar-links-container {
   display: none;
   font-size: 14px;
