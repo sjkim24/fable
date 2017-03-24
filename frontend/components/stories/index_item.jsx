@@ -127,8 +127,8 @@ class StoriesIndexItem extends Component {
   
   render() {
     const story = this.props.story;
-    const heartName = this.props.story.liked ? "filled_heart" : "empty_heart";
-    const bookmarkName = this.props.story.bookmarked ? "filled_bookmark" : "empty_bookmark";
+    const heartName = story.liked ? "filled_heart" : "empty_heart";
+    const bookmarkName = story.bookmarked ? "filled_bookmark" : "empty_bookmark";
     const heartImgSrc = `/images/icons/${heartName}.png`;
     const bookmarkImgSrc = `/images/icons/${bookmarkName}.png`;
     
@@ -136,7 +136,7 @@ class StoriesIndexItem extends Component {
       <li className="stories-item">
         <div className="stories-item-header group">
           <Link to={`/users/@${story.username}`}>
-            <img src={story.user_image_url} className="stories-item-user-img" />
+            <img src={story.user_image_url} alt="user img" className="stories-item-user-img" />
           </Link>
           <div className="stories-item-username-pub-rt-container group">
             <Link to={`/users/@${story.username}`} className="stories-item-username">{story.username}</Link>
@@ -147,7 +147,7 @@ class StoriesIndexItem extends Component {
             </div>
           </div>
         </div>
-        <Link to={`/stories/${story.id}`}>
+        <Link to={`/stories/${story.id}`} onClick={this.setStory}>
           {this.renderBannerImg()}
           <h3 className="stories-item-title">{story.title}</h3>
           {this.renderSubtitle()}
@@ -156,11 +156,11 @@ class StoriesIndexItem extends Component {
         </Link>
         <div className="stories-item-footer group">
           <div className="stories-item-like">
-            <img src={heartImgSrc} onClick={this.toggleLike} className="stories-item-like-heart-img" />
+            <img src={heartImgSrc} alt="heart img" onClick={this.toggleLike} className="stories-item-like-heart-img" />
             <div className="stories-item-like-count">{story.likes_count}</div>
           </div>
           <div className="stories-item-resp-book group">
-            <img src={bookmarkImgSrc} onClick={this.toggleBookmark} className="stories-item-bookmark" />
+            <img src={bookmarkImgSrc} alt="bookmark img" onClick={this.toggleBookmark} className="stories-item-bookmark" />
             <div className="stories-item-responses">{this.renderResponsesCount()}</div>
           </div>
         </div>
