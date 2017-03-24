@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   validates :email, :encrypted_password, :sign_in_count, presence: true
+  validates :user_desc, length: { maximum: 160 }
   
   has_attached_file :photo, 
     styles: { thumb: '100x100>', square: '200x200#', medium: '300x300>' },

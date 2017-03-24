@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import SearchButton from "../nav_bar/search_button.jsx";
 import Modal from "./modal.jsx";
-
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { toggleModal } from "../../actions/modal_toggle";
+import { Link } from "react-router";
 
 class Header extends Component {
   constructor() {
@@ -26,9 +26,9 @@ class Header extends Component {
     return(
       <header className="header padding-side group">
         <div className="header-inner group">
-          <div className="header-list-left header-list-logo">
+          <Link to="/" className="header-list-left header-list-logo">
             <img src="/images/logo_yellow.png" alt="fable logo" className="header-list-logo-img"/>
-          </div>
+          </Link>
           <ul className="header-list-right">
             <li className="header-list-auth-story-link">
               <div onClick={this.toggleAuthModal}className={`header-list-auth-link ${authLinkDisplay}`}>

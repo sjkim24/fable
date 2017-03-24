@@ -1,6 +1,6 @@
-u1 = User.create(username: "sj", email:"sjkim0421@gmail.com", password: "hello123", fullname: "sj kim")
-u2 = User.create(username: "chillinrobby", email:"dummy@email.com", password: "hello123", fullname: "robby chillin")
-u3 = User.create(username: "bonfirepoetry", email:"dummy2@email.com", password: "hello123", fullname: "poetic justice")
+u1 = User.create(username: "sj", email:"sjkim0421@gmail.com", password: "hello123", fullname: "sj kim", user_desc: "Software Engineer, Pizza Lover, Microphone Checker")
+u2 = User.create(username: "chillinrobby", email:"dummy@email.com", password: "hello123", fullname: "robby chillin", user_desc: "Professional Chiller")
+u3 = User.create(username: "bonfirepoetry", email:"dummy2@email.com", password: "hello123", fullname: "poetic justice", user_desc: "AKA Kendrick Lamar")
 u4 = User.create(username: "guest", email: "guest@email.com", password: "hello123", fullname: "guestie guest")
 
 s1 = Story.create(user_id: u1.id, title: "hello world", subtitle: "tundra mountain boogie boogie boogie monster", content: "Lorem ipsum dolor sit amet, molestie bibendum. Lorem varius lobortis, urna molestie, vel pellentesque dolor ipsum pharetra, wisi ultricies aliquam quis non elementum in. Ac pede, ultricies dolor arcu lectus. Leo suspendisse ullamcorper, fermentum malesuada pulvinar molestie eros sit. Id neque ipsum tortor scelerisque. Blandit velit. Vulputate nam sed. Et odio ante odio suspendisse ad tortor, consectetuer quisque commodo ad, pellentesque pellentesque, arcu malesuada tellus sed, hendrerit arcu nullam aliquam consectetuer. Curabitur quis euismod at erat, tempus amet per lacus, et morbi justo arcu donec at, massa lacus eget justo malesuada turpis. Sit quam urna aenean, pellentesque posuere consequatur eu quis aliquam, nulla et.

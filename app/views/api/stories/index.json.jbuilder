@@ -2,6 +2,7 @@ json.array! @stories do |story|
   json.id story.id
   json.user_id story.user.id
   json.username story.user.username
+  json.user_desc story.user.user_desc
   json.user_image_url story.user.photo.url
   json.published_date story.published_date
   json.read_time story.read_time
@@ -23,4 +24,5 @@ json.array! @stories do |story|
     json.liked false
     json.bookmarked false
   end
+  json.following_author story.following_author?(story.user.id, current_user.id)
 end 

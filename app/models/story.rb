@@ -70,4 +70,9 @@ class Story < ActiveRecord::Base
   def main_tag
     self.tags.first.nil? ? nil : self.tags.first.tag_desc
   end
+  
+  def following_author?(follower_id, following_id)
+    follow = Follow.where(follower_id: follower_id, following_id: following_id)[0]
+    return follow.nil? ? false : true
+  end
 end

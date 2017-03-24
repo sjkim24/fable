@@ -10,15 +10,24 @@ class StoryShow extends Component {
     super();
     
     this.toggleFollow = this.toggleFollow.bind(this);
+    this.renderBannerImg = this.renderBannerImg.bind(this);
   }
   
   toggleFollow() {
     console.log("toggle follow clicked");
   }
   
+  renderBannerImg() {
+    if (this.props.story.image_url) {
+      return <img src={this.props.story.image_url} alt="story banner image" className="story-banner-img" />;
+    } else {
+      return "";
+    }
+  }
+  
   render() {
     const story = this.props.story;
-
+    
     console.log(story);
     return (
       <div className="story">
@@ -31,21 +40,23 @@ class StoryShow extends Component {
               <Link to={`/users/@${story.username}`} className="story-username">
                 {story.username}
               </Link>
-              <div className="story-follow-btn" onClick={this.toggleFollow} className="story-follow">
+              <div className="story-follow" onClick={this.toggleFollow}>
                 Follow
               </div>
             </div>
-            <div className="story-tags group">
-              <div className="story-tag">Tag1.</div>
-              <div className="story-tag">Tag2.</div>
-              <div className="story-tag">Tag3.</div>
-            </div>
+            <div className="story-user-desc">{story.user_desc}</div>
             <div className="story-published-date-min-read group">
               <div className="story-published-date">{story.published_date}</div>
               <div className="story-kdot">{"\u2022"}</div>
               <div className="story-read-time">{`${story.read_time} min read`}</div>
             </div>
           </div>
+        </div>
+        <div className="story-title">{story.title}</div>
+        <div className="story-subtitle">{story.subtitle}</div>
+        {this.renderBannerImg()}
+        <div className="story-content">
+          {story.content}
         </div>
       </div>
     );
