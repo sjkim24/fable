@@ -51,8 +51,6 @@ class StoriesIndexItem extends Component {
   }
   
   renderResponsesCount() {
-    // this.props.story.liked
-    // this.props.story.bookmarked
     const count = this.props.story.comments_count;
     
     return count < 2 ?  `${count} response` : `${count} responses`;
@@ -81,7 +79,7 @@ class StoriesIndexItem extends Component {
       }
     })
     .then(function(response) {
-      that.prop.fetchStories();
+      that.props.fetchStories();
     })
     .catch(function(error) {
       console.log(error);
@@ -90,7 +88,34 @@ class StoriesIndexItem extends Component {
   }
   
   toggleBookmark() {
-    console.log("bookmark clicked");
+    // if current user isn't null
+    const that = this;
+    let url;
+    let method;
+
+    if (this.props.story.bookmarked) {
+      url = "/api/bookmark/destory";
+      method = "delete";
+    } else {
+      url = `/api/stories/${this.props.story.id}/bookmarks`;
+      method = "post";
+    }
+    
+    axios({
+      method: method,
+      url: url,
+      data: { 
+        bookmark: { story_id: `${this.props.story.id}`},
+        authenticity_token: this.state.token 
+      }
+    })
+    .then(function(response) {
+      that.props.fetchStories();
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
+    // else render login form
   }
   
   render() {

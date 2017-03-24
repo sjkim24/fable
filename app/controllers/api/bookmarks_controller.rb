@@ -8,36 +8,27 @@ class Api::BookmarksController < ApplicationController
   end
   
   def create
-    @bookmark = Bookmark.new(user_id: current_user.id, story_id: params[:story_id])
+    binding.pry
+    story_id = params[:bookmark][:story_id]
+    @bookmark = Bookmark.new(user_id: current_user.id, story_id: story_id)
     
     if @bookmark.save
-      redirect_to story_url(params[:story_id])
+      render json: @bookmark
     else
-      flash.now[:errors] = @bookmark.errors.full_messages
+      render json: "Error"
     end
   end
   
   def destroy
-    @bookmark = Bookmark.find(params[:id])
-    @story_id = @bookmark.story_id
+    story_id = params[:bookmark][:story_id]
+    @bookmark = Bookmark.where(user_id: current_user.id, story_id: story_id)[0]
     
     if @bookmark.destroy
-      redirect_to story_url(@story_id)
+      render json: @bookmark
     else
-      flash.now[:errors] = @bookmark.errors.full_messages
+      render json: "Error"
     end
       
-  end
-  
-  def unbookmark
-    @bookmark = Bookmark.find(params[:id])
-    @story_id = @bookmark.story_id
-    
-    if @bookmark.destroy
-      redirect_to story_url(@story_id)
-    else
-      flash.now[:errors] = @bookmark.errors.full_messages
-    end
   end
   
   private

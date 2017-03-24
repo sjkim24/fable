@@ -18,7 +18,6 @@ json.array! @stories do |story|
   json.main_tag story.main_tag
   if (current_user)
     json.liked story.liked?(story.id, current_user.id)
-    json.liked_id 
     json.bookmarked story.bookmarked?(story.id, current_user.id)
   else
     json.liked false
