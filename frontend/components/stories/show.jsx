@@ -27,8 +27,9 @@ class StoryShow extends Component {
   
   render() {
     const story = this.props.story;
+    const follow = this.props.following_author ? "Unfollow" : "Follow";
     
-    console.log(story);
+    // console.log(story);
     return (
       <div className="story">
         <div className="story-header group">
@@ -41,7 +42,7 @@ class StoryShow extends Component {
                 {story.username}
               </Link>
               <div className="story-follow" onClick={this.toggleFollow}>
-                Follow
+                {follow}
               </div>
             </div>
             <div className="story-user-desc">{story.user_desc}</div>
