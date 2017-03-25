@@ -8,6 +8,7 @@ import Tag from "../buttons/tag.jsx";
 import Heart from "../buttons/heart.jsx";
 import Bookmark from "../buttons/bookmark.jsx";
 import Follow from "../buttons/follow.jsx";
+import CommentForm from "../comments/form.jsx";
 
 class StoryShow extends Component {
   constructor() {
@@ -58,15 +59,15 @@ class StoryShow extends Component {
           <div className="story-info-container-top">
             <div className="story-username-follow-top group">
               <Link to={`/users/@${story.username}`} className="story-username-top">
-                {story.username}
+                {story.user_fullname}
               </Link>
               <Follow 
                 storyId={story.id}
                 userId={story.user_id} 
                 following={story.following_author} 
-                className="story-follow-top" />
+                className="story-follow story-follow-top" />
             </div>
-            <div className="story-user-desc-top">{story.user_desc}</div>
+            <div className="story-user-desc story-user-desc-top">{story.user_desc}</div>
             <div className="story-published-date-min-read group">
               <div className="story-published-date">{story.published_date}</div>
               <div className="story-kdot">{"\u2022"}</div>
@@ -110,19 +111,23 @@ class StoryShow extends Component {
             storyId={story.id}
             userId={story.user_id} 
             following={story.following_author} 
-            className="story-follow-bottom" />
+            className="story-follow story-follow-bottom" />
           <Link to={`/users/@${story.username}`} className="story-user-img-container-bottom">
             <img src={story.user_image_url} alt="user img" className="story-user-img-bottom" />
           </Link>
           <div className="story-info-container-bottom">
-            <Link to={`/users/@${story.username}`} className="story-username-bottom">
+            <Link to={`/users/@${story.user_fullname}`} className="story-username-bottom">
               {story.username}
             </Link>
-            <div className="story-user-desc-bottom">{story.user_desc}</div>
+            <div className="story-user-desc story-user-desc-bottom">{story.user_desc}</div>
           </div>
         </footer>
-        <div id="story-response">
-          CommentsIndexComponent
+        <div className="comment-form-container padding-side">
+          <div className="comment-form-header">Response</div>
+          <CommentForm
+            userImgUrl={story.user_image_url}
+            userFullName={story.user_fullname} 
+            />
         </div>
       </div>
     );

@@ -71,7 +71,7 @@ class StoriesIndexItem extends Component {
             <img src={story.user_image_url} alt="user img" className="stories-item-user-img" />
           </Link>
           <div className="stories-item-username-pub-rt-container group">
-            <Link to={`/users/@${story.username}`} className="stories-item-username">{story.username}</Link>
+            <Link to={`/users/@${story.username}`} className="stories-item-username">{story.user_fullname}</Link>
             <div className="stories-item-pub-rt-container group">
               <div className="stories-item-published-date">{story.published_date}</div>
               <div className="stories-item-kdot">{"\u2022"}</div>
