@@ -26,4 +26,26 @@ class Comment < ActiveRecord::Base
   def like_id(comment_id, user_id)
     CommentLike.where(comment_id: comment_id, user_id: user_id)[0].id
   end
+  
+  def published_date
+    date_hash = {
+      "1" => "Jan",
+      "2" => "Feb",
+      "3" => "Mar",
+      "4" => "Apr",
+      "5" => "May",
+      "6" => "Jun",
+      "7" => "Jul",
+      "8" => "Aug",
+      "9" => "Sep",
+      "10" => "Oct",
+      "11" => "Nov",
+      "12" => "Dec"
+    }
+    
+    month = date_hash[self.created_at.month.to_s]
+    day = self.created_at.day.to_s
+    
+    return month + " " + day
+  end
 end

@@ -6,7 +6,7 @@ const URL = "/api/stories";
 
 export function fetchStories() {
   const request = axios.get(`${URL}`);
-  
+
   return {
     type: FETCH_STORIES,
     payload: request

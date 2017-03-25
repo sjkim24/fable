@@ -2,6 +2,10 @@
   display: none !important;
 }
 
+.padding-side {
+  padding: 0px 10px;
+}
+
 .tag {
   background: #FFFFFF;
   border: 1px solid $light-gray;
@@ -11,4 +15,14 @@
   height: 22px;
   margin: 0px 10px 10px 0px;
   padding: 5px 10px 0px 10px;
+}
+
+.tag:hover {
+  cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .padding-side {
+    padding: 0 20px;
+  }
 }

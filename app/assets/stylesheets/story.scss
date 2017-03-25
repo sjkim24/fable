@@ -8,41 +8,40 @@
 
 .story-header {
   margin-bottom: 30px;
-  padding: 0px 10px;
 }
 
-.story-user-img-container {
+.story-user-img-container-top {
   float: left;
 }
 
-.story-user-img {
+.story-user-img-top {
   border-radius: 50px;
   height: 60px;
   width: 60px;
 }
 
-.story-info-container {
+.story-info-container-top {
   float: left;
   margin-left: 10px;
   width: calc(100% - 70px); // 70px = img width + margin-left
 }
 
-.story-username {
+.story-username-top {
   color: $yellow;
   float: left;
   font-size: 14px;
-  margin: 0px 20px 5px 0px;
+  margin: 2px 20px 5px 0px;
 }
 
-.story-username:hover {
+.story-username-top:hover {
   color: $dark-yellow;
 }
 
-.story-follow {
+.story-follow-top {
   display: none;
 }
 
-.story-user-desc {
+.story-user-desc-top {
   color: $lighter-gray;
   float: left;
   font-size: 12px;
@@ -73,14 +72,12 @@
 .story-title {
   font-weight: bold;
   font-size: 28px;
-  padding: 0px 10px;
 }
 
 .story-subtitle {
   color: $lighter-gray;
   font-size: 24px;
   margin: 5px 0px 20px 0px;
-  padding: 0px 10px;
 }
 
 .story-banner-img {
@@ -90,16 +87,99 @@
 .story-content {
   font-size: 18px;
   margin-bottom: 15px;
-  padding: 0px 10px;
 }
 
 .story-tags {
-  padding: 0px 10px;
+  margin: 20px auto 0px auto;
+  max-width: 700px;
 }
 
 .story-tag {
   background: $lightest-gray;
   border: none;
+}
+
+.story-buttons {
+  border-bottom: 1px solid $light-gray;
+  margin: 20px auto 0px auto;
+  max-width: 700px;
+  padding-bottom: 15px;
+}
+
+.story-buttons-heart-resp {
+  float: left;
+}
+
+.story-like-heart-img-bottom {
+  float: left;
+  margin-right: 20px;
+  width: 20px;
+}
+
+.story-response-img {
+  float: left;
+  width: 20px;
+}
+
+.story-bookmark-bottom {
+  float: right;
+  width: 20px;
+}
+
+.story-like-heart-img-bototm:hover,
+.story-response-img-bottom:hover,
+.story-bookmark-bottom:hover {
+  cursor: pointer;
+}
+
+.story-footer {
+  margin: 0 auto;
+  padding-top: 15px;
+  padding-bottom: 10px;
+  position: relative;
+  max-width: 700px;
+}
+
+.story-follow-bottom {
+  border: 1px solid $yellow;
+  border-radius: 10px;
+  color: $yellow;
+  font-size: 14px;
+  padding: 2px 10px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.story-user-img-container-bottom {
+  float: left;
+  margin-right: 10px;
+  width: 60px;
+}
+
+.story-user-img-bottom {
+  border-radius: 50%;
+}
+
+.story-info-container-bottom {
+  float: left;
+  width: calc(100% - 70px); // 70px = user-img-container width + margin-right
+}
+
+.story-username-bottom {
+  font-size: 18px;
+}
+
+.story-follow-bottom:hover,
+.story-user-img-container-bottom:hover,
+.story-username-bottom:hover {
+  cursor: pointer;
+}
+
+.story-user-desc-bottom {
+  font-size: 14px;
+  color: $lighter-gray;
+  margin-top: 5px;
 }
 
 @media (min-width: 768px) {
@@ -108,11 +188,12 @@
     max-width: 740px;
   }
   
-  .story-username {
-    font-size: 18px
+  .story-username-top {
+    font-size: 18px;
+    margin: 1px 20px 5px 0px;
   }
   
-  .story-follow {
+  .story-follow-top {
     border: 1px solid $yellow;
     border-radius: 10px;
     color: $yellow;
@@ -123,7 +204,7 @@
     padding: 2px 10px;
   }
   
-  .story-user-desc {
+  .story-user-desc-top {
     font-size: 16px;
   }
   
