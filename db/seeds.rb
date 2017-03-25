@@ -31,3 +31,36 @@ Ut nullam urna phasellus integer, accumsan metus dignissim ut erat, venenatis vi
 Donec nonummy, dui commodo lectus tellus wisi tortor. Non tellus massa vehicula lacinia metus, proin nulla semper, tincidunt pretium bibendum justo sed neque sit. Nunc et pellentesque quis risus a. Pellentesque nunc rutrum vel venenatis duis, eu ut, cursus morbi at torquent cursus, nibh risus, nunc quisque eum amet libero vitae. Cras ullamcorper dictum mauris, ut gravida elit, risus sed, integer elementum nam, in integer nibh. Mollis et in est montes integer nec, congue sit, cras semper nunc a justo quis quam, netus vivamus nonummy ante gravida.
 Sem primis in, at dolor pulvinar ac blandit praesent, libero a aliquet dolores. At scelerisque dui blandit id, sociis pellentesque, egestas vestibulum, sed mauris congue. Urna turpis facilisis malesuada at, lacinia interdum pretium donec cras aliquam vitae, est ac sed leo odio eu id, mauris diam eget donec, sed ut vivamus ac dapibus id rutrum. Odio leo quis nibh, quasi euismod suscipit mollis libero, ipsum et, adipiscing dolor sollicitudin vel sed sagittis magnis, et iaculis lorem orci ipsa.
 Nec arcu, aenean auctor, sem mi orci. Aenean viverra habitasse nunc nunc pharetra. Magna a condimentum non sem. Ut praesent habitant semper justo, iaculis et orci eu dolor euismod. Nec vivamus aliquid ipsum massa, fusce massa nam, sodales metus consectetuer diam, et in lectus.")
+
+tag1 = Tag.create(tag_desc: "Sports")
+tag2 = Tag.create(tag_desc: "Science")
+tag3 = Tag.create(tag_desc: "Technology")
+tag4 = Tag.create(tag_desc: "Business")
+tag5 = Tag.create(tag_desc: "Fashion")
+tag6 = Tag.create(tag_desc: "Politics")
+
+tagging1 = Tagging.create(story_id: s1.id, tag_id: tag1.id)
+tagging2 = Tagging.create(story_id: s1.id, tag_id: tag2.id)
+tagging3 = Tagging.create(story_id: s1.id, tag_id: tag3.id)
+
+tagging4 = Tagging.create(story_id: s2.id, tag_id: tag1.id)
+tagging5 = Tagging.create(story_id: s2.id, tag_id: tag2.id)
+tagging6 = Tagging.create(story_id: s2.id, tag_id: tag3.id)
+tagging7 = Tagging.create(story_id: s2.id, tag_id: tag4.id)
+tagging8 = Tagging.create(story_id: s2.id, tag_id: tag5.id)
+tagging9 = Tagging.create(story_id: s2.id, tag_id: tag6.id)
+
+tagging10 = Tagging.create(story_id: s3.id, tag_id: tag1.id)
+tagging11 = Tagging.create(story_id: s3.id, tag_id: tag2.id)
+tagging12 = Tagging.create(story_id: s3.id, tag_id: tag3.id)
+tagging13 = Tagging.create(story_id: s3.id, tag_id: tag4.id)
+
+tagging14 = Tagging.create(story_id: s4.id, tag_id: tag5.id)
+tagging15 = Tagging.create(story_id: s4.id, tag_id: tag6.id)
+
+tagging16 = Tagging.create(story_id: s5.id, tag_id: tag1.id)
+tagging17 = Tagging.create(story_id: s5.id, tag_id: tag2.id)
+tagging18 = Tagging.create(story_id: s5.id, tag_id: tag3.id)
+tagging19 = Tagging.create(story_id: s5.id, tag_id: tag4.id)
+tagging20 = Tagging.create(story_id: s5.id, tag_id: tag5.id)
+tagging21 = Tagging.create(story_id: s5.id, tag_id: tag6.id)

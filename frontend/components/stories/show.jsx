@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { setStory } from "../../actions/story_set";
 import { Link } from "react-router";
+import Tag from "../buttons/tag.jsx";
 
 class StoryShow extends Component {
   constructor() {
@@ -25,11 +26,19 @@ class StoryShow extends Component {
     }
   }
   
+  renderTags() {
+    const tags = this.props.story.tags.map((tag, i) => {
+      return <Tag className="story-tag" desc={tag.tag_desc} key={i} />
+    });
+    
+    return tags;
+  }
+  
   render() {
     const story = this.props.story;
     const follow = this.props.following_author ? "Unfollow" : "Follow";
     
-    // console.log(story);
+    console.log(story);
     return (
       <div className="story">
         <div className="story-header group">
@@ -59,8 +68,15 @@ class StoryShow extends Component {
         <div className="story-content">
           {story.content}
         </div>
+        <div className="story-tags group">
+          {this.renderTags()}
+        </div>
       </div>
     );
+  }
+  
+  componentDidMount() {
+    window.scrollTo(0, 0);
   }
 };
 

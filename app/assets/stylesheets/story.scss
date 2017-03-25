@@ -30,7 +30,7 @@
 .story-username {
   color: $yellow;
   float: left;
-  font-size: 12px;
+  font-size: 14px;
   margin: 0px 20px 5px 0px;
 }
 
@@ -89,7 +89,17 @@
 
 .story-content {
   font-size: 18px;
+  margin-bottom: 15px;
   padding: 0px 10px;
+}
+
+.story-tags {
+  padding: 0px 10px;
+}
+
+.story-tag {
+  background: $lightest-gray;
+  border: none;
 }
 
 @media (min-width: 768px) {

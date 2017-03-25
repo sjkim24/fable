@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import Tag from "../buttons/tag.jsx";
 // import { fetchRecs } from "../../actions/recs_fetch";
 // import RecsIndexItem from "./index_item.jsx";
 
@@ -47,11 +48,12 @@ class RecsIndex extends Component {
         <li className="rec-tags">
           <div className="rec-category">Tags you follow</div>
           <ul className="rec-tags-container group">
-            <li className="rec-tag tag">Sports</li>
-            <li className="rec-tag tag">Business</li>
-            <li className="rec-tag tag">Science</li>
-            <li className="rec-tag tag">Technology</li>
-            <li className="rec-tag tag">Fashion</li>
+            <Tag desc="Sports"/>
+            <Tag desc="Business"/>
+            <Tag desc="Science"/>
+            <Tag desc="Technology"/>
+            <Tag desc="Fashion"/>
+            <Tag desc="Politics"/>
           </ul>
         </li>
       </ul>
