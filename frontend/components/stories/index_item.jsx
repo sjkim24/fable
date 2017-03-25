@@ -2,18 +2,16 @@ import React, { Component } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { fetchStories } from "../../actions/stories_fetch";
 import { setStory } from "../../actions/story_set";
 import { Link } from "react-router";
+import Heart from "../buttons/heart.jsx";
+import Bookmark from "../buttons/bookmark.jsx";
 
 class StoriesIndexItem extends Component {
-  constructor() {
+  constructor() { 
     super();
     
-    this.state = { token: "" };
     this.setStory = this.setStory.bind(this);
-    this.toggleLike = this.toggleLike.bind(this);
-    this.toggleBookmark = this.toggleBookmark.bind(this);
   }
   
   renderSubtitle() {
@@ -63,74 +61,8 @@ class StoriesIndexItem extends Component {
     this.props.setStory(this.props.story);
   }
   
-  toggleLike() {
-    // if current user isn't null
-    const that = this;
-    let url;
-    let method;
-
-    if (this.props.story.liked) {
-      url = "/api/story_likes/destory";
-      method = "delete";
-    } else {
-      url = `/api/stories/${this.props.story.id}/story_likes`;
-      method = "post";
-    }
-    
-    axios({
-      method: method,
-      url: url,
-      data: { 
-        story_like: { story_id: `${this.props.story.id}`},
-        authenticity_token: this.state.token 
-      }
-    })
-    .then(function(response) {
-      that.props.fetchStories();
-    })
-    .catch(function(error) {
-      console.log(error);
-    });
-    // else render login form
-  }
-  
-  toggleBookmark() {
-    // if current user isn't null
-    const that = this;
-    let url;
-    let method;
-
-    if (this.props.story.bookmarked) {
-      url = "/api/bookmark/destory";
-      method = "delete";
-    } else {
-      url = `/api/stories/${this.props.story.id}/bookmarks`;
-      method = "post";
-    }
-    
-    axios({
-      method: method,
-      url: url,
-      data: { 
-        bookmark: { story_id: `${this.props.story.id}`},
-        authenticity_token: this.state.token 
-      }
-    })
-    .then(function(response) {
-      that.props.fetchStories();
-    })
-    .catch(function(error) {
-      console.log(error);
-    });
-    // else render login form
-  }
-  
   render() {
     const story = this.props.story;
-    const heartName = story.liked ? "filled_heart" : "empty_heart";
-    const bookmarkName = story.bookmarked ? "filled_bookmark" : "empty_bookmark";
-    const heartImgSrc = `/images/icons/${heartName}.png`;
-    const bookmarkImgSrc = `/images/icons/${bookmarkName}.png`;
     
     return (
       <li className="stories-item">
@@ -156,25 +88,29 @@ class StoriesIndexItem extends Component {
         </Link>
         <div className="stories-item-footer group">
           <div className="stories-item-like">
-            <img src={heartImgSrc} alt="heart img" onClick={this.toggleLike} className="stories-item-like-heart-img" />
+            <Heart 
+              storyId={story.id}
+              liked={story.liked} 
+              className="stories-item-like-heart-img" 
+              name="storiesIndex" />
             <div className="stories-item-like-count">{story.likes_count}</div>
           </div>
           <div className="stories-item-resp-book group">
-            <img src={bookmarkImgSrc} alt="bookmark img" onClick={this.toggleBookmark} className="stories-item-bookmark" />
+            <Bookmark
+              storyId={story.id}
+              bookmarked={story.bookmarked}
+              className="stories-item-bookmark" 
+              name="storiesIndex" />
             <div className="stories-item-responses">{this.renderResponsesCount()}</div>
           </div>
         </div>
       </li>
     );
   }
-  
-  componentDidMount() {
-    this.setState({ token: $('meta[name=csrf-token]').attr('content') });
-  }
 };
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchStories, setStory }, dispatch);
+  return bindActionCreators({ setStory }, dispatch);
 };
 
 export default connect(null, mapDispatchToProps)(StoriesIndexItem);

@@ -4,7 +4,7 @@ class Api::StoriesController < ApplicationController
   # later, create jobs to get fetch fresh stories on daily basis
   # also, look into medium api to fetch some posts
   def index
-    @stories = Story.all.includes(:user)
+    @stories = Story.all.includes(:user, :tags)
     render :index
   end
 
