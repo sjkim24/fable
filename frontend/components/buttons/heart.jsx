@@ -14,6 +14,7 @@ class Heart extends Component {
   }
   
   toggleLike() {
+    debugger
     // if current user isn't null
     const that = this;
     let url;

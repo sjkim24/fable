@@ -15,7 +15,7 @@ json.array! @stories do |story|
   end
   json.content story.content
   json.likes_count story.story_likes.count
-  json.comments_count story.get_comments_only.count
+  json.responses_count story.get_comments_only.count
   json.main_tag story.main_tag
   if (current_user)
     json.liked story.liked?(story.id, current_user.id)

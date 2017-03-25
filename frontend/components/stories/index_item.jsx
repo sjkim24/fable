@@ -17,7 +17,7 @@ class StoriesIndexItem extends Component {
   renderSubtitle() {
     const subtitle = this.props.story.subtitle;
     
-    if (subtitle && subtitle.length > 20) {
+    if (subtitle && subtitle.split(" ").length > 20) {
       return <h4 className="stories-item-subtitle">
         {`${subtitle.split(" ").slice(0,20).join(" ")} ...`}
       </h4>;
@@ -52,7 +52,7 @@ class StoriesIndexItem extends Component {
   }
   
   renderResponsesCount() {
-    const count = this.props.story.comments_count;
+    const count = this.props.story.responses_count;
     
     return count < 2 ?  `${count} response` : `${count} responses`;
   }

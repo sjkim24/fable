@@ -74,19 +74,21 @@ class StoryShow extends Component {
         <div className="story-tags padding-side group">
           {this.renderTags()}
         </div>
-        <div className="story-buttons padding-side group">
+        <div className="story-buttons group">
           <div className="story-buttons-heart-resp group">
             <Heart
               storyId={story.id}
               liked={story.liked} 
               className="story-like-heart-img-bottom"
               name="storiesShow" />
+            <div className="story-like-count-bottom">{story.likes_count}</div>
             <a href="#story-response">
               <img 
                 src="/images/icons/response.png" 
                 alt="response img" 
                 className="story-response-img" />
             </a>
+            <div className="story-response-count-bottom">{story.responses_count}</div>
           </div>
           <Bookmark 
             storyId={story.id}

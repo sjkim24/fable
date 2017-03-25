@@ -8,6 +8,7 @@
 
 .story-header {
   margin-bottom: 30px;
+  max-width: 740px;
 }
 
 .story-user-img-container-top {
@@ -72,12 +73,15 @@
 .story-title {
   font-weight: bold;
   font-size: 28px;
+  margin: 0 auto;
+  max-width: 700px;
 }
 
 .story-subtitle {
   color: $lighter-gray;
   font-size: 24px;
-  margin: 5px 0px 20px 0px;
+  margin: 5px auto 20px auto;
+  max-width: 700px;
 }
 
 .story-banner-img {
@@ -86,7 +90,8 @@
 
 .story-content {
   font-size: 18px;
-  margin-bottom: 15px;
+  margin: 0px auto 15px auto;
+  max-width: 700px;
 }
 
 .story-tags {
@@ -104,6 +109,7 @@
   margin: 20px auto 0px auto;
   max-width: 700px;
   padding-bottom: 15px;
+  width: calc(100% - 40px); // 40px = .padding-side 20px * 2
 }
 
 .story-buttons-heart-resp {
@@ -112,13 +118,25 @@
 
 .story-like-heart-img-bottom {
   float: left;
-  margin-right: 20px;
   width: 20px;
 }
 
+.story-like-count-bottom {
+  float: left;
+  font-size: 14px;
+  margin: 2px 15px 0px 5px;
+}
+
 .story-response-img {
+  color: $light-gray;
   float: left;
   width: 20px;
+}
+
+.story-response-count-bottom {
+  float: left;
+  font-size: 14px;
+  margin: 2px 0px 0px 6px;
 }
 
 .story-bookmark-bottom {
@@ -186,7 +204,6 @@
 @media (min-width: 768px) {
   .story-header {
     margin: 0px auto 30px auto;
-    max-width: 740px;
   }
   
   .story-username-top {
@@ -228,19 +245,16 @@
   .story-title {
     font-size: 42px;
     margin: 0 auto;
-    max-width: 700px;
   }
   
   .story-subtitle {
     font-size: 29px;
     margin: 5px auto 20px auto;
-    max-width: 700px;
   }
   
   .story-content {
     font-size: 23px;
     margin: 0 auto;
-    max-width: 700px;
   }
   
   .story-like-heart-img-bottom,
@@ -248,5 +262,10 @@
   .story-response-img {
     height: 24px;
     width: 24px;
+  }
+  
+  .story-like-count-bottom {
+    font-size: 16px;
+    margin: 2px 18px 0px 7px;
   }
 }
