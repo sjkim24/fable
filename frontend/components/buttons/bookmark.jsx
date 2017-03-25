@@ -31,11 +31,11 @@ class Bookmark extends Component {
       method: method,
       url: url,
       data: { 
-        bookmark: { story_id: `${this.props.storyId}`},
+        bookmark: { story_id: this.props.storyId },
         authenticity_token: this.state.token 
       }
     })
-    .then(function(response) {
+    .then((response) => {
       switch(that.props.name) {
         case("storiesIndex"):
           that.props.fetchStories();
@@ -45,7 +45,7 @@ class Bookmark extends Component {
           break;
       };
     })
-    .catch(function(error) {
+    .catch((error) => {
       console.log(error);
     });
     // else render login form

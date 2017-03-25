@@ -19,7 +19,7 @@ json.main_tag @story.main_tag
 if (current_user)
   json.liked @story.liked?(@story.id, current_user.id)
   json.bookmarked @story.bookmarked?(@story.id, current_user.id)
-  json.following_author @story.following_author?(@story.user.id, current_user.id)
+  json.following_author @story.following_author?(current_user.id, @story.user.id)
 else
   json.liked false
   json.bookmarked false

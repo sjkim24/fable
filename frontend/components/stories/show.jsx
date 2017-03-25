@@ -7,17 +7,13 @@ import { Link } from "react-router";
 import Tag from "../buttons/tag.jsx";
 import Heart from "../buttons/heart.jsx";
 import Bookmark from "../buttons/bookmark.jsx";
+import Follow from "../buttons/follow.jsx";
 
 class StoryShow extends Component {
   constructor() {
     super();
     
-    this.toggleFollow = this.toggleFollow.bind(this);
     this.renderBannerImg = this.renderBannerImg.bind(this);
-  }
-  
-  toggleFollow() {
-    console.log("toggle follow clicked");
   }
   
   renderBannerImg() {
@@ -52,8 +48,7 @@ class StoryShow extends Component {
       return <div className="loader" />;
     }
     
-    const follow = this.props.following_author ? "Unfollow" : "Follow";
-    
+    console.log(story);
     return (
       <div className="story">
         <header className="story-header padding-side group">
@@ -65,9 +60,11 @@ class StoryShow extends Component {
               <Link to={`/users/@${story.username}`} className="story-username-top">
                 {story.username}
               </Link>
-              <div className="story-follow-top" onClick={this.toggleFollow}>
-                {follow}
-              </div>
+              <Follow 
+                storyId={story.id}
+                userId={story.user_id} 
+                following={story.following_author} 
+                className="story-follow-top" />
             </div>
             <div className="story-user-desc-top">{story.user_desc}</div>
             <div className="story-published-date-min-read group">
@@ -109,9 +106,11 @@ class StoryShow extends Component {
             name="storiesShow" />
         </div>
         <footer className="story-footer padding-side group">
-          <div className="story-follow-bottom" onClick={this.toggleFollow}>
-            {follow}
-          </div>
+          <Follow
+            storyId={story.id}
+            userId={story.user_id} 
+            following={story.following_author} 
+            className="story-follow-bottom" />
           <Link to={`/users/@${story.username}`} className="story-user-img-container-bottom">
             <img src={story.user_image_url} alt="user img" className="story-user-img-bottom" />
           </Link>

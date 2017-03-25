@@ -14,7 +14,6 @@ class Heart extends Component {
   }
   
   toggleLike() {
-    debugger
     // if current user isn't null
     const that = this;
     let url;
@@ -32,11 +31,11 @@ class Heart extends Component {
       method: method,
       url: url,
       data: { 
-        story_like: { story_id: `${this.props.storyId}`},
+        story_like: { story_id: this.props.storyId },
         authenticity_token: this.state.token 
       }
     })
-    .then(function(response) {
+    .then((response) => {
       switch(that.props.name) {
         case("storiesIndex"):
           that.props.fetchStories();
@@ -46,7 +45,7 @@ class Heart extends Component {
           break;
       };
     })
-    .catch(function(error) {
+    .catch((error) => {
       console.log(error);
     });
     // else render login form
@@ -74,4 +73,5 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({ fetchStories, fetchStory }, dispatch);
 };
 
+// export default Heart;
 export default connect(null, mapDispatchToProps)(Heart);

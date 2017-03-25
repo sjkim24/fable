@@ -22,7 +22,7 @@ Rails.application.routes.draw do
     resources :comment_likes, only: [:destroy]
     delete 'story_likes/destory', :to => 'story_likes#destroy'
     delete 'bookmarks/destory', :to => 'bookmarks#destroy'
-    resources :follows, only: [:destroy]
+    delete 'follows/destroy', :to => 'follows#destroy'
   end
   
   get 'users/:id/stories', :to => 'users#user_stories'
