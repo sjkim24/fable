@@ -116,8 +116,8 @@ class StoryShow extends Component {
             <img src={story.user_image_url} alt="user img" className="story-user-img-bottom" />
           </Link>
           <div className="story-info-container-bottom">
-            <Link to={`/users/@${story.user_fullname}`} className="story-username-bottom">
-              {story.username}
+            <Link to={`/users/@${story.username}`} className="story-username-bottom">
+              {story.user_fullname}
             </Link>
             <div className="story-user-desc story-user-desc-bottom">{story.user_desc}</div>
           </div>

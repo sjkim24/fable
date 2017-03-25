@@ -9,13 +9,9 @@ class CommentForm extends Component {
       active: false,
       rejectList: {
         "comment-form": true,
-        "comment-form-user-inst-container group": true,
-        "comment-form-user-img": true,
-        "comment-form-username comment-form-username-show": true,
-        "content-form comment-content-form": true,
-        "comment-form-buttons-container group": true,
-        "comment-submit": true, 
-        "comment-go-full": true
+        "comment-form-user-inst-container": true,
+        "comment-content-form": true,
+        "comment-form-buttons-container": true
       }
     };
     this.toggleActive = this.toggleActive.bind(this);
@@ -90,7 +86,13 @@ class CommentForm extends Component {
     const that = this;
     
     document.body.addEventListener("click", (event) => {
-      const klass = event.target.className;
+      let klass;
+      
+      if (event.target.classList[0] === "comment-form") {
+        klass = "comment-form";
+      } else {
+        klass = event.target.parentNode.classList[0];
+      }
 
       if (that.state.active && !that.state.rejectList[klass]) {
         that.setState({ active: false });
@@ -99,7 +101,9 @@ class CommentForm extends Component {
   }
   
   componentWillUnmount() {
-    document.body.addEventListener("click");
+    document.body.removeEventListener("click", () => {
+      return;
+    });
   }
 };
 
