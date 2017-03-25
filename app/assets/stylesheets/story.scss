@@ -163,6 +163,7 @@
 
 .story-info-container-bottom {
   float: left;
+  margin-top: 5px;
   width: calc(100% - 70px); // 70px = user-img-container width + margin-right
 }
 
@@ -240,5 +241,12 @@
     font-size: 23px;
     margin: 0 auto;
     max-width: 700px;
+  }
+  
+  .story-like-heart-img-bottom,
+  .story-bookmark-bottom,
+  .story-response-img {
+    height: 24px;
+    width: 24px;
   }
 }

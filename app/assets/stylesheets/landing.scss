@@ -1,3 +1,4 @@
+
 // storis-recs //
 .stories-recs-container {
   margin: 40px auto 0px auto;
@@ -143,8 +144,8 @@
 
 .stories-item-bookmark {
   float: right;
-  height: 25px;
-  width: 25px;
+  height: 20px;
+  width: 20px;
 }
 
 .stories-item-bookmark:hover {
@@ -175,7 +176,7 @@
   .stories-item-published-date, .stories-item-kdot, 
   .stories-item-read-time, .stories-item-read-more, 
   .stories-item-like-count, .stories-item-responses {
-    font-size: 14px;
+    font-size: 16px;
   }
   
   .stories-item-title {
@@ -199,6 +200,12 @@
   
   .stories-item-footer {
     padding-top: 30px;
+  }
+  
+  .stories-item-bookmark,
+  .stories-item-like-heart-img {
+    height: 24px;
+    width: 24px;
   }
   
 }
