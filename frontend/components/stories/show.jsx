@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-// import { setStory } from "../../actions/story_set";
 import { fetchStory } from "../../actions/story_fetch";
 import { Link } from "react-router";
 import Tag from "../buttons/tag.jsx";
@@ -37,11 +36,24 @@ class StoryShow extends Component {
     return tags;
   }
   
+  componentWillMount() {
+    if (!this.props.story) {
+      const path = this.props.location.pathname;
+      const id = path[path.length - 1];
+
+      this.props.fetchStory(id);
+    }
+  }
+  
   render() {
     const story = this.props.story;
+    
+    if (!story) {
+      return <div className="loader" />;
+    }
+    
     const follow = this.props.following_author ? "Unfollow" : "Follow";
     
-    console.log(story);
     return (
       <div className="story">
         <header className="story-header padding-side group">
@@ -122,12 +134,12 @@ class StoryShow extends Component {
   }
 };
 
-// function mapDispatchToProps(dispatch) {
-//   return bindActionCreators({ setStory }, dispatch);
-// };
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ fetchStory }, dispatch);
+};
 
 function mapStateToProps(state) {
   return { story: state.stories.story };
 };
 
-export default connect(mapStateToProps, null)(StoryShow);
+export default connect(mapStateToProps, mapDispatchToProps)(StoryShow);
