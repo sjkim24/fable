@@ -52,7 +52,7 @@ class AuthSelections extends Component {
       <div className="auth-selections">
         <div className="modal-header auth-selections-logo">
           <img 
-            src="/images/logo.png" 
+            src="/images/logo_long.png" 
             alt="fable logo" 
             className="auth-selections-logo-img" />
         </div>
