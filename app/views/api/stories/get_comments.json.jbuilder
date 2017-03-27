@@ -3,6 +3,7 @@ json.array! @comments.each do |comment|
   json.story_id comment.story.id
   json.user_id comment.user_id
   json.user_image_url comment.user.photo.url
+  json.username comment.user.username
   json.user_fullname comment.user.fullname
   json.published_date comment.published_date
   json.content comment.content

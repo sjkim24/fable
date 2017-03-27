@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import Tag from "../buttons/tag.jsx";
 // import { fetchRecs } from "../../actions/recs_fetch";
-// import RecsIndexItem from "./index_item.jsx";
+// import RecsIndexItem from "./recs_index_item.jsx";
 
 class RecsIndex extends Component {
   componentWillMount() {

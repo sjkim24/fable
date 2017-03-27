@@ -6,17 +6,23 @@ import Heart from "../buttons/heart.jsx";
 class CommentsIndexItem extends Component {
   render() {
     const comment = this.props.comment;
-    
+    console.log(comment);
     return (
       <div className="comment comments-show-all">
         <div className="comment-header group">
-          <img src={comment.user_image_url} alt="user image" className="comment-user-img" />
+          <Link to={`/users/@${comment.username}`}>
+            <img src={comment.user_image_url} alt="user image" className="comment-user-img" />
+          </Link>
           <div className="comment-header-info">
-            <div className="comment-user-fullname">{comment.user_fullname}</div>
+            <Link to={`/users/@${comment.username}`}>
+              <div className="comment-user-fullname">{comment.user_fullname}</div>
+            </Link>
             <div className="comment-published-date">{comment.published_date}</div>
           </div>
         </div>
-        <div className="comment-content">{comment.content}</div>
+        <Link to={`/comments/${comment.id}`}>
+          <div className="comment-content">{comment.content}</div>
+        </Link>
         <div className="comment-buttons group">
           <Heart
             commentId={comment.id}

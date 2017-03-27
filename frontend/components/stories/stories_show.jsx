@@ -9,10 +9,10 @@ import Tag from "../buttons/tag.jsx";
 import Heart from "../buttons/heart.jsx";
 import Bookmark from "../buttons/bookmark.jsx";
 import Follow from "../buttons/follow.jsx";
-import CommentForm from "../comments/form.jsx";
-import CommentsIndex from "../comments/index.jsx";
+import CommentForm from "../comments/comments_form.jsx";
+import CommentsIndex from "../comments/comments_index.jsx";
 
-class StoryShow extends Component {
+class StoriesShow extends Component {
   constructor() {
     super();
     
@@ -37,10 +37,7 @@ class StoryShow extends Component {
   
   componentWillMount() {
     if (!this.props.story) {
-      const path = this.props.location.pathname;
-      const id = path[path.length - 1];
-
-      this.props.fetchStory(id);
+      this.props.fetchStory(this.props.params.storyId);
     }
   }
   
@@ -147,4 +144,4 @@ function mapStateToProps(state) {
   return { story: state.stories.story};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(StoryShow);
+export default connect(mapStateToProps, mapDispatchToProps)(StoriesShow);

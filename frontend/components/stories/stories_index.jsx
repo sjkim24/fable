@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { fetchStories } from "../../actions/stories_fetch";
-import StoriesIndexItem from "./index_item.jsx";
-import RecsIndex from "../recommendations/index.jsx";
+import StoriesIndexItem from "./stories_index_item.jsx";
+import RecsIndex from "../recommendations/recs_index.jsx";
 
 class StoriesIndex extends Component {
   componentWillMount() {

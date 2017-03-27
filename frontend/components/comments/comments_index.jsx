@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { fetchComments } from "../../actions/comments_fetch";
-import CommentsIndexItem from "./index_item.jsx";
+import CommentsIndexItem from "./comments_index_item.jsx";
 
 class CommentsIndex extends Component {
   constructor() {

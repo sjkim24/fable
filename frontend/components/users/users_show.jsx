@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 // import { fetchUser } from "../../actions/user_fetch";
 
-class UserShow extends Component {
+class UsersShow extends Component {
   render() {
     console.log("user show");
     return (
@@ -12,4 +12,4 @@ class UserShow extends Component {
   }
 }
 
-export default UserShow;
+export default UsersShow;
