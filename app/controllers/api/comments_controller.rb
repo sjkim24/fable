@@ -5,7 +5,7 @@ class Api::CommentsController < ApplicationController
       @comments = Comment.where(user_id: params[:user_id])
       @user = User.find(params[:user_id])
     else
-      @comments = Comment.all
+      @comments = Comment.all.includes(:users)
     end
 
     render :index

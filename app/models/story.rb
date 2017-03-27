@@ -36,7 +36,12 @@ class Story < ActiveRecord::Base
   
   # gets story's comments only; no replies to the story's comments
   def get_comments_only
-    self.comments.where(parent_comment_id: nil)
+    self.comments.includes(:user).where(parent_comment_id: nil)
+  end
+  
+  # get story's replies to comments only
+  def get_replies_only
+    self.comments.includes(:user).where.not(parent_comment_id: nil)
   end
   
   def published_date

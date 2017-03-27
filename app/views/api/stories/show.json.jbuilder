@@ -31,10 +31,10 @@ json.tags @story.tags do |tag|
   json.tag_desc tag.tag_desc
 end
 
-json.comments @story.comments do |comment|
+json.responses @story.get_comments_only.each do |comment|
   json.id comment.id
-  json.user_id comment.user.id
-  json.username comment.username
+  json.user_id comment.user_id
+  json.username comment.user.username
   json.published_date comment.published_date
   json.content comment.content
 end
