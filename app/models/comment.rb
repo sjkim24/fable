@@ -19,8 +19,8 @@ class Comment < ActiveRecord::Base
   # Comment model also has the exact same funcitons
   
   # checks if the comment has been liked by current user
-  def liked?(comment_id, user_id)
-   !CommentLike.where(comment_id: comment_id, user_id: user_id).empty?
+  def liked?(user_id)
+   !CommentLike.where(comment_id: self.id, user_id: user_id).empty?
   end
   
   # returns id of like object made with curernt comment.id and current_user.id

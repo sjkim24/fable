@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { fetchComments } from "../../actions/comments_fetch";
 import CommentsIndexItem from "./index_item.jsx";
 
 class CommentsIndex extends Component {
@@ -10,11 +13,13 @@ class CommentsIndex extends Component {
   }
   
   showComments() {
-    this.setState({ display: true });
+    this.setState({ display: true }, () => {
+      this.props.fetchComments(this.props.storyId);
+    });
   }
   
   displayTextOrComments() {
-    if (this.state.display) {
+    if (this.props.comments && this.state.display) {
       const comments = this.props.comments.map((comment, i) => {
         return <CommentsIndexItem key={`comment-${i}`} comment={comment} />
       });
@@ -38,4 +43,12 @@ class CommentsIndex extends Component {
   }
 };
 
-export default CommentsIndex;
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ fetchComments }, dispatch);
+};
+
+function mapStateToProps(state) {
+  return { comments: state.comments.all };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CommentsIndex);

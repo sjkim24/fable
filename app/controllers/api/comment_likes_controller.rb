@@ -5,19 +5,20 @@ class Api::CommentLikesController < ApplicationController
     @story_id = Comment.find(params[:comment_id]).story.id
     
     if @like.save
-      redirect_to story_url(@story_id)
+      render json: @like
     else
-      flash.now[:errors] = @like.errors.full_messages
+      render json: "Error"
     end
   end
   
   def destroy
-    @like = CommentLike.find(params[:comment_like][:id])
+    comment_id = params[:comment_like][:comment_id]
+    @like = CommentLike.where(user_id: current_user.id, comment_id: comment_id)[0]
     
     if @like.destroy
-      redirect_to story_url(params[:id])
+      render json: @like
     else
-      flash.now[:errors] = @like.errors.full_messages
+      render json: "Error"
     end
   end
   

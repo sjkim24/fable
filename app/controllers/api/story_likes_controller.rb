@@ -13,6 +13,7 @@ class Api::StoryLikesController < ApplicationController
   def destroy
     story_id = params[:story_like][:story_id]
     @like = StoryLike.where(user_id: current_user.id, story_id: story_id)[0]
+    
     if @like.destroy
       render json: @like
     else

@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import { Link } from "react-router";
 import Heart from "../buttons/heart.jsx";
 
+
 class CommentsIndexItem extends Component {
   render() {
     const comment = this.props.comment;
-    console.log(comment);
     
     return (
       <div className="comment comments-show-all">
@@ -18,7 +18,12 @@ class CommentsIndexItem extends Component {
         </div>
         <div className="comment-content">{comment.content}</div>
         <div className="comment-buttons group">
-          <Heart className="comment-like" />
+          <Heart
+            commentId={comment.id}
+            storyId={comment.story_id} 
+            className="comment-like" 
+            liked={comment.liked} 
+            name="commentsIndex" />
           <div className="comment-likes-count">{comment.likes_count}</div>
         </div>
       </div>

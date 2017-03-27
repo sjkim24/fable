@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { fetchStories } from "../../actions/stories_fetch";
 import { fetchStory } from "../../actions/story_fetch";
+import { fetchComments } from "../../actions/comments_fetch";
 
 class Heart extends Component {
   constructor() {
@@ -16,32 +17,54 @@ class Heart extends Component {
   toggleLike() {
     // if current user isn't null
     const that = this;
+    const name = this.props.name;
     let url;
     let method;
-
-    if (this.props.liked) {
-      url = "/api/story_likes/destory";
-      method = "delete";
-    } else {
-      url = `/api/stories/${this.props.storyId}/story_likes`;
-      method = "post";
-    }
+    let data;
     
+    if (name === "storiesIndex" || name === "storiesShow") {
+      data = { 
+        story_like: { story_id: this.props.storyId },
+        authenticity_token: this.state.token 
+      };
+      
+      if (this.props.liked) {
+        url = "/api/story_likes/destory";
+        method = "delete";
+      } else {
+        url = `/api/stories/${this.props.storyId}/story_likes`;
+        method = "post";
+      }
+    } else {
+      data = {
+        comment_like: { comment_id: this.props.commentId },
+        authenticity_token: this.state.token
+      };
+      
+      if (this.props.liked) {
+        url = "/api/comment_likes/destroy";
+        method = "delete";
+      } else {
+        url = `/api/comments/${this.props.commentId}/comment_likes`;
+        method = "post";
+      }
+    }
+
     axios({
       method: method,
       url: url,
-      data: { 
-        story_like: { story_id: this.props.storyId },
-        authenticity_token: this.state.token 
-      }
+      data: data
     })
     .then((response) => {
-      switch(that.props.name) {
+      switch(name) {
         case("storiesIndex"):
           that.props.fetchStories();
           break;
         case("storiesShow"):
           that.props.fetchStory(that.props.storyId);
+          break;
+        case("commentsIndex"):
+          that.props.fetchComments(that.props.storyId);
           break;
       };
     })
@@ -70,7 +93,7 @@ class Heart extends Component {
 };
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchStories, fetchStory }, dispatch);
+  return bindActionCreators({ fetchStories, fetchStory, fetchComments }, dispatch);
 };
 
 // export default Heart;

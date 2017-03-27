@@ -48,7 +48,6 @@ class CommentForm extends Component {
     const usernameClass = this.state.active ? "comment-form-username-show" : "";
     const contentFormDisplay = this.state.active ? "" : "hidden";
     
-    console.log("form", this.state.active);
     return (
       <form onSubmit={this.handleOnSubmit} className="comment-form">
         <div 

@@ -3,6 +3,7 @@ import axios from "axios";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { fetchStory } from "../../actions/story_fetch";
+import { fetchComments } from "../../actions/comments_fetch";
 import { Link } from "react-router";
 import Tag from "../buttons/tag.jsx";
 import Heart from "../buttons/heart.jsx";
@@ -49,7 +50,7 @@ class StoryShow extends Component {
     if (!story) {
       return <div className="loader" />;
     }
-    
+
     return (
       <div className="story">
         <header className="story-header padding-side group">
@@ -128,7 +129,7 @@ class StoryShow extends Component {
             userImgUrl={story.user_image_url}
             userFullName={story.user_fullname} />
         </div>
-        <CommentsIndex comments={story.comments} />
+        <CommentsIndex storyId={story.id}/>
       </div>
     );
   }
@@ -143,7 +144,7 @@ function mapDispatchToProps(dispatch) {
 };
 
 function mapStateToProps(state) {
-  return { story: state.stories.story };
+  return { story: state.stories.story};
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(StoryShow);

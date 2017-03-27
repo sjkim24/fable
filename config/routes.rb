@@ -19,15 +19,17 @@ Rails.application.routes.draw do
       resources :comment_likes, only: [:create]
     end
     
-    resources :comment_likes, only: [:destroy]
     delete 'story_likes/destory', :to => 'story_likes#destroy'
+    delete 'comment_likes/destroy', :to => 'comment_likes#destroy'
     delete 'bookmarks/destory', :to => 'bookmarks#destroy'
     delete 'follows/destroy', :to => 'follows#destroy'
+    
+    get 'users/:id/stories', :to => 'users#user_stories'
+    get 'users/:id/comments', :to => 'users#user_comments'
+    get 'users/:id/bookmarks', :to => 'users#user_bookmarks'
+    get 'users/:id/followers', :to => 'users#user_followers'
+    get 'users/:id/followings', :to => 'users#user_followings'
+    
+    get 'stories/:id/comments', :to => 'stories#get_comments_only'
   end
-  
-  get 'users/:id/stories', :to => 'users#user_stories'
-  get 'users/:id/comments', :to => 'users#user_comments'
-  get 'users/:id/bookmarks', :to => 'users#user_bookmarks'
-  get 'users/:id/followers', :to => 'users#user_followers'
-  get 'users/:id/followings', :to => 'users#user_followings'
 end
