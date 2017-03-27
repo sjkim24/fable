@@ -9,6 +9,7 @@ import Heart from "../buttons/heart.jsx";
 import Bookmark from "../buttons/bookmark.jsx";
 import Follow from "../buttons/follow.jsx";
 import CommentForm from "../comments/form.jsx";
+import CommentsIndex from "../comments/index.jsx";
 
 class StoryShow extends Component {
   constructor() {
@@ -91,7 +92,7 @@ class StoryShow extends Component {
               className="story-like-heart-img-bottom"
               name="storiesShow" />
             <div className="story-like-count-bottom">{story.likes_count}</div>
-            <a href="#story-response">
+            <a href="#story-comments">
               <img 
                 src="/images/icons/response.png" 
                 alt="response img" 
@@ -127,6 +128,7 @@ class StoryShow extends Component {
             userImgUrl={story.user_image_url}
             userFullName={story.user_fullname} />
         </div>
+        <CommentsIndex comments={story.comments} />
       </div>
     );
   }

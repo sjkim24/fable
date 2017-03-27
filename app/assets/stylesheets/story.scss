@@ -31,7 +31,7 @@
   color: $yellow;
   float: left;
   font-size: 14px;
-  margin: 2px 20px 5px 0px;
+  margin: 2px 20px 2px 0px;
 }
 
 .story-username-top:hover {
@@ -90,6 +90,7 @@
 
 .story-content {
   font-size: 18px;
+  line-height: 1.5em;
   margin: 0px auto 15px auto;
   max-width: 700px;
 }
