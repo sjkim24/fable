@@ -15,30 +15,22 @@ class CommentForm extends Component {
       }
     };
     this.toggleActive = this.toggleActive.bind(this);
-    this.renderInstOrUsername = this.renderInstOrUsername.bind(this);
     this.handleOnSubmit = this.handleOnSubmit.bind(this);
     this.goFullScreen = this.goFullScreen.bind(this);
   }
   
   toggleActive() {
+    // debugger
     if (!this.state.active) {
+      // console.log("hit");
       this.setState({ active: true });
     }
   }
   
-  renderInstOrUsername() {
+
+  renderContentForm() {
     if (this.state.active) {
-      return (
-        <div className="comment-form-username">
-          {this.props.userFullName}
-        </div>
-      );
-    } else {
-      return (
-        <div className="comment-form-inst">
-          Write a response...
-        </div>
-      );
+      return <ContentForm active={this.state.active} />;
     }
   }
   
@@ -55,10 +47,13 @@ class CommentForm extends Component {
     const instClass = this.state.active ? "comment-form-inst-hide" : "";
     const usernameClass = this.state.active ? "comment-form-username-show" : "";
     const contentFormDisplay = this.state.active ? "" : "hidden";
-
+    
+    console.log("form", this.state.active);
     return (
       <form onSubmit={this.handleOnSubmit} className="comment-form">
-        <div className="comment-form-user-inst-container group" onClick={this.toggleActive}>
+        <div 
+          className="comment-form-user-inst-container group" 
+          onClick={this.toggleActive}>
           <img src={this.props.userImgUrl} 
             alt="user img" 
             className="comment-form-user-img"/>
@@ -70,7 +65,7 @@ class CommentForm extends Component {
           </div>
         </div>
         <div className={`comment-content-form ${contentFormDisplay}`}>
-          <ContentForm />
+          {this.renderContentForm()}
           <div className="comment-form-buttons-container group">
             <input className="comment-submit" type="submit" value="Publish" />
             <div onClick={this.goFullScreen} className="comment-go-full">
