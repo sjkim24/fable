@@ -49,7 +49,6 @@ class StoryShow extends Component {
       return <div className="loader" />;
     }
     
-    console.log(story);
     return (
       <div className="story">
         <header className="story-header padding-side group">
@@ -126,8 +125,7 @@ class StoryShow extends Component {
           <div className="comment-form-header">Response</div>
           <CommentForm
             userImgUrl={story.user_image_url}
-            userFullName={story.user_fullname} 
-            />
+            userFullName={story.user_fullname} />
         </div>
       </div>
     );
