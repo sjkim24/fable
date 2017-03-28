@@ -33,7 +33,7 @@ class CommentsShow extends Component {
     }
     
     const hasReplies = comment.comments_count > 0 ? true : false;
-    
+    console.log(comment);
     return (
       <div className="story">
         <div className="story-header padding-side group">

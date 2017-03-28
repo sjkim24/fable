@@ -5,6 +5,7 @@ json.array! @replies.includes(:user, :story).each do |reply|
   json.user_image_url reply.user.photo.url
   json.username reply.user.username
   json.user_fullname reply.user.fullname
+  json.user_desc reply.user.user_desc
   json.published_date reply.published_date
   json.content reply.content
   json.tags reply.story.tags do |tag|

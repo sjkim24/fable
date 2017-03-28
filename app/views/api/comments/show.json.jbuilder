@@ -27,6 +27,7 @@ json.replies @comment.replies.includes(:user, :story) do |reply|
   json.user_image_url reply.user.photo.url
   json.username reply.user.username
   json.user_fullname reply.user.fullname
+  json.user_desc reply.user.user_desc
   json.published_date reply.published_date
   json.content reply.content
   json.likes_count reply.comment_likes.count
