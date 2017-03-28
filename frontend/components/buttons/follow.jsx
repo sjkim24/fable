@@ -3,6 +3,7 @@ import axios from "axios";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { fetchStory } from "../../actions/story_fetch";
+import { fetchComment } from "../../actions/comment_fetch";
 
 class Follow extends Component {
   constructor() {
@@ -15,6 +16,7 @@ class Follow extends Component {
   toggleFollow() {
     // if current user isn't null
     const that = this;
+    const name = this.props.name;
     let url;
     let method;    
     
@@ -35,7 +37,14 @@ class Follow extends Component {
       }
     })
     .then((response) => {
-      that.props.fetchStory(that.props.storyId);
+      switch(name) {
+        case("storiesShow"):
+          that.props.fetchStory(that.props.storyId);
+          break;
+        case("commentsShow"):
+          that.props.fetchComment(that.props.commentId);
+          break;
+      };
     })
     .catch((error) => {
       console.log(error);
@@ -62,7 +71,7 @@ class Follow extends Component {
 };
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchStory }, dispatch);
+  return bindActionCreators({ fetchStory, fetchComment }, dispatch);
 };
 
 export default connect(null, mapDispatchToProps)(Follow);

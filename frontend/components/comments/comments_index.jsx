@@ -19,13 +19,13 @@ class CommentsIndex extends Component {
   }
   
   displayTextOrComments() {
-    if (this.props.comments && this.state.display) {
+    if (this.props.comments.length > 0 && this.state.display) {
       const comments = this.props.comments.map((comment, i) => {
         return <CommentsIndexItem key={`comment-${i}`} comment={comment} />
       });
       
       return comments;
-    } else {
+    } else if (this.props.hasResponse) {
       return (
         <div onClick={this.showComments} className="comments-show-all">
           <div className="comments-show-all-text">Show all responses</div>

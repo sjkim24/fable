@@ -5,6 +5,7 @@ import { bindActionCreators } from "redux";
 import { fetchStories } from "../../actions/stories_fetch";
 import { fetchStory } from "../../actions/story_fetch";
 import { fetchComments } from "../../actions/comments_fetch";
+import { fetchComment } from "../../actions/comment_fetch";
 
 class Heart extends Component {
   constructor() {
@@ -66,6 +67,9 @@ class Heart extends Component {
         case("commentsIndex"):
           that.props.fetchComments(that.props.storyId);
           break;
+        case("commentsShow"):
+          that.props.fetchComment(that.props.commentId)
+          break;
       };
     })
     .catch((error) => {
@@ -93,7 +97,9 @@ class Heart extends Component {
 };
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchStories, fetchStory, fetchComments }, dispatch);
+  return bindActionCreators({ 
+    fetchStories, fetchStory, fetchComments, fetchComment 
+  }, dispatch);
 };
 
 // export default Heart;

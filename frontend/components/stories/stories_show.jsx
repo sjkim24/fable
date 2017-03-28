@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import axios from "axios";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { fetchStory } from "../../actions/story_fetch";
@@ -47,6 +46,8 @@ class StoriesShow extends Component {
     if (!story) {
       return <div className="loader" />;
     }
+    
+    const hasResponse = story.comments_count > 0 ? true : false;
 
     return (
       <div className="story">
@@ -62,7 +63,8 @@ class StoriesShow extends Component {
               <Follow 
                 storyId={story.id}
                 userId={story.user_id} 
-                following={story.following_author} 
+                following={story.following_author}
+                name="storiesShow" 
                 className="story-follow story-follow-top" />
             </div>
             <div className="story-user-desc story-user-desc-top">{story.user_desc}</div>
@@ -96,7 +98,7 @@ class StoriesShow extends Component {
                 alt="response img" 
                 className="story-response-img" />
             </a>
-            <div className="story-response-count-bottom">{story.responses_count}</div>
+            <div className="story-response-count-bottom">{story.comments_count}</div>
           </div>
           <Bookmark 
             storyId={story.id}
@@ -108,7 +110,8 @@ class StoriesShow extends Component {
           <Follow
             storyId={story.id}
             userId={story.user_id} 
-            following={story.following_author} 
+            following={story.following_author}
+            name="storiesShow" 
             className="story-follow story-follow-bottom" />
           <Link to={`/users/@${story.username}`} className="story-user-img-container-bottom">
             <img src={story.user_image_url} alt="user img" className="story-user-img-bottom" />
@@ -126,7 +129,7 @@ class StoriesShow extends Component {
             userImgUrl={story.user_image_url}
             userFullName={story.user_fullname} />
         </div>
-        <CommentsIndex storyId={story.id}/>
+        <CommentsIndex storyId={story.id} hasResponse={hasResponse} />
       </div>
     );
   }

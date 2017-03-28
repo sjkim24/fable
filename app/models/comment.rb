@@ -24,9 +24,9 @@ class Comment < ActiveRecord::Base
   end
   
   # returns id of like object made with curernt comment.id and current_user.id
-  def like_id(comment_id, user_id)
-    CommentLike.where(comment_id: comment_id, user_id: user_id)[0].id
-  end
+  # def like_id(comment_id, user_id)
+  #   CommentLike.where(comment_id: comment_id, user_id: user_id)[0].id
+  # end
   
   def published_date
     date_hash = {
@@ -48,5 +48,10 @@ class Comment < ActiveRecord::Base
     day = self.created_at.day.to_s
     
     return month + " " + day
+  end
+  
+  def following_author?(follower_id)
+    follow = Follow.where(follower_id: follower_id, following_id: self.user.id)[0]
+    return follow.nil? ? false : true
   end
 end

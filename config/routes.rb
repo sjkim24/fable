@@ -31,5 +31,6 @@ Rails.application.routes.draw do
     get 'users/:id/followings', :to => 'users#user_followings'
     
     get 'stories/:id/comments', :to => 'stories#get_comments_only'
+    get 'comments/:id/replies', :to => 'comments#get_replies'
   end
 end

@@ -17,17 +17,17 @@ class Story < ActiveRecord::Base
   # Comment model also has the exact same funcitons
 
   # checks if the story has been liked by the current user
-  def liked?(story_id, user_id)
-   !StoryLike.where(story_id: story_id, user_id: user_id).empty?
+  def liked?(user_id)
+   !StoryLike.where(story_id: self.id, user_id: user_id).empty?
   end
   
   # returns id of like object made with curernt story.id and current_user.id
-  def like_id(story_id, user_id)
-    StoryLike.where(story_id: story_id, user_id: user_id)[0].id
-  end
+  # def like_id(story_id, user_id)
+  #   StoryLike.where(story_id: story_id, user_id: user_id)[0].id
+  # end
   
-  def bookmarked?(story_id, user_id)
-    !Bookmark.where(story_id: story_id, user_id: user_id).empty?
+  def bookmarked?(user_id)
+    !Bookmark.where(story_id: self.id, user_id: user_id).empty?
   end
   
   def has_image?
@@ -76,8 +76,8 @@ class Story < ActiveRecord::Base
     self.tags.first.nil? ? nil : self.tags.first.tag_desc
   end
   
-  def following_author?(follower_id, following_id)
-    follow = Follow.where(follower_id: follower_id, following_id: following_id)[0]
+  def following_author?(follower_id)
+    follow = Follow.where(follower_id: follower_id, following_id: self.user.id)[0]
     return follow.nil? ? false : true
   end
 end

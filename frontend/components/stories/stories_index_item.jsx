@@ -52,7 +52,7 @@ class StoriesIndexItem extends Component {
   }
   
   renderResponsesCount() {
-    const count = this.props.story.responses_count;
+    const count = this.props.story.comments_count;
     
     return count < 2 ?  `${count} response` : `${count} responses`;
   }

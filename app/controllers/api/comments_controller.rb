@@ -55,6 +55,13 @@ class Api::CommentsController < ApplicationController
     @comment.destroy
     redirect_to story_url(story_id)
   end
+  
+  def get_replies
+    comment = Comment.find(params[:id])
+    @replies = comment.replies
+    
+    render :get_replies
+  end
 
   private
     def comment_params

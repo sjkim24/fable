@@ -7,6 +7,9 @@ json.array! @comments.each do |comment|
   json.user_fullname comment.user.fullname
   json.published_date comment.published_date
   json.content comment.content
+  json.tags comment.story.tags do |tag|
+    json.tag_desc tag.tag_desc
+  end
   json.likes_count comment.comment_likes.count
   json.comments_count comment.get_replies.count
   if (current_user)

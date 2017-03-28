@@ -18,9 +18,9 @@ json.likes_count @story.story_likes.count
 json.comments_count @story.get_comments_only.count
 json.main_tag @story.main_tag
 if (current_user)
-  json.liked @story.liked?(@story.id, current_user.id)
-  json.bookmarked @story.bookmarked?(@story.id, current_user.id)
-  json.following_author @story.following_author?(current_user.id, @story.user.id)
+  json.liked @story.liked?(current_user.id)
+  json.bookmarked @story.bookmarked?(current_user.id)
+  json.following_author @story.following_author?(current_user.id)
 else
   json.liked false
   json.bookmarked false
@@ -30,19 +30,3 @@ end
 json.tags @story.tags do |tag|
   json.tag_desc tag.tag_desc
 end
-
-# json.comments @story.get_comments_only.each do |comment|
-#   json.id comment.id
-#   json.user_id comment.user_id
-#   json.user_image_url comment.user.photo.url
-#   json.user_fullname comment.user.fullname
-#   json.published_date comment.published_date
-#   json.content comment.content
-#   json.likes_count comment.comment_likes.count
-#   json.comments_count comment.get_replies.count
-#   if (current_user)
-#     json.liked comment.liked?(current_user.id)
-#   else
-#     json.liked false
-#   end
-# end
