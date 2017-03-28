@@ -74,7 +74,7 @@ class CommentsShow extends Component {
                 src="/images/icons/comment_story_response.png"
                 alt="comment img"  
                 className="comment-story-link-resp-img" />
-              <div className="comment-story-link-resp-count">{comment.comments_count}</div>
+              <div className="comment-story-link-resp-count">{comment.story_comments_count}</div>
             </div>
           </div>
         </Link>
