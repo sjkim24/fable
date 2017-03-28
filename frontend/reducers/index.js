@@ -1,4 +1,5 @@
 import { combineReducers } from "redux";
+import CurrentUserReducer from "./reducer_current_user";
 import StoriesReducer from "./reducer_stories";
 import ModalReducer from "./reducer_modal";
 import CommentsReducer from "./reducer_comments";
@@ -8,7 +9,8 @@ const rootReducer = combineReducers({
   stories: StoriesReducer,
   modal: ModalReducer,
   comments: CommentsReducer,
-  replies: RepliesReducer
+  replies: RepliesReducer,
+  currentUser: CurrentUserReducer
 });
 
 export default rootReducer;

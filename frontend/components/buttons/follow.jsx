@@ -4,13 +4,22 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { fetchStory } from "../../actions/story_fetch";
 import { fetchComment } from "../../actions/comment_fetch";
+import { toggleModal } from "../../actions/modal_toggle";
 
 class Follow extends Component {
   constructor() {
     super();
     
     this.state = { token: "" };
-    this.toggleFollow = this.toggleFollow.bind(this);
+    this.checkAuthThenToggle = this.checkAuthThenToggle.bind(this);
+  }
+  
+  checkAuthThenToggle() {
+    if (this.props.currentUser.id) {
+      this.toggleFollow()
+    } else {
+      this.props.toggleModal("auth-selections");
+    }
   }
   
   toggleFollow() {
@@ -59,7 +68,7 @@ class Follow extends Component {
     return (
       <div
         className={`follow-btn ${this.props.className}`} 
-        onClick={this.toggleFollow}>
+        onClick={this.checkAuthThenToggle}>
         {follow}
       </div>
     );
@@ -71,7 +80,11 @@ class Follow extends Component {
 };
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchStory, fetchComment }, dispatch);
+  return bindActionCreators({ fetchStory, fetchComment, toggleModal }, dispatch);
 };
 
-export default connect(null, mapDispatchToProps)(Follow);
+function mapStateToProps(state) {
+  return { currentUser: state.currentUser };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Follow);

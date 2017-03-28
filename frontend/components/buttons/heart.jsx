@@ -6,17 +6,26 @@ import { fetchStories } from "../../actions/stories_fetch";
 import { fetchStory } from "../../actions/story_fetch";
 import { fetchComments } from "../../actions/comments_fetch";
 import { fetchComment } from "../../actions/comment_fetch";
+import { fetchCurrentUser } from "../../actions/current_user_fetch";
+import { toggleModal } from "../../actions/modal_toggle";
 
 class Heart extends Component {
   constructor() {
     super();
     
     this.state = { token: "" };
-    this.toggleLike = this.toggleLike.bind(this);
+    this.checkAuthThenToggle = this.checkAuthThenToggle.bind(this);
+  }
+  
+  checkAuthThenToggle() {
+    if (this.props.currentUser.id) {
+      this.toggleLike();
+    } else {
+      this.props.toggleModal("auth-selections");
+    }
   }
   
   toggleLike() {
-    // if current user isn't null
     const that = this;
     const name = this.props.name;
     let url;
@@ -75,7 +84,6 @@ class Heart extends Component {
     .catch((error) => {
       console.log(error);
     });
-    // else render login form
   }
   
   render() {
@@ -86,7 +94,7 @@ class Heart extends Component {
       <img 
         src={heartImgSrc} 
         alt="heart img" 
-        onClick={this.toggleLike} 
+        onClick={this.checkAuthThenToggle} 
         className={this.props.className} />
     );
   }
@@ -98,9 +106,17 @@ class Heart extends Component {
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({ 
-    fetchStories, fetchStory, fetchComments, fetchComment 
+    fetchStories, 
+    fetchStory, 
+    fetchComments, 
+    fetchComment, 
+    fetchCurrentUser,
+    toggleModal 
   }, dispatch);
 };
 
-// export default Heart;
-export default connect(null, mapDispatchToProps)(Heart);
+function mapStateToProps(state) {
+  return { currentUser: state.currentUser };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Heart);

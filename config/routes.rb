@@ -32,5 +32,7 @@ Rails.application.routes.draw do
     
     get 'stories/:id/comments', :to => 'stories#get_comments_only'
     get 'comments/:id/replies', :to => 'comments#get_replies'
+    
+    get 'current_user', :to => 'current_user#get_current_user'
   end
 end

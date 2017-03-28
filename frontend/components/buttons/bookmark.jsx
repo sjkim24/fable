@@ -4,17 +4,25 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { fetchStories } from "../../actions/stories_fetch";
 import { fetchStory } from "../../actions/story_fetch";
+import { toggleModal } from "../../actions/modal_toggle";
 
 class Bookmark extends Component {
   constructor() {
     super();
     
     this.state = { token: "" };
-    this.toggleBookmark = this.toggleBookmark.bind(this);
+    this.checkAuthThenToggle = this.checkAuthThenToggle.bind(this);
+  }
+  
+  checkAuthThenToggle() {
+    if (this.props.currentUser.id) {
+      this.toggleBookmark();
+    } else {
+      this.props.toggleModal("auth-selections");
+    }
   }
   
   toggleBookmark() {
-    // if current user isn't null
     const that = this;
     let url;
     let method;
@@ -48,7 +56,6 @@ class Bookmark extends Component {
     .catch((error) => {
       console.log(error);
     });
-    // else render login form
   }
   
   render() {
@@ -59,7 +66,7 @@ class Bookmark extends Component {
       <img 
         src={bookmarkImgSrc} 
         alt="bookmark img" 
-        onClick={this.toggleBookmark} 
+        onClick={this.checkAuthThenToggle} 
         className={this.props.className} />
     );
   }
@@ -70,7 +77,11 @@ class Bookmark extends Component {
 };
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchStories, fetchStory }, dispatch);
+  return bindActionCreators({ fetchStories, fetchStory, toggleModal }, dispatch);
 };
 
-export default connect(null, mapDispatchToProps)(Bookmark);
+function mapStateToProps(state) {
+  return { currentUser: state.currentUser };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Bookmark);
