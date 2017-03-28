@@ -58,7 +58,26 @@ class CommentsShow extends Component {
             </div>
           </div>
         </div>
-        <div>story link with title author likes count resp counts</div>
+        <Link to={`/stories/${comment.story_id}`}>
+          <div className="comment-story-link group">
+            <div className="comment-story-link-info">
+              <div className="comment-story-link-title">{comment.story_title}</div>
+              <div className="comment-story-link-author">{comment.story_author}</div>
+            </div>
+            <div className="comment-story-link-buttons">
+              <img 
+                src="/images/icons/comment_story_like.png"
+                alt="heart img" 
+                className="comment-story-link-heart-img" />
+              <div className="comment-story-link-likes-count">{comment.story_likes_count}</div>
+              <img
+                src="/images/icons/comment_story_response.png"
+                alt="comment img"  
+                className="comment-story-link-resp-img" />
+              <div className="comment-story-link-resp-count">{comment.comments_count}</div>
+            </div>
+          </div>
+        </Link>
         <div className="story-content padding-side">
           {comment.content}
         </div>

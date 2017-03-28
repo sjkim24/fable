@@ -75,3 +75,62 @@
   font-size: 14px;
   margin: 2px 0px 0px 5px;
 }
+
+// show //
+.comment-story-link {
+  border-radius: 2px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  margin: 0px auto 40px auto;
+  max-width: 700px;
+  width: calc(100% - 60px); // 60px = 40px to substitute padding side and 10px inner padding
+  padding: 10px;
+}
+
+.comment-story-link-info {
+  float: left;
+}
+
+.comment-story-link-author {
+  color: $gray;
+  font-size: 14px;
+}
+
+.comment-story-link-title {
+  text-overflow: ellipsis;
+  width: 195px;
+  height: 20px;
+  overflow: hidden;
+  display: block;
+  white-space: nowrap;
+}
+
+.comment-story-link-buttons {
+  float: right;
+  margin-top: 3px;
+}
+
+.comment-story-link-heart-img {
+  float: left;
+  margin-right: 5px;
+  width: 14px;
+}
+
+.comment-story-link-resp-img {
+  float: left;
+  margin-right: 5px;
+  width: 14px;
+}
+
+.comment-story-link-resp-count,
+.comment-story-link-likes-count {
+  color: $dark-gray;
+  font-size: 14px;
+  margin-right: 5px;
+  float: left;
+}
+
+@media (min-width: 768px) {
+  .comments-show-all-text {
+    font-size: 16px;
+  }
+}
