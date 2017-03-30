@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { setComment } from "../../actions/comment_set";
-import { fetchComment } from "../../actions/comment_fetch";
+import { fetchComment, setComment } from "../../actions/action_comments";
 import { Link } from "react-router";
 import Follow from "../buttons/follow.jsx";
 import Heart from "../buttons/heart.jsx";
@@ -33,7 +32,8 @@ class CommentsShow extends Component {
     }
     
     const hasReplies = comment.comments_count > 0 ? true : false;
-    console.log(comment);
+    const storyLinkDisplay = comment.story_title ? "" : "hidden"; // if no title, it's a comment
+
     return (
       <div className="story">
         <div className="story-header padding-side group">
@@ -58,7 +58,7 @@ class CommentsShow extends Component {
             </div>
           </div>
         </div>
-        <Link to={`/stories/${comment.story_id}`}>
+        <Link to={`/stories/${comment.story_id}`} className={`${storyLinkDisplay}`}>
           <div className="comment-story-link group">
             <div className="comment-story-link-info">
               <div className="comment-story-link-title">{comment.story_title}</div>

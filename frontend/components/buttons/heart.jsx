@@ -2,12 +2,12 @@ import React, { Component } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { fetchStories } from "../../actions/stories_fetch";
-import { fetchStory } from "../../actions/story_fetch";
-import { fetchComments } from "../../actions/comments_fetch";
-import { fetchComment } from "../../actions/comment_fetch";
-import { fetchCurrentUser } from "../../actions/current_user_fetch";
-import { toggleModal } from "../../actions/modal_toggle";
+import { fetchStory, fetchStories } from "../../actions/action_stories";
+// import { fetchStory } from "../../actions/story_fetch";
+import { fetchComment, fetchComments } from "../../actions/action_comments";
+// import { fetchComment } from "../../actions/comment_fetch";
+import { fetchCurrentUser } from "../../actions/action_auth";
+import { toggleModal } from "../../actions/action_modal";
 
 class Heart extends Component {
   constructor() {
@@ -87,6 +87,7 @@ class Heart extends Component {
   }
   
   render() {
+    console.log(this.state.token);
     const heartName = this.props.liked ? "filled_heart" : "empty_heart";
     const heartImgSrc = `/images/icons/${heartName}.png`;
     

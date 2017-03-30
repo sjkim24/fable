@@ -1,6 +1,8 @@
-import { FETCH_COMMENTS } from "../actions/comments_fetch";
-import { FETCH_COMMENT } from "../actions/comment_fetch";
-import { SET_COMMENT } from "../actions/comment_set";
+import { 
+  FETCH_COMMENT, 
+  FETCH_COMMENTS, 
+  SET_COMMENT 
+} from "../actions/action_comments";
 
 const INITIAL_STATE = { all: [], comment: null };
 

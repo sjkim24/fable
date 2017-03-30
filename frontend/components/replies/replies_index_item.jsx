@@ -4,8 +4,8 @@ import { bindActionCreators } from "redux";
 import { Link } from "react-router";
 import Heart from "../buttons/heart.jsx";
 // import { setReply } from "../../actions/reply_set";
-import { setComment } from "../../actions/comment_set";
-import { fetchReplies } from "../../actions/replies_fetch";
+import { setComment } from "../../actions/action_comments";
+import { fetchReplies } from "../../actions/action_replies";
 
 class RepliesIndexItem extends Component {
   constructor() {

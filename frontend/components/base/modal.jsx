@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { toggleModal } from "../../actions/modal_toggle";
-import { refillModal } from "../../actions/modal_refill";
+import { toggleModal, refillModal } from "../../actions/action_modal";
 import AuthSelections from "../auth/auth_selections.jsx";
 import SignUpForm from "../auth/sign_in_form.jsx";
 

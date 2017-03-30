@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Link } from "react-router";
 import Heart from "../buttons/heart.jsx";
-import { setComment } from "../../actions/comment_set";
+import { setComment } from "../../actions/action_comments";
 
 
 class CommentsIndexItem extends Component {

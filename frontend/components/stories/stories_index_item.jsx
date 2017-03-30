@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { setStory } from "../../actions/story_set";
+import { setStory } from "../../actions/action_stories";
 import { Link } from "react-router";
 import Heart from "../buttons/heart.jsx";
 import Bookmark from "../buttons/bookmark.jsx";

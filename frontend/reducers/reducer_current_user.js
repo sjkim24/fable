@@ -1,4 +1,4 @@
-import { FETCH_CURRENT_USER } from "../actions/current_user_fetch";
+import { FETCH_CURRENT_USER } from "../actions/action_auth";
 
 const INITIAL_STATE = { currentUser: null };
 

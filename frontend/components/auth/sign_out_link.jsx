@@ -23,6 +23,7 @@ class SignOutLink extends Component {
   
   render() {
     return(
+      console.log("RE DO ME. JUST CREATE A ENDPOINT TO HIT SESSIONS#DESTORY");
       <a href="#" onClick={this.signOut}>Sign Out</a>
     );
   }

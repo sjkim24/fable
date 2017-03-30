@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import Header from './base/header.jsx';
 import NavBar from './nav_bar/nav_bar.jsx';
 import Modal from "./base/modal.jsx";
-import { fetchCurrentUser } from "../actions/current_user_fetch";
+import { fetchCurrentUser } from "../actions/action_auth";
 
 class App extends Component {
   componentWillMount() {

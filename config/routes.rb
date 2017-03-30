@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root to: "static#index"
-  devise_for :users
+  devise_for :users, controllers: {sessions: "sessions"}
   namespace :api, defaults: {format: :json} do 
     resources :users, only: [:show, :edit, :update] do
       resources :stories, only: [:index]

@@ -1,6 +1,8 @@
-import { FETCH_STORIES } from "../actions/stories_fetch";
-import { FETCH_STORY } from "../actions/story_fetch";
-import { SET_STORY } from "../actions/story_set";
+import { 
+  FETCH_STORY, 
+  FETCH_STORIES, 
+  SET_STORY 
+} from "../actions/action_stories";
 
 const INITIAL_STATE = { all: [], story: null };
 

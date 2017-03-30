@@ -1,6 +1,9 @@
 json.array! @replies.includes(:user, :story).each do |reply|
   json.id reply.id
-  json.story_id reply.story.id
+  json.story_id reply.comment.id
+  json.story_author reply.comment.user.fullname
+  json.story_likes_count reply.comment.comment_likes.count
+  json.story_comments_count reply.comment.get_replies.count
   json.user_id reply.user_id
   json.user_image_url reply.user.photo.url
   json.username reply.user.username

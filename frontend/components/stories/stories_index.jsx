@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { fetchStories } from "../../actions/stories_fetch";
+import { fetchStories } from "../../actions/action_stories";
 import StoriesIndexItem from "./stories_index_item.jsx";
 import RecsIndex from "../recommendations/recs_index.jsx";
 

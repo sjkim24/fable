@@ -4,6 +4,8 @@ class Comment < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :story
+  belongs_to :comment, class_name: "Comment",
+                       foreign_key: "parent_comment_id"
 
   has_many :replies, class_name: "Comment",
                      foreign_key: "parent_comment_id",

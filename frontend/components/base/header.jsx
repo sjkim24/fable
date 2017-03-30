@@ -3,7 +3,7 @@ import SearchButton from "../nav_bar/search_button.jsx";
 import Modal from "./modal.jsx";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { toggleModal } from "../../actions/modal_toggle";
+import { toggleModal } from "../../actions/action_modal";
 import { Link } from "react-router";
 
 class Header extends Component {

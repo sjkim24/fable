@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { fetchStory } from "../../actions/story_fetch";
-import { fetchComments } from "../../actions/comments_fetch";
+import { fetchStory } from "../../actions/action_stories";
+import { fetchComments } from "../../actions/action_comments";
 import { Link } from "react-router";
 import Tag from "../buttons/tag.jsx";
 import Heart from "../buttons/heart.jsx";

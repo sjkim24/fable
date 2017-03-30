@@ -4,7 +4,7 @@ json.array! @comments.each do |comment|
   json.story_title comment.story.title
   json.story_author comment.story.user.fullname
   json.story_likes_count comment.story.story_likes.count
-  json.story_comments_count comment.story.comments.count
+  json.story_comments_count comment.story.get_comments_only.count
   json.user_id comment.user_id
   json.user_image_url comment.user.photo.url
   json.username comment.user.username

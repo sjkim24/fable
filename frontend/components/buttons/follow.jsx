@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { fetchStory } from "../../actions/story_fetch";
-import { fetchComment } from "../../actions/comment_fetch";
-import { toggleModal } from "../../actions/modal_toggle";
+import { fetchStory } from "../../actions/action_stories";
+import { fetchComment } from "../../actions/action_comments";
+import { toggleModal } from "../../actions/action_modal";
 
 class Follow extends Component {
   constructor() {
@@ -16,7 +16,9 @@ class Follow extends Component {
   
   checkAuthThenToggle() {
     if (this.props.currentUser.id) {
-      this.toggleFollow()
+      this.setState({ token: $('meta[name=csrf-token]').attr('content') }, () => {
+        this.toggleFollow()
+      });
     } else {
       this.props.toggleModal("auth-selections");
     }

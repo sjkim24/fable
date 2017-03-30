@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Link } from "react-router";
 import Heart from "../buttons/heart.jsx";
-import { fetchReplies } from "../../actions/replies_fetch";
+import { fetchReplies } from "../../actions/action_replies";
 import RepliesIndexItem from "./replies_index_item.jsx";
 
 class RepliesIndex extends Component {
@@ -27,7 +27,7 @@ class RepliesIndex extends Component {
   }
   
   displayTextOrComments() {
-    if (this.props.replies.length > 0 && this.state.display) {
+    if (this.props.replies && this.props.replies.length > 0 && this.state.display) {
       const replies = this.props.replies.map((reply, i) => {
         return <RepliesIndexItem
           resetState={this.resetState} 

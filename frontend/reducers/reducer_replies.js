@@ -1,4 +1,4 @@
-import { FETCH_REPLIES } from "../actions/replies_fetch";
+import { FETCH_REPLIES } from "../actions/action_replies";
 
 const INITIAL_STATE = { all: [] }
 

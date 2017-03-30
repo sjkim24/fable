@@ -2,9 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { fetchStories } from "../../actions/stories_fetch";
-import { fetchStory } from "../../actions/story_fetch";
-import { toggleModal } from "../../actions/modal_toggle";
+import { fetchStory, fetchStories } from "../../actions/action_stories";
+import { toggleModal } from "../../actions/action_modal";
 
 class Bookmark extends Component {
   constructor() {
@@ -16,7 +15,9 @@ class Bookmark extends Component {
   
   checkAuthThenToggle() {
     if (this.props.currentUser.id) {
-      this.toggleBookmark();
+      this.setState({ token: $('meta[name=csrf-token]').attr('content') }, () => {
+        this.toggleBookmark();
+      });
     } else {
       this.props.toggleModal("auth-selections");
     }

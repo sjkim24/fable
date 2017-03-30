@@ -1,5 +1,4 @@
-import { TOGGLE_MODAL } from "../actions/modal_toggle";
-import { REFILL_MODAL } from "../actions/modal_refill";
+import { TOGGLE_MODAL, REFILL_MODAL } from "../actions/action_modal";
 
 const INITIAL_STATE = { active: false, content: null };
 
