@@ -7,6 +7,7 @@ import { Link } from "react-router";
 import Tag from "../buttons/tag.jsx";
 import Heart from "../buttons/heart.jsx";
 import Bookmark from "../buttons/bookmark.jsx";
+import SideStoryButtons from "../buttons/side_story_buttons.jsx";
 import Follow from "../buttons/follow.jsx";
 import CommentForm from "../comments/comments_form.jsx";
 import CommentsIndex from "../comments/comments_index.jsx";
@@ -75,6 +76,11 @@ class StoriesShow extends Component {
             </div>
           </div>
         </header>
+        <SideStoryButtons 
+          storyId={story.id}
+          liked={story.liked}
+          likesCount={story.likes_count}
+          bookmarked={story.bookmarked} />
         <div className="story-title padding-side">{story.title}</div>
         <div className="story-subtitle padding-side">{story.subtitle}</div>
         {this.renderBannerImg()}
