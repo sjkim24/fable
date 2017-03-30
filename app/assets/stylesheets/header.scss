@@ -36,7 +36,8 @@
   margin-top: 2px
 }
 
-.header-list-auth-story-link {
+.header-list-story-link,
+.header-list-auth-link {
   color: $yellow;
   float: left;
   font-size: 14px;
@@ -44,10 +45,21 @@
   padding-bottom: 3px;
 }
 
-.header-list-auth-story-link:hover {
+.header-list-story-link:hover,
+.header-list-auth-link:hover {
+  border-bottom: 1px solid $dark-yellow;
   color: $dark-yellow;
   cursor: pointer;
-  border-bottom: 1px solid $dark-yellow;
+}
+
+.header-list-auth-user-container {
+  float: left;
+  margin: 0px 20px 0px 10px;
+}
+
+.header-list-auth-user-img {
+  border-radius: 50%;
+  width: 32px;
 }
 
 .header-list-search {

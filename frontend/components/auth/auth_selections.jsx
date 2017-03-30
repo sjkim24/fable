@@ -3,27 +3,26 @@ import axios from "axios";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { fetchStories } from "../../actions/action_stories";
-import { setCurrentUser } from "../../actions/action_auth";
+import { setCurrentUser, setAuthToken } from "../../actions/action_auth";
 
 class AuthSelections extends Component {
   constructor() {
     super();
     
-    this.state = { token: "" };
     this.loginAsGuest = this.loginAsGuest.bind(this);
   }
   
   loginAsGuest() {
     const that = this;
+    
     axios.post("/users/sign_in", {
       user: {
         email: "guest@email.com",
         password: "hello123"
       },
-      authenticity_token: this.state.token
+      authenticity_token: this.props.token
     })
     .then(function(response) {
-      debugger
       that.props.setCurrentUser(response.data.current_user);
       // close modal
       that.props.toggleModal();
@@ -84,12 +83,17 @@ class AuthSelections extends Component {
   }
   
   componentDidMount() {
-    this.setState({ token: $('meta[name=csrf-token]').attr('content') });
+    this.props.setAuthToken
+    // this.setState({ token: $('meta[name=csrf-token]').attr('content') });
   }
 };
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchStories, setCurrentUser }, dispatch);
+  return bindActionCreators({ fetchStories, setCurrentUser, setAuthToken }, dispatch);
 };
 
-export default connect(null, mapDispatchToProps)(AuthSelections);
+function mapStateToProps(state) {
+  return { token: state.auth.authToken }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AuthSelections);

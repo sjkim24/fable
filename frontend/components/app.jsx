@@ -16,7 +16,6 @@ class App extends Component {
   }
   
   render() {
-    console.log(this.props.auth);
     return (
       <div className="app">
         <div id="filler"></div>

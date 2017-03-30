@@ -87,7 +87,7 @@ class Heart extends Component {
   }
   
   render() {
-    console.log(this.state.token);
+    // console.log(this.state.token);
     const heartName = this.props.liked ? "filled_heart" : "empty_heart";
     const heartImgSrc = `/images/icons/${heartName}.png`;
     
@@ -117,7 +117,7 @@ function mapDispatchToProps(dispatch) {
 };
 
 function mapStateToProps(state) {
-  return { currentUser: state.currentUser };
+  return { currentUser: state.auth.currentUser };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Heart);

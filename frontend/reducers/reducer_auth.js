@@ -8,7 +8,7 @@ export default function(state = INITIAL_STATE, action) {
   Object.freeze(state);
   switch(action.type) {
     case SET_CURRENT_USER:
-      return { ...state, currentUser: action.payload.data };
+      return { ...state, currentUser: action.payload };
     case SET_AUTH_TOKEN:
       return { ...state, authToken: action.payload };
     case FETCH_CURRENT_USER:

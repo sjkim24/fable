@@ -5,16 +5,39 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { toggleModal } from "../../actions/action_modal";
 import { Link } from "react-router";
+import { setCurrentUser } from "../../actions/action_auth";
 
 class Header extends Component {
   constructor() {
     super();
     
     this.toggleAuthModal = this.toggleAuthModal.bind(this);
+    this.renderStoryForm = this.renderStoryForm.bind(this);
+  }
+  
+  renderStoryForm() {
+    console.log("render story form clicked");
   }
   
   toggleAuthModal() {
     this.props.toggleModal("auth-selections");
+  }
+  
+  renderAuthOrUser() {
+    if (this.props.currentUser) {
+      return (
+        <img 
+          src={this.props.currentUser.user_image_url} 
+          alt="user image" 
+          className="header-list-auth-user-img" />
+      );
+    } else {
+      return (
+        <div onClick={this.toggleAuthModal} className="header-list-auth-link">
+          Signin / Signup
+        </div>
+      );
+    }
   }
   
   render() {
@@ -23,6 +46,7 @@ class Header extends Component {
     // for now, i'll set the boolean value of signed in to a variable in render function
     const authLinkDisplay = "";
     const storyLinkDisplay = "hidden"
+      
     return(
       <header className="header padding-side group">
         <div className="header-inner group">
@@ -30,11 +54,13 @@ class Header extends Component {
             <img src="/images/logo_wide.png" alt="fable logo" className="header-list-logo-img"/>
           </Link>
           <ul className="header-list-right">
-            <li className="header-list-auth-story-link">
-              <div onClick={this.toggleAuthModal}className={`header-list-auth-link ${authLinkDisplay}`}>
-                Signin / Signup
+            <li className="header-list-story-link">
+              <div onClick={this.renderStoryForm} className="header-list-story-link-btn">
+                Write a story
               </div>
-              <a href="" className={`header-list-story-link ${storyLinkDisplay}`}>Write a story</a>
+            </li>
+            <li className="header-list-auth-user-container">
+              {this.renderAuthOrUser()}
             </li>
             <li className="header-list-search">
               <SearchButton />
@@ -49,11 +75,11 @@ class Header extends Component {
 // new code start
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ toggleModal }, dispatch);
+  return bindActionCreators({ toggleModal, setCurrentUser }, dispatch);
 }
 
 function mapStateToProps(state) {
-  return { modal: state.modal }
+  return { modal: state.modal, currentUser: state.auth.currentUser }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
