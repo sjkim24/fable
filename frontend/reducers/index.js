@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import CurrentUserReducer from "./reducer_current_user";
+import AuthReducer from "./reducer_auth";
 import StoriesReducer from "./reducer_stories";
 import ModalReducer from "./reducer_modal";
 import CommentsReducer from "./reducer_comments";
@@ -10,7 +10,7 @@ const rootReducer = combineReducers({
   modal: ModalReducer,
   comments: CommentsReducer,
   replies: RepliesReducer,
-  currentUser: CurrentUserReducer
+  auth: AuthReducer
 });
 
 export default rootReducer;

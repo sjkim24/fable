@@ -14,7 +14,7 @@ class Bookmark extends Component {
   }
   
   checkAuthThenToggle() {
-    if (this.props.currentUser.id) {
+    if (this.props.currentUser) {
       this.setState({ token: $('meta[name=csrf-token]').attr('content') }, () => {
         this.toggleBookmark();
       });
@@ -82,7 +82,7 @@ function mapDispatchToProps(dispatch) {
 };
 
 function mapStateToProps(state) {
-  return { currentUser: state.currentUser };
+  return { currentUser: state.auth.currentUser };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Bookmark);

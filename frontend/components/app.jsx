@@ -4,14 +4,19 @@ import { bindActionCreators } from "redux";
 import Header from './base/header.jsx';
 import NavBar from './nav_bar/nav_bar.jsx';
 import Modal from "./base/modal.jsx";
-import { fetchCurrentUser } from "../actions/action_auth";
+import { 
+  fetchAuthToken, fetchCurrentUser, setAuthToken 
+} from "../actions/action_auth";
 
 class App extends Component {
   componentWillMount() {
-    this.props.fetchCurrentUser();
+    if (!this.props.auth.currentUser) {
+      this.props.fetchCurrentUser();
+    }
   }
   
   render() {
+    console.log(this.props.auth);
     return (
       <div className="app">
         <div id="filler"></div>
@@ -22,16 +27,22 @@ class App extends Component {
       </div>
     );
   }
+  
+  componentDidMount() {
+    const token = $('meta[name=csrf-token]').attr('content');
+
+    this.props.setAuthToken(token);
+  }
 };
 
-// export default App;
-
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchCurrentUser }, dispatch);
+  return bindActionCreators({ 
+    fetchAuthToken, fetchCurrentUser, setAuthToken 
+  }, dispatch);
 };
 
 function mapStateToProps(state) {
-  return { currentUser: state.currentUser };
+  return { auth: state.auth };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

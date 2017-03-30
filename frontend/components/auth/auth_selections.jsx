@@ -3,7 +3,7 @@ import axios from "axios";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { fetchStories } from "../../actions/action_stories";
-import { fetchCurrentUser } from "../../actions/action_auth";
+import { setCurrentUser } from "../../actions/action_auth";
 
 class AuthSelections extends Component {
   constructor() {
@@ -11,10 +11,6 @@ class AuthSelections extends Component {
     
     this.state = { token: "" };
     this.loginAsGuest = this.loginAsGuest.bind(this);
-  }
-  
-  setCurrentUser() {
-    // call set current user action
   }
   
   loginAsGuest() {
@@ -28,7 +24,7 @@ class AuthSelections extends Component {
     })
     .then(function(response) {
       debugger
-      this.setCurrentUser();
+      that.props.setCurrentUser(response.data.current_user);
       // close modal
       that.props.toggleModal();
       // fetch current stories again with updated data on likes and bookmark
@@ -38,6 +34,7 @@ class AuthSelections extends Component {
       
     })
     .catch(function(error) {
+      debugger
       console.log(error);
     });
   }
@@ -92,11 +89,7 @@ class AuthSelections extends Component {
 };
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchStories, fetchCurrentUser }, dispatch);
+  return bindActionCreators({ fetchStories, setCurrentUser }, dispatch);
 };
 
-function mapStateToProps(state) {
-  return { currentUser: state.currentUser };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(AuthSelections);
+export default connect(null, mapDispatchToProps)(AuthSelections);
