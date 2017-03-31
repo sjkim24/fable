@@ -2,12 +2,15 @@ class Api::UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
-    @comments = @user.comments
-    @stories = @user.stories
-    
-    if @user.following?(current_user.id, @user.id)
-      @follow = Follow.where(follower_id: current_user.id, following_id: @user.id)[0]
-    end
+    @latest = @user.stories.last(3)
+    @recommends = []
+    @user.story_likes.last(3).each { |like| @recommends << Story.find(like.story_id) }
+    # @comments = @user.comments
+    # @stories = @user.stories
+    # 
+    # if @user.following?(current_user.id, @user.id)
+    #   @follow = Follow.where(follower_id: current_user.id, following_id: @user.id)[0]
+    # end
     
     render :show
   end

@@ -3,6 +3,7 @@ import axios from "axios";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { setStory } from "../../actions/action_stories";
+import { fetchUser } from "../../actions/action_user";
 import { Link } from "react-router";
 import Heart from "../buttons/heart.jsx";
 import Bookmark from "../buttons/bookmark.jsx";
@@ -12,6 +13,7 @@ class StoriesIndexItem extends Component {
     super();
     
     this.setStory = this.setStory.bind(this);
+    this.fetchUser = this.fetchUser.bind(this);
   }
   
   renderSubtitle() {
@@ -61,13 +63,17 @@ class StoriesIndexItem extends Component {
     this.props.setStory(this.props.story);
   }
   
+  fetchUser() {
+    this.props.fetchStory(this.props.story.user_id)
+  }
+  
   render() {
     const story = this.props.story;
     
     return (
       <li className="stories-item">
         <div className="stories-item-header group">
-          <Link to={`/users/@${story.username}`}>
+          <Link to={`/users/@${story.username}`} onClick={this.fetchUser}>
             <img src={story.user_image_url} alt="user img" className="stories-item-user-img" />
           </Link>
           <div className="stories-item-username-pub-rt-container group">
@@ -110,7 +116,7 @@ class StoriesIndexItem extends Component {
 };
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ setStory }, dispatch);
+  return bindActionCreators({ setStory, fetchUser }, dispatch);
 };
 
 export default connect(null, mapDispatchToProps)(StoriesIndexItem);
