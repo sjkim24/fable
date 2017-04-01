@@ -4,7 +4,7 @@ class RecommendsTab extends Component {
   render() {
     return (
       <div>
-        <header className="user-show-tab-header">Recommends</header>
+        <header className="user-show-tab-header">Recommended By</header>
         rec tab
       </div>
     );

@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { fetchUser } from "../../actions/action_user";
-import ProfileTab from "./users_tab_profile.js.jsx";
-import RecommendsTab from "./users_tab_recommends.js.jsx";
-import ResponsesTab from "./users_tab_responses.js.jsx";
+import ProfileTab from "./users_tab_profile.jsx";
+import RecommendsTab from "./users_tab_recommends.jsx";
+import ResponsesTab from "./users_tab_responses.jsx";
 
 class UsersShow extends Component {
   constructor() {
@@ -41,7 +41,7 @@ class UsersShow extends Component {
     
     switch(this.state.active) {
       case "profile":
-        return <ProfileTab latest={user.latest} recommends={user.recommends} />;
+        return <ProfileTab user={user} toggleTab={this.toggleTab} />;
       case "recommends":
         return <RecommendsTab recommends={user.recommends} />;
       case "responses":
@@ -60,31 +60,35 @@ class UsersShow extends Component {
     return (
       <div className="user-show">
         <header className="user-show-header">
-          <img src={user.image_url} alt="user img" className="user-show-header-img" />
-          <div className="user-show-user-fullname">{user.fullname}</div>
-          <div className="user-show-user-desc">{user.desc}</div>
-          <div className="user-show-follow-info-container group">
-            <div className="user-show-followings" onClick={this.showFollowings}>
-              {user.followings.length}
+          <div className="user-show-header-inner">
+            <img src={user.image_url} alt="user img" className="user-show-header-img" />
+            <div className="user-show-user-fullname">{user.fullname}</div>
+            <div className="user-show-user-desc">{user.desc}</div>
+            <div className="user-show-follow-info-container group">
+              <div className="user-show-followings" onClick={this.showFollowings}>
+                {user.followings.length}
+              </div>
+              <div className="user-show-followers" onClick={this.showFollowers}>
+                {user.followers.length}
+              </div>
             </div>
-            <div className="user-show-followers" onClick={this.showFollowers}>
-              {user.followers.length}
-            </div>
+            <div className="user-show-edit-btn button" onClick={this.editProfile}>Edit</div>
           </div>
-          <div className="user-show-edit-btn button" onClick={this.editProfile}>Edit</div>
         </header>
         <nav className="user-show-navbar">
-          <ul className="user-show-navbar-ul">
-            <li className="user-show-navbar-link" onClick={this.toggleTab.bind(this, "profile")}>
-              Profile
-            </li>
-            <li className="user-show-navbar-link" onClick={this.toggleTab.bind(this, "recommends")}>
-              Recommends
-            </li>
-            <li className="user-show-navbar-link" onClick={this.toggleTab.bind(this, "responses")}>
-              Responses
-            </li>
-          </ul>
+          <div className="user-show-inner-navbar">
+            <ul className="user-show-navbar-ul">
+              <li className="user-show-navbar-link" onClick={this.toggleTab.bind(this, "profile")}>
+                Profile
+              </li>
+              <li className="user-show-navbar-link" onClick={this.toggleTab.bind(this, "recommends")}>
+                Recommends
+              </li>
+              <li className="user-show-navbar-link" onClick={this.toggleTab.bind(this, "responses")}>
+                Responses
+              </li>
+            </ul>
+          </div>
         </nav>
         <div className="user-show-active-tab-container">
           {this.renderActiveTab()}
