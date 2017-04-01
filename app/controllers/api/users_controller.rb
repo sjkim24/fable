@@ -6,7 +6,8 @@ class Api::UsersController < ApplicationController
     @latest = @user.stories.last(3)
     @recommends = []
     @user.story_likes.last(3).each { |like| @recommends << Story.find(like.story_id) }
-    
+    @comments = @user.get_comments_only
+
     render :show
   end
   

@@ -29,4 +29,8 @@ class User < ActiveRecord::Base
   def following?(current_user_id, user_id)
     Follow.where(follower_id: current_user_id, following_id: user_id).present?
   end
+  
+  def get_comments_only
+    Comment.where(user_id: self.id, parent_comment_id: nil)
+  end
 end

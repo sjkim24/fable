@@ -25,6 +25,12 @@
   
 }
 
+.button {
+  border: 1px solid $yellow;
+  border-radius: 50%;
+  color: $yellow;
+}
+
 @media (min-width: 768px) {
   .padding-side {
     padding: 0px;
