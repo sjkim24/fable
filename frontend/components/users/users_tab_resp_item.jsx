@@ -22,7 +22,6 @@ class UserTabRespItem extends Component {
   
   render() {
     const response = this.props.response
-    console.log(this.props.response);
     
     return (
       <li className="user-resp-item">
