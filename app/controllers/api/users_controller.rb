@@ -4,8 +4,7 @@ class Api::UsersController < ApplicationController
     username = params[:username].gsub("@", "")
     @user = User.find_by_username(username)
     @latest = @user.stories.last(3)
-    @recommends = []
-    @user.story_likes.last(3).each { |like| @recommends << Story.find(like.story_id) }
+    @recommends = @user.recommends.order("created_at DESC")
     @comments = @user.get_comments_only
 
     render :show

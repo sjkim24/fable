@@ -48,7 +48,7 @@ json.latest @latest.each do |story|
   end
 end
 
-json.recommends @recommends.each do |recommend|
+json.recommends @recommends.includes(:user).each do |recommend|
   json.story_id recommend.id
   json.story_title recommend.title
   json.author_fullname recommend.user.fullname

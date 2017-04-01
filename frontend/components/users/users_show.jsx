@@ -14,6 +14,7 @@ class UsersShow extends Component {
     this.showFollowings = this.showFollowings.bind(this);
     this.showFollower = this.showFollowers.bind(this);
     this.editProfile = this.editProfile.bind(this);
+    this.toggleTab = this.toggleTab.bind(this);
   }
   
   componentWillUpdate(nextProps, nextState) {
@@ -47,9 +48,19 @@ class UsersShow extends Component {
     
     switch(this.state.active) {
       case "profile":
-        return <ProfileTab user={user} toggleTab={this.toggleTab} />;
+        return (
+          <ProfileTab 
+            userFullname={user.fullname}
+            latest={user.latest} 
+            recommends={user.recommends}
+            toggleTab={this.toggleTab} />
+        );
       case "recommends":
-        return <RecommendsTab recommends={user.recommends} />;
+        return (
+          <RecommendsTab 
+            userFullname={user.fullname}
+            recommends={user.recommends} />
+        );
       case "responses":
         return <ResponsesTab responses={user.comments} />;
     };
@@ -62,7 +73,10 @@ class UsersShow extends Component {
       return <div className="loader" />;
     }
     
-    // console.log(user);
+    const profileActive = this.state.active === "profile" ? "tab-header-active" : "";
+    const recActive = this.state.active === "recommends" ? "tab-header-active" : "";
+    const respActive = this.state.active === "responses" ? "tab-header-active" : "";
+    
     return (
       <div className="user-show">
         <header className="user-show-header">
@@ -84,13 +98,19 @@ class UsersShow extends Component {
         <nav className="user-show-navbar">
           <div className="user-show-inner-navbar">
             <ul className="user-show-navbar-ul">
-              <li className="user-show-navbar-link" onClick={this.toggleTab.bind(this, "profile")}>
+              <li 
+                className={`user-show-navbar-link ${profileActive}`}
+                onClick={this.toggleTab.bind(this, "profile")}>
                 Profile
               </li>
-              <li className="user-show-navbar-link" onClick={this.toggleTab.bind(this, "recommends")}>
+              <li 
+                className={`user-show-navbar-link ${recActive}`} 
+                onClick={this.toggleTab.bind(this, "recommends")}>
                 Recommends
               </li>
-              <li className="user-show-navbar-link" onClick={this.toggleTab.bind(this, "responses")}>
+              <li 
+                className={`user-show-navbar-link ${respActive}`} 
+                onClick={this.toggleTab.bind(this, "responses")}>
                 Responses
               </li>
             </ul>

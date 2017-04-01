@@ -29,7 +29,7 @@ class UsersTabRecItem extends Component {
   render() {
     const rec = this.props.rec;
     const imgClass = rec.image_url ? "" : "rec-title-no-img";
-    console.log(rec);
+    
     return (
       <li className="user-profile-rec-item padding-side">
         <div className="rec-left-container">

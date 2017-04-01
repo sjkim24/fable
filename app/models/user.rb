@@ -20,6 +20,8 @@ class User < ActiveRecord::Base
   has_many :comment_likes, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
   
+  has_many :recommends, through: :story_likes, source: :story
+  
   has_many :follower_relationships, class_name: "Follow", foreign_key: :following_id, dependent: :destroy
   has_many :followers, through: :follower_relationships, source: :follower
   
@@ -32,5 +34,9 @@ class User < ActiveRecord::Base
   
   def get_comments_only
     Comment.where(user_id: self.id, parent_comment_id: nil)
+  end
+  
+  def get_recommends
+    Story.where()
   end
 end
