@@ -4,6 +4,7 @@ class ResponsesTab extends Component {
   render() {
     return (
       <div>
+        <header className="user-show-tab-header">Responses</header>
         resp tab
       </div>
     );

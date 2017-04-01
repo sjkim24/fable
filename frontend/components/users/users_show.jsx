@@ -56,14 +56,14 @@ class UsersShow extends Component {
       return <div className="loader" />;
     }
     
-    console.log(user);
+    // console.log(user);
     return (
       <div className="user-show">
         <header className="user-show-header">
           <img src={user.image_url} alt="user img" className="user-show-header-img" />
           <div className="user-show-user-fullname">{user.fullname}</div>
-          <div className="user-show-user-desc">{user.user_desc}</div>
-          <div className="user-show-follow-info-container">
+          <div className="user-show-user-desc">{user.desc}</div>
+          <div className="user-show-follow-info-container group">
             <div className="user-show-followings" onClick={this.showFollowings}>
               {user.followings.length}
             </div>

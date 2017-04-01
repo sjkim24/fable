@@ -13,16 +13,17 @@
  *= require_self
  */
  
- @import url('https://fonts.googleapis.com/css?family=Roboto'); // font
- @import "sass_variables";
- @import "definitions";
- @import "reset";
- @import "main";
- @import "header";
- @import "navbar";
- @import "modal";
- @import "landing";
- @import "story";
- @import "comment_form";
- @import "content_form";
- @import "comments";
+@import url('https://fonts.googleapis.com/css?family=Roboto'); // font
+@import "sass_variables";
+@import "definitions";
+@import "reset";
+@import "main";
+@import "header";
+@import "navbar";
+@import "modal";
+@import "landing";
+@import "story";
+@import "comment_form";
+@import "content_form";
+@import "comments";
+@import "user_show";

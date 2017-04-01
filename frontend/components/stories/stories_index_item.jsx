@@ -72,7 +72,6 @@ class StoriesIndexItem extends Component {
   
   render() {
     const story = this.props.story;
-    console.log(this.props.story);
     const profileViewHide = this.props.profile ? "hidden" : "";
     
     return (

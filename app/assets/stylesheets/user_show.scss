@@ -1,0 +1,97 @@
+.user-show {
+  background: $main-background-gray;
+}
+
+.user-show-header {
+  background: #FFFFFF;
+  border-bottom: 1px solid $light-gray;
+  margin: 0px auto;
+  padding: 50px 10px 10px 10px;
+  width: calc(100% - 20px);
+}
+
+.user-show-header-img {
+  border-radius: 50%;
+  margin: 50px auto 0px auto;
+  width: 80px;
+}
+
+.user-show-user-fullname {
+  font-size: 32px;
+  font-weight: 900;
+  margin-top: 30px;
+  text-align: center;
+}
+
+.user-show-user-desc {
+  color: $light-gray;
+  font-size: 16px;
+  margin-top: 15px;
+  text-align: center;
+}
+
+.user-show-follow-info-container {
+  margin: 30px auto;
+  width: 170px;
+}
+
+.user-show-followings {
+  color: $gray;
+  float: left;
+  font-size: 14px;
+  margin-right: 15px;
+}
+
+.user-show-followings:after {
+  color: $light-gray;
+  content: " Followings";
+  font-size: 14px;
+}
+
+.user-show-followers {
+  color: $gray;
+  float: left;
+  font-size: 14px;
+}
+
+.user-show-followers:after {
+  color: $light-gray;
+  content: " Followers";
+  font-size: 14px;
+}
+
+.user-show-edit-btn {
+  margin: 0px auto 30px auto;
+  padding: 5px 3px;
+  text-align: center;
+  width: 50px;
+}
+
+.user-show-navbar-ul {
+  background: #FFFFFF;
+  border-bottom: 1px solid $light-gray;
+  box-shadow: 0 2px 2px -2px rgba(0,0,0,0.15);
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0px;
+}
+
+.user-show-navbar-link {
+  color: $gray;
+  font-size: 14px;
+}
+
+.user-show-navbar-link:hover {
+  color: #000000;
+  cursor: pointer;
+}
+
+// profile tab //
+
+.user-show-tab-header {
+  background: $main-background-gray;
+  font-size: 14px;
+  font-weight: 900;
+  height: 40px;
+  padding: 40px 0px 0px 20px;
+}

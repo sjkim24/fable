@@ -43,9 +43,9 @@ class ProfileTab extends Component {
     const latest = this.props.latest;
     const recommends = this.props.recommends;
     
-    console.log(latest, recommends);
     return (
       <div className="user-profile">
+        <header className="user-show-tab-header">Latest</header>
         <ul className="user-profile-latest">
           {this.renderLatestItems()}
         </ul>
