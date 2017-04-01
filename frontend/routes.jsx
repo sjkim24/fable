@@ -10,7 +10,7 @@ import CommentsShow from "./components/comments/comments_show.jsx";
 export default (
   <Route path="/" component={App}>
     <IndexRoute component={StoriesIndex} />
-    <Route path="/users/:userName" component={UsersShow} />
+    <Route path="/users/:username" component={UsersShow} />
     <Route path="/stories/:storyId" component={StoriesShow} />
     <Route path="/comments/:commentId" component={CommentsShow} />
   </Route>

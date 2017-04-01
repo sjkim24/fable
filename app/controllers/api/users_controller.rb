@@ -1,17 +1,11 @@
 class Api::UsersController < ApplicationController
   
   def show
-    binding.pry
-    @user = User.find(params[:id])
+    username = params[:username].gsub("@", "")
+    @user = User.find_by_username(username)
     @latest = @user.stories.last(3)
     @recommends = []
     @user.story_likes.last(3).each { |like| @recommends << Story.find(like.story_id) }
-    # @comments = @user.comments
-    # @stories = @user.stories
-    # 
-    # if @user.following?(current_user.id, @user.id)
-    #   @follow = Follow.where(follower_id: current_user.id, following_id: @user.id)[0]
-    # end
     
     render :show
   end
