@@ -17,15 +17,18 @@ class StoriesIndexItem extends Component {
   }
   
   renderSubtitle() {
-    const subtitle = this.props.story.subtitle;
+    let subtitle = this.props.story.subtitle;
+    const profileViewHide = this.props.profile ? "hidden" : "";
     
     if (subtitle && subtitle.split(" ").length > 20) {
-      return <h4 className="stories-item-subtitle">
-        {`${subtitle.split(" ").slice(0,20).join(" ")} ...`}
-      </h4>;
-    } else if (subtitle) {
-      return <h4 className="stories-item-subtitle">{subtitle}</h4>;  
+      subtitle = subtitle.split(" ").slice(0,20).join(" ");
     }
+    
+    return (
+      <h4 className={`stories-item-subtitle ${profileViewHide}`}>
+        {subtitle}
+      </h4> 
+    );
   }
   
   renderSnippet() {
@@ -69,6 +72,8 @@ class StoriesIndexItem extends Component {
   
   render() {
     const story = this.props.story;
+    console.log(this.props.story);
+    const profileViewHide = this.props.profile ? "hidden" : "";
     
     return (
       <li className="stories-item">
@@ -80,8 +85,10 @@ class StoriesIndexItem extends Component {
             <Link to={`/users/@${story.username}`} className="stories-item-username">{story.user_fullname}</Link>
             <div className="stories-item-pub-rt-container group">
               <div className="stories-item-published-date">{story.published_date}</div>
-              <div className="stories-item-kdot">{"\u2022"}</div>
-              <div className="stories-item-read-time">{`${story.read_time} min read`}</div>
+              <div className={`stories-item-kdot ${profileViewHide}`}>{"\u2022"}</div>
+              <div className={`stories-item-read-time ${profileViewHide}`}>
+                {`${story.read_time} min read`}
+              </div>
             </div>
           </div>
         </div>
@@ -90,7 +97,11 @@ class StoriesIndexItem extends Component {
           <h3 className="stories-item-title">{story.title}</h3>
           {this.renderSubtitle()}
           {this.renderSnippet()}
-          <div className="stories-item-read-more" onClick={this.setStory}>Read more...</div>
+          <div 
+            className={`stories-item-read-more ${profileViewHide}`}
+            onClick={this.setStory}>
+            Read more...
+          </div>
         </Link>
         <div className="stories-item-footer group">
           <div className="stories-item-like">
@@ -107,7 +118,9 @@ class StoriesIndexItem extends Component {
               bookmarked={story.bookmarked}
               className="stories-item-bookmark" 
               name="storiesIndex" />
-            <div className="stories-item-responses">{this.renderResponsesCount()}</div>
+            <div className={`stories-item-responses ${profileViewHide}`}>
+              {this.renderResponsesCount()}
+            </div>
           </div>
         </div>
       </li>

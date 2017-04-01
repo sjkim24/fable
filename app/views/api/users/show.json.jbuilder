@@ -49,10 +49,10 @@ json.latest @latest.each do |story|
 end
 
 json.recommends @recommends.each do |recommend|
-  json.rec_story_id recommend.id
-  json.rec_story_title recommend.title
-  json.rec_author_fullname recommend.user.fullname
-  json.rec_author_username recommend.user.username
+  json.story_id recommend.id
+  json.story_title recommend.title
+  json.author_fullname recommend.user.fullname
+  json.author_username recommend.user.username
   if recommend.has_image?
     json.image_url recommend.banner_image.url
   else

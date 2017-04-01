@@ -78,6 +78,10 @@
 }
 
 @media (min-width: 768px) {
+  .header-list-logo-img-small {
+    display: none;
+  }
+  
   .header-list-logo-img-wide {
     display: block;
     width: 110px;
