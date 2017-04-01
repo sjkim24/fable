@@ -97,7 +97,7 @@ class UsersShow extends Component {
         </header>
         <nav className="user-show-navbar">
           <div className="user-show-inner-navbar">
-            <ul className="user-show-navbar-ul">
+            <ul className="user-show-navbar-ul padding-side">
               <li 
                 className={`user-show-navbar-link ${profileActive}`}
                 onClick={this.toggleTab.bind(this, "profile")}>

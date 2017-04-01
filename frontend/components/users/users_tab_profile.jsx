@@ -18,7 +18,7 @@ class ProfileTab extends Component {
   }
   
   renderRecommended(recommends) {
-    const recs = recommends.slice(0,3).map((rec, i) => {
+    const recs = recommends.map((rec, i) => {
       return <UsersTabRecItem rec={rec} key={`rec-${i}`} />
     });
     
@@ -32,8 +32,8 @@ class ProfileTab extends Component {
   render() {
     const latest = this.props.latest;
     const recommends = this.props.recommends;
-    const latDisplay = latest.length > 0 ? "" : "hidden";
-    const recDisplay = recommends.length > 0 ? "" : "hidden";
+    const latDisplay = this.props.latest.length > 0 ? "" : "hidden";
+    const recDisplay = this.props.recommends.length > 0 ? "" : "hidden";
     
     return (
       <div className="user-profile">

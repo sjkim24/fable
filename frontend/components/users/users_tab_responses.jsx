@@ -1,11 +1,26 @@
 import React, { Component } from "react";
+import UserTabRespItem from "./users_tab_resp_item.jsx";
 
 class ResponsesTab extends Component {
+  renderResponses(responses) {
+    const resps = responses.map((resp, i) => {
+      return <UserTabRespItem response={resp} key={`resp-${i}`} />
+    });
+    
+    return resps;
+  }
+  
   render() {
+    const headerDisplay = this.props.responses.length > 0 ? "" : "hidden";
+
     return (
-      <div>
-        <header className="user-show-tab-header">Responses</header>
-        resp tab
+      <div className="user-responses">
+        <header className={`user-show-tab-header ${headerDisplay}`}>
+          Responses
+        </header>
+        <ul className="user-responses-ul">
+          {this.renderResponses(this.props.responses)}
+        </ul>
       </div>
     );
   }

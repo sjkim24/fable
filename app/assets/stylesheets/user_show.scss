@@ -162,3 +162,27 @@
   color: $yellow;
   font-size: 16px;
 }
+
+.user-responses-ul {
+  background: #FFFFFF;
+  margin: 0 auto;
+  max-width: 640px;
+  padding: 30px 0px;
+}
+
+.user-resp-item {
+  margin-bottom: 20px;
+}
+
+.users-resp-read-more {
+  color: $light-gray;
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+
+@media (min-width: 768px) {
+  .user-show-header-img {
+    width: 100px;
+  }
+}
