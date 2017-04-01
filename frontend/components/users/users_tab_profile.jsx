@@ -32,16 +32,20 @@ class ProfileTab extends Component {
   render() {
     const latest = this.props.user.latest;
     const recommends = this.props.user.recommends;
+    const latDisplay = this.props.user.latest.length > 0 ? "" : "hidden";
+    const recDisplay = this.props.user.recommends.length > 0 ? "" : "hidden";
     
     return (
       <div className="user-profile">
-        <header className="user-show-tab-header user-show-tab-header-latest">
+        <header 
+          className={`user-show-tab-header ${latDisplay}`}>
           Latest
         </header>
         <ul className="user-profile-latest">
           {this.renderLatestItems(latest)}
         </ul>
-        <header className="user-show-tab-header user-show-tab-header-recs">
+        <header 
+          className={`user-show-tab-header user-show-tab-header-recs ${recDisplay}`}>
           Recommended by {this.props.user.fullname}
           <div 
             className="user-profile-recs-see-more"

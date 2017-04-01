@@ -16,6 +16,12 @@ class UsersShow extends Component {
     this.editProfile = this.editProfile.bind(this);
   }
   
+  componentWillUpdate(nextProps, nextState) {
+    if (this.props.user && this.props.user.id !== nextProps.user.id) {
+      window.scrollTo(0, 0);
+    }
+  }
+  
   showFollowings() {
     console.log("show followings clicked");
   }
