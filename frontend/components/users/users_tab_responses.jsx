@@ -16,7 +16,7 @@ class ResponsesTab extends Component {
     return (
       <div className="user-responses">
         <header className={`user-show-tab-header ${headerDisplay}`}>
-          Responses
+          Responses by {this.props.userFullname}
         </header>
         <ul className="user-responses-ul">
           {this.renderResponses(this.props.responses)}

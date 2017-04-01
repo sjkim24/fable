@@ -4,17 +4,17 @@ json.desc @user.user_desc
 json.image_url @user.photo.url
 
 json.followers @user.followers.each do |follower|
-  json.follower_id follower.id
-  json.follower_fullname follower.fullname
-  json.follower_desc follower.user_desc
-  json.follower_image_url follower.photo.url
+  json.id follower.id
+  json.fullname follower.fullname
+  json.desc follower.user_desc
+  json.image_url follower.photo.url
 end
 
 json.followings @user.followings.each do |following|
-  json.following_id following.id
-  json.follower_fullname following.fullname
-  json.following_desc following.user_desc
-  json.following_image_url following.photo.url
+  json.id following.id
+  json.fullname following.fullname
+  json.desc following.user_desc
+  json.image_url following.photo.url
 end
 
 json.latest @latest.each do |story|

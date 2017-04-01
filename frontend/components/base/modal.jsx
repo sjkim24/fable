@@ -4,6 +4,7 @@ import { bindActionCreators } from "redux";
 import { toggleModal, refillModal } from "../../actions/action_modal";
 import AuthSelections from "../auth/auth_selections.jsx";
 import SignUpForm from "../auth/sign_in_form.jsx";
+import UsersFollowsModal from "../users/users_follows_modal.jsx";
 
 class Modal extends Component {
   constructor() {
@@ -33,6 +34,12 @@ class Modal extends Component {
         return <SignUpForm />;
       case "auth-signin":
         console.log("auth-signin");
+        break;
+      case "followings":
+        return <UsersFollowsModal type="followings" />;
+        break;
+      case "followers":
+        return <UsersFollowsModal type="followers" />;
         break;
     };
   }

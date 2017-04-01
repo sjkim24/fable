@@ -5,6 +5,7 @@ import { fetchUser } from "../../actions/action_user";
 import ProfileTab from "./users_tab_profile.jsx";
 import RecommendsTab from "./users_tab_recommends.jsx";
 import ResponsesTab from "./users_tab_responses.jsx";
+import { toggleModal } from "../../actions/action_modal";
 
 class UsersShow extends Component {
   constructor() {
@@ -12,7 +13,7 @@ class UsersShow extends Component {
     
     this.state = { active: "profile" }
     this.showFollowings = this.showFollowings.bind(this);
-    this.showFollower = this.showFollowers.bind(this);
+    this.showFollowers = this.showFollowers.bind(this);
     this.editProfile = this.editProfile.bind(this);
     this.toggleTab = this.toggleTab.bind(this);
   }
@@ -24,11 +25,11 @@ class UsersShow extends Component {
   }
   
   showFollowings() {
-    console.log("show followings clicked");
+    this.props.toggleModal("followings");
   }
   
   showFollowers() {
-    console.log("show followers clicked");
+    this.props.toggleModal("followers");
   }
   
   editProfile() {
@@ -62,7 +63,9 @@ class UsersShow extends Component {
             recommends={user.recommends} />
         );
       case "responses":
-        return <ResponsesTab responses={user.comments} />;
+        return <ResponsesTab
+          userFullname={user.fullname} 
+          responses={user.comments} />;
     };
   }
   
@@ -125,11 +128,11 @@ class UsersShow extends Component {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchUser }, dispatch);
+  return bindActionCreators({ fetchUser, toggleModal }, dispatch);
 };
 
 function mapStateToProps(state) {
-  return { user: state.user.user };
+  return { user: state.user.user, modal: state.modal };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UsersShow);
