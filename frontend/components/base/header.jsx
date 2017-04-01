@@ -51,7 +51,8 @@ class Header extends Component {
       <header className="header padding-side group">
         <div className="header-inner group">
           <Link to="/" className="header-list-left header-list-logo">
-            <img src="/images/logo_wide.png" alt="fable logo" className="header-list-logo-img"/>
+            <img src="/images/logo_small.png" alt="fable logo" className="header-list-logo-img-small" />
+            <img src="/images/logo_wide.png" alt="fable logo" className="header-list-logo-img-wide" />
           </Link>
           <ul className="header-list-right">
             <li className="header-list-story-link">

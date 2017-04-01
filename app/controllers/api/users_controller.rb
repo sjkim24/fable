@@ -1,6 +1,7 @@
 class Api::UsersController < ApplicationController
   
   def show
+    binding.pry
     @user = User.find(params[:id])
     @latest = @user.stories.last(3)
     @recommends = []

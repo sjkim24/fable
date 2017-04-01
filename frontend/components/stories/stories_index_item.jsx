@@ -64,7 +64,7 @@ class StoriesIndexItem extends Component {
   }
   
   fetchUser() {
-    this.props.fetchStory(this.props.story.user_id)
+    this.props.fetchStory(this.props.story.username)
   }
   
   render() {

@@ -27,8 +27,12 @@
   float: right;
 }
 
-.header-list-logo {
-  width: 110px;
+.header-list-logo-img-wide {
+  display: none;
+}
+
+.header-list-logo-img-small {
+  width: 30px;
 }
 
 .header-list-logo:hover {
@@ -54,7 +58,6 @@
 
 .header-list-auth-user-container {
   float: left;
-  margin: 0px 20px 0px 10px;
 }
 
 .header-list-auth-user-img {
@@ -72,6 +75,13 @@
 .header-list-search:hover {
   cursor: pointer;
   margin-top: 4px;
+}
+
+@media (min-width: 768px) {
+  .header-list-logo-img-wide {
+    display: block;
+    width: 110px;
+  }
 }
 
 // .header-list-notification,

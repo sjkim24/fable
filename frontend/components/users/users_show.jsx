@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-// import { fetchUser } from "../../actions/user_fetch";
+import { fetchUser } from "../../actions/action_user";
 
 class UsersShow extends Component {
   render() {

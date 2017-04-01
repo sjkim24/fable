@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root to: "static#index"
   devise_for :users, controllers: {sessions: "sessions"}
   namespace :api, defaults: {format: :json} do 
-    resources :users, only: [:show, :edit, :update] do
+    resources :users, only: [:edit, :update] do
       resources :stories, only: [:index]
       resources :comments, only: [:index]
       resources :bookmarks, only: [:index]
@@ -24,6 +24,7 @@ Rails.application.routes.draw do
     delete 'bookmarks/destory', :to => 'bookmarks#destroy'
     delete 'follows/destroy', :to => 'follows#destroy'
     
+    get 'users/:username', :to => 'users#show'
     get 'users/:id/stories', :to => 'users#user_stories'
     get 'users/:id/comments', :to => 'users#user_comments'
     get 'users/:id/bookmarks', :to => 'users#user_bookmarks'

@@ -5,8 +5,8 @@ export const FETCH_USER = "FETCH_USER";
 
 const URL = "/api/users";
 
-export function fetchUser(id) {
-  const request = axios.get(`${URL}/${id}`);
+export function fetchUser(username) {
+  const request = axios.get(`${URL}/${user}`);
   
   return {
     type: FETCH_USER,
