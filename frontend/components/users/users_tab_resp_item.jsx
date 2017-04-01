@@ -14,6 +14,20 @@ class UserTabRespItem extends Component {
     console.log("set comment clicked");
   }
   
+  renderSnippet() {
+    // a story has...
+    // banner img, title and subtitle -> no snippet
+    // for now it's either the above or snippet (~20 words)
+    
+    // implement these later
+    // banner img, title but NO subtitle -> snippet (~20 words)
+    // title, subtitle but NO banner img -> snippet (~30 words)
+    // title but NO subtitle, banner img -> snippet (~50 words or the first paragraph)
+    const snippet = this.props.response.content.split(" ").slice(0,20).join(" ");
+    
+    return <p className="stories-item-snippet">{`${snippet} ...`}</p>;
+  }
+  
   renderResponsesCount() {
     const count = this.props.response.comments_count;
     
@@ -22,10 +36,9 @@ class UserTabRespItem extends Component {
   
   render() {
     const response = this.props.response
-    console.log(this.props.response);
     
     return (
-      <li className="user-resp-item">
+      <li className="user-resp-item card">
         <div className="story-header padding-side group">
           <Link to={`/users/@${response.username}`} className="story-user-img-container-top">
             <img src={response.user_image_url} alt="user img" className="story-user-img-top" />
@@ -61,8 +74,8 @@ class UserTabRespItem extends Component {
             </div>
           </div>
         </Link>
-        <div className="story-content padding-side">
-          {response.content}
+        <div className="user-resp-content padding-side">
+          {this.renderSnippet()}
         </div>
         <div 
           className="users-resp-read-more padding-side"

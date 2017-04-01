@@ -31,7 +31,7 @@ class UsersTabRecItem extends Component {
     const imgClass = rec.image_url ? "" : "rec-title-no-img";
     
     return (
-      <li className="user-profile-rec-item padding-side">
+      <li className="user-profile-rec-item padding-side card">
         <div className="rec-left-container">
           <Link to={`/stories/${rec.story_id}`}>
             <div className={`rec-title ${imgClass}`}>{rec.story_title}</div>
