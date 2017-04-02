@@ -1,10 +1,11 @@
 class Api::StoriesController < ApplicationController
-  # before_action :user_signed_in?
-
-  # later, create jobs to get fetch fresh stories on daily basis
-  # also, look into medium api to fetch some posts
   def index
     @stories = Story.all.includes(:user, :tags)
+    # change up how i serve stories later
+    # the index feed will definitely include..
+    # people they follow
+    # tags they follow
+    
     render :index
   end
 

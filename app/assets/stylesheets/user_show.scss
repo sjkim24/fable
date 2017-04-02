@@ -44,24 +44,32 @@
   float: left;
   font-size: 14px;
   margin-right: 15px;
-}
-
-.user-show-followings:after {
-  color: $light-gray;
-  content: " Followings";
-  font-size: 14px;
+  
+  &:after {
+    color: $light-gray;
+    content: " Followings";
+    font-size: 14px;
+  }
+  
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .user-show-followers {
   color: $gray;
   float: left;
   font-size: 14px;
-}
-
-.user-show-followers:after {
-  color: $light-gray;
-  content: " Followers";
-  font-size: 14px;
+  
+  &:after {
+    color: $light-gray;
+    content: " Followers";
+    font-size: 14px;
+  }
+  
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .user-show-edit-btn {
@@ -90,11 +98,11 @@
 .user-show-navbar-link {
   color: $light-gray;
   font-size: 14px;
-}
-
-.user-show-navbar-link:hover {
-  color: #000000;
-  cursor: pointer;
+  
+  &:hover {
+    color: #000000;
+    cursor: pointer;
+  }
 }
 
 // profile tab //
@@ -190,6 +198,66 @@
 
 // follows modal //
 
+.modal.modal-followings, 
+.modal.modal-followers {
+  background: rgba(255,255,255, .9);
+  
+  .modal-close-btn {
+    color: #000000;
+  }
+}
+
+.modal-inner-followings,
+.modal-inner-followers {
+  background: rgba(255, 255, 255, 0);
+  height: 100%;
+  overflow: auto;
+}
+
+.user-follows-list {
+  padding-top: 50px;
+}
+
+.user-follows-item {
+  margin: 30px 0px;
+  position: relative;
+}
+
+.user-follows-list-header {
+  font-size: 18px;
+  font-weight: 900;
+  text-align: center;
+}
+
+.users-follows-modal-btn {
+  background: $yellow;
+  color: #FFFFFF;
+  position: absolute;
+  right: 0;
+  top: -5px;
+}
+
+.user-follows-img {
+  border-radius: 50%;
+  float: left;
+  margin-right: 15px;
+  width: 40px;
+}
+
+.user-follows-item-info {
+  float: left;
+  width: calc(100% - 117px); // 82px = img width + margin + btn width
+}
+
+.user-follows-item-info-fullname {
+  font-weight: 900;
+  margin-bottom: 5px;
+}
+
+.user-follows-item-info-desc {
+  color: $light-gray;
+  font-size: 14px;
+}
 
 
 @media (min-width: 768px) {
@@ -203,5 +271,9 @@
   
   .user-resp-item-footer {
     padding: 0px 20px;
+  }
+  
+  .user-follows-list-header {
+    font-size: 24px;
   }
 }

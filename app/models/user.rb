@@ -28,8 +28,8 @@ class User < ActiveRecord::Base
   has_many :following_relationships, class_name: "Follow", foreign_key: :follower_id, dependent: :destroy
   has_many :followings, through: :following_relationships, source: :following
   
-  def following?(current_user_id, user_id)
-    Follow.where(follower_id: current_user_id, following_id: user_id).present?
+  def following?(follower_id, following_id)
+    Follow.where(follower_id: follower_id, following_id: following_id).present?
   end
   
   def get_comments_only

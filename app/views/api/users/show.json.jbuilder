@@ -8,6 +8,11 @@ json.followers @user.followers.each do |follower|
   json.fullname follower.fullname
   json.desc follower.user_desc
   json.image_url follower.photo.url
+  if current_user
+    json.following current_user.following?(current_user.id, follower.id)
+  else
+    json.following false
+  end
 end
 
 json.followings @user.followings.each do |following|
@@ -15,6 +20,11 @@ json.followings @user.followings.each do |following|
   json.fullname following.fullname
   json.desc following.user_desc
   json.image_url following.photo.url
+  if current_user
+    json.following current_user.following?(current_user.id, following.id)
+  else
+    json.following false
+  end
 end
 
 json.latest @latest.each do |story|
@@ -37,7 +47,7 @@ json.latest @latest.each do |story|
   json.likes_count story.story_likes.count
   json.comments_count story.get_comments_only.count
   json.main_tag story.main_tag
-  if (current_user)
+  if current_user
     json.liked story.liked?(current_user.id)
     json.bookmarked story.bookmarked?(current_user.id)
     json.following_author story.following_author?(current_user.id)

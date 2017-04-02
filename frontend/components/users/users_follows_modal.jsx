@@ -13,11 +13,15 @@ class UsersFollowsModal extends Component {
   }
   
   renderListItem(data) {
+    const type = this.props.type;
     const items = data.map((user, i) => {
       return (
-        <li className="user-follows-item">
-          <img src={user.image_url} alt="user image" />
-          <Follow />
+        <li className="user-follows-item group" key={`${type}-${i}`}>
+          <img src={user.image_url} alt="user image" className="user-follows-img" />
+          <Follow 
+            name={`${type}Modal`}
+            following={user.following} 
+            className="users-follows-modal" />
           <div className="user-follows-item-info">
             <div className="user-follows-item-info-fullname">
               {user.fullname}
@@ -33,9 +37,13 @@ class UsersFollowsModal extends Component {
   
   render() {
     const data = this.getData();
-
+    const word = this.props.type === "followings" ? "follows" : "is followed by"
+    console.log(data);
     return (
       <ul className="user-follows-list">
+        <div className="user-follows-list-header">
+          {`${this.props.user.fullname} ${word}`}
+        </div>
         {this.renderListItem(data)}
       </ul>
     );

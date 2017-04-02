@@ -10,12 +10,6 @@ class Api::UsersController < ApplicationController
     render :show
   end
   
-  def edit
-    @user = User.find(params[:id])
-    
-    render :edit
-  end
-  
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
@@ -26,26 +20,40 @@ class Api::UsersController < ApplicationController
     end
   end
   
-  def user_stories
+  def followings
     @user = User.find(params[:id])
-    @stories = @user.stories
+    @followings = @user.followings
     
-    render :user_stories
+    render :followings
   end
   
-  def user_comments
+  def followers
     @user = User.find(params[:id])
-    @comments = @user.comments
+    @followers = @user.followers
     
-    render :user_comments
+    render :followers
   end
   
-  def user_bookmarks
-    @user = User.find(params[:id])
-    @bookmarks = @user.bookmarks
-    
-    render :user_bookmarks
-  end
+  # def user_stories
+  #   @user = User.find(params[:id])
+  #   @stories = @user.stories
+  #   
+  #   render :user_stories
+  # end
+  # 
+  # def user_comments
+  #   @user = User.find(params[:id])
+  #   @comments = @user.comments
+  #   
+  #   render :user_comments
+  # end
+  # 
+  # def user_bookmarks
+  #   @user = User.find(params[:id])
+  #   @bookmarks = @user.bookmarks
+  #   
+  #   render :user_bookmarks
+  # end
   
   private
     def user_params

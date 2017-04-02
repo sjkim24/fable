@@ -1,0 +1,1 @@
+json.partial! "api/users/follows", type: "followers", list: @followers

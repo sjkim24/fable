@@ -55,6 +55,12 @@ class Follow extends Component {
         case("commentsShow"):
           that.props.fetchComment(that.props.commentId);
           break;
+        case("followingsModal"):
+          console.log("update followings redux");
+          break;
+        case("followersModal"):
+          console.log("update followers via redux");
+          break;
       };
     })
     .catch((error) => {
@@ -68,7 +74,7 @@ class Follow extends Component {
     
     return (
       <div
-        className={`follow-btn ${this.props.className}`} 
+        className={`follow-btn ${this.props.className}-btn button`} 
         onClick={this.checkAuthThenToggle}>
         {follow}
       </div>

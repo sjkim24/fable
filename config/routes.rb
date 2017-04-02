@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root to: "static#index"
   devise_for :users, controllers: {sessions: "sessions"}
   namespace :api, defaults: {format: :json} do 
-    resources :users, only: [:edit, :update] do
+    resources :users, only: [:update] do
       resources :stories, only: [:index]
       resources :comments, only: [:index]
       resources :bookmarks, only: [:index]
@@ -28,8 +28,8 @@ Rails.application.routes.draw do
     get 'users/:id/stories', :to => 'users#user_stories'
     get 'users/:id/comments', :to => 'users#user_comments'
     get 'users/:id/bookmarks', :to => 'users#user_bookmarks'
-    get 'users/:id/followers', :to => 'users#user_followers'
-    get 'users/:id/followings', :to => 'users#user_followings'
+    get 'users/:id/followers', :to => 'users#followers'
+    get 'users/:id/followings', :to => 'users#followings'
     
     get 'stories/:id/comments', :to => 'stories#get_comments_only'
     get 'comments/:id/replies', :to => 'comments#get_replies'
