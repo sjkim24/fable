@@ -15,7 +15,8 @@ class Follow extends Component {
   }
   
   checkAuthThenToggle() {
-    if (this.props.currentUser.id) {
+    debugger
+    if (this.props.currentUser) {
       this.setState({ token: $('meta[name=csrf-token]').attr('content') }, () => {
         this.toggleFollow()
       });
@@ -25,7 +26,6 @@ class Follow extends Component {
   }
   
   toggleFollow() {
-    // if current user isn't null
     const that = this;
     const name = this.props.name;
     let url;
@@ -60,7 +60,6 @@ class Follow extends Component {
     .catch((error) => {
       console.log(error);
     });
-    // else render login form
   }
   
   render() {
@@ -86,7 +85,7 @@ function mapDispatchToProps(dispatch) {
 };
 
 function mapStateToProps(state) {
-  return { currentUser: state.currentUser };
+  return { currentUser: state.auth.currentUser };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Follow);

@@ -23,6 +23,7 @@ class AuthSelections extends Component {
       authenticity_token: this.props.token
     })
     .then(function(response) {
+      debugger
       that.props.setCurrentUser(response.data.current_user);
       // close modal
       that.props.toggleModal();
