@@ -13,13 +13,16 @@ class SideStoryButtons extends Component {
   togglePosition() {
     const headerNavbarHeight = FABLE.CSS.headerNavbarHeight;
     const paddingTop = FABLE.CSS.storyContentPaddingTop;
+    const bannerImageHeight = $(".story-banner-img").outerHeight();
     const titleHeight = $(".story-title").outerHeight();
     const subtitleHeight = $(".story-subtitle").outerHeight();
     const contentHeight = $(".story-content").outerHeight();
+    
     console.log("scrollY", window.scrollY, "height up to content", headerNavbarHeight + paddingTop + titleHeight + subtitleHeight + contentHeight);
     let style;
     // if (window.scrollY >= $(".story-content").height()) {
-    //   const totalHeight = headerNavbarHeight + paddingTop + titleHeight + subtitleHeight + contentHeight;
+    // const totalHeight = headerNavbarHeight + paddingTop + titleHeight + subtitleHeight + contentHeight;
+      if (bannerImageHeight) { totalHeight += bannerImageHeight }
     //   style = { 
     //     position: "absolute",
     //     top: totalHeight

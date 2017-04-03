@@ -280,6 +280,20 @@
 @media (min-width: 1000px) {
   .side-story-buttons {
     display: block;
+    left: calc((100% - 700px) / 2 - 75px); // check if there's a better way
     position: fixed;
+    top: 50%;
+    transform: translate(0, -50%);
+  }
+  
+  .side-story-likes-count {
+    color: $gray;
+    font-size: 16px;
+    margin: 10px 0px;
+    text-align: center;
+  }
+  
+  .side-story-button:hover {
+    cursor: pointer;
   }
 }
