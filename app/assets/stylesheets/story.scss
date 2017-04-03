@@ -205,7 +205,6 @@
   font-size: 18px;
 }
 
-.story-follow-bottom:hover,
 .story-user-img-container-bottom:hover,
 .story-username-bottom:hover {
   cursor: pointer;
@@ -237,10 +236,6 @@
     display: block;
     float: left;
     margin-top: 1.5px;
-  }
-  
-  .story-follow-top:hover {
-    cursor: pointer;
   }
   
   .story-user-desc {

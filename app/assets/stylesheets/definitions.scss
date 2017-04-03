@@ -32,6 +32,10 @@
   font-size: 14px;
   padding: 5px 10px;
   text-align: center;
+  
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 @media (min-width: 768px) {
