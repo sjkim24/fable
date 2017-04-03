@@ -59,7 +59,7 @@ class CommentsShow extends Component {
           </div>
         </div>
         <Link to={`/stories/${comment.story_id}`} className={`${storyLinkDisplay}`}>
-          <div className="comment-story-link group">
+          <div className="comment-story-link card group">
             <div className="comment-story-link-info">
               <div className="comment-story-link-title">{comment.story_title}</div>
               <div className="comment-story-link-author">{comment.story_author}</div>

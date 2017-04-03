@@ -75,7 +75,7 @@ class StoriesIndexItem extends Component {
     const profileViewHide = this.props.profile ? "hidden" : "";
     
     return (
-      <li className="stories-item">
+      <li className="stories-item card">
         <div className="stories-item-header group">
           <Link to={`/users/@${story.username}`} onClick={this.fetchUser}>
             <img src={story.user_image_url} alt="user img" className="stories-item-user-img" />

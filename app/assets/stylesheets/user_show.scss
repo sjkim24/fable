@@ -175,11 +175,11 @@
   background: #FFFFFF;
   margin: 0 auto;
   max-width: 600px;
-  padding: 30px 0px;
 }
 
 .user-resp-item {
   margin-bottom: 20px;
+  padding: 20px;
 }
 
 .user-resp-content {
@@ -265,10 +265,6 @@
 @media (min-width: 768px) {
   .user-show-header-img {
     width: 100px;
-  }
-  
-  .user-responses-ul {
-    padding: 20px;
   }
   
   .user-resp-item-footer {
