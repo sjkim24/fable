@@ -17,6 +17,19 @@ class CommentsIndexItem extends Component {
     this.props.setComment(this.props.comment)
   }
   
+  formattedContent(content) {
+    const parsed = JSON.parse(content);
+    const paras = parsed.split("\n").map((para, i) => {
+      return <p
+        key={`content-p-${i}`} 
+        className="comment-content-p">
+          {para}
+        </p>
+    });
+    
+    return paras;
+  }
+  
   render() {
     const comment = this.props.comment;
 
@@ -34,7 +47,9 @@ class CommentsIndexItem extends Component {
           </div>
         </div>
         <Link to={`/comments/${comment.id}`} onClick={this.setComment}>
-          <div className="comment-content">{comment.content}</div>
+          <div className="comment-content">
+            {this.formattedContent(comment.content)}
+          </div>
         </Link>
         <div className="comment-buttons group">
           <Heart

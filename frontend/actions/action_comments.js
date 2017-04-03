@@ -3,6 +3,7 @@ import axios from "axios";
 export const FETCH_COMMENT = "FETCH_COMMENT";
 export const SET_COMMENT = "SET_COMMENT";
 export const FETCH_COMMENTS = "FETCH_COMMENTS";
+export const CREATE_COMMENT = "CREATE_COMMENT";
 
 const COMMENTS_URL = "/api/comments";
 const STORIES_URL = "/api/stories";
@@ -23,7 +24,6 @@ export function setComment(comment) {
   };
 };
 
-
 export function fetchComments(storyId) {
   const request = axios.get(`${STORIES_URL}/${storyId}/comments`);
 
@@ -32,3 +32,16 @@ export function fetchComments(storyId) {
     payload: request
   };
 };
+
+export function createComment(storyId, params) {
+  const request = axios.post(
+    `${STORIES_URL}/${storyId}/comments`,
+    params
+  );
+  // debugger
+  console.log(request);
+  return {
+    type: CREATE_COMMENT,
+    payload: request
+  }
+}

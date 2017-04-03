@@ -12,15 +12,15 @@ class Api::CommentsController < ApplicationController
   end
 
   def create
+    binding.pry
     @comment = Comment.new(comment_params)
     @comment.user_id = current_user.id
     @comment.story_id = params[:story_id]
 
     if @comment.save
-      redirect_to story_url(@comment.story_id)
+      render json: @comment
     else
-      flash.now[:errors] = @comment.errors.full_messages
-      render :new
+      render json: "Error"
     end
   end
 

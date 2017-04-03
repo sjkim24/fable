@@ -11,7 +11,8 @@ json.array! @comments.each do |comment|
   json.user_fullname comment.user.fullname
   json.user_desc comment.user.user_desc
   json.published_date comment.published_date
-  json.content comment.content
+  # binding.pry
+  json.content comment.content.to_json
   json.tags comment.story.tags do |tag|
     json.tag_desc tag.tag_desc
   end

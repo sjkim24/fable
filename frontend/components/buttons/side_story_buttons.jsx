@@ -18,7 +18,7 @@ class SideStoryButtons extends Component {
     const subtitleHeight = $(".story-subtitle").outerHeight();
     const contentHeight = $(".story-content").outerHeight();
     
-    console.log("scrollY", window.scrollY, "height up to content", headerNavbarHeight + paddingTop + titleHeight + subtitleHeight + contentHeight);
+    // console.log("scrollY", window.scrollY, "height up to content", headerNavbarHeight + paddingTop + titleHeight + subtitleHeight + contentHeight);
     let style;
     // if (window.scrollY >= $(".story-content").height()) {
     // const totalHeight = headerNavbarHeight + paddingTop + titleHeight + subtitleHeight + contentHeight;
@@ -36,7 +36,7 @@ class SideStoryButtons extends Component {
   
   render() {
     return (
-      <div className="side-story-buttons" style={this.state.style}>
+      <div className="side-story-buttons">
         <Heart 
           storyId={this.props.storyId}
           liked={this.props.liked} 
