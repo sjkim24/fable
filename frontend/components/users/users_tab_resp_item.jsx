@@ -55,7 +55,7 @@ class UserTabRespItem extends Component {
           </div>
         </div>
         <Link to={`/stories/${response.story_id}`}>
-          <div className="comment-story-link card group">
+          <div className="user-resp-story-link card group">
             <div className="comment-story-link-info">
               <div className="comment-story-link-title">{response.story_title}</div>
               <div className="comment-story-link-author">{response.story_author}</div>

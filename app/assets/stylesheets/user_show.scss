@@ -179,13 +179,20 @@
 
 .user-resp-item {
   margin-bottom: 20px;
+  max-width: 640px;
   padding: 20px;
+}
+
+.user-resp-story-link {
+  margin-bottom: 25px;
+  max-width: 600px;
+  padding: 10px;
+  
 }
 
 .user-resp-content {
   font-size: 16px;
   line-height: 20px;
-  padding: 0px 20px;
   max-width: 600px;
 }
 
@@ -193,7 +200,6 @@
   color: $light-gray;
   font-size: 14px;
   margin-bottom: 15px;
-  padding: 10px 20px 0px 20px
 }
 
 // follows modal //
@@ -265,10 +271,6 @@
 @media (min-width: 768px) {
   .user-show-header-img {
     width: 100px;
-  }
-  
-  .user-resp-item-footer {
-    padding: 0px 20px;
   }
   
   .user-follows-list-header {
