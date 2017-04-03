@@ -6,6 +6,7 @@ import ProfileTab from "./users_tab_profile.jsx";
 import RecommendsTab from "./users_tab_recommends.jsx";
 import ResponsesTab from "./users_tab_responses.jsx";
 import { toggleModal } from "../../actions/action_modal";
+import Follow from "../buttons/follow.jsx";
 
 class UsersShow extends Component {
   constructor() {
@@ -84,7 +85,9 @@ class UsersShow extends Component {
     const profileActive = this.state.active === "profile" ? "tab-header-active" : "";
     const recActive = this.state.active === "recommends" ? "tab-header-active" : "";
     const respActive = this.state.active === "responses" ? "tab-header-active" : "";
-    console.log(this.props.user.followings);
+
+    const editDisplay = user.id === this.props.currentUser.id ? "" : "hidden"; 
+    
     return (
       <div className="user-show">
         <header className="user-show-header">
@@ -100,7 +103,16 @@ class UsersShow extends Component {
                 {followers.length}
               </div>
             </div>
-            <div className="user-show-edit-btn button" onClick={this.editProfile}>Edit</div>
+            <div 
+              className={`user-show-edit-btn button ${editDisplay}`} 
+              onClick={this.editProfile}>
+              Edit
+            </div>
+            <Follow
+              userId={user.id}
+              following={user.following}
+              name="usersShow"
+              className="user-show-follow" />
           </div>
         </header>
         <nav className="user-show-navbar">
@@ -137,7 +149,8 @@ function mapDispatchToProps(dispatch) {
 };
 
 function mapStateToProps(state) {
-  return { 
+  return {
+    currentUser: state.auth.currentUser, 
     user: state.user,
     followings: state.user.followings,
     follower: state.user.followers

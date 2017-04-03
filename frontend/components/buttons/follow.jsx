@@ -61,6 +61,10 @@ class Follow extends Component {
         case("followersModal"):
           that.props.fetchFollowers(that.props.userShowId);
           break;
+        case ("usersShow"):
+          // fetch user here
+          console.log("usersshow hit, i need to update user once again here");
+          break;
       };
     })
     .catch((error) => {
@@ -71,10 +75,11 @@ class Follow extends Component {
   render() {
     const classProps = this.props.className || "";
     const follow = this.props.following ? "Unfollow" : "Follow";
+    const followDisplay = this.props.userId !== this.props.currentUser.id ? "" : "hidden";
     
     return (
       <div
-        className={`follow-btn ${this.props.className}-btn button`} 
+        className={`follow-btn ${this.props.className}-btn button followDisplay`} 
         onClick={this.checkAuthThenToggle}>
         {follow}
       </div>
