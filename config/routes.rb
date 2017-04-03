@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root to: "static#index"
-  devise_for :users, controllers: {sessions: "sessions"}
+  devise_for :users, controllers: {sessions: "sessions", registrations: "users/registrations"}
   namespace :api, defaults: {format: :json} do 
     resources :users, only: [:update] do
       resources :stories, only: [:index]
@@ -10,12 +10,12 @@ Rails.application.routes.draw do
     end
 
     resources :stories do
-      resources :comments, only: [:create, :new]
+      resources :comments, only: [:create]
       resources :story_likes, only: [:create]
       resources :bookmarks, only: [:create]
     end
     
-    resources :comments, only: [:show, :edit, :update, :destroy] do
+    resources :comments, only: [:show, :update, :destroy] do
       resources :comment_likes, only: [:create]
     end
     

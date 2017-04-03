@@ -1,4 +1,9 @@
 import React, { Component } from "react";
+import axios from "axios";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { fetchStories } from "../../actions/action_stories";
+import { setCurrentUser, setAuthToken } from "../../actions/action_auth";
 
 class SignUpForm extends Component {
   constructor() {
@@ -39,33 +44,45 @@ class SignUpForm extends Component {
   
   checkPasswords() {
     if (this.state.password !== this.state.passwordConfirm) {
+      return false;
       this.setState({ error: true });
     } else {
       this.setState({ error: false });
+      return true;
     }
   }
   
   onFormSubmit(event) {
     event.preventDefault();
-    debugger
-    // use axios to send a post rquest
-    // $.ajax({
-    //     method: "POST",
-    //     url: "/users.json",
-    //     data: {
-    //       user: {
-    //         email: this.state.email,
-    //         password: this.state.password,
-    //         fullname: this.state.fullname,
-    //         username: this.state.username
-    //       },
-    //       authenticity_token: Functions.getMetaContent("csrf-token")
-    //     }
-    //   })
-    //   .done(function(data){
-    //     debugger
-    //     // location.reload();
-    //   }.bind(this));
+    const that = this;
+    
+    if (this.checkPasswords()) {
+      axios.post("/users", {
+        user: {
+          email: this.state.email,
+          fullname: this.state.fullname,
+          username: this.state.username, 
+          password: this.state.password
+        },
+        authenticity_token: this.props.token
+      })
+      .then(function(response) {
+        that.props.setCurrentUser(response.data.current_user);
+        that.props.toggleModal();
+        // figure out a better way to handle this later
+        // fetch current stories again with updated data on likes and bookmark
+        // if user logged in at index
+        if ($(".stories")[0]) {
+          that.props.fetchStories();
+        } // else if story show, fetch that story 1 more time
+        // other sitches to fetch stuff
+        // comment show, reply show?, each user profile tab
+      })
+      .catch(function(error) {
+        debugger;
+        console.log(error);
+      })
+    }
   }
   
   render() {
@@ -157,4 +174,12 @@ class SignUpForm extends Component {
   }
 };
 
-export default SignUpForm;
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ fetchStories, setCurrentUser, setAuthToken }, dispatch);
+};
+
+function mapStateToProps(state) {
+  return { token: state.auth.authToken }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUpForm);
