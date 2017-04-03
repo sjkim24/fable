@@ -5,6 +5,7 @@ import { bindActionCreators } from "redux";
 import { fetchStory } from "../../actions/action_stories";
 import { fetchComment } from "../../actions/action_comments";
 import { toggleModal } from "../../actions/action_modal";
+import { fetchFollowers, fetchFollowings } from "../../actions/action_user";
 
 class Follow extends Component {
   constructor() {
@@ -15,7 +16,6 @@ class Follow extends Component {
   }
   
   checkAuthThenToggle() {
-    debugger
     if (this.props.currentUser) {
       this.setState({ token: $('meta[name=csrf-token]').attr('content') }, () => {
         this.toggleFollow()
@@ -56,10 +56,10 @@ class Follow extends Component {
           that.props.fetchComment(that.props.commentId);
           break;
         case("followingsModal"):
-          console.log("update followings redux");
+          that.props.fetchFollowings(that.props.userShowId);
           break;
         case("followersModal"):
-          console.log("update followers via redux");
+          that.props.fetchFollowers(that.props.userShowId);
           break;
       };
     })
@@ -87,7 +87,9 @@ class Follow extends Component {
 };
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchStory, fetchComment, toggleModal }, dispatch);
+  return bindActionCreators({ 
+    fetchStory, fetchComment, toggleModal,fetchFollowers, fetchFollowings 
+  }, dispatch);
 };
 
 function mapStateToProps(state) {

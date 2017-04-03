@@ -78,9 +78,11 @@ reply2 = Comment.create(content: "Lorem ipsum dolor sit amet, molestie bibendum.
 Ut nullam urna phasellus integer, accumsan metus dignissim ut erat, venenatis vitae vestibulum massa. Rhoncus senectus, mauris at ac lorem parturient ante, mollis in nibh dolor. Mollis felis morbi tortor in nunc, augue diamlorem eget orci lacus eiusmod vivamus. Non a ut rhoncus sem libero metus, feugiat mauris feugiat turpis mi lacinia arcu. Arcu lorem imperdiet varius blandit, laoreet libero rhoncus nulla et, dui nec lacus, quis enim et nisl, orci orci.", user_id: u3.id, story_id: s1.id, parent_comment_id: comment1.id)
 
 f1 = Follow.create(follower_id: u1.id, following_id: u2.id)
-f1 = Follow.create(follower_id: u1.id, following_id: u3.id)
-f1 = Follow.create(follower_id: u2.id, following_id: u1.id)
-f1 = Follow.create(follower_id: u3.id, following_id: u1.id)
+f2 = Follow.create(follower_id: u1.id, following_id: u3.id)
+f3 = Follow.create(follower_id: u2.id, following_id: u1.id)
+f4 = Follow.create(follower_id: u3.id, following_id: u1.id)
+f5 = Follow.create(follower_id: u4.id, following_id: u2.id)
+f6 = Follow.create(follower_id: u4.id, following_id: u3.id)
 
 sl1 = StoryLike.create(user_id: u1.id, story_id: s1.id)
 sl2 = StoryLike.create(user_id: u1.id, story_id: s2.id)

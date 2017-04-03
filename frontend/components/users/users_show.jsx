@@ -45,7 +45,7 @@ class UsersShow extends Component {
   }
   
   renderActiveTab() {
-    const user = this.props.user;
+    const user = this.props.user.user;
     
     switch(this.state.active) {
       case "profile":
@@ -70,16 +70,19 @@ class UsersShow extends Component {
   }
   
   render() {
-    const user = this.props.user;
+    const user = this.props.user.user;
     
     if (!user) {
       return <div className="loader" />;
     }
+
+    const followings = this.props.user.followings;
+    const followers = this.props.user.followers;
     
     const profileActive = this.state.active === "profile" ? "tab-header-active" : "";
     const recActive = this.state.active === "recommends" ? "tab-header-active" : "";
     const respActive = this.state.active === "responses" ? "tab-header-active" : "";
-    
+    console.log(this.props.user.followings);
     return (
       <div className="user-show">
         <header className="user-show-header">
@@ -89,10 +92,10 @@ class UsersShow extends Component {
             <div className="user-show-user-desc">{user.desc}</div>
             <div className="user-show-follow-info-container group">
               <div className="user-show-followings" onClick={this.showFollowings}>
-                {user.followings.length}
+                {followings.length}
               </div>
               <div className="user-show-followers" onClick={this.showFollowers}>
-                {user.followers.length}
+                {followers.length}
               </div>
             </div>
             <div className="user-show-edit-btn button" onClick={this.editProfile}>Edit</div>
@@ -132,7 +135,11 @@ function mapDispatchToProps(dispatch) {
 };
 
 function mapStateToProps(state) {
-  return { user: state.user.user, modal: state.modal };
+  return { 
+    user: state.user,
+    followings: state.user.followings,
+    follower: state.user.followers
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UsersShow);

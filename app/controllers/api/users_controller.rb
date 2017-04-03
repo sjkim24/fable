@@ -23,7 +23,7 @@ class Api::UsersController < ApplicationController
   def followings
     @user = User.find(params[:id])
     @followings = @user.followings
-    
+
     render :followings
   end
   

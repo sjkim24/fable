@@ -232,9 +232,11 @@
 .users-follows-modal-btn {
   background: $yellow;
   color: #FFFFFF;
+  font-size: 12px;
   position: absolute;
   right: 0;
-  top: -5px;
+  text-align: center;
+  top: -3px;
 }
 
 .user-follows-img {

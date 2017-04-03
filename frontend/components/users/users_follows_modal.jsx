@@ -6,9 +6,9 @@ import Follow from "../buttons/follow.jsx";
 class UsersFollowsModal extends Component {
   getData() {
     if (this.props.type === "followings") {
-      return this.props.user.followings;
+      return this.props.followings;
     } else {
-      return this.props.user.followers;
+      return this.props.followers;
     }
   }
   
@@ -20,6 +20,8 @@ class UsersFollowsModal extends Component {
           <img src={user.image_url} alt="user image" className="user-follows-img" />
           <Follow 
             name={`${type}Modal`}
+            userShowId={this.props.user.id}
+            userId={user.id} 
             following={user.following} 
             className="users-follows-modal" />
           <div className="user-follows-item-info">
@@ -38,7 +40,7 @@ class UsersFollowsModal extends Component {
   render() {
     const data = this.getData();
     const word = this.props.type === "followings" ? "follows" : "is followed by"
-    console.log(data);
+
     return (
       <ul className="user-follows-list">
         <div className="user-follows-list-header">
@@ -51,7 +53,11 @@ class UsersFollowsModal extends Component {
 };
 
 function mapStateToProps(state) {
-  return { user: state.user.user };
+  return { 
+    user: state.user.user,
+    followers: state.user.followers,
+    followings: state.user.followings 
+  };
 };
 
 export default connect(mapStateToProps, null)(UsersFollowsModal);
