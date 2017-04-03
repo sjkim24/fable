@@ -22,10 +22,10 @@
 .comment-form-user-inst-container {
   overflow: hidden;
   position: relative;
-}
-
-.comment-form-user-inst-container:hover {
-  cursor: pointer;
+  
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .comment-form-user-img {
@@ -85,6 +85,10 @@
   font-size: 14px;
   margin-right: 15px;
   padding: 2px 10px;
+  
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 @media (min-width: 768px) {

@@ -3,7 +3,8 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { toggleModal, refillModal } from "../../actions/action_modal";
 import AuthSelections from "../auth/auth_selections.jsx";
-import SignUpForm from "../auth/sign_in_form.jsx";
+import SignUpForm from "../auth/sign_up_form.jsx";
+import SignInForm from "../auth/sign_in_form.jsx";
 import UsersFollowsModal from "../users/users_follows_modal.jsx";
 
 class Modal extends Component {
@@ -31,9 +32,9 @@ class Modal extends Component {
           toggleModal={this.toggleModal}
           refillModal={this.props.refillModal} />;
       case "auth-signup":
-        return <SignUpForm />;
+        return <SignUpForm toggleModal={this.toggleModal} />;
       case "auth-signin":
-        console.log("auth-signin");
+        return <SignInForm toggleModal={this.toggleModal} />;
         break;
       case "followings":
         return <UsersFollowsModal type="followings" />;

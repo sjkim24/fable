@@ -24,12 +24,15 @@ class AuthSelections extends Component {
     })
     .then(function(response) {
       that.props.setCurrentUser(response.data.current_user);
-      // close modal
       that.props.toggleModal();
+      // figure out a better way to handle this later
       // fetch current stories again with updated data on likes and bookmark
+      // if user logged in at index
       if ($(".stories")[0]) {
         that.props.fetchStories();
       } // else if story show, fetch that story 1 more time
+      // other sitches to fetch stuff
+      // comment show, reply show?, each user profile tab
       
     })
     .catch(function(error) {
@@ -41,11 +44,10 @@ class AuthSelections extends Component {
   renderAuthComponent(event, selection) {
     switch(selection) {
       case "signup":
-        // render signup form component
         this.props.refillModal("auth-signup");
         return;
       case "signin":
-        // render signin form component
+        this.props.refillModal("auth-signin");
         return;
     }
   }

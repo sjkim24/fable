@@ -47,97 +47,98 @@ class SignUpForm extends Component {
   
   onFormSubmit(event) {
     event.preventDefault();
-    $.ajax({
-        method: "POST",
-        url: "/users.json",
-        data: {
-          user: {
-            email: this.state.email,
-            password: this.state.password,
-            fullname: this.state.fullname,
-            username: this.state.username
-          },
-          authenticity_token: Functions.getMetaContent("csrf-token")
-        }
-      })
-      .done(function(data){
-        debugger
-        location.reload();
-      }.bind(this));
-    console.log("submit");
+    debugger
+    // use axios to send a post rquest
+    // $.ajax({
+    //     method: "POST",
+    //     url: "/users.json",
+    //     data: {
+    //       user: {
+    //         email: this.state.email,
+    //         password: this.state.password,
+    //         fullname: this.state.fullname,
+    //         username: this.state.username
+    //       },
+    //       authenticity_token: Functions.getMetaContent("csrf-token")
+    //     }
+    //   })
+    //   .done(function(data){
+    //     debugger
+    //     // location.reload();
+    //   }.bind(this));
   }
   
   render() {
     const errorDisplay = this.state.error ? "" : "hidden";
-    
+
     return (
-      <div className="sign-up-form-container">
-        <div className="modal-header sign-up-form-header">
+      <div className="auth-form-container">
+        <div className="modal-header auth-form-header">
           Enter your information to create an account on Fable
         </div>
-        <form onSubmit={this.onFormSubmit} className="sign-up-form">
-          <div className="sign-up-form-input-email-container">
+        <form onSubmit={this.onFormSubmit} className="auth-form">
+          <div className="auth-form-input-email-container">
             <label 
-              htmlFor="sign-up-input-email"
-              className="sign-up-input-label">
+              htmlFor="auth-input-email"
+              className="auth-input-label">
               Email address
             </label>
             <input
-              id="sign-up-input-username"
-              className="sign-up-input sign-up-input-email" 
+              id="auth-input-username"
+              className="auth-input auth-input-email" 
               placeholder="youremail@example.com" 
               onChange={(event) => this.handleChange(event, "email")} 
               value={this.state.email} />
           </div>
-          <div className="sign-up-form-input-fullname-container">
+          <div className="auth-form-input-fullname-container">
             <label 
-              htmlFor="sign-up-input-fullname"
-              className="sign-up-input-label">
+              htmlFor="auth-input-fullname"
+              className="auth-input-label">
               Full Name
             </label>
             <input
-              id="sign-up-input-fullname"
-              className="sign-up-input sign-up-input-fullname" 
+              id="auth-input-fullname"
+              className="auth-input auth-input-fullname" 
               placeholder="Enter your real name" 
               onChange={(event) => this.handleChange(event, "full-name")} 
               value={this.state.fullname} />
           </div>
-          <div className="sign-up-form-input-username-container">
+          <div className="auth-form-input-username-container">
             <label 
-              htmlFor="sign-up-input-username"
-              className="sign-up-input-label">
+              htmlFor="auth-input-username"
+              className="auth-input-label">
               Username
             </label>
             <input
-              id="sign-up-input-username"
-              className="sign-up-input sign-up-input-username" 
+              id="auth-input-username"
+              className="auth-input auth-input-username" 
               placeholder="Enter your cool name" 
               onChange={(event) => this.handleChange(event, "username")} 
               value={this.state.username} />
           </div>
-          <div className="sign-up-form-input-password-container">
+          <div className="auth-form-input-password-container">
             <label 
-              htmlFor="sign-up-input-password"
-              className="sign-up-input-label">
+              htmlFor="auth-input-password"
+              className="auth-input-label">
               Password
             </label>
             <input
-              id="sign-up-input-password"
-              className="sign-up-input sign-up-input-password" 
+              id="auth-input-password"
+              className="auth-input auth-input-password" 
               placeholder="Please enter your password"
               type="password"
               onChange={(event) => this.handleChange(event, "password")} 
               value={this.state.password} />
           </div>
-          <div className="sign-up-form-input-password-confirm-container">
+          <div className="auth-form-input-password-confirm-container">
             <label 
-              htmlFor="sign-up-input-password-confirm"
-              className="sign-up-input-label">
+              htmlFor="auth-input-password-confirm"
+              className="auth-input-label">
               Password confirmation
             </label>
             <input
-              id="sign-up-input-password-confirm"
-              className="sign-up-input sign-up-form-input-password" 
+              id="auth-input-password-confirm"
+              className="auth-input auth-form-input-password" 
               placeholder="Please confirm your password"
               type="password"
               onChange={(event) => this.handleChange(event, "password-confirm")} 
@@ -147,7 +148,7 @@ class SignUpForm extends Component {
           <div className={`password-confirmation-error ${errorDisplay}`}>
             Please enter a matching password
           </div>
-          <button type="submit" className="form-button sign-up-button">
+          <button type="submit" className="form-button auth-button">
             Sign Up
           </button>
         </form>

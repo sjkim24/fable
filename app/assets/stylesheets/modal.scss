@@ -99,24 +99,25 @@
 }
 
 // signin form //
-.sign-up-form-header {
+.auth-form-header {
+  color: #FFFFFF;
   font-size: 16px;
   font-weight: 900;
   line-height: 22px;
   padding: 20px;
 }
 
-.sign-up-form {
+.auth-form {
   padding: 30px;
 }
 
-.sign-up-input-label {
+.auth-input-label {
   color: $dark-gray;
   display: block;
   margin-bottom: 10px;
 }
 
-.sign-up-input {
+.auth-input {
   border-bottom: 1px solid $light-gray;
   color: $dark-gray;
   font-size: 14px;
@@ -125,7 +126,7 @@
   width: 100%;
 }
 
-.sign-up-button {
+.auth-button {
   background: $yellow;
   border-radius: 2px;
   color: #FFFFFF;
@@ -135,7 +136,7 @@
   padding: 8px;
 }
 
-.sign-up-button:hover {
+.auth-button:hover {
   color: #FFFFFF;
   background: $dark-yellow;
 }

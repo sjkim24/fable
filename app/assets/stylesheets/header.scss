@@ -45,19 +45,30 @@
   color: $yellow;
   float: left;
   font-size: 14px;
-  margin: 6px 10px 0px 10px;
   padding-bottom: 3px;
+  
+  &:hover {
+    border-bottom: 1px solid $dark-yellow;
+    color: $dark-yellow;
+    cursor: pointer;
+  }
 }
 
-.header-list-story-link:hover,
-.header-list-auth-link:hover {
-  border-bottom: 1px solid $dark-yellow;
-  color: $dark-yellow;
-  cursor: pointer;
+.header-list-auth-link {
+  margin: 6px 15px 0px 15px;
+}
+
+.header-list-story-link {
+  margin: 6px 15px 0px 0px;
 }
 
 .header-list-auth-user-container {
   float: left;
+  margin-right: 15px;
+  
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .header-list-auth-user-img {
