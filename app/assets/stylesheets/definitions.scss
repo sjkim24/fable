@@ -26,11 +26,12 @@
 }
 
 .button {
-  border: 1px solid $yellow;
+  border: 1px solid #F3D351;
   border-radius: 20px;
-  color: $yellow;
-  padding: 3px 5px;
-  width: 50px;
+  color: #F3D351;
+  font-size: 14px;
+  padding: 5px 10px;
+  text-align: center;
 }
 
 @media (min-width: 768px) {

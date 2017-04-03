@@ -30,6 +30,10 @@ class ProfileTab extends Component {
   }
   
   render() {
+    if (!this.props.user) {
+      return <div className="loader" />;
+    }
+    
     const latest = this.props.latest;
     const recommends = this.props.recommends;
     const latDisplay = this.props.latest.length > 0 ? "" : "hidden";
@@ -46,7 +50,7 @@ class ProfileTab extends Component {
         </ul>
         <header 
           className={`user-show-tab-header user-show-tab-header-recs ${recDisplay}`}>
-          Recommended by {this.props.userFullname}
+          Recommended by {this.props.user.fullname}
           <div 
             className="user-profile-recs-see-more"
             onClick={this.toggleTab}>

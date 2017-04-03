@@ -25,11 +25,9 @@ Rails.application.routes.draw do
     delete 'follows/destroy', :to => 'follows#destroy'
     
     get 'users/:username', :to => 'users#show'
-    get 'users/:id/stories', :to => 'users#user_stories'
-    get 'users/:id/comments', :to => 'users#user_comments'
-    get 'users/:id/bookmarks', :to => 'users#user_bookmarks'
     get 'users/:id/followers', :to => 'users#followers'
     get 'users/:id/followings', :to => 'users#followings'
+    get 'users/:id/responses', :to => 'users#responses'
     
     get 'stories/:id/comments', :to => 'stories#get_comments_only'
     get 'comments/:id/replies', :to => 'comments#get_replies'

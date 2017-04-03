@@ -1,10 +1,16 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { fetchResponses } from "../../actions/action_user";
 import UserTabRespItem from "./users_tab_resp_item.jsx";
 
 class ResponsesTab extends Component {
   renderResponses(responses) {
     const resps = responses.map((resp, i) => {
-      return <UserTabRespItem response={resp} key={`resp-${i}`} />
+      return <UserTabRespItem 
+        userShowId={this.props.userShowId}
+        response={resp} 
+        key={`resp-${i}`} />
     });
     
     return resps;
@@ -26,4 +32,12 @@ class ResponsesTab extends Component {
   }
 };
 
-export default ResponsesTab;
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ fetchResponses }, dispatch);
+};
+
+function mapStateToProps(state) {
+  return { responses: state.user.responses };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ResponsesTab);

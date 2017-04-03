@@ -3,11 +3,10 @@ import axios from "axios";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { fetchStory, fetchStories } from "../../actions/action_stories";
-// import { fetchStory } from "../../actions/story_fetch";
 import { fetchComment, fetchComments } from "../../actions/action_comments";
-// import { fetchComment } from "../../actions/comment_fetch";
 import { fetchCurrentUser } from "../../actions/action_auth";
 import { toggleModal } from "../../actions/action_modal";
+import { fetchResponses } from "../../actions/action_user";
 
 class Heart extends Component {
   constructor() {
@@ -45,7 +44,7 @@ class Heart extends Component {
         url = `/api/stories/${this.props.storyId}/story_likes`;
         method = "post";
       }
-    } else {
+    } else if (name === "commentsIndex" || name === "commentsShow" || name === "commentProfileItem") {
       data = {
         comment_like: { comment_id: this.props.commentId },
         authenticity_token: this.state.token
@@ -78,6 +77,9 @@ class Heart extends Component {
           break;
         case("commentsShow"):
           that.props.fetchComment(that.props.commentId)
+          break;
+        case("commentProfileItem"):
+          that.props.fetchResponses(that.props.userShowId);
           break;
       };
     })
@@ -112,7 +114,8 @@ function mapDispatchToProps(dispatch) {
     fetchComments, 
     fetchComment, 
     fetchCurrentUser,
-    toggleModal 
+    toggleModal,
+    fetchResponses 
   }, dispatch);
 };
 

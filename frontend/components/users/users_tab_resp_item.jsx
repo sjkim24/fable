@@ -36,7 +36,7 @@ class UserTabRespItem extends Component {
   
   render() {
     const response = this.props.response
-    
+
     return (
       <li className="user-resp-item card">
         <div className="story-header padding-side group">
@@ -74,21 +74,24 @@ class UserTabRespItem extends Component {
             </div>
           </div>
         </Link>
-        <div className="user-resp-content padding-side">
-          {this.renderSnippet()}
-        </div>
-        <div 
-          className="users-resp-read-more padding-side"
-          onClick={this.setComment}>
-          Read more...
-        </div>
+        <Link to={`/comments/${response.id}`}>
+          <div className="user-resp-content padding-side">
+            {this.renderSnippet()}
+          </div>
+          <div 
+            className="users-resp-read-more padding-side"
+            onClick={this.setComment}>
+            Read more...
+          </div>
+        </Link>
         <div className="user-resp-item-footer padding-side group">
           <div className="stories-item-like">
-            <Heart 
-              storyId={response.story_id}
+            <Heart
+              userShowId={this.props.userShowId} 
+              commentId={response.id}
               liked={response.liked} 
               className="stories-item-like-heart-img" 
-              name="storiesIndex" />
+              name="commentProfileItem" />
             <div className="stories-item-like-count">{response.likes_count}</div>
           </div>
         </div>

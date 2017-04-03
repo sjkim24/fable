@@ -19,7 +19,8 @@ class UsersShow extends Component {
   }
   
   componentWillUpdate(nextProps, nextState) {
-    if (this.props.user && this.props.user.id !== nextProps.user.id) {
+    const user = this.props.user.user;
+    if (user && (user.id !== nextProps.user.user.id)) {
       window.scrollTo(0, 0);
     }
   }
@@ -51,7 +52,7 @@ class UsersShow extends Component {
       case "profile":
         return (
           <ProfileTab 
-            userFullname={user.fullname}
+            user={user}
             latest={user.latest} 
             recommends={user.recommends}
             toggleTab={this.toggleTab} />
@@ -64,6 +65,7 @@ class UsersShow extends Component {
         );
       case "responses":
         return <ResponsesTab
+          userShowId={user.id}
           userFullname={user.fullname} 
           responses={user.comments} />;
     };

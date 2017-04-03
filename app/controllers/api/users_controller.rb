@@ -34,6 +34,13 @@ class Api::UsersController < ApplicationController
     render :followers
   end
   
+  def responses
+    @user = User.find(params[:id])
+    @comments = @user.get_comments_only
+    
+    render :responses
+  end
+  
   # def user_stories
   #   @user = User.find(params[:id])
   #   @stories = @user.stories
