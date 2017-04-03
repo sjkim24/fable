@@ -57,6 +57,8 @@ class CommentForm extends Component {
   
   handleOnSubmit(event) {
     event.preventDefault();
+    const that = this;
+    
     if (!this.state.content || this.state.content.length === 0) {
       // handle errors here. as long as i take care of different situations where 
       // i have to pass parent_comment_id, error should only occur when 
@@ -70,8 +72,11 @@ class CommentForm extends Component {
       })
       .then(function(response) {
         // fetch comments after
-        this.props.fetchComments(this.props.storyId);
-        debugger
+        that.setState({ active: false }, () => {
+          that.props.fetchComments(that.props.storyId);
+        });
+        
+        // debugger
       })
       .catch(function(error) {
         debugger

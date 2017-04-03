@@ -12,7 +12,6 @@ class Api::CommentsController < ApplicationController
   end
 
   def create
-    binding.pry
     @comment = Comment.new(comment_params)
     @comment.user_id = current_user.id
     @comment.story_id = params[:story_id]
