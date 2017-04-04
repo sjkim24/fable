@@ -1,5 +1,5 @@
 import { 
-  FETCH_USER, FETCH_FOLLOWERS, FETCH_FOLLOWINGS, FETCH_RESPONSES 
+  FETCH_USER, FETCH_FOLLOWERS, FETCH_FOLLOWINGS, FETCH_RESPONSES, UPDATE_USER 
 } from  "../actions/action_user";
 
 const INITIAL_STATE = { 
@@ -13,10 +13,13 @@ export default function(state = INITIAL_STATE, action) {
   Object.freeze(state);
   switch(action.type) {
     case FETCH_USER:
+      debugger
       return {
         user: action.payload.data.user,
         followers: action.payload.data.followers,
         followings: action.payload.data.followings,
+        latest: action.payload.data.latest,
+        recommends: action.payload.data.recommends,
         responses: action.payload.data.comments
       };
     case FETCH_FOLLOWERS:
@@ -25,6 +28,8 @@ export default function(state = INITIAL_STATE, action) {
       return { ...state, followings: action.payload.data.type };
     case FETCH_RESPONSES:
       return { ...state, responses: action.payload.data.responses };
+    case UPDATE_USER:
+      return { ...state, user: action.payload.data };
     default:
       return state;
   };

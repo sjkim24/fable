@@ -13,10 +13,9 @@ class Api::UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
-      redirect_to user_url(@user)
+      render :user
     else
-      flash.now[:errors] = @user.errros.full_messages
-      render :edit
+      render json: "Error"
     end
   end
   

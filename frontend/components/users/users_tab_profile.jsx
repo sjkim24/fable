@@ -33,7 +33,7 @@ class ProfileTab extends Component {
     if (!this.props.user) {
       return <div className="loader" />;
     }
-    
+
     const latest = this.props.latest;
     const recommends = this.props.recommends;
     const latDisplay = this.props.latest.length > 0 ? "" : "hidden";

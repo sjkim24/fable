@@ -34,10 +34,10 @@ class CommentForm extends Component {
   }
   
   toggleActive() {
-    // debugger
     if (!this.state.active) {
-      // console.log("hit");
-      this.setState({ active: true });
+      this.setState({ active: true }, () => {
+        document.querySelector(".content-form").focus();
+      });
     }
   }
   

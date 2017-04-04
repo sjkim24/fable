@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { fetchUser } from "../../actions/action_user";
+import { fetchUser, updateUser } from "../../actions/action_user";
 import ProfileTab from "./users_tab_profile.jsx";
 import RecommendsTab from "./users_tab_recommends.jsx";
 import ResponsesTab from "./users_tab_responses.jsx";
@@ -40,13 +40,22 @@ class UsersShow extends Component {
   }
   
   editProfile() {
-    this.setState({ edit: true });
+    this.setState({ edit: true }, () => {
+      document.querySelector(".user-show-user-fullname-edit").focus();
+    });
   }
   
   handleSave() {
     // validate inputs
     // send ajax request to rails to make an 
     // update on user desc and fullname
+    let user = {};
+    user["id"] = this.props.user.user.id
+    user["fullname"] = this.state.fullname || this.props.user.user.fullname;
+    user["user_desc"] = this.state.user_desc || this.props.user.user.desc;
+    
+    this.props.updateUser(user);
+    this.handleCancel();
   }
   
   handleCancel() {
@@ -54,13 +63,10 @@ class UsersShow extends Component {
     // but that will trigger start the enxt edit to with
     // input values of ""
     // figure out a way to solve this 
-    this.setState({
-      edit: false
-    })
+    this.setState({ edit: false });
   }
   
   handleOnChange(event, type) {
-    console.log(event.target.value);
     switch(type) {
       case("fullname"):
         this.setState({ fullname: event.target.value });
@@ -80,13 +86,13 @@ class UsersShow extends Component {
   }
   
   renderActiveTab() {
-    const user = this.props.user.user;
+    const user = this.props.user;
     
     switch(this.state.active) {
       case "profile":
         return (
           <ProfileTab 
-            user={user}
+            user={user.user}
             latest={user.latest} 
             recommends={user.recommends}
             toggleTab={this.toggleTab} />
@@ -94,13 +100,13 @@ class UsersShow extends Component {
       case "recommends":
         return (
           <RecommendsTab 
-            userFullname={user.fullname}
+            userFullname={user.user.fullname}
             recommends={user.recommends} />
         );
       case "responses":
         return <ResponsesTab
-          userShowId={user.id}
-          userFullname={user.fullname} 
+          userShowId={user.user.id}
+          userFullname={user.user.fullname} 
           responses={user.comments} />;
     };
   }
@@ -135,7 +141,8 @@ class UsersShow extends Component {
             <input 
               className={`user-show-user-fullname-edit user-show-user-fullname ${inputDisplay}`} 
               onChange={(event) => this.handleOnChange(event, "fullname")} 
-              value={fullnameVal} />
+              value={fullnameVal} 
+              autoFocus />
             <div className={`user-show-user-desc ${divDisplay}`}>{user.desc}</div>
             <input 
               className={`user-show-user-desc-edit user-show-user-desc ${inputDisplay}`} 
@@ -204,7 +211,7 @@ class UsersShow extends Component {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchUser, toggleModal }, dispatch);
+  return bindActionCreators({ fetchUser, toggleModal, updateUser }, dispatch);
 };
 
 function mapStateToProps(state) {

@@ -17,8 +17,7 @@ class ContentForm extends Component {
       <div 
         className="content-form"
         contentEditable="true"
-        onInput={this.handleOnInput}
-        tabIndex="0">
+        onInput={this.handleOnInput}>
       </div>
     );
   }
