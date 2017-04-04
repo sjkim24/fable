@@ -6,6 +6,7 @@ import StoriesIndex from "./components/stories/stories_index.jsx";
 import StoriesShow from "./components/stories/stories_show.jsx";
 import UsersShow from "./components/users/users_show.jsx";
 import CommentsShow from "./components/comments/comments_show.jsx";
+import StoriesForm from "./components/stories/stories_form.jsx";
 
 export default (
   <Route path="/" component={App}>
@@ -13,6 +14,7 @@ export default (
     <Route path="/users/:username" component={UsersShow} />
     <Route path="/stories/:storyId" component={StoriesShow} />
     <Route path="/comments/:commentId" component={CommentsShow} />
+    <Route path="/new-story" component={StoriesForm} />
   </Route>
 );
 

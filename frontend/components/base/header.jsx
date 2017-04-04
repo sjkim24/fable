@@ -12,7 +12,6 @@ class Header extends Component {
     super();
     
     this.toggleAuthModal = this.toggleAuthModal.bind(this);
-    this.renderStoryForm = this.renderStoryForm.bind(this);
   }
   
   renderStoryForm() {
@@ -56,9 +55,9 @@ class Header extends Component {
           </Link>
           <ul className="header-list-right">
             <li className="header-list-story-link">
-              <div onClick={this.renderStoryForm} className="header-list-story-link-btn">
+              <Link to="/new-story" className="header-list-story-link-btn">
                 Write a story
-              </div>
+              </Link>
             </li>
             <li className="header-list-auth-user-container">
               {this.renderAuthOrUser()}
