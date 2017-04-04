@@ -12,11 +12,16 @@ class UsersShow extends Component {
   constructor() {
     super();
     
-    this.state = { active: "profile" }
+    this.state = { 
+      active: "profile",
+      edit: false 
+    }
     this.showFollowings = this.showFollowings.bind(this);
     this.showFollowers = this.showFollowers.bind(this);
     this.editProfile = this.editProfile.bind(this);
     this.toggleTab = this.toggleTab.bind(this);
+    this.handleSave = this.handleSave.bind(this);
+    this.handleCancel = this.handleCancel.bind(this);
   }
   
   componentWillUpdate(nextProps, nextState) {
@@ -35,7 +40,27 @@ class UsersShow extends Component {
   }
   
   editProfile() {
-    console.log("edit profile clicked");
+    this.setState({ edit: true });
+  }
+  
+  handleSave() {
+    
+  }
+  
+  handleCancel() {
+    
+  }
+  
+  handleOnChange(event, type) {
+    console.log(event.target.value);
+    switch(type) {
+      case("fullname"):
+        this.setState({ fullname: event.target.value });
+        break;
+      case("desc"):
+        this.setState({ user_desc: event.target.value });
+        break;
+    }
   }
   
   toggleTab(type) {
@@ -87,14 +112,28 @@ class UsersShow extends Component {
     const respActive = this.state.active === "responses" ? "tab-header-active" : "";
 
     const editDisplay = user.id === this.props.currentUser.id ? "" : "hidden"; 
+    const inputDisplay = this.state.edit ? "" : "hidden";
+    const divDisplay = this.state.edit ? "hidden" : "";
+    
+    const fullnameVal = this.state.fullname || user.fullname;
+    const descVal = this.state.user_desc || user.desc;
     
     return (
       <div className="user-show">
         <header className="user-show-header">
           <div className="user-show-header-inner">
             <img src={user.image_url} alt="user img" className="user-show-header-img" />
-            <div className="user-show-user-fullname">{user.fullname}</div>
-            <div className="user-show-user-desc">{user.desc}</div>
+            <div className={`user-show-user-fullname ${divDisplay}`}>{user.fullname}</div>
+            <input 
+              className={`user-show-user-fullname-edit user-show-user-fullname ${inputDisplay}`} 
+              onChange={(event) => this.handleOnChange(event, "fullname")} 
+              value={fullnameVal} />
+            <div className={`user-show-user-desc ${divDisplay}`}>{user.desc}</div>
+            <input 
+              className={`user-show-user-desc-edit user-show-user-desc ${inputDisplay}`} 
+              onChange={(event) => this.handleOnChange(event, "desc")} 
+              value={descVal} 
+              placeholder="Enter a description about yours"/>
             <div className="user-show-follow-info-container group">
               <div className="user-show-followings" onClick={this.showFollowings}>
                 {followings.length}
@@ -104,9 +143,19 @@ class UsersShow extends Component {
               </div>
             </div>
             <div 
-              className={`user-show-edit-btn button ${editDisplay}`} 
+              className={`user-show-edit-btn button ${editDisplay} ${divDisplay}`} 
               onClick={this.editProfile}>
               Edit
+            </div>
+            <div 
+              className={`user-show-save-btn ${inputDisplay}`}
+              onClick={this.handleSave}>
+              Save
+            </div>
+            <div
+              className={`user-show-cancel-btn ${inputDisplay}`}
+              onClick={this.handleCancel}>
+              Cancel
             </div>
             <Follow
               userId={user.id}

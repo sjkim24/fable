@@ -27,11 +27,19 @@
   text-align: center;
 }
 
+.user-show-user-fullname-edit {
+  width: 100%;
+}
+
 .user-show-user-desc {
   color: $light-gray;
   font-size: 16px;
   margin-top: 15px;
   text-align: center;
+}
+
+.user-show-user-desc-edit {
+  width: 100%;
 }
 
 .user-show-follow-info-container {

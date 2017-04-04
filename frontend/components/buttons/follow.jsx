@@ -79,7 +79,7 @@ class Follow extends Component {
     
     return (
       <div
-        className={`follow-btn ${this.props.className}-btn button followDisplay`} 
+        className={`follow-btn ${this.props.className}-btn button ${followDisplay}`} 
         onClick={this.checkAuthThenToggle}>
         {follow}
       </div>
