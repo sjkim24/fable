@@ -6,6 +6,8 @@ const INITIAL_STATE = {
   user: null, 
   followers: [], 
   follwings: [],
+  latest: [],
+  recommends: [],
   responses: []
 };
 
@@ -13,7 +15,6 @@ export default function(state = INITIAL_STATE, action) {
   Object.freeze(state);
   switch(action.type) {
     case FETCH_USER:
-      debugger
       return {
         user: action.payload.data.user,
         followers: action.payload.data.followers,

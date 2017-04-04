@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root to: "static#index"
   devise_for :users, controllers: {sessions: "sessions", registrations: "users/registrations"}
   namespace :api, defaults: {format: :json} do 
-    resources :users, only: [:update] do
+    resources :users, only: [:update, :edit] do
       resources :stories, only: [:index]
       resources :comments, only: [:index]
       resources :bookmarks, only: [:index]

@@ -44,10 +44,8 @@ export function fetchResponses(userId) {
   }
 };
 
-export function updateUser(user) {
-  const request = axios.patch(`${URL}/${user.id}`, {
-    user: { fullname: user.fullname, user_desc: user.user_desc }
-  });
+export function updateUser(userId, data) {
+  const request = axios.patch(`${URL}/${userId}`, data);
 
   return {
     type: UPDATE_USER,

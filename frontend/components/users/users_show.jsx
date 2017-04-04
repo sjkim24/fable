@@ -49,12 +49,24 @@ class UsersShow extends Component {
     // validate inputs
     // send ajax request to rails to make an 
     // update on user desc and fullname
-    let user = {};
-    user["id"] = this.props.user.user.id
-    user["fullname"] = this.state.fullname || this.props.user.user.fullname;
-    user["user_desc"] = this.state.user_desc || this.props.user.user.desc;
-    
-    this.props.updateUser(user);
+    // let user = {};
+    // user["id"] = this.props.user.user.id
+    // user["fullname"] = this.state.fullname || this.props.user.user.fullname;
+    // user["user_desc"] = this.state.user_desc || this.props.user.user.desc;
+    let fileReader = new FileReader();
+    const fileSelect = document.querySelector(".user-img-file-select");
+    const files = fileSelect.files;
+    let file = files[0];
+    console.log(file);
+    fileReader.readAsDataURL(file);
+    console.log(file);
+    const formData = new FormData();
+    formData.append("user[id]", this.props.user.user.id);
+    formData.append("user[fullname]", this.state.fullname || this.props.user.user.fullname);
+    formData.append("user[user_desc]", this.state.user_desc || this.props.user.user.desc);
+    formData.append("user[photo]", file)
+
+    this.props.updateUser(this.props.user.user.id, formData);
     this.handleCancel();
   }
   
@@ -114,7 +126,7 @@ class UsersShow extends Component {
   render() {
     const user = this.props.user.user;
     
-    if (!user) {
+    if (!user && !this.props.currentUser) {
       return <div className="loader" />;
     }
 
@@ -124,7 +136,7 @@ class UsersShow extends Component {
     const profileActive = this.state.active === "profile" ? "tab-header-active" : "";
     const recActive = this.state.active === "recommends" ? "tab-header-active" : "";
     const respActive = this.state.active === "responses" ? "tab-header-active" : "";
-
+    
     const editDisplay = user.id === this.props.currentUser.id ? "" : "hidden"; 
     const inputDisplay = this.state.edit ? "" : "hidden";
     const divDisplay = this.state.edit ? "hidden" : "";
@@ -136,7 +148,13 @@ class UsersShow extends Component {
       <div className="user-show">
         <header className="user-show-header">
           <div className="user-show-header-inner">
-            <img src={user.image_url} alt="user img" className="user-show-header-img" />
+            <div className="user-show-header-img-container">
+              <img src={user.image_url} alt="user img" className="user-show-header-img" />
+              <div className={`stuffz ${inputDisplay}`}>
+                <img src="/images/icons/camera.png" alt="camera img" className="camera" />
+                <input type="file" name="user[photo]" className="user-img-file-select" />
+              </div>
+            </div>
             <div className={`user-show-user-fullname ${divDisplay}`}>{user.fullname}</div>
             <input 
               className={`user-show-user-fullname-edit user-show-user-fullname ${inputDisplay}`} 

@@ -7,7 +7,6 @@ end
 Paperclip::Attachment.default_options[:storage] = :s3
 Paperclip::Attachment.default_options[:s3_protocol] = 'http'
 Paperclip::Attachment.default_options[:s3_region] = ENV['AWS_REGION']
-Paperclip::Attachment.default_options[:s3_hostname] = ENV['AWS_HOST_NAME']
 Paperclip::Attachment.default_options[:s3_credentials] =
   { :bucket => bucket,
     :access_key_id => ENV['AWS_ACCESS_KEY_ID'],

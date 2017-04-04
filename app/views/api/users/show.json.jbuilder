@@ -52,7 +52,7 @@ json.recommends @recommends.includes(:user).each do |recommend|
   end
 end
 
-json.comments @comments.each do |comment|
+json.comments @comments.includes(:story, :user).each do |comment|
   json.id comment.id
   json.story_id comment.story.id
   json.story_title comment.story.title
