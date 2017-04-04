@@ -4,12 +4,11 @@ class ContentForm extends Component {
   constructor() {
     super();
     
-    this.state = { content: "" }  
     this.handleOnInput = this.handleOnInput.bind(this);
   }
   
   handleOnInput(event) {
-    this.props.handleOnInput(event.target.innerText);
+    this.props.handleContentFormChange(event.target.innerText);
   }
   
   render() {
@@ -17,6 +16,7 @@ class ContentForm extends Component {
       <div 
         className="content-form"
         contentEditable="true"
+        placeholder="Content"
         onInput={this.handleOnInput}>
       </div>
     );

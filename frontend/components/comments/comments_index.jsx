@@ -35,7 +35,6 @@ class CommentsIndex extends Component {
   }
   
   render() {
-    console.log("comments index rneder", this.props.comments.length, this.props.comments);
     return (
       <div id="story-comments" className="comments-container padding-side">
         {this.displayTextOrComments()}

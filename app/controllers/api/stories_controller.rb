@@ -11,15 +11,15 @@ class Api::StoriesController < ApplicationController
 
   def create
     @title = "Fable | Share your tales with the world"
+    binding.pry
     @story = Story.new(story_params)
 
     @story.user_id = current_user.id
 
     if @story.save
-      redirect_to story_url(@story)
+      render :show
     else
-      flash.now[:errors] = @story.errors.full_messages
-      render :new
+      render json: "Error"
     end
   end
 

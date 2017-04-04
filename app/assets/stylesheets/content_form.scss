@@ -1,8 +1,9 @@
-// story content form //
-
-// comment content form //
 .content-form {
   margin-bottom: 10px;
+}
+
+.content-form:empty:before {
+  content: attr(placeholder);
 }
 
 .content-form-error {

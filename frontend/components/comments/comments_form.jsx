@@ -20,7 +20,7 @@ class CommentForm extends Component {
       }
     };
     this.checkAuthThenToggle = this.checkAuthThenToggle.bind(this);
-    this.handleOnInput = this.handleOnInput.bind(this);
+    this.handleContentFormChange = this.handleContentFormChange.bind(this);
     this.handleOnSubmit = this.handleOnSubmit.bind(this);
     this.goFullScreen = this.goFullScreen.bind(this);
   }
@@ -41,7 +41,7 @@ class CommentForm extends Component {
     }
   }
   
-  handleOnInput(content) {
+  handleContentFormChange(content) {
     this.setState({ content: content }, () => { 
       if (this.state.error && content.length > 0) {
         this.setState({ error: false });
@@ -51,7 +51,7 @@ class CommentForm extends Component {
 
   renderContentForm() {
     if (this.state.active) {
-      return <ContentForm handleOnInput={this.handleOnInput} />;
+      return <ContentForm handleContentFormChange={this.handleContentFormChange} />;
     }
   }
   
@@ -75,15 +75,11 @@ class CommentForm extends Component {
         that.setState({ active: false }, () => {
           that.props.fetchComments(that.props.storyId);
         });
-        
-        // debugger
       })
       .catch(function(error) {
-        debugger
         console.log(error);
       });
     }
-    console.log("submitted!");
   }
   
   goFullScreen() {

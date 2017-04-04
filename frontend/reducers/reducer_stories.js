@@ -1,7 +1,8 @@
 import { 
   FETCH_STORY, 
   FETCH_STORIES, 
-  SET_STORY 
+  SET_STORY,
+  CREATE_STORY 
 } from "../actions/action_stories";
 
 const INITIAL_STATE = { all: [], story: null };
@@ -15,6 +16,8 @@ export default function(state = INITIAL_STATE, action) {
       return { ...state, story: action.payload.data };
     case SET_STORY:
       return { ...state, story: action.payload };
+    case CREATE_STORY:
+      return { ...state, story: action.payload.data }
     default:
       return state;
   };
