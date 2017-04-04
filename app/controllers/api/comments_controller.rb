@@ -1,15 +1,15 @@
 class Api::CommentsController < ApplicationController
   # shows user's all comments in profile page
-  def index
-    if params.has_key?(:user_id)
-      @comments = Comment.where(user_id: params[:user_id])
-      @user = User.find(params[:user_id])
-    else
-      @comments = Comment.all.includes(:users)
-    end
-
-    render :index
-  end
+  # def index
+  #   if params.has_key?(:user_id)
+  #     @comments = Comment.find_by_user_id(params[:user_id])
+  #     @user = User.find(params[:user_id])
+  #   else
+  #     @comments = Comment.all.includes(:users)
+  #   end
+  # 
+  #   render :index
+  # end
 
   def create
     @comment = Comment.new(comment_params)
@@ -23,15 +23,15 @@ class Api::CommentsController < ApplicationController
     end
   end
 
-  def new
-    @comment = Comment.new
-    render :new
-  end
-
-  def edit
-    @comment = Comment.find(params[:id])
-    render :edit
-  end
+  # def new
+  #   @comment = Comment.new
+  #   render :new
+  # end
+  # 
+  # def edit
+  #   @comment = Comment.find(params[:id])
+  #   render :edit
+  # end
 
   def show
     @comment = Comment.find(params[:id])

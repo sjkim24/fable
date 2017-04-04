@@ -44,11 +44,19 @@ class UsersShow extends Component {
   }
   
   handleSave() {
-    
+    // validate inputs
+    // send ajax request to rails to make an 
+    // update on user desc and fullname
   }
   
   handleCancel() {
-    
+    // i can easily reset my fullname, desc state to ""
+    // but that will trigger start the enxt edit to with
+    // input values of ""
+    // figure out a way to solve this 
+    this.setState({
+      edit: false
+    })
   }
   
   handleOnChange(event, type) {
@@ -147,15 +155,17 @@ class UsersShow extends Component {
               onClick={this.editProfile}>
               Edit
             </div>
-            <div 
-              className={`user-show-save-btn ${inputDisplay}`}
-              onClick={this.handleSave}>
-              Save
-            </div>
-            <div
-              className={`user-show-cancel-btn ${inputDisplay}`}
-              onClick={this.handleCancel}>
-              Cancel
+            <div className="user-show-save-cancel-container group">
+              <div 
+                className={`user-show-save-btn button ${inputDisplay}`}
+                onClick={this.handleSave}>
+                Save
+              </div>
+              <div
+                className={`user-show-cancel-btn button ${inputDisplay}`}
+                onClick={this.handleCancel}>
+                Cancel
+              </div>
             </div>
             <Follow
               userId={user.id}

@@ -75,16 +75,16 @@ class UserTabRespItem extends Component {
           </div>
         </Link>
         <Link to={`/comments/${response.id}`}>
-          <div className="user-resp-content padding-side">
+          <div className="user-resp-content">
             {this.renderSnippet()}
           </div>
           <div 
-            className="users-resp-read-more padding-side"
+            className="users-resp-read-more"
             onClick={this.setComment}>
             Read more...
           </div>
         </Link>
-        <div className="user-resp-item-footer padding-side group">
+        <div className="user-resp-item-footer group">
           <div className="stories-item-like">
             <Heart
               userShowId={this.props.userShowId} 

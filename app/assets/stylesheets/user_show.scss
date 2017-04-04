@@ -96,6 +96,24 @@
   width: 60px;
 }
 
+.user-show-save-cancel-container {
+  margin: 0 auto;
+  width: 159px;
+}
+
+.user-show-save-btn {
+  float: left;
+  margin-right: 15px;
+  width: 50px;
+}
+
+.user-show-cancel-btn {
+  border: 1px solid #000000;
+  color: #000000;
+  float: left;
+  width: 50px;
+}
+
 .user-show-nav-bar {
   box-shadow: 0 2px 2px -2px rgba(0,0,0,0.15);
 }
