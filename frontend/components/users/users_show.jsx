@@ -59,6 +59,9 @@ class UsersShow extends Component {
     let file = files[0];
     console.log(file);
     fileReader.readAsDataURL(file);
+    fileReader.onloadend = () => {
+      debugger
+    };
     console.log(file);
     const formData = new FormData();
     formData.append("user[id]", this.props.user.user.id);
