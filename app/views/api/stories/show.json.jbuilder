@@ -13,7 +13,7 @@ if @story.has_image?
 else
   json.image_url nil
 end
-json.content @story.content
+json.content @story.content.to_json
 json.likes_count @story.story_likes.count
 json.comments_count @story.get_comments_only.count
 json.main_tag @story.main_tag

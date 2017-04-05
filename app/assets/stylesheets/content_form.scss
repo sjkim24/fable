@@ -3,6 +3,7 @@
 }
 
 .content-form:empty:before {
+  color: $light-gray;
   content: attr(placeholder);
 }
 

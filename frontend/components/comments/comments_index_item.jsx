@@ -20,11 +20,9 @@ class CommentsIndexItem extends Component {
   formattedContent(content) {
     const parsed = JSON.parse(content);
     const paras = parsed.split("\n").map((para, i) => {
-      return <p
-        key={`content-p-${i}`} 
-        className="comment-content-p">
-          {para}
-        </p>
+      return (
+        <p key={`comment-p-${i}`} className="comment-content-p">{para}</p>
+      );
     });
     
     return paras;

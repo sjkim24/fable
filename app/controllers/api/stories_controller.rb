@@ -1,6 +1,6 @@
 class Api::StoriesController < ApplicationController
   def index
-    @stories = Story.all.includes(:user, :tags)
+    @stories = Story.all.includes(:user, :tags).order("created_at DESC")
     # change up how i serve stories later
     # the index feed will definitely include..
     # people they follow

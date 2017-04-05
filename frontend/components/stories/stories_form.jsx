@@ -48,6 +48,7 @@ class StoriesForm extends Component {
     formData.append("story[banner_image]", file);
     
     this.props.createStory(formData);
+    debugger
   }
   
   render() {

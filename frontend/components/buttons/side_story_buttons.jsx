@@ -22,7 +22,7 @@ class SideStoryButtons extends Component {
     let style;
     // if (window.scrollY >= $(".story-content").height()) {
     // const totalHeight = headerNavbarHeight + paddingTop + titleHeight + subtitleHeight + contentHeight;
-      if (bannerImageHeight) { totalHeight += bannerImageHeight }
+      // if (bannerImageHeight) { totalHeight += bannerImageHeight }
     //   style = { 
     //     position: "absolute",
     //     top: totalHeight

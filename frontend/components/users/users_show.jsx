@@ -126,7 +126,7 @@ class UsersShow extends Component {
   render() {
     const user = this.props.user.user;
     
-    if (!user && !this.props.currentUser) {
+    if (!user || !this.props.currentUser) {
       return <div className="loader" />;
     }
 

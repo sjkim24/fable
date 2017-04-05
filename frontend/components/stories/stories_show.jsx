@@ -41,6 +41,17 @@ class StoriesShow extends Component {
     }
   }
   
+  formattedContent(content) {
+    const parsed = JSON.parse(content);
+    const paras = parsed.split("\n").map((para, i) => {
+      return (
+        <p key={`story-p-${i}`} className="story-content-p">{para}</p>
+      );
+    });
+    
+    return paras;
+  }
+  
   render() {
     const story = this.props.story;
     
@@ -85,7 +96,7 @@ class StoriesShow extends Component {
         <div className="story-subtitle padding-side">{story.subtitle}</div>
         {this.renderBannerImg()}
         <div className="story-content padding-side">
-          {story.content}
+          {this.formattedContent(story.content)}
         </div>
         <div className="story-tags padding-side group">
           {this.renderTags()}
