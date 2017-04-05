@@ -18,17 +18,30 @@
   position: relative;
 }
 
-.stuffz {
+.user-show-file-input-container  {
   position: absolute;
-  top: 0
+  left: 50%;
+  transform: translate(-50%, 0);
+  top: 30px;
 }
 
-.camera {
-  width: 20px;
+.user-img-file-input {
+  display: none;
+}
+
+.user-show-prev-img {
+  border-radius: 50%;
+  height: 80px;
+  left: 50%;
+  position: absolute;
+  top: 0;
+  transform: translate(-50%, 0);
+  width: 80px;
 }
 
 .user-show-header-img {
   border-radius: 50%;
+  height: 80px;
   margin: 50px auto 0px auto;
   width: 80px;
 }
@@ -318,10 +331,20 @@
 
 @media (min-width: 768px) {
   .user-show-header-img {
+    height: 100px;
     width: 100px;
   }
   
   .user-follows-list-header {
     font-size: 24px;
+  }
+  
+  .user-show-file-input-container {
+    top: 40px;
+  }
+  
+  .user-show-prev-img {
+    height: 100px;
+    width: 100px;
   }
 }

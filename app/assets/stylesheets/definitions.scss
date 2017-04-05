@@ -34,6 +34,19 @@
   
 }
 
+.opaque-overlay {
+  opacity: 0.5;
+}
+
+.disabled-button {
+  border: 1px solid $light-gray !important;
+  color: $light-gray !important;
+  
+  &:hover {
+    cursor: default !important;
+  }
+}
+
 .button {
   border: 1px solid #F3D351;
   border-radius: 20px;
@@ -44,6 +57,15 @@
   
   &:hover {
     cursor: pointer;
+  }
+}
+
+.img-prev-camera-img {
+  margin: 0 auto;
+  width: 20px;
+  
+  &:hover {
+    cursor: pointer
   }
 }
 

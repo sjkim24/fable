@@ -22,6 +22,7 @@ class UsersShow extends Component {
     this.toggleTab = this.toggleTab.bind(this);
     this.handleSave = this.handleSave.bind(this);
     this.handleCancel = this.handleCancel.bind(this);
+    this.handleFilePreview = this.handleFilePreview.bind(this);
   }
   
   componentWillUpdate(nextProps, nextState) {
@@ -45,32 +46,34 @@ class UsersShow extends Component {
     });
   }
   
+  handleFilePreview(event) {
+    event.persist();
+    this.setState({ imgPrevLoaded: false }, () => {
+      const file = event.target.files[0];
+      let fileReader = new FileReader();
+      
+      fileReader.onloadend = () => {
+        this.setState({ imgPrevLoaded: true, imgPrevUrl: fileReader.result });
+      };
+      fileReader.readAsDataURL(file);
+    });
+  }
+  
   handleSave() {
     // validate inputs
-    // send ajax request to rails to make an 
-    // update on user desc and fullname
-    // let user = {};
-    // user["id"] = this.props.user.user.id
-    // user["fullname"] = this.state.fullname || this.props.user.user.fullname;
-    // user["user_desc"] = this.state.user_desc || this.props.user.user.desc;
-    let fileReader = new FileReader();
-    const fileSelect = document.querySelector(".user-img-file-select");
-    const files = fileSelect.files;
-    let file = files[0];
-    console.log(file);
-    fileReader.readAsDataURL(file);
-    fileReader.onloadend = () => {
-      debugger
-    };
-    console.log(file);
-    const formData = new FormData();
-    formData.append("user[id]", this.props.user.user.id);
-    formData.append("user[fullname]", this.state.fullname || this.props.user.user.fullname);
-    formData.append("user[user_desc]", this.state.user_desc || this.props.user.user.desc);
-    formData.append("user[photo]", file)
-
-    this.props.updateUser(this.props.user.user.id, formData);
-    this.handleCancel();
+    if (this.state.imgPrevLoaded) {
+      const fileSelect = document.querySelector(".user-img-file-select");
+      const file = fileSelect.files[0];
+      const formData = new FormData();
+      
+      formData.append("user[id]", this.props.user.user.id);
+      formData.append("user[fullname]", this.state.fullname || this.props.user.user.fullname);
+      formData.append("user[user_desc]", this.state.user_desc || this.props.user.user.desc);
+      formData.append("user[photo]", file)
+      
+      this.props.updateUser(this.props.user.user.id, formData);
+      this.handleCancel();
+    }
   }
   
   handleCancel() {
@@ -140,22 +143,34 @@ class UsersShow extends Component {
     const recActive = this.state.active === "recommends" ? "tab-header-active" : "";
     const respActive = this.state.active === "responses" ? "tab-header-active" : "";
     
-    const editDisplay = user.id === this.props.currentUser.id ? "" : "hidden"; 
+    const editDisplay = user.id === this.props.currentUser.id ? "" : "hidden";
+    const overlayDisplay = this.state.edit ? "opaque-overlay" : ""; 
     const inputDisplay = this.state.edit ? "" : "hidden";
     const divDisplay = this.state.edit ? "hidden" : "";
     
     const fullnameVal = this.state.fullname || user.fullname;
     const descVal = this.state.user_desc || user.desc;
     
+    const imgPrevLoaded = this.state.imgPrevLoaded ? "" : "disabled-button";
+    const prevDisplay = this.state.imgPrevLoaded ? "" : "hidden";
+    
     return (
       <div className="user-show">
         <header className="user-show-header">
           <div className="user-show-header-inner">
-            <div className="user-show-header-img-container">
+            <div className={`user-show-header-img-container ${overlayDisplay}`}>
               <img src={user.image_url} alt="user img" className="user-show-header-img" />
-              <div className={`stuffz ${inputDisplay}`}>
-                <img src="/images/icons/camera.png" alt="camera img" className="camera" />
-                <input type="file" name="user[photo]" className="user-img-file-select" />
+              <img src={this.state.imgPrevUrl} className={`user-show-prev-img ${prevDisplay}`} />
+              <div className={`user-show-file-input-container ${inputDisplay}`}>
+                <label htmlFor="file-input">
+                  <img src="/images/icons/camera.png" alt="camera img" className="img-prev-camera-img" />
+                  <input
+                    id="file-input"
+                    onChange={this.handleFilePreview} 
+                    type="file" 
+                    name="user[photo]" 
+                    className="user-img-file-input" />
+                </label>
               </div>
             </div>
             <div className={`user-show-user-fullname ${divDisplay}`}>{user.fullname}</div>
@@ -185,7 +200,7 @@ class UsersShow extends Component {
             </div>
             <div className="user-show-save-cancel-container group">
               <div 
-                className={`user-show-save-btn button ${inputDisplay}`}
+                className={`user-show-save-btn button ${inputDisplay} ${imgPrevLoaded}`}
                 onClick={this.handleSave}>
                 Save
               </div>
