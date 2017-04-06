@@ -46,26 +46,12 @@ class Api::UsersController < ApplicationController
     render :responses
   end
   
-  # def user_stories
-  #   @user = User.find(params[:id])
-  #   @stories = @user.stories
-  #   
-  #   render :user_stories
-  # end
-  # 
-  # def user_comments
-  #   @user = User.find(params[:id])
-  #   @comments = @user.comments
-  #   
-  #   render :user_comments
-  # end
-  # 
-  # def user_bookmarks
-  #   @user = User.find(params[:id])
-  #   @bookmarks = @user.bookmarks
-  #   
-  #   render :user_bookmarks
-  # end
+  def tag_follows
+    @user = User.find(params[:id])
+    @tag_follows = @user.tag_follows
+    
+    render :tag_follows
+  end
   
   private
     def user_params
