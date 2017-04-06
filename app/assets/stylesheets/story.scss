@@ -282,12 +282,29 @@
 }
 
 @media (min-width: 1000px) {
+  @keyframes blur-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes blur-out {
+    from { opacity: 1; }
+    to { opacity: 0; }
+  }
+  
   .side-story-buttons {
-    display: block;
     left: calc((100% - 700px) / 2 - 75px); // check if there's a better way
-    position: fixed;
     top: 50%;
     transform: translate(0, -50%);
+  }
+  
+  .side-story-buttons-active {
+    animation: blur-in 0.5s;
+  }
+  
+  .side-story-buttons-inactive {
+    animation: blur-out 0.5s;
+    opacity: 0;
   }
   
   .side-story-likes-count {
