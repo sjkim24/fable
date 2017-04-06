@@ -4,4 +4,5 @@ class Tag < ActiveRecord::Base
   belongs_to :tagging
   
   has_many :stories, through: :tagging, source: :story
+  has_many :tag_follows
 end
