@@ -9,7 +9,7 @@
   top: 0;
   transform: translate(-50%, 0);
   width: 100%;
-  z-index: 10;
+  z-index: 11;
 }
 
 .header-inner {
@@ -71,10 +71,19 @@
   }
 }
 
-.header-list-auth-user-img {
+.header-list-user-container {
+  position: relative;
+}
+
+.header-list-user-img {
   border-radius: 50%;
   height: 32px;
   width: 32px;
+}
+
+.dropdown-menu-user {
+  position: absolute;
+  z-index: 12;
 }
 
 .header-list-search {

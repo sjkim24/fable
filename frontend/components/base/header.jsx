@@ -6,29 +6,40 @@ import { bindActionCreators } from "redux";
 import { toggleModal } from "../../actions/action_modal";
 import { Link } from "react-router";
 import { setCurrentUser } from "../../actions/action_auth";
+import DropDownMenu from "./drop_down_menu.jsx";
 
 class Header extends Component {
   constructor() {
     super();
     
+    this.state = { dropDownMenuActive: false };
     this.toggleAuthModal = this.toggleAuthModal.bind(this);
-  }
-  
-  renderStoryForm() {
-    console.log("render story form clicked");
+    this.toggleDropDownMenu = this.toggleDropDownMenu.bind(this);
   }
   
   toggleAuthModal() {
     this.props.toggleModal("auth-selections");
   }
   
+  toggleDropDownMenu() {
+    this.setState({ dropDownMenuActive: !this.state.dropDownMenuActive });
+  }
+  
   renderAuthOrUser() {
     if (this.props.currentUser) {
       return (
-        <img 
-          src={this.props.currentUser.user_image_url} 
-          alt="user image" 
-          className="header-list-auth-user-img" />
+        <div 
+          className="header-list-user-container"
+          onClick={this.toggleDropDownMenu}>
+          <img 
+            src={this.props.currentUser.user_image_url} 
+            alt="user image" 
+            className="header-list-user-img" />
+          <DropDownMenu
+            name="user"
+            active={this.state.dropDownMenuActive} 
+            links={["profile", "edit-tag-follows"]} />
+        </div>
       );
     } else {
       return (
@@ -72,8 +83,6 @@ class Header extends Component {
   }
 }
 
-// new code start
-
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({ toggleModal, setCurrentUser }, dispatch);
 }
@@ -83,11 +92,3 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
-
-// new code end
-
-// export default Header;
-
-// add these after i can test user auth in react
-// <li className="header-list-notification">Noti</li>
-// <li className="header-list-profile">Prof</li>
