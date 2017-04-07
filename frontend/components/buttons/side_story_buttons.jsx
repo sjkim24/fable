@@ -64,12 +64,14 @@ class SideStoryButtons extends Component {
       <div 
         className={`side-story-buttons side-story-buttons-${active}`}
         style={this.state.style}>
-        <Heart 
+        <Heart
+          name="storiesShow" 
           storyId={this.props.storyId}
           liked={this.props.liked} 
           className="side-story-button" />
         <div className="side-story-likes-count">{this.props.likesCount}</div>
-        <Bookmark 
+        <Bookmark
+          name="storiesShow"  
           storyId={this.props.storyId}
           bookmarked={this.props.bookmarked} 
           className="side-story-button" />

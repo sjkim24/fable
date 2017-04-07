@@ -43,9 +43,15 @@ class StoriesIndexItem extends Component {
     const shouldRender = !(this.props.story.image_url && this.props.story.title && this.props.subtitle);
     if (shouldRender) {
       const parsed = JSON.parse(this.props.story.content);
-      const content = parsed.split(" ").slice(0,20).join(" ");
+      let content = parsed.split(" ");
       
-      return <p className="stories-item-snippet">{`${content} ...`}</p>;
+      if (content.length > 20) {
+        content = `${content.slice(0,20).join(" ")} ...`;
+      } else {
+        content = content.slice(0,20).join(" ");
+      }
+      
+      return <p className="stories-item-snippet">{`${content}`}</p>;
     }
   }
   
