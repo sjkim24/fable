@@ -1,45 +1,133 @@
-.stories-form {
+.stories-form-container {
   background: #FFFFFF;
+  padding: 50px 0px;
+}
+
+.stories-form-user-header {
+  margin: 0px auto 20px auto;
+  max-width: 740px;
+}
+
+.user-header-img {
+  border-radius: 50%;
+  float: left;
+  margin-right: 10px;
+  width: 60px;
+}
+
+.user-header-info {
+  float: left;
+}
+
+.user-header-fullname {
+  color: $light-gray;
+  font-size: 15px;
+}
+
+.user-header-user-desc,
+.user-header-draft {
+  color: $light-gray;
+  font-size: 13px;
+  margin-top: 5px;
 }
 
 .stories-form-input {
   display: block;
-  margin: 0 auto;
+  margin: 0 auto !important;
   max-width: 700px;
-  width: calc(100% - 40px);
+  // width: calc(100% - 40px);
+  width: 100%;
 }
 
 .stories-form-input-title {
-  font-size: 32px;
+  font-size: 24px;
+  margin-bottom: 10px;
 }
 
 .stories-form-input-subtitle {
-  font-size: 28px;
+  font-size: 20px;
+  margin-bottom: 10px;
   padding-bottom: 20px;
 }
 
 .stories-form-banner-img-input-container {
-  margin: 0 auto;
+  margin: 0px auto 20px auto;
   max-width: 700px;
   position: relative;
 }
 
 .stories-form-camera-img {
-  position: absolute;
   left: 20px;
   position: absolute;
   top: -20px;
 }
 
+.stories-form-img-inst {
+  font-size: 14px;
+  left: 45px;
+  position: absolute;
+  top: -17px;
+}
+
 .stories-form .content-form {
-  margin: 0 auto;
+  font-size: 16px;
+  margin: 0px auto 20px auto;
   max-width: 700px;
   padding: 0px 20px;
   width: calc(100% - 40px);
 }
 
+.stories-form-btns {
+  margin: 0 auto;
+  max-width: 700px;
+  width: 100%;
+}
+
+.stories-form-submit-btn,
+.stories-form-cancel-btn {
+  float: left;
+  margin-right: 10px;
+  width: 50px;
+}
+
 @media (min-width: 768px) {
   .stories-form-camera-img {
     left: 0;
+  }
+  
+  .stories-form-img-inst {
+    left: 25px;
+  }
+  
+  .stories-form-input-title {
+    font-size: 32px;
+    // margin: 0 auto;
+  }
+  
+  .stories-form-input-subtitle {
+    font-size: 26px;
+    // margin: 0 auto;
+  }
+  
+  .stories-form .content-form {
+    font-size: 20px;
+    // margin: 0 auto;
+  }
+}
+
+@media (min-width: 1000px) {
+  .stories-form-input-title {
+    font-size: 36px;
+    // margin: 0 auto;
+  }
+  
+  .stories-form-input-subtitle {
+    font-size: 32px;
+    // margin: 0 auto;
+  }
+  
+  .stories-form .content-form {
+    font-size: 26px;
+    // margin: 0 auto;
   }
 }

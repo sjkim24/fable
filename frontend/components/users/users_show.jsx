@@ -67,7 +67,9 @@ class UsersShow extends Component {
       formData.append("user[id]", this.props.user.user.id);
       formData.append("user[fullname]", this.state.fullname || this.props.user.user.fullname);
       formData.append("user[user_desc]", this.state.user_desc || this.props.user.user.desc);
-      formData.append("user[photo]", this.state.file)
+      if (this.state.file) {
+        formData.append("user[photo]", this.state.file);
+      }
       
       this.props.updateUser(this.props.user.user.id, formData);
       this.handleCancel();
@@ -129,7 +131,7 @@ class UsersShow extends Component {
   
   render() {
     const user = this.props.user.user;
-    console.log(this.props.history);
+    
     if (!user) {
       return <div className="loader" />;
     }
