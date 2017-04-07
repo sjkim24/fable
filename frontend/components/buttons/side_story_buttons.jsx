@@ -35,7 +35,7 @@ class SideStoryButtons extends Component {
           const bannerImgHeight = $(".story-banner-img").outerHeight() || 0;
           const heightB4Content = headerNavbarHeight + paddingTop + headerHeight + bannerImgHeight + titleHeight + subtitleHeight;
           const contentHeight = $(".story-content").outerHeight();
-          this.setState( {
+          that.setState( {
             bannerImgHeight: bannerImgHeight,
             heightB4Content: heightB4Content,
             contentHeight: contentHeight,
@@ -46,7 +46,7 @@ class SideStoryButtons extends Component {
         const bannerImgHeight = $(".story-banner-img").outerHeight() || 0;
         const heightB4Content = headerNavbarHeight + paddingTop + headerHeight + bannerImgHeight + titleHeight + subtitleHeight;
         const contentHeight = $(".story-content").outerHeight();
-        this.setState( {
+        that.setState( {
           bannerImgHeight: bannerImgHeight,
           heightB4Content: heightB4Content,
           contentHeight: contentHeight,
