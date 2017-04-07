@@ -14,7 +14,8 @@ class UsersShow extends Component {
     
     this.state = { 
       active: "profile",
-      edit: false 
+      edit: false,
+      imgLoading: false 
     }
     this.showFollowings = this.showFollowings.bind(this);
     this.showFollowers = this.showFollowers.bind(this);
@@ -48,20 +49,20 @@ class UsersShow extends Component {
   
   handleFilePreview(event) {
     event.persist();
-    this.setState({ imgPrevLoaded: false }, () => {
+    this.setState({ imgLoading: true, imgPrevLoaded: false }, () => {
       const file = event.target.files[0];
       let fileReader = new FileReader();
 
       fileReader.readAsDataURL(file);   
       fileReader.onloadend = () => {
-        this.setState({ imgPrevLoaded: true, imgPrevUrl: fileReader.result, file: file });
+        this.setState({ imgLoading: false, imgPrevLoaded: true, imgPrevUrl: fileReader.result, file: file });
       };
     });
   }
   
   handleSave() {
     // validate inputs
-    if (this.state.imgPrevLoaded) {
+    if (!this.state.imgLoading) {
       const formData = new FormData();
       
       formData.append("user[id]", this.props.user.user.id);
@@ -157,7 +158,7 @@ class UsersShow extends Component {
     const fullnameVal = this.state.fullname || user.fullname;
     const descVal = this.state.user_desc || user.desc;
     
-    const imgPrevLoaded = this.state.imgPrevLoaded ? "" : "disabled-button";
+    const imgLoading = this.state.imgLoading ? "disabled-button" : "";
     const prevDisplay = this.state.imgPrevLoaded ? "" : "hidden";
     
     return (
@@ -206,7 +207,7 @@ class UsersShow extends Component {
             </div>
             <div className="user-show-save-cancel-container group">
               <div 
-                className={`user-show-save-btn button ${inputDisplay} ${imgPrevLoaded}`}
+                className={`user-show-save-btn button ${inputDisplay} ${imgLoading}`}
                 onClick={this.handleSave}>
                 Save
               </div>
