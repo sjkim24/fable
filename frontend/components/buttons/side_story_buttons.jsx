@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+     import React, { Component } from "react";
 import Heart from "./heart.jsx";
 import Bookmark from "./bookmark.jsx";
 import FABLE from "../../utils/definitions";
@@ -7,36 +7,30 @@ class SideStoryButtons extends Component {
   constructor() {
     super();
     
-    this.state = { style: { position: "fixed" } }
+    this.state = { style: {}, active: false };
   }
   
   togglePosition() {
-    const headerNavbarHeight = FABLE.CSS.headerNavbarHeight;
-    const paddingTop = FABLE.CSS.storyContentPaddingTop;
-    const bannerImageHeight = $(".story-banner-img").outerHeight();
-    const titleHeight = $(".story-title").outerHeight();
-    const subtitleHeight = $(".story-subtitle").outerHeight();
-    const contentHeight = $(".story-content").outerHeight();
-    
-    // console.log("scrollY", window.scrollY, "height up to content", headerNavbarHeight + paddingTop + titleHeight + subtitleHeight + contentHeight);
-    let style;
-    // if (window.scrollY >= $(".story-content").height()) {
-    // const totalHeight = headerNavbarHeight + paddingTop + titleHeight + subtitleHeight + contentHeight;
-      // if (bannerImageHeight) { totalHeight += bannerImageHeight }
-    //   style = { 
-    //     position: "absolute",
-    //     top: totalHeight
-    //   };
-    //   this.setState({ style: style });
-    // } else if(window.scrollY < contentHeight)  {
-    //   style = { position: "fixed" };
-    //   this.setState({ style: style });
-    // } 
+    if (window.scrollY + this.state.heightB4Btns < this.state.heightB4Content + 7) { // add 50px to trigger the blur out faster
+      // above content height
+      this.setState({ active: false });
+      // past content height
+    } else if ((window.scrollY + window.innerHeight / 2) >= (this.state.heightB4Content + this.state.contentHeight)) {
+      this.setState({ style: { display: "block", position: "absolute", top: `${beforeContentHeight + contentHeight -  buttonsHeight}px`} })
+    } else if ((window.scrollY + this.state.heightB4Btns >= this.state.heightB4Content + 7)
+      && (window.scrollY + this.state.heightB4Btns < this.state.heightB4Content + this.state.contentHeight)) {
+      // in between content height
+      this.setState({ style: { display: "block", position: "fixed" }, active: true });
+    }
   }
   
   render() {
+    const active = this.state.active ? "active" : "inactive";
+    
     return (
-      <div className="side-story-buttons">
+      <div 
+        className={`side-story-buttons side-story-buttons-${active}`}
+        style={this.state.style}>
         <Heart 
           storyId={this.props.storyId}
           liked={this.props.liked} 
@@ -52,14 +46,30 @@ class SideStoryButtons extends Component {
   
   componentDidMount() {
     const that = this;
-    // console.log(document.innerHeight());
-    document.addEventListener('scroll', () => {
-      that.togglePosition();
-      // console.log(window.innerHeight + window.scrollY);
-      // if (window.scrollY >= $(".story-content").height()) {
-      //   console.log("passed");
-      //   that.togglePo
-      // }
+    document.addEventListener('scroll', () => { that.togglePosition(); });
+    
+    const headerNavbarHeight = FABLE.CSS.headerNavbarHeight;
+    const paddingTop = FABLE.CSS.storyContentPaddingTop;
+    const btnsHeight = $(".side-story-buttons").outerHeight();
+    const heightB4Btns = window.innerHeight / 2 - btnsHeight;
+    const headerHeight = $(".story-header").outerHeight();
+    const bannerImgHeight = $(".story-banner-img").outerHeight() || 0;
+    const titleHeight = $(".story-title").outerHeight();
+    const subtitleHeight = $(".story-subtitle").outerHeight() || 0;
+    const heightB4Content = headerNavbarHeight + paddingTop + headerHeight + bannerImgHeight + titleHeight + subtitleHeight;
+    const contentHeight = $(".story-content").outerHeight();
+    
+    this.setState({
+      headerNavbarHeight: headerNavbarHeight,
+      paddingTop: paddingTop,
+      btnsHeight: btnsHeight,
+      heightB4Btns: heightB4Btns,
+      headerHeight: headerHeight,
+      bannerImgHeight: bannerImgHeight,
+      titleHeight: titleHeight,
+      subtitleHeight: subtitleHeight,
+      heightB4Content: heightB4Content,
+      contentHeight: contentHeight
     });
   }
 }

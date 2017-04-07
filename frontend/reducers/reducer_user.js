@@ -1,5 +1,6 @@
 import { 
-  FETCH_USER, FETCH_FOLLOWERS, FETCH_FOLLOWINGS, FETCH_RESPONSES, UPDATE_USER 
+  FETCH_USER, FETCH_FOLLOWERS, FETCH_FOLLOWINGS, FETCH_RESPONSES, UPDATE_USER,
+  FETCH_TAG_FOLLOWS 
 } from  "../actions/action_user";
 
 const INITIAL_STATE = { 
@@ -8,7 +9,8 @@ const INITIAL_STATE = {
   follwings: [],
   latest: [],
   recommends: [],
-  responses: []
+  responses: [],
+  tagFollows: []
 };
 
 export default function(state = INITIAL_STATE, action) {
@@ -31,6 +33,8 @@ export default function(state = INITIAL_STATE, action) {
       return { ...state, responses: action.payload.data.responses };
     case UPDATE_USER:
       return { ...state, user: action.payload.data };
+    case FETCH_TAG_FOLLOWS:
+      return { ...state, tagFollows: action.payload.data }
     default:
       return state;
   };

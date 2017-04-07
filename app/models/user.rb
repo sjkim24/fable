@@ -28,6 +28,8 @@ class User < ActiveRecord::Base
   has_many :following_relationships, class_name: "Follow", foreign_key: :follower_id, dependent: :destroy
   has_many :followings, through: :following_relationships, source: :following
   
+  has_many :tag_follows
+  
   def following?(follower_id, following_id)
     Follow.where(follower_id: follower_id, following_id: following_id).present?
   end
