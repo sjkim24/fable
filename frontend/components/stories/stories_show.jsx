@@ -42,7 +42,6 @@ class StoriesShow extends Component {
   }
   
   formattedContent(content) {
-    console.log(content);
     const parsed = JSON.parse(content);
     // const parsed = content;
     const paras = parsed.split("\n").map((para, i) => {

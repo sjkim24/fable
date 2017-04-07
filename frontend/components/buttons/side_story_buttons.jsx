@@ -1,4 +1,4 @@
-     import React, { Component } from "react";
+import React, { Component } from "react";
 import Heart from "./heart.jsx";
 import Bookmark from "./bookmark.jsx";
 import FABLE from "../../utils/definitions";
@@ -14,9 +14,11 @@ class SideStoryButtons extends Component {
     if (window.scrollY + this.state.heightB4Btns < this.state.heightB4Content + 7) { // add 50px to trigger the blur out faster
       // above content height
       this.setState({ active: false });
-      // past content height
     } else if ((window.scrollY + window.innerHeight / 2) >= (this.state.heightB4Content + this.state.contentHeight)) {
-      this.setState({ style: { display: "block", position: "absolute", top: `${beforeContentHeight + contentHeight -  buttonsHeight}px`} })
+      // past content height
+      console.log("hit");
+      const totalHeight = this.state.heightB4Content + this.state.contentHeight - this.state.btnsHeight;;
+      this.setState({ style: { display: "block", position: "absolute", top: `${totalHeight}px`} })
     } else if ((window.scrollY + this.state.heightB4Btns >= this.state.heightB4Content + 7)
       && (window.scrollY + this.state.heightB4Btns < this.state.heightB4Content + this.state.contentHeight)) {
       // in between content height
@@ -45,7 +47,7 @@ class SideStoryButtons extends Component {
   }
   
   componentDidMount() {
-    const that = this;
+    const that = this
     document.addEventListener('scroll', () => { that.togglePosition(); });
     
     const headerNavbarHeight = FABLE.CSS.headerNavbarHeight;
@@ -71,6 +73,10 @@ class SideStoryButtons extends Component {
       heightB4Content: heightB4Content,
       contentHeight: contentHeight
     });
+  }
+  
+  componentWillUnmount() {
+    document.removeEventListener('scroll', () => { return });
   }
 }
 
