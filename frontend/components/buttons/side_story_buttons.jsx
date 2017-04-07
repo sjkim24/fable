@@ -7,41 +7,46 @@ class SideStoryButtons extends Component {
   constructor() {
     super();
     
-    this.state = { style: {}, active: false };
+    this.state = { style: {}, active: false, settingDim: false };
     this.togglePosition = this.togglePosition.bind(this);
   }
   
   setDimensions() {
-    const headerNavbarHeight = FABLE.CSS.headerNavbarHeight;
-    const paddingTop = FABLE.CSS.storyContentPaddingTop;
-    const btnsHeight = $(".side-story-buttons").outerHeight();
-    const heightB4Btns = window.innerHeight / 2 - btnsHeight;
-    const headerHeight = $(".story-header").outerHeight();
-    const bannerImgHeight = $(".story-banner-img").outerHeight() || 0;
-    const titleHeight = $(".story-title").outerHeight();
-    const subtitleHeight = $(".story-subtitle").outerHeight() || 0;
-    const heightB4Content = headerNavbarHeight + paddingTop + headerHeight + bannerImgHeight + titleHeight + subtitleHeight;
-    const contentHeight = $(".story-content").outerHeight();
+    const that = this;
     
-    this.setState({
-      headerNavbarHeight: headerNavbarHeight,
-      paddingTop: paddingTop,
-      btnsHeight: btnsHeight,
-      heightB4Btns: heightB4Btns,
-      headerHeight: headerHeight,
-      bannerImgHeight: bannerImgHeight,
-      titleHeight: titleHeight,
-      subtitleHeight: subtitleHeight,
-      heightB4Content: heightB4Content,
-      contentHeight: contentHeight,
-      dimensionsSet: true
-    });
+    $(".story-banner-img")[0].onload = function() {
+      const headerNavbarHeight = FABLE.CSS.headerNavbarHeight;
+      const paddingTop = FABLE.CSS.storyContentPaddingTop;
+      const btnsHeight = $(".side-story-buttons").outerHeight();
+      const heightB4Btns = window.innerHeight / 2 - btnsHeight;
+      const headerHeight = $(".story-header").outerHeight();
+      const bannerImgHeight = $(".story-banner-img").outerHeight() || 0;
+      const titleHeight = $(".story-title").outerHeight();
+      const subtitleHeight = $(".story-subtitle").outerHeight() || 0;
+      const heightB4Content = headerNavbarHeight + paddingTop + headerHeight + bannerImgHeight + titleHeight + subtitleHeight;
+      const contentHeight = $(".story-content").outerHeight();
+      
+      that.setState({
+        headerNavbarHeight: headerNavbarHeight,
+        paddingTop: paddingTop,
+        btnsHeight: btnsHeight,
+        heightB4Btns: heightB4Btns,
+        headerHeight: headerHeight,
+        bannerImgHeight: bannerImgHeight,
+        titleHeight: titleHeight,
+        subtitleHeight: subtitleHeight,
+        heightB4Content: heightB4Content,
+        contentHeight: contentHeight,
+        dimensionsSet: true,
+        settingDim: false
+      });
+    }
   }
   
   togglePosition() {
     if (!this.state.dimensionsSet && window.innerWidth >= 1000) {
       this.setDimensions();
-    } else if (this.state.dimensionsSet && window.innerWidth >= 1000) {
+    } else if (this.state.dimensionsSet && window.innerWidth >= 1000) { 
       if (window.scrollY + this.state.heightB4Btns < this.state.heightB4Content + 7) { // add 50px to trigger the blur out faster
         // above content height
         this.setState({ active: false });
