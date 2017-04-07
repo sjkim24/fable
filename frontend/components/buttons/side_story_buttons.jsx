@@ -13,34 +13,47 @@ class SideStoryButtons extends Component {
   
   setDimensions() {
     const that = this;
+    const headerNavbarHeight = FABLE.CSS.headerNavbarHeight;
+    const paddingTop = FABLE.CSS.storyContentPaddingTop;
+    const btnsHeight = $(".side-story-buttons").outerHeight();
+    const heightB4Btns = window.innerHeight / 2 - btnsHeight;
+    const headerHeight = $(".story-header").outerHeight();
+    const titleHeight = $(".story-title").outerHeight();
+    const subtitleHeight = $(".story-subtitle").outerHeight() || 0;
     
-    $(".story-banner-img")[0].onload = function() {
-      const headerNavbarHeight = FABLE.CSS.headerNavbarHeight;
-      const paddingTop = FABLE.CSS.storyContentPaddingTop;
-      const btnsHeight = $(".side-story-buttons").outerHeight();
-      const heightB4Btns = window.innerHeight / 2 - btnsHeight;
-      const headerHeight = $(".story-header").outerHeight();
-      const bannerImgHeight = $(".story-banner-img").outerHeight() || 0;
-      const titleHeight = $(".story-title").outerHeight();
-      const subtitleHeight = $(".story-subtitle").outerHeight() || 0;
-      const heightB4Content = headerNavbarHeight + paddingTop + headerHeight + bannerImgHeight + titleHeight + subtitleHeight;
-      const contentHeight = $(".story-content").outerHeight();
-      
-      that.setState({
-        headerNavbarHeight: headerNavbarHeight,
-        paddingTop: paddingTop,
-        btnsHeight: btnsHeight,
-        heightB4Btns: heightB4Btns,
-        headerHeight: headerHeight,
-        bannerImgHeight: bannerImgHeight,
-        titleHeight: titleHeight,
-        subtitleHeight: subtitleHeight,
-        heightB4Content: heightB4Content,
-        contentHeight: contentHeight,
-        dimensionsSet: true,
-        settingDim: false
-      });
-    }
+    that.setState({
+      headerNavbarHeight: headerNavbarHeight,
+      paddingTop: paddingTop,
+      btnsHeight: btnsHeight,
+      heightB4Btns: heightB4Btns,
+      headerHeight: headerHeight,
+      titleHeight: titleHeight,
+      subtitleHeight: subtitleHeight
+    }, () => {
+      if ($(".story-banner-img")[0]) {
+        $(".story-banner-img")[0].onload = function() {
+          const bannerImgHeight = $(".story-banner-img").outerHeight() || 0;
+          const heightB4Content = headerNavbarHeight + paddingTop + headerHeight + bannerImgHeight + titleHeight + subtitleHeight;
+          const contentHeight = $(".story-content").outerHeight();
+          this.setState( {
+            bannerImgHeight: bannerImgHeight,
+            heightB4Content: heightB4Content,
+            contentHeight: contentHeight,
+            dimensionsSet: true
+          });
+        }
+      } else {
+        const bannerImgHeight = $(".story-banner-img").outerHeight() || 0;
+        const heightB4Content = headerNavbarHeight + paddingTop + headerHeight + bannerImgHeight + titleHeight + subtitleHeight;
+        const contentHeight = $(".story-content").outerHeight();
+        this.setState( {
+          bannerImgHeight: bannerImgHeight,
+          heightB4Content: heightB4Content,
+          contentHeight: contentHeight,
+          dimensionsSet: true
+        });
+      }
+    });
   }
   
   togglePosition() {
