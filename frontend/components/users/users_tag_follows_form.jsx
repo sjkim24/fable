@@ -41,7 +41,7 @@ class UsersTagFollowsForm extends Component {
           tag form
           <input 
             onChange={this.handleOnChange}
-            value={}/>
+            value="" />
         </form>
         <div>
           display searchedTags here
@@ -64,4 +64,4 @@ function mapStateToProps(state) {
   return { currentUser: state.auth.currentUser, tagFollows: state.user.tagFollows };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)()
+export default connect(mapStateToProps, mapDispatchToProps)(UsersTagFollowsForm)

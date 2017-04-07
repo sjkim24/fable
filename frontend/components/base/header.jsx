@@ -36,6 +36,7 @@ class Header extends Component {
             alt="user image" 
             className="header-list-user-img" />
           <DropDownMenu
+            username={this.props.currentUser.username}
             name="user"
             active={this.state.dropDownMenuActive} 
             links={["profile", "edit-tag-follows"]} />
@@ -51,9 +52,6 @@ class Header extends Component {
   }
   
   render() {
-    // if signed in display write a story
-    // else display auth links
-    // for now, i'll set the boolean value of signed in to a variable in render function
     const authLinkDisplay = "";
     const storyLinkDisplay = "hidden"
       
