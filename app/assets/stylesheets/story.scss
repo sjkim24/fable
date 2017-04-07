@@ -72,7 +72,9 @@
 }
 
 .side-story-buttons {
-  display: none;
+  position: absolute;
+  visibility: hidden;
+  width: 32px;
 }
 
 .story-title {
@@ -296,6 +298,7 @@
     left: calc((100% - 700px) / 2 - 75px); // check if there's a better way
     top: 50%;
     transform: translate(0, -50%);
+    visibility: hidden;
   }
   
   .side-story-buttons-active {

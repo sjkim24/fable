@@ -11,18 +11,49 @@ class SideStoryButtons extends Component {
     this.togglePosition = this.togglePosition.bind(this);
   }
   
+  setDimensions() {
+    const headerNavbarHeight = FABLE.CSS.headerNavbarHeight;
+    const paddingTop = FABLE.CSS.storyContentPaddingTop;
+    const btnsHeight = $(".side-story-buttons").outerHeight();
+    const heightB4Btns = window.innerHeight / 2 - btnsHeight;
+    const headerHeight = $(".story-header").outerHeight();
+    const bannerImgHeight = $(".story-banner-img").outerHeight() || 0;
+    const titleHeight = $(".story-title").outerHeight();
+    const subtitleHeight = $(".story-subtitle").outerHeight() || 0;
+    const heightB4Content = headerNavbarHeight + paddingTop + headerHeight + bannerImgHeight + titleHeight + subtitleHeight;
+    const contentHeight = $(".story-content").outerHeight();
+    
+    this.setState({
+      headerNavbarHeight: headerNavbarHeight,
+      paddingTop: paddingTop,
+      btnsHeight: btnsHeight,
+      heightB4Btns: heightB4Btns,
+      headerHeight: headerHeight,
+      bannerImgHeight: bannerImgHeight,
+      titleHeight: titleHeight,
+      subtitleHeight: subtitleHeight,
+      heightB4Content: heightB4Content,
+      contentHeight: contentHeight,
+      dimensionsSet: true
+    });
+  }
+  
   togglePosition() {
-    if (window.scrollY + this.state.heightB4Btns < this.state.heightB4Content + 7) { // add 50px to trigger the blur out faster
-      // above content height
-      this.setState({ active: false });
-    } else if ((window.scrollY + window.innerHeight / 2) >= (this.state.heightB4Content + this.state.contentHeight)) {
-      // past content height
-      const totalHeight = this.state.heightB4Content + this.state.contentHeight - this.state.btnsHeight;;
-      this.setState({ style: { display: "block", position: "absolute", top: `${totalHeight}px`} })
-    } else if ((window.scrollY + this.state.heightB4Btns >= this.state.heightB4Content + 7)
-      && (window.scrollY + this.state.heightB4Btns < this.state.heightB4Content + this.state.contentHeight)) {
-      // in between content height
-      this.setState({ style: { display: "block", position: "fixed" }, active: true });
+    if (!this.state.dimensionsSet && window.innerWidth >= 1000) {
+      this.setDimensions();
+    } else if (this.state.dimensionsSet && window.innerWidth >= 1000) {
+      if (window.scrollY + this.state.heightB4Btns < this.state.heightB4Content + 7) { // add 50px to trigger the blur out faster
+        // above content height
+        this.setState({ active: false });
+      } else if ((window.scrollY + window.innerHeight / 2) >= (this.state.heightB4Content + this.state.contentHeight)) {
+        // past content height
+        const totalHeight = this.state.heightB4Content + this.state.contentHeight - this.state.btnsHeight;;
+        this.setState({ style: { display: "block", position: "absolute", top: `${totalHeight}px`, visibility: "visible"} })
+      } else if ((window.scrollY + this.state.heightB4Btns >= this.state.heightB4Content + 7)
+        && (window.scrollY + this.state.heightB4Btns < this.state.heightB4Content + this.state.contentHeight)) {
+        // in between content height
+        this.setState({ style: { display: "block", position: "fixed", visibility: "visible" }, active: true });
+      }
     }
   }
   
@@ -47,36 +78,11 @@ class SideStoryButtons extends Component {
   }
   
   componentDidMount() {
-    const that = this
     document.addEventListener('scroll', this.togglePosition);
-    
-    const headerNavbarHeight = FABLE.CSS.headerNavbarHeight;
-    const paddingTop = FABLE.CSS.storyContentPaddingTop;
-    const btnsHeight = $(".side-story-buttons").outerHeight();
-    const heightB4Btns = window.innerHeight / 2 - btnsHeight;
-    const headerHeight = $(".story-header").outerHeight();
-    const bannerImgHeight = $(".story-banner-img").outerHeight() || 0;
-    const titleHeight = $(".story-title").outerHeight();
-    const subtitleHeight = $(".story-subtitle").outerHeight() || 0;
-    const heightB4Content = headerNavbarHeight + paddingTop + headerHeight + bannerImgHeight + titleHeight + subtitleHeight;
-    const contentHeight = $(".story-content").outerHeight();
-    
-    this.setState({
-      headerNavbarHeight: headerNavbarHeight,
-      paddingTop: paddingTop,
-      btnsHeight: btnsHeight,
-      heightB4Btns: heightB4Btns,
-      headerHeight: headerHeight,
-      bannerImgHeight: bannerImgHeight,
-      titleHeight: titleHeight,
-      subtitleHeight: subtitleHeight,
-      heightB4Content: heightB4Content,
-      contentHeight: contentHeight
-    });
+    if (window.innerWidth >= 1000) { this.setDimensions(); }
   }
   
   componentWillUnmount() {
-    const that = this
     document.removeEventListener('scroll', this.togglePosition);
   }
 }
