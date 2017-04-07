@@ -20,8 +20,10 @@ class StoriesIndexItem extends Component {
     let subtitle = this.props.story.subtitle;
     const profileViewHide = this.props.profile ? "hidden" : "";
     
-    if (subtitle && subtitle.split(" ").length > 20) {
-      subtitle = subtitle.split(" ").slice(0,20).join(" ");
+    if (subtitle && subtitle.split(" ").length > 15) {
+      subtitle = `${subtitle.split(" ").slice(0,15).join(" ")}...`;
+    } else if (subtitle) {
+      subtitle = subtitle.split(" ").slice(0,15).join(" ");
     }
     
     return (
@@ -46,7 +48,7 @@ class StoriesIndexItem extends Component {
       let content = parsed.split(" ");
       
       if (content.length > 20) {
-        content = `${content.slice(0,20).join(" ")} ...`;
+        content = `${content.slice(0,20).join(" ")}...`;
       } else {
         content = content.slice(0,20).join(" ");
       }

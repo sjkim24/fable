@@ -25,6 +25,10 @@ class StoriesIndex extends Component {
   }
   
   render() {
+    if (!this.props.stories) {
+      return <div className="loader" />;
+    }
+    
     return (
       <div className="stories-recs-container group">
         <ul className="stories">
