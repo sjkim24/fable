@@ -12,13 +12,28 @@ class Header extends Component {
   constructor() {
     super();
     
-    this.state = { dropDownMenuActive: false };
+    this.state = { 
+      dropDownMenuActive: false,
+      rejectList: { 
+        "header-list-user-container": true, 
+        "dropdown-menu": true
+      }
+    };
     this.toggleAuthModal = this.toggleAuthModal.bind(this);
     this.toggleDropDownMenu = this.toggleDropDownMenu.bind(this);
+    this.checkRejectThenToggle = this.checkRejectThenToggle.bind(this);
   }
   
   toggleAuthModal() {
     this.props.toggleModal("auth-selections");
+  }
+  
+  checkRejectThenToggle(event) {
+    const klass = event.target.parentNode.classList[0];
+    
+    if (this.state.dropDownMenuActive && !this.state.rejectList[klass]) {
+      this.setState({ dropDownMenuActive: false });
+    }
   }
   
   toggleDropDownMenu() {
@@ -78,6 +93,10 @@ class Header extends Component {
         </div>
       </header>
     );
+  }
+  
+  componentDidMount() {    
+    document.body.addEventListener("click", this.checkRejectThenToggle);
   }
 }
 
