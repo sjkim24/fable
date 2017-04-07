@@ -23,13 +23,28 @@ class CommentForm extends Component {
     this.handleContentFormChange = this.handleContentFormChange.bind(this);
     this.handleOnSubmit = this.handleOnSubmit.bind(this);
     this.goFullScreen = this.goFullScreen.bind(this);
+    this.checkRejectThenToggle = this.checkRejectThenToggle.bind(this);
   }
   
-  checkAuthThenToggle() {
+  checkAuthThenToggle(event) {
     if (this.props.currentUser) {
       this.toggleActive();
     } else {
       this.props.toggleModal("auth-selections");
+    }
+  }
+  
+  checkRejectThenToggle(event) {
+    let klass;
+    
+    if (event.target.classList[0] === "comment-form") {
+      klass = "comment-form";
+    } else {
+      klass = event.target.parentNode.classList[0];
+    }
+
+    if (this.state.active && !this.state.rejectList[klass]) {
+      this.setState({ active: false });
     }
   }
   
@@ -123,28 +138,12 @@ class CommentForm extends Component {
     );
   }
   
-  componentDidMount() {
-    const that = this;
-    
-    document.body.addEventListener("click", (event) => {
-      let klass;
-      
-      if (event.target.classList[0] === "comment-form") {
-        klass = "comment-form";
-      } else {
-        klass = event.target.parentNode.classList[0];
-      }
-
-      if (that.state.active && !that.state.rejectList[klass]) {
-        that.setState({ active: false });
-      }
-    });
+  componentDidMount() {    
+    document.body.addEventListener("click", this.checkRejectThenToggle);
   }
   
   componentWillUnmount() {
-    document.body.removeEventListener("click", () => {
-      return;
-    });
+    document.body.removeEventListener("click", this.checkRejectThenToggle);
   }
 };
 

@@ -8,6 +8,7 @@ class SideStoryButtons extends Component {
     super();
     
     this.state = { style: {}, active: false };
+    this.togglePosition = this.togglePosition.bind(this);
   }
   
   togglePosition() {
@@ -16,7 +17,6 @@ class SideStoryButtons extends Component {
       this.setState({ active: false });
     } else if ((window.scrollY + window.innerHeight / 2) >= (this.state.heightB4Content + this.state.contentHeight)) {
       // past content height
-      console.log("hit");
       const totalHeight = this.state.heightB4Content + this.state.contentHeight - this.state.btnsHeight;;
       this.setState({ style: { display: "block", position: "absolute", top: `${totalHeight}px`} })
     } else if ((window.scrollY + this.state.heightB4Btns >= this.state.heightB4Content + 7)
@@ -48,7 +48,7 @@ class SideStoryButtons extends Component {
   
   componentDidMount() {
     const that = this
-    document.addEventListener('scroll', () => { that.togglePosition(); });
+    document.addEventListener('scroll', this.togglePosition);
     
     const headerNavbarHeight = FABLE.CSS.headerNavbarHeight;
     const paddingTop = FABLE.CSS.storyContentPaddingTop;
@@ -76,7 +76,8 @@ class SideStoryButtons extends Component {
   }
   
   componentWillUnmount() {
-    document.removeEventListener('scroll', () => { return });
+    const that = this
+    document.removeEventListener('scroll', this.togglePosition);
   }
 }
 
