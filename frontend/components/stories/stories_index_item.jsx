@@ -42,7 +42,8 @@ class StoriesIndexItem extends Component {
     // title but NO subtitle, banner img -> snippet (~50 words or the first paragraph)
     const shouldRender = !(this.props.story.image_url && this.props.story.title && this.props.subtitle);
     if (shouldRender) {
-      const content = this.props.story.content.split(" ").slice(0,20).join(" ");
+      const parsed = JSON.parse(this.props.story.content);
+      const content = parsed.split(" ").slice(0,20).join(" ");
       
       return <p className="stories-item-snippet">{`${content} ...`}</p>;
     }

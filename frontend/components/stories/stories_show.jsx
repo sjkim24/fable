@@ -42,7 +42,9 @@ class StoriesShow extends Component {
   }
   
   formattedContent(content) {
+    console.log(content);
     const parsed = JSON.parse(content);
+    // const parsed = content;
     const paras = parsed.split("\n").map((para, i) => {
       return (
         <p key={`story-p-${i}`} className="story-content-p">{para}</p>

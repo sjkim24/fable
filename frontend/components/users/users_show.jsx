@@ -51,25 +51,23 @@ class UsersShow extends Component {
     this.setState({ imgPrevLoaded: false }, () => {
       const file = event.target.files[0];
       let fileReader = new FileReader();
-      
+
+      fileReader.readAsDataURL(file);   
       fileReader.onloadend = () => {
-        this.setState({ imgPrevLoaded: true, imgPrevUrl: fileReader.result });
+        this.setState({ imgPrevLoaded: true, imgPrevUrl: fileReader.result, file: file });
       };
-      fileReader.readAsDataURL(file);
     });
   }
   
   handleSave() {
     // validate inputs
     if (this.state.imgPrevLoaded) {
-      const fileSelect = document.querySelector(".user-img-file-select");
-      const file = fileSelect.files[0];
       const formData = new FormData();
       
       formData.append("user[id]", this.props.user.user.id);
       formData.append("user[fullname]", this.state.fullname || this.props.user.user.fullname);
       formData.append("user[user_desc]", this.state.user_desc || this.props.user.user.desc);
-      formData.append("user[photo]", file)
+      formData.append("user[photo]", this.state.file)
       
       this.props.updateUser(this.props.user.user.id, formData);
       this.handleCancel();
@@ -99,10 +97,6 @@ class UsersShow extends Component {
     this.setState({ active: type });
   };
   
-  componentWillMount() {
-    this.props.fetchUser(this.props.params.username);
-  }
-  
   renderActiveTab() {
     const user = this.props.user;
     
@@ -129,10 +123,14 @@ class UsersShow extends Component {
     };
   }
   
+  componentWillMount() {
+    this.props.fetchUser(this.props.params.username);
+  }
+  
   render() {
     const user = this.props.user.user;
-    
-    if (!user || !this.props.currentUser) {
+    console.log(this.props.history);
+    if (!user) {
       return <div className="loader" />;
     }
 
@@ -143,7 +141,13 @@ class UsersShow extends Component {
     const recActive = this.state.active === "recommends" ? "tab-header-active" : "";
     const respActive = this.state.active === "responses" ? "tab-header-active" : "";
     
-    const editDisplay = user.id === this.props.currentUser.id ? "" : "hidden";
+    let editDisplay;
+    if (this.props.currentUser) {
+      editDisplay = user.id === this.props.currentUser.id ? "" : "hidden";
+    } else {
+      editDisplay = "hidden";
+    }
+    
     const overlayDisplay = this.state.edit ? "opaque-overlay" : ""; 
     const inputDisplay = this.state.edit ? "" : "hidden";
     const divDisplay = this.state.edit ? "hidden" : "";

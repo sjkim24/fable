@@ -16,6 +16,7 @@ class StoriesForm extends Component {
     this.handleOnSubmit = this.handleOnSubmit.bind(this);
     this.handleOnChange = this.handleOnChange.bind(this);
     this.handleContentFormChange = this.handleContentFormChange.bind(this);
+    this.handleFilePreview = this.handleFilePreview.bind(this);
   }
   
   handleOnChange(event, type) {
@@ -33,45 +34,66 @@ class StoriesForm extends Component {
     this.setState({ content: content });
   }
   
+  handleFilePreview(event) {
+    event.persist();
+    this.setState({ imgPrevLoaded: false }, () => {
+      const file = event.target.files[0];
+      let fileReader = new FileReader();
+
+      fileReader.readAsDataURL(file);   
+      fileReader.onloadend = () => {
+        this.setState({ imgPrevLoaded: true, imgPrevUrl: fileReader.result, file: file });
+      };
+    });
+  }
+  
   handleOnSubmit(event) {
     event.preventDefault();
     // validate and error check first
-    // call create story action
-    const fileSelect = document.querySelector(".story-banner-img-file-select");
-    const files = fileSelect.files;
-    const file = files[0];
-    
-    const formData = new FormData();
-    formData.append("story[title]", this.state.title);
-    formData.append("story[subtitle]", this.state.subtitle);
-    formData.append("story[content]", this.state.content);
-    formData.append("story[banner_image]", file);
-    
-    this.props.createStory(formData);
-    debugger
+    if (this.state.imgPrevLoaded) {
+      const formData = new FormData();
+      formData.append("story[title]", this.state.title);
+      formData.append("story[subtitle]", this.state.subtitle);
+      formData.append("story[content]", this.state.content);
+      formData.append("story[banner_image]", this.state.file);
+      
+      this.props.createStory(formData);
+    }
   }
   
   render() {
-    // console.log(this.state.content);
+    const prevDisplay = this.state.imgPrevLoaded ? "" : "hidden";
+    
     return (
       <form onSubmit={this.handleOnSubmit} className="stories-form">
-        <div className="stories-form-banner-img-input-container">
-          <img 
-            src="/images/icons/camera.png"
-            alt="camera img" 
-            className="stories-form-camera-img" />
-          <input type="file" name="story[banner_image]" className="story-banner-img-file-select" />
-        </div>
         <input
-          className="story-form-input story-form-input-title" 
+          className="stories-form-input stories-form-input-title padding-side" 
           name="story[title]" 
           placeholder="Title" 
           onChange={(event) => this.handleOnChange(event, "title")} />
         <input
-          className="story-form-input story-form-input-subtitle" 
+          className="stories-form-input stories-form-input-subtitle padding-side" 
           name="story[subtitle]" 
           placeholder="Subtitle"
           onChange={(event) => this.handleOnChange(event, "subtitle")} />
+        <div className="stories-form-banner-img-input-container">
+          <label htmlFor="file-input">
+            <img 
+              src="/images/icons/camera.png"
+              alt="camera img" 
+              className="stories-form-camera-img img-prev-camera-img" />
+            <input
+              id="file-input"
+              onChange={this.handleFilePreview} 
+              type="file" 
+              name="story[banner_image]" 
+              className="stories-form-file-input hidden" />
+          </label>
+          <img 
+            src={this.state.imgPrevUrl} 
+            alt="preview img" 
+            className={`stories-form-preview-img ${prevDisplay}`} />
+        </div>
         <ContentForm handleContentFormChange={this.handleContentFormChange} />
         <input type="submit" value="Publish" className="button" />
       </form>

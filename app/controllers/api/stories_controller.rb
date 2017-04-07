@@ -10,10 +10,7 @@ class Api::StoriesController < ApplicationController
   end
 
   def create
-    @title = "Fable | Share your tales with the world"
-    binding.pry
     @story = Story.new(story_params)
-
     @story.user_id = current_user.id
 
     if @story.save

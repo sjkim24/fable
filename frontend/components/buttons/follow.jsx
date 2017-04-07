@@ -73,6 +73,10 @@ class Follow extends Component {
   }
   
   render() {
+    if (!this.props.currentUser) {
+      return <div className="loader" />;
+    }
+    
     const classProps = this.props.className || "";
     const follow = this.props.following ? "Unfollow" : "Follow";
     const followDisplay = this.props.userId !== this.props.currentUser.id ? "" : "hidden";

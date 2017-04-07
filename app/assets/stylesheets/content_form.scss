@@ -1,5 +1,9 @@
 .content-form {
   margin-bottom: 10px;
+  
+  &:hover {
+    cursor: text;
+  }
 }
 
 .content-form:empty:before {

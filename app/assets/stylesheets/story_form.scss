@@ -1,3 +1,45 @@
+.stories-form {
+  background: #FFFFFF;
+}
+
+.stories-form-input {
+  display: block;
+  margin: 0 auto;
+  max-width: 700px;
+  width: calc(100% - 40px);
+}
+
+.stories-form-input-title {
+  font-size: 32px;
+}
+
+.stories-form-input-subtitle {
+  font-size: 28px;
+  padding-bottom: 20px;
+}
+
+.stories-form-banner-img-input-container {
+  margin: 0 auto;
+  max-width: 700px;
+  position: relative;
+}
+
 .stories-form-camera-img {
-  width: 20px;
+  position: absolute;
+  left: 20px;
+  position: absolute;
+  top: -20px;
+}
+
+.stories-form .content-form {
+  margin: 0 auto;
+  max-width: 700px;
+  padding: 0px 20px;
+  width: calc(100% - 40px);
+}
+
+@media (min-width: 768px) {
+  .stories-form-camera-img {
+    left: 0;
+  }
 }

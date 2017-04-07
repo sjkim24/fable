@@ -3,7 +3,11 @@ json.user do
   json.fullname @user.fullname
   json.desc @user.user_desc
   json.image_url @user.photo.url
-  json.following @user.following?(current_user.id, @user.id)
+  if current_user
+    json.following @user.following?(current_user.id, @user.id)
+  else
+    json.follow false
+  end
 end
 
 json.latest @latest.each do |story|
@@ -22,7 +26,7 @@ json.latest @latest.each do |story|
   else
     json.image_url nil
   end
-  json.content story.content
+  json.content story.content.to_json
   json.likes_count story.story_likes.count
   json.comments_count story.get_comments_only.count
   json.main_tag story.main_tag

@@ -4,7 +4,7 @@ class Api::CurrentUserController < ApplicationController
     if current_user
       render :get_current_user
     else
-      render json: nil
+      render json: false
     end
   end
   
