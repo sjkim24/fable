@@ -4,9 +4,9 @@ import { Link } from "react-router";
 class DropDownMenu extends Component {
   getHref(name) {
     switch(name) {
-      case("profile"):
+      case("Profile"):
         return `/users/@${this.props.username}`;
-      case("edit-tag-follows"):
+      case("Edit Tag Follows"):
         return `/users/@${this.props.username}/edit_tag_follows`;
     };
   }
@@ -15,11 +15,12 @@ class DropDownMenu extends Component {
     const that = this;
     if (this.props.links) {
       const links = this.props.links.map((link, i) => {
-        let linkText = link.split("-");
-        linkText = linkText[0].toUpperCase() + linkText.slice(1);
         return (
-          <Link to={that.getHref(link)} key={`user-dbm-${i}`}>
-            {linkText}
+          <Link 
+            to={that.getHref(link)} 
+            key={`user-dbm-${i}`} 
+            className={`dropdown-menu-${that.props.name}-option`}>
+            {link}
           </Link>
         );
       });
@@ -32,7 +33,7 @@ class DropDownMenu extends Component {
     const display = this.props.active ? "" : "hidden";
     
     return (
-      <div className={`dropdown-menu dropdown-menu-${this.props.name} ${display}`}>
+      <div className={`dropdown-menu dropdown-menu-${this.props.name} ${display} card`}>
         {this.renderOptions()}
       </div>
     );
