@@ -1,7 +1,17 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 import { Link } from "react-router";
+import { signOutUser } from "../../actions/action_auth";
+
 
 class DropDownMenu extends Component {
+  constructor() {
+    super();
+    
+    this.handleSignOut = this.handleSignOut.bind(this);
+  }
+  
   getHref(name) {
     switch(name) {
       case("Profile"):
@@ -11,10 +21,27 @@ class DropDownMenu extends Component {
     };
   }
   
+  handleSignOut(event) {
+    event.preventDefault();
+    this.props.signOutUser();
+  }
+  
   renderOptions() {
     const that = this;
     if (this.props.links) {
       const links = this.props.links.map((link, i) => {
+        if (link === "Sign Out") {
+          return (
+            <a 
+              href="#"
+              onClick={this.handleSignOut}
+              key={`user-dbm-${i}`}
+              className={`dropdown-menu-${that.props.name}-option`}>
+              Sign Out
+            </a>
+          );
+        }
+         
         return (
           <Link 
             to={that.getHref(link)} 
@@ -40,4 +67,9 @@ class DropDownMenu extends Component {
   }
 };
 
-export default DropDownMenu;
+// export default DropDownMenu;
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ signOutUser }, dispatch);
+};
+
+export default connect(null, mapDispatchToProps)(DropDownMenu);

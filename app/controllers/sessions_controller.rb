@@ -21,7 +21,6 @@ class SessionsController < Devise::SessionsController
     set_flash_message! :notice, :signed_out if signed_out
     yield if block_given?
     
-    binding.pry
     render json: "Signed Out"
   end
 end

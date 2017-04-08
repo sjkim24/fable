@@ -54,7 +54,7 @@ class Header extends Component {
             username={this.props.currentUser.username}
             name="user"
             active={this.state.dropDownMenuActive} 
-            links={["Profile", "Tag Follows"]} />
+            links={["Profile", "Tag Follows", "Sign Out"]} />
         </div>
       );
     } else {
