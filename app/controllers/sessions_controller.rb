@@ -2,6 +2,7 @@ class SessionsController < Devise::SessionsController
   prepend_before_action :allow_params_authentication!, only: :create
   prepend_before_action :verify_signed_out_user, only: :destroy
   prepend_before_action only: [:create, :destroy] { request.env["devise.skip_timeout"] = true }
+  skip_before_action :verify_authenticity_token, only: [:destroy]
   
   def create
     self.resource = warden.authenticate!(auth_options)
@@ -21,6 +22,7 @@ class SessionsController < Devise::SessionsController
   end
   
   def destroy
+    binding.pry
     signed_out = (Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name))
     set_flash_message! :notice, :signed_out if signed_out
     yield if block_given?
