@@ -23,7 +23,7 @@ class DropDownMenu extends Component {
   
   handleSignOut(event) {
     event.preventDefault();
-    this.props.signOutUser();
+    this.props.signOutUser(this.props.token);
   }
   
   renderOptions() {
@@ -67,9 +67,12 @@ class DropDownMenu extends Component {
   }
 };
 
-// export default DropDownMenu;
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({ signOutUser }, dispatch);
 };
 
-export default connect(null, mapDispatchToProps)(DropDownMenu);
+function mapStateToProps(state) {
+  return { token: state.auth.authToken }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(DropDownMenu);

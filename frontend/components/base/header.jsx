@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, PropTypes } from "react";
 import SearchButton from "../nav_bar/search_button.jsx";
 import Modal from "./modal.jsx";
 import { connect } from "react-redux";
@@ -9,6 +9,10 @@ import { setCurrentUser } from "../../actions/action_auth";
 import DropDownMenu from "./drop_down_menu.jsx";
 
 class Header extends Component {
+  static contextTypes = {
+    router: PropTypes.object
+  };
+  
   constructor() {
     super();
     
@@ -22,6 +26,7 @@ class Header extends Component {
     this.toggleAuthModal = this.toggleAuthModal.bind(this);
     this.toggleDropDownMenu = this.toggleDropDownMenu.bind(this);
     this.checkRejectThenToggle = this.checkRejectThenToggle.bind(this);
+    this.checkAuthThenRender = this.checkAuthThenRender.bind(this);
   }
   
   toggleAuthModal() {
@@ -38,6 +43,14 @@ class Header extends Component {
   
   toggleDropDownMenu() {
     this.setState({ dropDownMenuActive: !this.state.dropDownMenuActive });
+  }
+  
+  checkAuthThenRender() {
+    if (this.props.currentUser) {
+      this.context.router.push("/new_story");
+    } else {
+      this.toggleAuthModal();
+    }
   }
   
   renderAuthOrUser() {
@@ -79,9 +92,9 @@ class Header extends Component {
           </Link>
           <ul className="header-list-right">
             <li className="header-list-story-link">
-              <Link to="/new-story" className="header-list-story-link-btn">
+              <div onClick={this.checkAuthThenRender} className="header-list-story-link-btn">
                 Write a story
-              </Link>
+              </div>
             </li>
             <li className="header-list-auth-user-container">
               {this.renderAuthOrUser()}

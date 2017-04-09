@@ -15,7 +15,7 @@ export default (
     <Route path="/users/:username" component={UsersShow} />
     <Route path="/stories/:storyId" component={StoriesShow} />
     <Route path="/comments/:commentId" component={CommentsShow} />
-    <Route path="/new-story" component={StoriesForm} />
+    <Route path="/new_story" component={StoriesForm} />
     <Route path="/users/:username/edit_tag_follows" component={UsersTagFollowsForm} />
   </Route>
 );

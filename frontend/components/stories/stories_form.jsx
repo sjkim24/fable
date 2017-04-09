@@ -5,6 +5,10 @@ import ContentForm from "../base/content_form.jsx";
 import { createStory } from "../../actions/action_stories";
 
 class StoriesForm extends Component {
+  static contextTypes = {
+    router: PropTypes.object
+  };
+  
   constructor() {
     super();
     
@@ -20,10 +24,6 @@ class StoriesForm extends Component {
     this.handleFilePreview = this.handleFilePreview.bind(this);
     this.goBack = this.goBack.bind(this);
   }
-  
-  static contextTypes = {
-    router: PropTypes.object
-  };
   
   handleOnChange(event, type) {
     switch(type) {

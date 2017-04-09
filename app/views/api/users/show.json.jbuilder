@@ -39,7 +39,7 @@ json.latest @latest.each do |story|
     json.bookmarked false
     json.following_author false
   end
-  json.tags story.tags.includes(:tags) do |tag|
+  json.tags story.tags do |tag|
     json.tag_desc tag.tag_desc
   end
 end
