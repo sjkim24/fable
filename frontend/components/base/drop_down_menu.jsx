@@ -23,7 +23,11 @@ class DropDownMenu extends Component {
   
   handleSignOut(event) {
     event.preventDefault();
-    this.props.signOutUser(this.props.token);
+    const that = this;
+    this.props.signOutUser(this.props.token)
+    .then(function(response) {
+      debugger
+    }.bind(this));
   }
   
   renderOptions() {
