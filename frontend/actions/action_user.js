@@ -6,6 +6,7 @@ export const FETCH_FOLLOWINGS = "FETCH_FOLLOWINGS"
 export const FETCH_RESPONSES = "FETCH_RESPONSES"
 export const UPDATE_USER = "UPDATE_USER";
 export const FETCH_TAG_FOLLOWS = "FETCH_TAG_FOLLOWS";
+export const FETCH_STORIES = "FETCH_STORIES";
 
 const URL = "/api/users";
 
@@ -59,6 +60,15 @@ export function fetchTagFollows(userId) {
   
   return {
     type: FETCH_TAG_FOLLOWS,
+    payload: request
+  }
+}
+
+export function fetchStories(username) {
+  const request = axios.get(`${URL}/${username}/my_stories`);
+  
+  return {
+    type: FETCH_STORIES,
     payload: request
   }
 }

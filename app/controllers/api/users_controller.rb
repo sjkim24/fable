@@ -53,6 +53,14 @@ class Api::UsersController < ApplicationController
     render :tag_follows
   end
   
+  def stories
+    username = params[:username].gsub("@", "")
+    user = User.find_by_username(username)
+    @stories = user.stories.includes(:user).order("created_at DESC")
+    
+    render :stories
+  end
+  
   private
     def user_params
       params.require(:user)

@@ -1,6 +1,6 @@
 import { 
   FETCH_USER, FETCH_FOLLOWERS, FETCH_FOLLOWINGS, FETCH_RESPONSES, UPDATE_USER,
-  FETCH_TAG_FOLLOWS 
+  FETCH_TAG_FOLLOWS, FETCH_STORIES 
 } from  "../actions/action_user";
 
 const INITIAL_STATE = { 
@@ -10,7 +10,8 @@ const INITIAL_STATE = {
   latest: [],
   recommends: [],
   responses: [],
-  tagFollows: []
+  tagFollows: [],
+  stories: []
 };
 
 export default function(state = INITIAL_STATE, action) {
@@ -34,7 +35,9 @@ export default function(state = INITIAL_STATE, action) {
     case UPDATE_USER:
       return { ...state, user: action.payload.data };
     case FETCH_TAG_FOLLOWS:
-      return { ...state, tagFollows: action.payload.data }
+      return { ...state, tagFollows: action.payload.data };
+    case FETCH_STORIES:
+      return { ...state, stories: action.payload.data };
     default:
       return state;
   };

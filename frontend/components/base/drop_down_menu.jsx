@@ -22,7 +22,6 @@ class DropDownMenu extends Component {
   }
   
   handleSignOut(event) {
-    console.log("signing out", this.props.token);
     event.preventDefault();
     this.props.signOutUser(this.props.token)
     .then(function(response) {
