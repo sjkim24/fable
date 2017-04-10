@@ -20,7 +20,7 @@ class UsersStoriesIndex extends Component {
   
   render() {
     return (
-      <div className="user-stories">
+      <div className="user-stories padding-side">
         <div className="user-stories-header">Your stories</div>
         {this.renderStoriesIndexItem()}
       </div>

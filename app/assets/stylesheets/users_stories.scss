@@ -1,15 +1,47 @@
 .user-stories {
   background: #FFFFFF;
-  margin: 0 auto;
-  max-width: 1000px;
-  width: 100%;
 }
 
 .user-stories-header {
   font-size: 24px;
+  margin: 0 auto;
+  max-width: 1000px;
+  padding: 30px 0px;
+  width: calc(100% - 40px);
 }
 
-.users-stories-info {
+.user-stories-item {
+  border-bottom: 1px solid $light-gray;
+  display: block;
+  margin: 0 auto 20px auto;
+  max-width: 1000px;
+  padding-bottom: 20px;
+  width: calc(100% - 40px);
+}
+
+.user-stories-title {
+  font-size: 20px;
+  font-weight: 900;
+  margin-bottom: 15px;
+}
+
+.user-stories-info {
+  color: $gray;
   float: left;
+  font-size: 14px;
   margin-right: 10px;
+}
+
+@media (min-width: 768px) {
+  .user-stories-header {
+    font-size: 32px;
+  }
+  
+  .user-stories-title {
+    font-size: 26px;
+  }
+  
+  .user-stories-info {
+    font-size: 16px;
+  }
 }

@@ -1,9 +1,10 @@
 import React, { Component } from "react";
+import { Link } from "react-router";
 
 class UsersStoriesIndexItem extends Component {
   renderDropDown() {
     return (
-      <div className="users-stories-info users-stories-info-dropdown">
+      <div className="user-stories-info users-stories-info-dropdown">
         dropdown
       </div>
     ); 
@@ -19,24 +20,24 @@ class UsersStoriesIndexItem extends Component {
     const story = this.props.story;
 
     return (
-      <div className="users-stories-item">
-        <div className="users-stories-title">{story.title}</div>
-        <div className="users-stories-info-container group">
-          <div className="users-stories-info users-stories-info-published-date">
+      <Link to={`/stories/${story.id}`} className="user-stories-item">
+        <div className="user-stories-title">{story.title}</div>
+        <div className="user-stories-info-container group">
+          <div className="user-stories-info users-stories-info-published-date">
             {story.published_date}
           </div>
-          <div className="users-stories-info users-stories-info-kdot">
+          <div className="user-stories-info users-stories-info-kdot">
             {"\u2022"}
           </div>
-          <div className="users-stories-info users-stories-info-read-time">
+          <div className="user-stories-info users-stories-info-read-time">
             {this.renderMinRead()} 
           </div>
-          <div className="users-stories-info users-stories-info-kdot">
+          <div className="user-stories-info users-stories-info-kdot">
             {"\u2022"}
           </div>
           {this.renderDropDown()}
         </div>
-      </div>
+      </Link>
     );
   }
 };

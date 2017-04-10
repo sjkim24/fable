@@ -18,6 +18,8 @@ class DropDownMenu extends Component {
         return `/users/@${this.props.username}`;
       case("Edit Tag Follows"):
         return `/users/@${this.props.username}/edit_tag_follows`;
+      case("My Stories"):
+        return `/users/@${this.props.username}/my_stories`
     };
   }
   
