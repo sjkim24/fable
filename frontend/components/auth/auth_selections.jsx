@@ -23,6 +23,8 @@ class AuthSelections extends Component {
       authenticity_token: this.props.token
     })
     .then(function(response) {
+      that.props.setAuthToken(response.data.csrfToken);
+      $('meta[name="csrf-token"]').attr('content', response.data.csrfToken);
       that.props.setCurrentUser(response.data.current_user);
       that.props.toggleModal();
       // figure out a better way to handle this later
@@ -82,11 +84,6 @@ class AuthSelections extends Component {
         <div className="auth-selections-footer">If you don't have an acocunt, you can click on the "Sign in as Guest" button</div>
       </div>
     );
-  }
-  
-  componentDidMount() {
-    this.props.setAuthToken
-    // this.setState({ token: $('meta[name=csrf-token]').attr('content') });
   }
 };
 

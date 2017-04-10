@@ -41,6 +41,8 @@ class SignInForm extends Component {
       authenticity_token: this.props.token
     })
     .then(function(response) {
+      that.props.setAuthToken(response.data.csrfToken);
+      $('meta[name="csrf-token"]').attr('content', response.data.csrfToken);
       that.props.setCurrentUser(response.data.current_user);
       that.props.toggleModal();
       // figure out a better way to handle this later

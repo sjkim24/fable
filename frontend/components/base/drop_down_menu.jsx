@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Link } from "react-router";
-import { signOutUser } from "../../actions/action_auth";
+import { signOutUser, setAuthToken } from "../../actions/action_auth";
 
 
 class DropDownMenu extends Component {
@@ -22,11 +22,12 @@ class DropDownMenu extends Component {
   }
   
   handleSignOut(event) {
+    console.log("signing out", this.props.token);
     event.preventDefault();
-    const that = this;
     this.props.signOutUser(this.props.token)
     .then(function(response) {
-      debugger
+      $('meta[name="csrf-token"]').attr('content', response.payload.data.csrfToken)
+      this.props.setAuthToken(response.payload.data.csrfToken);
     }.bind(this));
   }
   
@@ -72,7 +73,7 @@ class DropDownMenu extends Component {
 };
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ signOutUser }, dispatch);
+  return bindActionCreators({ signOutUser, setAuthToken }, dispatch);
 };
 
 function mapStateToProps(state) {

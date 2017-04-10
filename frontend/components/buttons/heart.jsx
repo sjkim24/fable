@@ -17,7 +17,7 @@ class Heart extends Component {
   }
   
   checkAuthThenToggle() {
-    if (this.props.currentUser.id) {
+    if (this.props.currentUser) {
       this.toggleLike();
     } else {
       this.props.toggleModal("auth-selections");
@@ -25,6 +25,7 @@ class Heart extends Component {
   }
   
   toggleLike() {
+    console.log("heart", this.props.token);
     const that = this;
     const name = this.props.name;
     let url;
@@ -34,7 +35,7 @@ class Heart extends Component {
     if (name === "storiesIndex" || name === "storiesShow") {
       data = { 
         story_like: { story_id: this.props.storyId },
-        authenticity_token: this.state.token 
+        authenticity_token: this.props.token 
       };
       
       if (this.props.liked) {
@@ -47,7 +48,7 @@ class Heart extends Component {
     } else if (name === "commentsIndex" || name === "commentsShow" || name === "commentProfileItem") {
       data = {
         comment_like: { comment_id: this.props.commentId },
-        authenticity_token: this.state.token
+        authenticity_token: this.props.token
       };
       
       if (this.props.liked) {
@@ -101,10 +102,6 @@ class Heart extends Component {
         className={this.props.className} />
     );
   }
-  
-  componentDidMount() {
-    this.setState({ token: $('meta[name=csrf-token]').attr('content') });
-  }
 };
 
 function mapDispatchToProps(dispatch) {
@@ -120,7 +117,7 @@ function mapDispatchToProps(dispatch) {
 };
 
 function mapStateToProps(state) {
-  return { currentUser: state.auth.currentUser };
+  return { currentUser: state.auth.currentUser, token: state.auth.authToken };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Heart);

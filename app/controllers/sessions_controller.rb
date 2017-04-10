@@ -10,9 +10,10 @@ class SessionsController < Devise::SessionsController
     set_flash_message!(:notice, :signed_in)
     sign_in(resource_name, resource)
     yield resource if block_given?
-
+    
     render json: { 
-      authenticity_token: params[:authenticity_token],
+      csrfParam: request_forgery_protection_token,
+      csrfToken: form_authenticity_token,
       current_user: {
         id: current_user.id,
         fullname: current_user.fullname,
@@ -27,7 +28,10 @@ class SessionsController < Devise::SessionsController
     set_flash_message! :notice, :signed_out if signed_out
     yield if block_given?
 
-    render json: { authenticity_token: params[:authenticity_token] }
+    render json: {
+      csrfParam: request_forgery_protection_token,
+      csrfToken: form_authenticity_token
+    }
   end
   
   private

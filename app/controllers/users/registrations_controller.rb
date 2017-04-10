@@ -12,7 +12,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
         sign_up(resource_name, resource)
 
         render json: { 
-          authenticity_token: params[:authenticity_token],
+          csrfParam: request_forgery_protection_token,
+          csrfToken: form_authenticity_token,
           current_user: {
             id: current_user.id,
             fullname: current_user.fullname,

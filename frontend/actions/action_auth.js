@@ -31,7 +31,6 @@ export function setCurrentUser(user) {
 };
 
 export function signOutUser(token) {
-  console.log(token);
   const URL = `/users/sign_out?authenticity_token=${token}`;
   const request = axios.delete(URL);
   
