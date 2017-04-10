@@ -102,16 +102,18 @@ class StoriesForm extends Component {
           </div>
         </div>
         <form onSubmit={this.handleOnSubmit} className="stories-form">
-          <input
-            className="stories-form-input stories-form-input-title padding-side" 
-            name="story[title]" 
-            placeholder="Title" 
-            onChange={(event) => this.handleOnChange(event, "title")} />
-          <input
-            className="stories-form-input stories-form-input-subtitle padding-side" 
-            name="story[subtitle]" 
-            placeholder="Subtitle"
-            onChange={(event) => this.handleOnChange(event, "subtitle")} />
+          <div className="stories-form-input-container padding-side">
+            <input
+              className="stories-form-input stories-form-input-title padding-side" 
+              name="story[title]" 
+              placeholder="Title" 
+              onChange={(event) => this.handleOnChange(event, "title")} />
+            <input
+              className="stories-form-input stories-form-input-subtitle padding-side" 
+              name="story[subtitle]" 
+              placeholder="Subtitle"
+              onChange={(event) => this.handleOnChange(event, "subtitle")} />
+          </div>
           <div className="stories-form-banner-img-input-container">
             <label htmlFor="file-input">
               <img 

@@ -31,11 +31,14 @@
   margin-top: 5px;
 }
 
-.stories-form-input {
-  display: block;
-  margin: 0 auto !important;
+.stories-form-input-container {
+  margin: 0 auto;
   max-width: 700px;
   width: calc(100% - 40px);
+}
+
+.stories-form-input {
+  display: block;
 }
 
 .stories-form-input-title {
