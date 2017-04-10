@@ -32,6 +32,29 @@
   margin-right: 10px;
 }
 
+.users-stories-info-dropdown {
+  margin-top: -3px;
+  position: relative;
+  width: 24px;
+}
+
+.dropdown-menu-user-stories {
+  background: #FFFFFF;
+  left: -40px;
+  position: absolute;
+  width: 100px;
+}
+
+.dropdown-menu-user-stories-option {
+  display: block;
+  padding: 5px;
+  text-align: center;
+  
+  &:hover {
+    color: $yellow;
+  }
+}
+
 @media (min-width: 768px) {
   .user-stories-header {
     font-size: 32px;

@@ -6,10 +6,20 @@ import { fetchStories } from "../../actions/action_user";
 import UsersStoriesIndexItem from "./users_stories_index_item.jsx";
 
 class UsersStoriesIndex extends Component {
+  constructor() {
+    super();
+    
+    this.state = {
+      active: false,
+      activeKey: null 
+    };
+  }
+  
   renderStoriesIndexItem() {
     const stories = this.props.stories.map((story, i) => {
       return (
-        <UsersStoriesIndexItem 
+        <UsersStoriesIndexItem
+          username={this.props.currentUser.username} 
           story={story} 
           key={`user-story-${i}`} />
       );
@@ -38,7 +48,7 @@ function mapDispatchToProps(dispatch) {
 };
 
 function mapStateToProps(state) {
-  return { user: state.auth.currentUser, stories: state.user.stories }
+  return { currentUser: state.auth.currentUser, stories: state.user.stories }
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UsersStoriesIndex);
