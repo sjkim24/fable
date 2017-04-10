@@ -38,7 +38,6 @@ class AuthSelections extends Component {
       
     })
     .catch(function(error) {
-      debugger
       console.log(error);
     });
   }

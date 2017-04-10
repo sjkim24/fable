@@ -16,7 +16,6 @@ class SignOutLink extends Component {
          authenticity_token: Functions.getMetaContent("csrf-token")
        }
      }).done(function(){
-       debugger
        location.reload();
      });
   }

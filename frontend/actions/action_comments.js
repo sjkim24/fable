@@ -38,8 +38,7 @@ export function createComment(storyId, params) {
     `${STORIES_URL}/${storyId}/comments`,
     params
   );
-  // debugger
-  console.log(request);
+
   return {
     type: CREATE_COMMENT,
     payload: request

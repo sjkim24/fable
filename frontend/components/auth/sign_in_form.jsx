@@ -55,7 +55,6 @@ class SignInForm extends Component {
       // comment show, reply show?, each user profile tab
     })
     .catch(function(error) {
-      debugger
       console.log(error);
     });
   }
