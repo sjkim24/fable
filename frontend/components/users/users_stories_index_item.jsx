@@ -49,6 +49,7 @@ class UsersStoriesIndexItem extends Component {
               alt="arrow image" 
               className="users-stories-arrow" />
             <DropDownMenu
+              storyId={story.id}
               active={this.state.dropDownMenuActive} 
               name="user-stories"
               links={["Edit Story", "Delete Story"]} />

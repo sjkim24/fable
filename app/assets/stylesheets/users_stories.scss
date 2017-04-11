@@ -36,6 +36,10 @@
   margin-top: -3px;
   position: relative;
   width: 24px;
+  
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .dropdown-menu-user-stories {

@@ -38,7 +38,6 @@ class UsersStoriesIndex extends Component {
   }
   
   componentDidMount() {
-    // debugger
     this.props.fetchStories(this.props.params.username);
   }
 };

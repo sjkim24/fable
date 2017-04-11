@@ -75,6 +75,9 @@ class StoriesForm extends Component {
         .then(() => {
           this.context.router.push(`/stories/${this.props.story.id}`);
         });
+    } else {
+      // render error
+      console.log("render error");
     }
   }
   
@@ -106,12 +109,14 @@ class StoriesForm extends Component {
             <input
               className="stories-form-input stories-form-input-title padding-side" 
               name="story[title]" 
-              placeholder="Title" 
+              placeholder="Title"
+              value={this.state.title} 
               onChange={(event) => this.handleOnChange(event, "title")} />
             <input
               className="stories-form-input stories-form-input-subtitle padding-side" 
               name="story[subtitle]" 
               placeholder="Subtitle"
+              value={this.state.subtitle} 
               onChange={(event) => this.handleOnChange(event, "subtitle")} />
           </div>
           <div className="stories-form-banner-img-input-container">

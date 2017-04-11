@@ -25,11 +25,11 @@ class Api::StoriesController < ApplicationController
     render :new
   end
 
-  def edit
-    @story = Story.find(params[:id])
-    @comments = @story.comments
-    render :edit
-  end
+  # def edit
+  #   @story = Story.find(params[:id])
+  #   @comments = @story.comments
+  #   render :edit
+  # end
 
   def show
     @story = Story.find(params[:id])
@@ -40,10 +40,9 @@ class Api::StoriesController < ApplicationController
   def update
     @story = Story.find(params[:id])
     if @story.update_attributes(story_params)
-      redirect_to story_url(@story)
+      render :show
     else
-      flash.now[:errors] = @story.errors.full_messages
-      render :edit
+      render "Error"
     end
   end
 

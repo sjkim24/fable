@@ -4,6 +4,7 @@ export const FETCH_STORY = "FETCH_STORY";
 export const SET_STORY = "SET_STORY";
 export const FETCH_STORIES = "FETCH_STORIES";
 export const CREATE_STORY = "CREATE_STORY";
+export const UPDATE_STORY = "UPDATE_STORY";
 
 const URL = "/api/stories";
 
@@ -40,3 +41,12 @@ export function createStory(data) {
     payload: request
   };
 };
+
+export function updateStory(data) {
+  const request = axios.patch(`${URL}`, data);
+   
+  return {
+    type: UPDATE_STORY,
+    payload: request
+  }
+}
