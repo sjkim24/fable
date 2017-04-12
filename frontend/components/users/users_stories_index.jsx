@@ -29,6 +29,10 @@ class UsersStoriesIndex extends Component {
   }
   
   render() {
+    if (!this.props.currentUser && !this.props.stories) {
+      return <div className="loader" />;
+    } 
+    
     return (
       <div className="user-stories padding-side">
         <div className="user-stories-header">Your stories</div>
@@ -38,7 +42,7 @@ class UsersStoriesIndex extends Component {
   }
   
   componentDidMount() {
-    this.props.fetchStories(this.props.params.username);
+    this.props.fetchStories();
   }
 };
 
@@ -47,7 +51,7 @@ function mapDispatchToProps(dispatch) {
 };
 
 function mapStateToProps(state) {
-  return { currentUser: state.auth.currentUser, stories: state.user.stories }
+  return { currentUser: state.auth.currentUser, stories: state.user.stories };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UsersStoriesIndex);

@@ -19,7 +19,7 @@ export default (
     <Route path="/comments/:commentId" component={CommentsShow} />
     <Route path="/new_story" component={StoriesForm} />
     <Route path="/users/:username/edit_tag_follows" component={UsersTagFollowsForm} />
-    <Route path="/users/:username/my_stories" component={UsersStoriesIndex} />
+    <Route path="/users/me/my_stories" component={UsersStoriesIndex} />
     <Route path="/stories/:storyId/edit" component={StoriesEdit} />
   </Route>
 );

@@ -54,9 +54,7 @@ class Api::UsersController < ApplicationController
   end
   
   def stories
-    username = params[:username].gsub("@", "")
-    user = User.find_by_username(username)
-    @stories = user.stories.includes(:user).order("created_at DESC")
+    @stories = current_user.stories.includes(:user).order("created_at DESC")
     
     render :stories
   end

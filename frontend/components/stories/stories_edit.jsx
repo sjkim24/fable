@@ -8,13 +8,8 @@ class StoriesEdit extends Component {
   constructor() {
     super();
     
-    this.state = { 
-      title: "",
-      subtitle: "",
-      content: ""
-    };
+    this.state = { title: "", subtitle: "", content: "" };
     this.handleOnSubmit = this.handleOnSubmit.bind(this);
-    this.formattedContent = this.formattedContent.bind(this);
     this.handleContentFormChange = this.handleContentFormChange.bind(this);
   }
   
@@ -22,20 +17,17 @@ class StoriesEdit extends Component {
     event.preventDefault();
   }
   
-  formattedContent() {
-    return JSON.parse(this.props.story.content);
-  }
-  
   componentWillMount() {
+    const that = this;
     this.props.fetchStory(this.props.params.storyId)
     .then(() => {
       const contentForm = document.querySelector(".stories-edit-form .content-form");
       const content = JSON.parse(this.props.story.content);
       contentForm.innerText = content;
-      
+
       this.setState({
         title: this.props.story.title,
-        subtitle: this.props.story.subtitle,
+        subtitle: this.props.story.subtitle || "",
         content: content
       })
     })
@@ -46,16 +38,26 @@ class StoriesEdit extends Component {
   }
   
   render() {
-    if (!this.props.story) {
+    const story = this.props.story;
+    const currentUser = this.props.currentUser;
+    
+    if (!story) {
       return <div className="loader" />;
-    }
-    console.log(this.props.story);
+    } 
+    // else if (!currentUser || currentUser.id !== story.userId) {
+    //   return (
+    //     <NotAllowed />
+    //   )
+    // }
+
     return (
       <div>
         <form className="stories-edit-form" onSubmit={this.handleOnSubmit}>
-          <input 
+          <input
+            placeholder="Title" 
             value={this.state.title} />
-          <input 
+          <input
+            placeholder="Subtitle" 
             value={this.state.subtitle} />
           <ContentForm handleContentFormChange={this.handleContentFormChange} />
         </form>
@@ -69,9 +71,7 @@ function mapDispatchToProps(dispatch) {
 };
 
 function mapStateToProps(state) {
-  return {
-    story: state.stories.story
-  };
+  return { story: state.stories.story, currentUser: state.auth.currentUser };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(StoriesEdit);

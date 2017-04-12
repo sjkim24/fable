@@ -65,7 +65,7 @@ export function fetchTagFollows(userId) {
 }
 
 export function fetchStories(username) {
-  const request = axios.get(`${URL}/${username}/my_stories`);
+  const request = axios.get("/api/my_stories");
   
   return {
     type: FETCH_STORIES,
