@@ -32,7 +32,6 @@ class UsersStoriesIndex extends Component {
     if (!this.props.currentUser && !this.props.stories) {
       return <div className="loader" />;
     } 
-    console.log(this.props.stories);
     
     return (
       <div className="user-stories padding-side">
