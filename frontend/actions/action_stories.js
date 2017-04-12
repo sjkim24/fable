@@ -42,8 +42,8 @@ export function createStory(data) {
   };
 };
 
-export function updateStory(data) {
-  const request = axios.patch(`${URL}`, data);
+export function updateStory(storyId, data) {
+  const request = axios.patch(`${URL}/${storyId}`, data);
    
   return {
     type: UPDATE_STORY,

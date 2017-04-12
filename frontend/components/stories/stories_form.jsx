@@ -12,12 +12,7 @@ class StoriesForm extends Component {
   constructor() {
     super();
     
-    this.state = {
-      title: "",
-      subtitle: "",
-      content: "",
-      imgPrevLoaded: null
-    };
+    this.state = { title: "", subtitle: "", content: "", imgPrevLoaded: null };
     this.handleOnSubmit = this.handleOnSubmit.bind(this);
     this.handleOnChange = this.handleOnChange.bind(this);
     this.handleContentFormChange = this.handleContentFormChange.bind(this);

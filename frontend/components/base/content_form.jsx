@@ -7,6 +7,12 @@ class ContentForm extends Component {
     this.handleOnInput = this.handleOnInput.bind(this);
   }
   
+  componentWillUpdate(nextProps, nextState) {
+    if (nextProps.content) {
+      document.querySelector(".content-form").innerText = nextProps.content;
+    }
+  }
+  
   handleOnInput(event) {
     this.props.handleContentFormChange(event.target.innerText);
   }
