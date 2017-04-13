@@ -13,12 +13,12 @@ class App extends Component {
   constructor() {
     super();
     
-    this.state = { active: false };
+    this.state = { slidingMenuActive: false };
     this.toggleSlidingMenu = this.toggleSlidingMenu.bind(this);
   }
   
   toggleSlidingMenu() {
-    this.setState({ active: !this.state.active });
+    this.setState({ active: !this.state.slidingMenuActive });
   }
   
   componentWillMount() {
@@ -32,7 +32,7 @@ class App extends Component {
       <div className="app">
         <Header />
         <NavBar toggleSlidingMenu={this.toggleSlidingMenu} />
-        <SlidingMenu active={this.state.active} />
+        <SlidingMenu active={this.state.slidingMenuActive} />
         <Modal />
         {this.props.children}
       </div>

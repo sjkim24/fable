@@ -20,7 +20,7 @@
 
 .header-list-left {
   float: left;
-  width: 40px;
+  width: 30px;
 }
 
 .header-list-right {
@@ -37,7 +37,6 @@
 
 .header-list-logo:hover {
   cursor: pointer;
-  margin-top: 2px
 }
 
 .header-list-story-link,
@@ -102,14 +101,39 @@
 
 .header-list-search {
   float: left;
-  height: 25px;
   margin-top: 2px;
+  
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.search-btn-img {
+  float: left;
+  margin-right: 5px;
   width: 25px;
 }
 
-.header-list-search:hover {
-  cursor: pointer;
-  margin-top: 4px;
+.search-bar {
+  font-size: 14px;
+  margin-top: 1px;
+  padding: 5px;
+}
+
+.search-bar-hidden {
+  width: 0px;
+  transition: 0.5s width ease-in;
+}
+
+.search-bar-active {
+  width: 90px;
+  transition: 0.5s width ease-in;
+}
+
+@media (min-width: 550px) {
+  .search-bar-active {
+    width: 150px;
+  }
 }
 
 @media (min-width: 768px) {
