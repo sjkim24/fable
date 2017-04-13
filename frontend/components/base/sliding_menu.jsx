@@ -1,18 +1,12 @@
 import React, { Component } from "react";
 
 class SlidingMenu extends Component {
-  constructor() {
-    super();
-    
-    this.state = { active: false };
-    this.toggleSlidingMenu = this.toggleSlidingMenu.bind(this);
-  }
-  
   render() {
-    const state = this.state.active ? "active" : "hidden";
+    const state = this.props.active ? "active" : "hidden";
     
     return (
       <div className={`sliding-menu sliding-menu-${state}`}>
+        <div className="sliding-menu-header">Stories of Fable</div>
         <ul className="sliding-menu-inner">
           <li className="sliding-menu-item">
             <a href="">Home</a>

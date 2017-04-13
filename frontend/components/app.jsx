@@ -2,13 +2,25 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import Header from './base/header.jsx';
-import NavBar from './nav_bar/nav_bar.jsx';
 import Modal from "./base/modal.jsx";
+import NavBar from './nav_bar/nav_bar.jsx';
+import SlidingMenu from "./base/sliding_menu.jsx";
 import { 
   fetchAuthToken, fetchCurrentUser, setAuthToken 
 } from "../actions/action_auth";
 
 class App extends Component {
+  constructor() {
+    super();
+    
+    this.state = { active: false };
+    this.toggleSlidingMenu = this.toggleSlidingMenu.bind(this);
+  }
+  
+  toggleSlidingMenu() {
+    this.setState({ active: !this.state.active });
+  }
+  
   componentWillMount() {
     if (!this.props.auth.currentUser) {
       this.props.fetchCurrentUser();
@@ -19,7 +31,8 @@ class App extends Component {
     return (
       <div className="app">
         <Header />
-        <NavBar />
+        <NavBar toggleSlidingMenu={this.toggleSlidingMenu} />
+        <SlidingMenu active={this.state.active} />
         <Modal />
         {this.props.children}
       </div>
