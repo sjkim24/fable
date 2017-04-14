@@ -7,6 +7,7 @@ export const FETCH_RESPONSES = "FETCH_RESPONSES"
 export const UPDATE_USER = "UPDATE_USER";
 export const FETCH_TAG_FOLLOWS = "FETCH_TAG_FOLLOWS";
 export const FETCH_STORIES = "FETCH_STORIES";
+export const FETCH_CURRENT_USER_RESPONSES = "FETCH_USERS_RESPONSES";
 
 const URL = "/api/users";
 
@@ -71,4 +72,13 @@ export function fetchStories(username) {
     type: FETCH_STORIES,
     payload: request
   }
+}
+
+export function fetchCurrentUserResponses() {
+  const request = axios.get("/api/my_responses");
+  
+  return {
+    type: FETCH_CURRENT_USER_RESPONSES,
+    payload: request
+  };
 }

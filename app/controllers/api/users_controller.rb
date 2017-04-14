@@ -53,10 +53,16 @@ class Api::UsersController < ApplicationController
     render :tag_follows
   end
   
-  def stories
-    @stories = current_user.stories.includes(:user).order("created_at DESC")
+  def current_user_stories
+    @stories = current_user.stories.order("created_at DESC")
     
-    render :stories
+    render :current_user_stories
+  end
+  
+  def current_user_responses
+    @comments = current_user.comments.order("created_at DESC")
+  
+    render :current_user_responses
   end
   
   private

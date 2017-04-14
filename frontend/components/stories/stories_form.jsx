@@ -102,13 +102,13 @@ class StoriesForm extends Component {
         <form onSubmit={this.handleOnSubmit} className="stories-form">
           <div className="stories-form-input-container padding-side">
             <input
-              className="stories-form-input stories-form-input-title padding-side" 
+              className="stories-form-input stories-form-input-title" 
               name="story[title]" 
               placeholder="Title"
               value={this.state.title} 
               onChange={(event) => this.handleOnChange(event, "title")} />
             <input
-              className="stories-form-input stories-form-input-subtitle padding-side" 
+              className="stories-form-input stories-form-input-subtitle" 
               name="story[subtitle]" 
               placeholder="Subtitle"
               value={this.state.subtitle} 

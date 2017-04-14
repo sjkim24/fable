@@ -8,7 +8,7 @@ import NotAllowed from "../base/not_allowed.jsx";
 class StoriesEdit extends Component {
   static contextTypes = {
     router: PropTypes.object
-  };
+  }
   
   constructor() {
     super();
