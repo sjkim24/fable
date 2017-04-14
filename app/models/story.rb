@@ -69,7 +69,10 @@ class Story < ActiveRecord::Base
   # this function needs fix/refactoring once i figure out how i'm going
   # to structure my content format between rails and react
   def read_time
-    (self.content.split(" ").count.to_f / 275).round
+    words = (self.content.split(" ").count.to_f / 275).round
+    image = self.has_image? ? 1 : 0
+    
+    return words + image
   end
   
   def main_tag

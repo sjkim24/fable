@@ -21,12 +21,14 @@ class Header extends Component {
       rejectList: { 
         "header-list-user-container": true, 
         "dropdown-menu": true
-      }
+      },
+      searchBarActive: false
     };
     this.toggleAuthModal = this.toggleAuthModal.bind(this);
     this.toggleDropDownMenu = this.toggleDropDownMenu.bind(this);
     this.checkRejectThenToggle = this.checkRejectThenToggle.bind(this);
     this.checkAuthThenRender = this.checkAuthThenRender.bind(this);
+    this.toggleSearchBar = this.toggleSearchBar.bind(this);
   }
   
   toggleAuthModal() {
@@ -79,6 +81,14 @@ class Header extends Component {
     }
   }
   
+  toggleSearchBar() {
+    this.setState({ searchBarActive: !this.state.searchBarActive }, () => {
+      if (this.state.searchBarActive) {
+        document.querySelector(".search-bar").focus();
+      }
+    });
+  }
+  
   render() {
     const authLinkDisplay = "";
     const storyLinkDisplay = "hidden"
@@ -100,7 +110,9 @@ class Header extends Component {
               {this.renderAuthOrUser()}
             </li>
             <li className="header-list-search">
-              <SearchButton />
+              <SearchButton
+                active={this.state.searchBarActive} 
+                toggleSearchBar={this.toggleSearchBar} />
             </li>
           </ul>
         </div>

@@ -1,0 +1,38 @@
+.sliding-menu {
+  background: $overlay-gray;
+  height: 100%;
+  position: fixed;
+  width: 100%;
+}
+
+.sliding-menu-inner {
+  background: #FFFFFF;
+  height: 100%;
+  width: 140px;
+}
+
+.sliding-menu-hidden {
+  left: -100%;
+  transition: left 1s ease;
+}
+
+.sliding-menu-active {
+  left: 0;
+  transition: left 1s ease;
+}
+
+.sliding-menu-header {
+  background: #FFFFFF;
+  border-bottom: 1px solid $light-gray;
+  padding: 5px 5px 10px 5px;
+  width: 130px;
+}
+
+.sliding-menu-item {
+  padding: 5px;
+  text-align: left;
+  
+  &:hover {
+    color: $yellow;
+  }
+}
