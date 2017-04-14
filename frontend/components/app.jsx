@@ -18,7 +18,7 @@ class App extends Component {
   }
   
   toggleSlidingMenu() {
-    this.setState({ active: !this.state.slidingMenuActive });
+    this.setState({ slidingMenuActive: !this.state.slidingMenuActive });
   }
   
   componentWillMount() {
