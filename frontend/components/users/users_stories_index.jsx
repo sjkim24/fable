@@ -15,7 +15,7 @@ class UsersStoriesIndex extends Component {
     };
   }
   
-  renderStoriesIndexItem() {
+  renderStoriesIndexItems() {
     const stories = this.props.stories.map((story, i) => {
       return (
         <UsersStoriesIndexItem
@@ -36,7 +36,7 @@ class UsersStoriesIndex extends Component {
     return (
       <div className="user-stories padding-side">
         <div className="user-stories-header">Your stories</div>
-        {this.renderStoriesIndexItem()}
+        {this.renderStoriesIndexItems()}
       </div>
     );
   }
