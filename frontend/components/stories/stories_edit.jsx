@@ -74,7 +74,10 @@ class StoriesEdit extends Component {
     }  else {
       console.log("render error");
     } 
-    
+  }
+  
+  goBack() {
+    history.back();
   }
   
   componentWillMount() {
@@ -95,10 +98,6 @@ class StoriesEdit extends Component {
       
       this.setState(state);
     })
-  }
-  
-  goBack() {
-    history.back();
   }
   
   render() {

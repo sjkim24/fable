@@ -27,6 +27,10 @@ class ContentForm extends Component {
       </div>
     );
   }
+  
+  componentDidMount() {
+    document.querySelector(".content-form").innerText = this.props.content;
+  }
 }
 
 export default ContentForm;
