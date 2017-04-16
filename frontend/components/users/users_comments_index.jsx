@@ -11,7 +11,6 @@ class UsersCommentsIndex extends Component {
   }
   
   renderCommentsIndexItems() {
-    debugger
     const comments = this.props.responses.map((comment, i) => {
       return (
         <UsersCommentsIndexItem 
@@ -28,10 +27,10 @@ class UsersCommentsIndex extends Component {
     if (!this.props.currentUser || !this.props.responses) {
       return <div className="loader" />;
     }
-    debugger
+
     return (
-      <div className="users-comments padding-side">
-        <div className="users-comments-header">Your responses</div>
+      <div className="user-comments padding-side">
+        <div className="user-comments-header">Your responses</div>
         {this.renderCommentsIndexItems()}
       </div>
     );

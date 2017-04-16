@@ -32,17 +32,17 @@ class UsersStoriesIndexItem extends Component {
           <div className="user-stories-info users-stories-info-published-date">
             {story.published_date}
           </div>
-          <div className="user-stories-info users-stories-info-kdot">
+          <div className="user-stories-info user-stories-info-kdot">
             {"\u2022"}
           </div>
-          <div className="user-stories-info users-stories-info-read-time">
+          <div className="user-stories-info user-stories-info-read-time">
             {this.renderMinRead()} 
           </div>
-          <div className="user-stories-info users-stories-info-kdot">
+          <div className="user-stories-info user-stories-info-kdot">
             {"\u2022"}
           </div>
           <div 
-            className="user-stories-info users-stories-info-dropdown"
+            className="user-stories-info user-stories-info-dropdown"
             onClick={this.toggleDropDownMenu}>
             <img 
               src="/images/icons/arrow.png" 

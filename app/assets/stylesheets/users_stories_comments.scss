@@ -1,8 +1,10 @@
-.user-stories {
+.user-stories,
+.user-comments {
   background: #FFFFFF;
 }
 
-.user-stories-header {
+.user-stories-header,
+.user-comments-header {
   font-size: 24px;
   margin: 0 auto;
   max-width: 1000px;
@@ -10,7 +12,8 @@
   width: calc(100% - 40px);
 }
 
-.user-stories-item {
+.user-stories-item,
+.user-comments-item {
   border-bottom: 1px solid $light-gray;
   display: block;
   margin: 0 auto 20px auto;
@@ -19,20 +22,23 @@
   width: calc(100% - 40px);
 }
 
-.user-stories-title {
+.user-stories-title,
+.user-comments-item-story-title {
   font-size: 20px;
   font-weight: 900;
   margin-bottom: 15px;
 }
 
-.user-stories-info {
+.user-stories-info,
+.user-comments-info {
   color: $gray;
   float: left;
   font-size: 14px;
   margin-right: 10px;
 }
 
-.users-stories-info-dropdown {
+.user-stories-info-dropdown,
+.user-comments-info-dropdown  {
   margin-top: -3px;
   position: relative;
   width: 24px;

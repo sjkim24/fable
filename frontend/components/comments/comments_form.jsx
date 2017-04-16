@@ -3,7 +3,7 @@ import axios from "axios";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { toggleModal } from "../../actions/action_modal";
-import { fetchComments } from "../../actions/action_comments";
+import { fetchComments, createComment } from "../../actions/action_comments";
 import ContentForm from "../base/content_form.jsx";
 
 class CommentForm extends Component {
@@ -82,11 +82,12 @@ class CommentForm extends Component {
     } else {
       // pass story id and params to createComment
       // for now, i'm not checking parent commend id but do check it for reply create
-      const request = axios.post(`/api/stories/${this.props.storyId}/comments`,{ 
-        comment: { content: this.state.content } 
-      })
+      let data = {};
+      data["comment"] = { content: this.state.content };
+      data["authenticity_token"] = this.props.token;
+      console.log(data);
+      this.props.createComment(this.props.storyId, data)
       .then(function(response) {
-        // fetch comments after
         that.setState({ active: false }, () => {
           that.props.fetchComments(that.props.storyId);
         });
@@ -148,11 +149,11 @@ class CommentForm extends Component {
 };
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ toggleModal, fetchComments }, dispatch);
+  return bindActionCreators({ toggleModal, fetchComments, createComment }, dispatch);
 };
 
 function mapStateToProps(state) {
-  return { currentUser: state.auth.currentUser }
+  return { currentUser: state.auth.currentUser, token: state.auth.authToken };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CommentForm);

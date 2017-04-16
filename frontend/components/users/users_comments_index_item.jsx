@@ -2,22 +2,39 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Link } from "react-router";
+import DropDownMenu from "../base/drop_down_menu.jsx";
 
 class UsersCommentsIndexItem extends Component {
+  constructor() {
+    super();
+    
+    this.state = { dropDownMenuActive: false };
+    this.toggleDropDownMenu = this.toggleDropDownMenu.bind(this);
+  }
+  
+  toggleDropDownMenu() {
+    this.setState({ dropDownMenuActive: !this.state.dropDownMenuActive });
+  }
+  
   render() {
-    console.log(this.props.comment);
+    const comment = this.props.comment;
+    // console.log(comment);
     return (
       <div className="user-comments-item">
-        <Link to={`/comments/${this.props.id}`}>
+        <Link to={`/comments/${comment.id}`}>
           <div className="user-comments-item-story-title">
-            {this.props.story_title}
+            {comment.story_title}
           </div>
         </Link>
-          <div className="user-comments-item-info">
-            <div>{this.props.published_date}</div>
-            <div>{"\u2022"}</div>
+          <div className="user-comments-item-info group">
+            <div className="user-comments-info user-comments-info-read-time">
+              {comment.published_date}
+            </div>
+            <div className="user-comments-info user-comments-info-kdot">
+              {"\u2022"}
+            </div>
             <div 
-              className="user-stories-info users-stories-info-dropdown"
+              className="user-comments-info user-comments-info-dropdown"
               onClick={this.toggleDropDownMenu}>
               <img 
                 src="/images/icons/arrow.png" 
@@ -26,7 +43,7 @@ class UsersCommentsIndexItem extends Component {
               <DropDownMenu
                 comment={comment.id}
                 active={this.state.dropDownMenuActive} 
-                name="user-stories"
+                name="user-comments-index"
                 links={["Edit Story", "Delete Story"]} />
             </div>
           </div>
