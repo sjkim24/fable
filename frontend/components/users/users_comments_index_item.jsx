@@ -41,10 +41,10 @@ class UsersCommentsIndexItem extends Component {
                 alt="arrow image" 
                 className="users-stories-arrow" />
               <DropDownMenu
-                comment={comment.id}
+                commentId={comment.id}
                 active={this.state.dropDownMenuActive} 
                 name="user-comments-index"
-                links={["Edit Story", "Delete Story"]} />
+                links={["Edit Response", "Delete Response"]} />
             </div>
           </div>
       </div>

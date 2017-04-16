@@ -48,14 +48,16 @@
   }
 }
 
-.dropdown-menu-user-stories {
+.dropdown-menu-user-stories,
+.dropdown-menu-user-comments-index {
   background: #FFFFFF;
   left: -40px;
   position: absolute;
   width: 100px;
 }
 
-.dropdown-menu-user-stories-option {
+.dropdown-menu-user-stories-option,
+.dropdown-menu-user-comments-index-option {
   display: block;
   padding: 5px;
   text-align: center;
@@ -66,15 +68,18 @@
 }
 
 @media (min-width: 768px) {
-  .user-stories-header {
+  .user-stories-header,
+  .user-comments-header {
     font-size: 32px;
   }
   
-  .user-stories-title {
+  .user-stories-title,
+  .user-comments-title {
     font-size: 26px;
   }
   
-  .user-stories-info {
+  .user-stories-info,
+  .user-comments-info {
     font-size: 16px;
   }
 }

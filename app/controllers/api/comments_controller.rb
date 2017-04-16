@@ -22,17 +22,7 @@ class Api::CommentsController < ApplicationController
       render json: "Error"
     end
   end
-
-  # def new
-  #   @comment = Comment.new
-  #   render :new
-  # end
-  # 
-  # def edit
-  #   @comment = Comment.find(params[:id])
-  #   render :edit
-  # end
-
+  
   def show
     @comment = Comment.find(params[:id])
     render :show
@@ -49,10 +39,13 @@ class Api::CommentsController < ApplicationController
   end
 
   def destroy
-    @comment = Comment.find(params[:comment][:id])
+    @comment = Comment.find(params[:id])
     story_id = @comment.story_id
-    @comment.destroy
-    redirect_to story_url(story_id)
+    if @comment.destroy
+      render json: { success: true }
+    else
+      render json: { success: false, error: true }
+    end
   end
   
   def get_replies

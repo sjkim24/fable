@@ -4,6 +4,7 @@ export const FETCH_COMMENT = "FETCH_COMMENT";
 export const SET_COMMENT = "SET_COMMENT";
 export const FETCH_COMMENTS = "FETCH_COMMENTS";
 export const CREATE_COMMENT = "CREATE_COMMENT";
+export const DELETE_COMMENT = "DELETE_COMMENT";
 
 const COMMENTS_URL = "/api/comments";
 const STORIES_URL = "/api/stories";
@@ -44,3 +45,12 @@ export function createComment(storyId, params) {
     payload: request
   }
 }
+
+export function deleteComment(commentId, token) {
+  const request = axios.delete(`${COMMENTS_URL}/${commentId}?authenticity_token=${token}`);
+  
+  return {
+    type: DELETE_COMMENT,
+    payload: request
+  };
+};

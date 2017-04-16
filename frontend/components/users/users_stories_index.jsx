@@ -29,7 +29,7 @@ class UsersStoriesIndex extends Component {
   }
   
   render() {
-    if (!this.props.currentUser && !this.props.stories) {
+    if (!this.props.currentUser || !this.props.stories) {
       return <div className="loader" />;
     } 
     

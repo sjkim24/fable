@@ -3,7 +3,9 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Link } from "react-router";
 import { signOutUser, setAuthToken } from "../../actions/action_auth";
-import { deleteCurrentUserStory, fetchStories } from "../../actions/action_user";
+import { 
+  deleteCurrentUserStory, fetchStories, deleteCurrentUserResponse, fetchCurrentUserResponses 
+} from "../../actions/action_user";
 
 
 class DropDownMenu extends Component {
@@ -12,6 +14,7 @@ class DropDownMenu extends Component {
     
     this.handleSignOut = this.handleSignOut.bind(this);
     this.deleteStory = this.deleteStory.bind(this);
+    this.deleteComment = this.deleteComment.bind(this);
   }
   
   getHref(name) {
@@ -26,6 +29,8 @@ class DropDownMenu extends Component {
         return "/users/me/my_responses";
       case ("Edit Story"):
         return `/stories/${this.props.storyId}/edit`;
+      case ("Edit Response"):
+        return `/comments/${this.props.commentId}/edit`;
     };
   }
   
@@ -33,17 +38,25 @@ class DropDownMenu extends Component {
     event.preventDefault();
     this.props.signOutUser(this.props.token)
     .then(function(response) {
-      $('meta[name="csrf-token"]').attr('content', response.payload.data.csrfToken)
+      $('meta[name="csrf-token"]').attr('content', response.payload.data.csrfToken);
       this.props.setAuthToken(response.payload.data.csrfToken);
     }.bind(this));
   }
   
   deleteStory(event) {
     event.preventDefault();
-    this.props.deleteCurrentUserStory(this.props.storyId)
+    this.props.deleteCurrentUserStory(this.props.storyId, this.props.token)
     .then(function(response) {
       this.props.fetchStories(this.props.currentUser.username);
-    }.bind(this))
+    }.bind(this));
+  }
+  
+  deleteComment(event) {
+    event.preventDefault();
+    this.props.deleteCurrentUserResponse(this.props.commentId, this.props.token)
+    .then(function(response) {
+      this.props.fetchCurrentUserResponses();
+    }.bind(this));
   }
   
   renderOptions() {
@@ -68,6 +81,16 @@ class DropDownMenu extends Component {
               onClick={this.deleteStory}
               className={`dropdown-menu-${that.props.name}-option`}>
               Delete Story
+            </a>
+          );
+        } else if (link === "Delete Response") {
+          return (
+            <a
+              href="#"
+              key={`user-dbm-${i}`}
+              onClick={this.deleteComment}
+              className={`dropdown-menu-${that.props.name}-option`}>
+              Delete Response
             </a>
           );
         }
@@ -99,7 +122,8 @@ class DropDownMenu extends Component {
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({ 
-    signOutUser, setAuthToken, deleteCurrentUserStory, fetchStories 
+    signOutUser, setAuthToken, deleteCurrentUserStory, 
+    fetchStories, deleteCurrentUserResponse, fetchCurrentUserResponses 
   }, dispatch);
 };
 

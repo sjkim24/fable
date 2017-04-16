@@ -9,6 +9,7 @@ export const FETCH_TAG_FOLLOWS = "FETCH_TAG_FOLLOWS";
 export const FETCH_STORIES = "FETCH_STORIES";
 export const FETCH_CURRENT_USER_RESPONSES = "FETCH_USERS_RESPONSES";
 export const DELETE_CURRENT_USER_STORY = "DELETE_CURRENT_USER_STORY";
+export const DELETE_CURRENT_USER_RESPONSE = "DELETE_CURRENT_USER_RESPONSE";
 
 const URL = "/api/users";
 
@@ -84,11 +85,20 @@ export function fetchCurrentUserResponses() {
   };
 };
 
-export function deleteCurrentUserStory(storyId) {
-  const request = axios.delete(`/api/stories/${storyId}`);
+export function deleteCurrentUserStory(storyId, token) {
+  const request = axios.delete(`/api/stories/${storyId}?authenticity_token=${token}`);
   
   return {
     type: DELETE_CURRENT_USER_STORY,
+    payload: request
+  };
+};
+
+export function deleteCurrentUserResponse(commentId, token) {
+  const request = axios.delete(`/api/comments/${commentId}?authenticity_token=${token}`);
+  
+  return {
+    type: DELETE_CURRENT_USER_RESPONSE,
     payload: request
   };
 };
