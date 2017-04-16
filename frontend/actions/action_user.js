@@ -8,6 +8,7 @@ export const UPDATE_USER = "UPDATE_USER";
 export const FETCH_TAG_FOLLOWS = "FETCH_TAG_FOLLOWS";
 export const FETCH_STORIES = "FETCH_STORIES";
 export const FETCH_CURRENT_USER_RESPONSES = "FETCH_USERS_RESPONSES";
+export const DELETE_CURRENT_USER_STORY = "DELETE_CURRENT_USER_STORY";
 
 const URL = "/api/users";
 
@@ -81,4 +82,13 @@ export function fetchCurrentUserResponses() {
     type: FETCH_CURRENT_USER_RESPONSES,
     payload: request
   };
-}
+};
+
+export function deleteCurrentUserStory(storyId) {
+  const request = axios.delete(`/api/stories/${storyId}`);
+  
+  return {
+    type: DELETE_CURRENT_USER_STORY,
+    payload: request
+  };
+};

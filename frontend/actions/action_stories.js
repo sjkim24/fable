@@ -48,5 +48,5 @@ export function updateStory(storyId, data) {
   return {
     type: UPDATE_STORY,
     payload: request
-  }
-}
+  };
+};

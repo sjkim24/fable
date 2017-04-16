@@ -35,7 +35,7 @@ class CommentsIndex extends Component {
   }
   
   render() {
-    debugger
+
     return (
       <div id="story-comments" className="comments-container padding-side">
         {this.displayTextOrComments()}

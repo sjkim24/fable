@@ -65,6 +65,8 @@ class StoriesForm extends Component {
       if (this.state.file) {
         formData.append("story[banner_image]", this.state.file);
       }
+      console.log(this.props.token);
+      formData.append("authenticity_token", this.props.token);
       
       this.props.createStory(formData)
         .then(() => {
@@ -155,7 +157,7 @@ function mapDispatchToProps(dispatch) {
 };
 
 function mapStateToProps(state) {
-  return { currentUser: state.auth.currentUser, story: state.stories.story }
+  return { currentUser: state.auth.currentUser, story: state.stories.story, token: state.auth.authToken }
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(StoriesForm);

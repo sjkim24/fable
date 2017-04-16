@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Link } from "react-router";
 import { signOutUser, setAuthToken } from "../../actions/action_auth";
+import { deleteCurrentUserStory, fetchStories } from "../../actions/action_user";
 
 
 class DropDownMenu extends Component {
@@ -10,6 +11,7 @@ class DropDownMenu extends Component {
     super();
     
     this.handleSignOut = this.handleSignOut.bind(this);
+    this.deleteStory = this.deleteStory.bind(this);
   }
   
   getHref(name) {
@@ -24,8 +26,6 @@ class DropDownMenu extends Component {
         return "/users/me/my_responses";
       case ("Edit Story"):
         return `/stories/${this.props.storyId}/edit`;
-      case ("Delete Story"):
-        return 
     };
   }
   
@@ -36,6 +36,14 @@ class DropDownMenu extends Component {
       $('meta[name="csrf-token"]').attr('content', response.payload.data.csrfToken)
       this.props.setAuthToken(response.payload.data.csrfToken);
     }.bind(this));
+  }
+  
+  deleteStory(event) {
+    event.preventDefault();
+    this.props.deleteCurrentUserStory(this.props.storyId)
+    .then(function(response) {
+      this.props.fetchStories(this.props.currentUser.username);
+    }.bind(this))
   }
   
   renderOptions() {
@@ -50,6 +58,16 @@ class DropDownMenu extends Component {
               key={`user-dbm-${i}`}
               className={`dropdown-menu-${that.props.name}-option`}>
               Sign Out
+            </a>
+          );
+        } else if (link === "Delete Story") {
+          return (
+            <a
+              href="#"
+              key={`user-dbm-${i}`}
+              onClick={this.deleteStory}
+              className={`dropdown-menu-${that.props.name}-option`}>
+              Delete Story
             </a>
           );
         }
@@ -80,11 +98,13 @@ class DropDownMenu extends Component {
 };
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ signOutUser, setAuthToken }, dispatch);
+  return bindActionCreators({ 
+    signOutUser, setAuthToken, deleteCurrentUserStory, fetchStories 
+  }, dispatch);
 };
 
 function mapStateToProps(state) {
-  return { token: state.auth.authToken }
+  return { token: state.auth.authToken, currentUser: state.auth.currentUser }
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(DropDownMenu);

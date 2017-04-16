@@ -25,12 +25,6 @@ class Api::StoriesController < ApplicationController
     render :new
   end
 
-  # def edit
-  #   @story = Story.find(params[:id])
-  #   @comments = @story.comments
-  #   render :edit
-  # end
-
   def show
     @story = Story.find(params[:id])
         
