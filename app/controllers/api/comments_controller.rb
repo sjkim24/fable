@@ -30,8 +30,9 @@ class Api::CommentsController < ApplicationController
 
   def update
     @comment = Comment.find(params[:id])
+    
     if @comment.update_attributes(comment_params)
-      redirect_to comment_url(@comment.user_id)
+      render :show
     else
       flash.now[:errors] = @story.errors.full_messages
       render :edit

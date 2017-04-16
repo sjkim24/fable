@@ -1,25 +1,63 @@
-import React, { Component } from "react";
+import React, { Component, PropTypes } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { fetchComment } from "../../actions/action_comments";
+import { fetchComment, updateComment } from "../../actions/action_comments";
 import NotAllowed from "../base/not_allowed.jsx";
 import { Link } from "react-router";
 import ContentForm from "../base/content_form.jsx";
 
 class CommentsEdit extends Component {
+  static contextTypes = {
+    router: PropTypes.object
+  }
+  
   constructor() {
     super();
     
+    this.state = { content: "" }
     this.handleOnSubmit = this.handleOnSubmit.bind(this);
+    this.handleContentFormChange = this.handleContentFormChange.bind(this);
+    this.goBack = this.goBack.bind(this);
+  }
+  
+  handleContentFormChange(content) {
+    this.setState({ content: content });
   }
   
   handleOnSubmit(event) {
     event.preventDefault();
-    console.log("submit clicked");
+    
+    this.setState({ error: false }, () => {
+      if (this.state.content.length > 0) { // input check
+        const that = this;
+        const params = {
+          comment: { content: this.state.content }, 
+          authenticity_token: this.props.token 
+        };
+        this.props.updateComment(this.props.comment.id, params)
+        .then(() => {
+          this.context.router.push(`/comments/${that.props.comment.id}`);
+        });
+      } else {
+        this.setState({ error: true });
+      }
+    })
   }
   
   componentWillMount() {
-    this.props.fetchComment(this.props.params.commentId);
+    const that = this;
+    this.props.fetchComment(this.props.params.commentId)
+    .then(() => {
+      const state = {};
+      const content = JSON.parse(this.props.comment.content);
+      state.content = content;
+      
+      this.setState(state);
+    });
+  }
+  
+  goBack() {
+    history.back();
   }
   
   render() {
@@ -34,7 +72,7 @@ class CommentsEdit extends Component {
     
     const hasReplies = comment.comments_count > 0 ? true : false;
     const storyLinkDisplay = comment.story_title ? "" : "hidden";
-    console.log(comment);
+
     return (
       <div className="story">
         <Link to={`/stories/${comment.story_id}`} className={`${storyLinkDisplay}`}>
@@ -57,9 +95,16 @@ class CommentsEdit extends Component {
             </div>
           </div>
         </Link>
-        <form onSubmit={this.handleOnSubmit}>
-          <ContentForm content={comment.content}/>
-          <input className="button" type="submit" value="Save" />
+        <form className="comment-edit" onSubmit={this.handleOnSubmit}>
+          <ContentForm
+            handleContentFormChange={this.handleContentFormChange}  
+            content={this.state.content}/>
+          <div className="comment-edit-btns">
+            <input className="comment-edit-save-btn button" type="submit" value="Save" />
+            <div className="comment-edit-cancel-btn button" onClick={this.goBack}>
+              Cancel
+            </div>
+          </div>
         </form>
       </div>
     );
@@ -67,11 +112,14 @@ class CommentsEdit extends Component {
 };
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchComment }, dispatch);
+  return bindActionCreators({ fetchComment, updateComment }, dispatch);
 };
 
 function mapStateToProps(state) {
-  return { comment: state.comments.comment, currentUser: state.auth.currentUser };
+  return { 
+    comment: state.comments.comment, currentUser: state.auth.currentUser,
+    token: state.auth.authToken 
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CommentsEdit);

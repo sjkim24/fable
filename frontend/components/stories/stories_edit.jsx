@@ -57,7 +57,7 @@ class StoriesEdit extends Component {
   
   handleOnSubmit(event) {
     event.preventDefault();
-    // make ajax request to update
+
     if (this.validInputs() && (this.state.imgPrevLoaded === null || this.state.imgPrevLoaded)) {
       const formData = new FormData();
       formData.append("story[title]", this.state.title);
@@ -68,9 +68,9 @@ class StoriesEdit extends Component {
       }
       
       this.props.updateStory(this.props.story.id, formData)
-        .then(() => {
-          this.context.router.push(`/stories/${this.props.story.id}`);
-        });
+      .then(() => {
+        this.context.router.push(`/stories/${this.props.story.id}`);
+      });
     }  else {
       console.log("render error");
     } 
@@ -81,23 +81,24 @@ class StoriesEdit extends Component {
   }
   
   componentWillMount() {
-    const that = this;
+    const story = this.props.story;
+    
     this.props.fetchStory(this.props.params.storyId)
     .then(() => {
       const state = {};
-      const content = JSON.parse(this.props.story.content);
+      const content = JSON.parse(story.content);
 
-      state["title"] = that.props.story.title;
-      state["subtitle"] = that.props.story.subtitle || "";
-      state["content"] = content
+      state.title = story.title;
+      state.subtitle = story.subtitle || "";
+      state.content = content
       
-      if (that.props.story.image_url) {
-        state["imgPrevUrl"] = that.props.story.image_url;
-        state["imgPrevLoaded"] = true;
+      if (story.image_url) {
+        state["imgPrevUrl"] = story.image_url;
+        state.imgPrevLoaded = true;
       }
       
       this.setState(state);
-    })
+    });
   }
   
   render() {
@@ -164,9 +165,7 @@ class StoriesEdit extends Component {
             content={this.state.content} />
           <div className="stories-form-btns group padding-side">
             <input type="submit" value="Publish" className="stories-form-submit-btn button" />
-            <div 
-              className="stories-form-cancel-btn button" 
-              onClick={this.goBack}>
+            <div className="stories-form-cancel-btn button" onClick={this.goBack}>
               Cancel
             </div>
           </div>

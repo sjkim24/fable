@@ -5,6 +5,7 @@ export const SET_COMMENT = "SET_COMMENT";
 export const FETCH_COMMENTS = "FETCH_COMMENTS";
 export const CREATE_COMMENT = "CREATE_COMMENT";
 export const DELETE_COMMENT = "DELETE_COMMENT";
+export const UPDATE_COMMENT = "UPDATE_COMMENT";
 
 const COMMENTS_URL = "/api/comments";
 const STORIES_URL = "/api/stories";
@@ -51,6 +52,15 @@ export function deleteComment(commentId, token) {
   
   return {
     type: DELETE_COMMENT,
+    payload: request
+  };
+};
+
+export function updateComment(commentId, params) {
+  const request = axios.patch(`${COMMENTS_URL}/${commentId}`, params);
+  
+  return {
+    type: UPDATE_COMMENT,
     payload: request
   };
 };
