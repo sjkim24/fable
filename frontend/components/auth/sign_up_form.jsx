@@ -65,7 +65,7 @@ class SignUpForm extends Component {
       state.email, state.fullname, state.username, state.password, state.passwordConfirm
     ];
 
-    if (this.checkPasswords() && checks.every(this.lengthIsGreaterThan0) {
+    if (this.checkPasswords() && checks.every(this.lengthIsGreaterThan0)) {
       axios.post("/users", {
         user: {
           email: this.state.email,
