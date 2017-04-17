@@ -10,6 +10,8 @@ export const FETCH_STORIES = "FETCH_STORIES";
 export const FETCH_CURRENT_USER_RESPONSES = "FETCH_USERS_RESPONSES";
 export const DELETE_CURRENT_USER_STORY = "DELETE_CURRENT_USER_STORY";
 export const DELETE_CURRENT_USER_RESPONSE = "DELETE_CURRENT_USER_RESPONSE";
+export const CREATE_TAG_FOLLOW = "CREATE_TAG_FOLLOW";
+export const DELETE_TAG_FOLLOW = "DELETE_TAG_FOLLOW";
 
 const URL = "/api/users";
 
@@ -99,6 +101,27 @@ export function deleteCurrentUserResponse(commentId, token) {
   
   return {
     type: DELETE_CURRENT_USER_RESPONSE,
+    payload: request
+  };
+};
+
+export function createTagFollow(data) {
+  debugger
+  const request = axios.post(`api/tag_follows/`, data);
+  
+  return  {
+    type: CREATE_TAG_FOLLOW,
+    payload: request
+  };
+};
+
+export function deleteTagFollow(data) {
+  const token = `authenticity_token=${encodeURIComponent(data.token)}`;
+  const id = `id=${data.id}`;
+  const request = axios.delete(`api/tag_follows/destroy?${token}&${id}`);
+
+  return {
+    type: DELETE_TAG_FOLLOW,
     payload: request
   };
 };

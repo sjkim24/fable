@@ -6,7 +6,9 @@ class Tag extends Component {
     const classProps = this.props.className || "";
     
     return (
-      <div className={`tag ${classProps}`}>{this.props.desc}</div>
+      <div className={`tag ${classProps}`}>
+        {this.props.desc}
+      </div>
     );
   }
 };

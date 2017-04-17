@@ -8,4 +8,8 @@ class Tag < ActiveRecord::Base
   
   has_many :stories, through: :tagging, source: :story
   has_many :tag_follows
+  
+  def follow_count
+    TagFollow.where(tag_id: self.id).count
+  end
 end

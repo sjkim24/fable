@@ -24,10 +24,17 @@
   height: 22px;
   margin: 0px 10px 10px 0px;
   padding: 5px 10px 0px 10px;
+  position: relative;
 }
 
 .tag:hover {
   cursor: pointer;
+}
+
+.tag-delete-button {
+  right: 2px;
+  position: absolute;
+  top: -2px;
 }
 
 .loader { // loading spinner or something

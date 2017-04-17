@@ -15,12 +15,12 @@ class User < ActiveRecord::Base
          #, :trackable, :validatablegmail
 
   has_many :stories, dependent: :destroy
-  has_many :comments
+  has_many :comments, dependent: :destroy
   has_many :story_likes, dependent: :destroy
   has_many :comment_likes, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
   
-  has_many :recommends, through: :story_likes, source: :story
+  has_many :recommends, through: :story_likes, source: :story, dependent: :destroy
   
   has_many :follower_relationships, class_name: "Follow", foreign_key: :following_id, dependent: :destroy
   has_many :followers, through: :follower_relationships, source: :follower
@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
   has_many :following_relationships, class_name: "Follow", foreign_key: :follower_id, dependent: :destroy
   has_many :followings, through: :following_relationships, source: :following
   
-  has_many :tag_follows
+  has_many :tag_follows, dependent: :destroy
   
   def following?(follower_id, following_id)
     Follow.where(follower_id: follower_id, following_id: following_id).present?
@@ -38,7 +38,7 @@ class User < ActiveRecord::Base
     Comment.where(user_id: self.id, parent_comment_id: nil)
   end
   
-  def get_recommends
-    Story.where()
-  end
+  # def get_recommends
+  #   Story.where()
+  # end
 end

@@ -7,7 +7,6 @@ Rails.application.routes.draw do
       resources :comments, only: [:index]
       resources :bookmarks, only: [:index]
       resources :follows, only: [:create]
-      resources :tag_follows, only: [:create]
     end
 
     resources :stories do
@@ -20,11 +19,13 @@ Rails.application.routes.draw do
       resources :comment_likes, only: [:create]
     end
     
+    resources :tag_follows, only: [:create]
+    
     delete 'story_likes/destory', :to => 'story_likes#destroy'
     delete 'comment_likes/destroy', :to => 'comment_likes#destroy'
     delete 'bookmarks/destory', :to => 'bookmarks#destroy'
     delete 'follows/destroy', :to => 'follows#destroy'
-    delete 'tag_follows/destroy', :to => 'tag_follows#destory'
+    delete 'tag_follows/destroy', :to => 'tag_follows#destroy'
     
     get 'users/:username', :to => 'users#show'
     get 'users/:id/followers', :to => 'users#followers'
