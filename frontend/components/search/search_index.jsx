@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import { searchAll } from "../../actions/action_search";
 import SearchIndexStoryItem from "./search_index_story_item.jsx";
 import SearchIndexUserItem from "./search_index_user_item.jsx";
-import SearchIndexTagItem from "./search_index_tag_item.jsx";
+import Tag from "../buttons/tag.jsx";
 
 class SearchIndex extends Component {
   constructor() {
@@ -79,9 +79,7 @@ class SearchIndex extends Component {
         
         const tags = this.props.searchResults.tags.map((tag, i) => {
           return (
-            <SearchIndexTagItem
-              key={`search-tag-item-${i}`} 
-              tag={tag} />
+            <Tag key={`search-tag-item-${i}`} desc={tag.tag_desc} />
           );
         });
         
@@ -120,20 +118,20 @@ class SearchIndex extends Component {
             <div
               className={`search-index-tab ${storiesActive}`} 
               onClick={this.toggleActiveTab.bind(this, "stories")}>
-              Stories
+              Stories ({this.props.searchResults.stories.length})
             </div>
             <div
               className={`search-index-tab ${usersActive}`} 
               onClick={this.toggleActiveTab.bind(this, "users")}>
-              Users
+              Users ({this.props.searchResults.users.length})
             </div>
             <div
               className={`search-index-tab ${tagsActive}`} 
               onClick={this.toggleActiveTab.bind(this, "tags")}>
-              Tags
+              Tags ({this.props.searchResults.tags.length})
             </div>
           </div>
-          <ul className="search-index-items">
+          <ul className="search-index-items group">
             {this.renderActiveTab()}
           </ul>
         </div>

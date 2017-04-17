@@ -46,3 +46,15 @@
   right: 0;
   top: -5px;
 }
+
+@media (min-width: 768px) {
+  .search-form-input {
+    font-size: 24px;
+    padding: 10px 10px 10px 0px;
+  }
+  
+  .search-index-tab {
+    font-size: 20px;
+    padding: 20px 20px 20px 0px;
+  }
+}
