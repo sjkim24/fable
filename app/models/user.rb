@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+  include PgSearch
+  multisearchable :against => [:fullname, :username]
+  
   validates :email, :encrypted_password, :sign_in_count, presence: true
   validates :user_desc, length: { maximum: 160 }
   

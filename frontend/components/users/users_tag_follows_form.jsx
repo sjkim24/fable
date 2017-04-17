@@ -110,7 +110,8 @@ class UsersTagFollowsForm extends Component {
               className="tag-follows-search-input" 
               onChange={this.handleOnChange}
               value={this.state.searchTerm} 
-              placeholder="Search tags" />
+              placeholder="Search tags"
+              autoFocus />
             <input
               type="submit"
               value="+"

@@ -1,4 +1,7 @@
 class Story < ActiveRecord::Base
+  include PgSearch
+  multisearchable :against => [:title, :subtitle, :content]
+  
   validates :title, :content, presence: true
   validates :title, :subtitle, length: { maximum: 200 }
   

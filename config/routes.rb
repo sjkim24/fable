@@ -41,5 +41,6 @@ Rails.application.routes.draw do
     get 'current_user', :to => 'current_user#get_current_user'
     
     get "tags/search", :to => 'tags#search_tags'
+    get "search", :to => 'search#search'
   end
 end
