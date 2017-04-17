@@ -15,7 +15,8 @@ class SignUpForm extends Component {
       username: "", 
       password: "", 
       passwordConfirm: "", 
-      error: false 
+      error: false,
+      errorType: null 
     };
     this.handleChange = this.handleChange.bind(this);
     this.checkPasswords = this.checkPasswords.bind(this);
@@ -52,17 +53,25 @@ class SignUpForm extends Component {
     }
   }
   
+  lengthIsGreaterThan0(input, index, array) {
+    return input.length > 0;
+  }
+  
   onFormSubmit(event) {
     event.preventDefault();
     const that = this;
-    
-    if (this.checkPasswords()) {
+    const state = this.state;
+    const checks = [
+      state.email, state.fullname, state.username, state.password, state.passwordConfirm
+    ];
+
+    if (this.checkPasswords() && checks.every(this.lengthIsGreaterThan0) {
       axios.post("/users", {
         user: {
           email: this.state.email,
-          fullname: this.state.fullname,
-          username: this.state.username, 
-          password: this.state.password
+          fullname: state.fullname,
+          username: state.username, 
+          password: state.password
         },
         authenticity_token: this.props.token
       })
@@ -83,6 +92,10 @@ class SignUpForm extends Component {
       .catch(function(error) {
         console.log(error);
       })
+    } else if (!checks.every(this.lengthIsGreaterThan0)) {
+      this.setState({ error: true , errorType: "inputs" });
+    } else if (!this.checkPasswords()) {
+      this.setState({ error: true, errorType: "password" });
     }
   }
   

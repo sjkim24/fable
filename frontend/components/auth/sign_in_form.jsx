@@ -41,18 +41,23 @@ class SignInForm extends Component {
       authenticity_token: this.props.token
     })
     .then(function(response) {
-      that.props.setAuthToken(response.data.csrfToken);
-      $('meta[name="csrf-token"]').attr('content', response.data.csrfToken);
-      that.props.setCurrentUser(response.data.current_user);
-      that.props.toggleModal();
-      // figure out a better way to handle this later
-      // fetch current stories again with updated data on likes and bookmark
-      // if user logged in at index
-      if ($(".stories")[0]) {
-        that.props.fetchStories();
-      } // else if story show, fetch that story 1 more time
-      // other sitches to fetch stuff
-      // comment show, reply show?, each user profile tab
+      if (response.data.error) {
+        that.setState({ error: true });
+      } else {
+        that.setState({ error: false });
+        that.props.setAuthToken(response.data.csrfToken);
+        $('meta[name="csrf-token"]').attr('content', response.data.csrfToken);
+        that.props.setCurrentUser(response.data.current_user);
+        that.props.toggleModal();
+        // figure out a better way to handle this later
+        // fetch current stories again with updated data on likes and bookmark
+        // if user logged in at index
+        if ($(".stories")[0]) {
+          that.props.fetchStories();
+        } // else if story show, fetch that story 1 more time
+        // comment show, reply show?, each user profile tab
+        // other sitches to fetch stuff
+      }
     })
     .catch(function(error) {
       console.log(error);
@@ -94,6 +99,9 @@ class SignInForm extends Component {
               type="password"
               onChange={(event) => this.handleChange(event, "password")} 
               value={this.state.password} />
+            <div className={`auth-form-error-signin error ${errorDisplay}`}>
+              Email and password do not match
+            </div>
           </div>
           <button type="submit" className="form-button auth-button">
             Sign In
