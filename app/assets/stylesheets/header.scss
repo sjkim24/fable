@@ -137,6 +137,10 @@
 }
 
 @media (min-width: 768px) {
+  .search-bar-active {
+    width: 200px;
+  }
+  
   .header-list-logo-img-small {
     display: none;
   }
@@ -147,5 +151,4 @@
   }
 }
 
-// .header-list-notification,
-// .header-list-profile 
+// .header-list-notification
