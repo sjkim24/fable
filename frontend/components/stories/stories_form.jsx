@@ -136,7 +136,7 @@ class StoriesForm extends Component {
               alt="preview img" 
               className={`stories-form-preview-img ${prevDisplay}`} />
           </div>
-          <ContentForm handleContentFormChange={this.handleContentFormChange} />
+          <ContentForm content={this.state.content} handleContentFormChange={this.handleContentFormChange} />
           <div className="stories-form-btns group padding-side">
             <input type="submit" value="Publish" className="stories-form-submit-btn button" />
             <div 
