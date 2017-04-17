@@ -81,10 +81,11 @@ class StoriesEdit extends Component {
   }
   
   componentWillMount() {
-    const story = this.props.story;
+    const that = this;
     
     this.props.fetchStory(this.props.params.storyId)
-    .then(() => {
+    .then((response) => {
+      const story = that.props.story;
       const state = {};
       const content = JSON.parse(story.content);
 
