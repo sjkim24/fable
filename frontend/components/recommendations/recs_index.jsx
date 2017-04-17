@@ -10,23 +10,30 @@ class RecsIndex extends Component {
     // fetch recs
   }
   
-  renderRecs() {
-    // const recs = this.props.recs.map((rec, i) => {
-    //   return <RecsIndexItem key={`rec-${i}`} story={rec} />
-    // });
+  renderTopStories() {
+    const topStories = this.props.topStories.map((topStory, i) => {
+      return (
+        <li className="rec-item group" key={`top-story-${i}`}>
+          <img src={topStory.user_image_url} alt="user image" className="rec-user-img" />
+          <div className="rec-item-info">
+            <div className="rec-item-title">{topStory.title}</div>
+            <div className="rec-item-user-fullname">{topStory.user_fullname}</div>
+          </div>
+        </li>
+      );
+    });
     
-    // return recs;
+    return topStories;
   }
   
   render() {
+    console.log(this.props.topStories);
     return (
       <ul className="recs">
         <li className="rec">
           <div className="rec-category">Top Stories</div>
           <ul className="rec-items-container">
-            <li className="rec-item">1</li>
-            <li className="rec-item">2</li>
-            <li className="rec-item">3</li>
+            {this.renderTopStories()}
           </ul>
         </li>
         <li className="rec">

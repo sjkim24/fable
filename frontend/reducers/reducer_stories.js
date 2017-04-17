@@ -6,7 +6,7 @@ import {
   UPDATE_STORY
 } from "../actions/action_stories";
 
-const INITIAL_STATE = { all: [], story: null };
+const INITIAL_STATE = { all: null, story: null };
 
 export default function(state = INITIAL_STATE, action) {
   Object.freeze(state);

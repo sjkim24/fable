@@ -11,7 +11,7 @@ class StoriesIndex extends Component {
   }
   
   renderStories() {
-    const stories = this.props.stories.map((story, i) => {
+    const stories = this.props.stories.stories.map((story, i) => {
       return <StoriesIndexItem key={`story-${i}`} story={story} />
     });
     
@@ -20,7 +20,7 @@ class StoriesIndex extends Component {
   
   renderRecommendations() {
     return (
-      <RecsIndex />
+      <RecsIndex topStories={this.props.stories.top_stories} />
     );
   }
   

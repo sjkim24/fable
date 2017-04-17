@@ -6,6 +6,8 @@ class Api::StoriesController < ApplicationController
     # people they follow
     # tags they follow
     
+    @top_stories = Story.joins(:story_likes).group("stories.id").order("COUNT(stories.id) DESC").limit(3)
+    
     render :index
   end
 
