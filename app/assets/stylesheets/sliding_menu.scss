@@ -37,3 +37,9 @@
     color: $yellow;
   }
 }
+
+@media (min-width: 768px) {
+  .sliding-menu {
+    display: none;
+  }
+}
