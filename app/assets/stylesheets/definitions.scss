@@ -75,6 +75,24 @@
   }
 }
 
+@keyframes blink {
+  0% { opacity: 0; }
+  100%{ opacity: 1; }
+}
+
+.not-allowed-pokeball {
+  animation: blink 2s infinite;
+  margin: 0 auto;
+  width: 150px;
+}
+
+.not-allowed-header, .not-allowed-footer {
+  font-size: 24px;
+  font-weight: bold;
+  padding-top: 30px;
+  text-align: center;
+}
+
 #not-allowed {
   background: #FFFFFF;
 }
