@@ -24,6 +24,7 @@ class SearchButton extends Component {
     if (this.state.term.length > 0 && event.key === "Enter") {
       this.props.searchAll(this.state.term)
       .then((response) => {
+        this.props.toggleSearchBar();
         this.context.router.push(`/search?q=${this.state.term}&redirect=true`);
       });
     }
