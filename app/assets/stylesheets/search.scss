@@ -1,0 +1,38 @@
+.search-index {
+  background: #FFFFFF;
+  padding-top: 30px;
+}
+
+.search-index-inner {
+  margin: 0 auto;
+  max-width: 700px;
+  width: calc(100% - 20px);
+}
+
+.search-form-input {
+  border-bottom: 1px solid $gray;
+  font-size: 16px;
+  padding: 3px 3px 3px 0px;
+  width: 100%;
+}
+
+.search-index-tabs {
+  border-bottom: 1px solid $light-gray;
+  margin: 15px 0px;
+  width: 100%;
+}
+
+.search-index-tab {
+  color: $gray;
+  float: left;
+  padding: 10px 10px 10px 0px;
+}
+
+.search-index-tab-active {
+  color: #000000;
+}
+
+.search-story-item {
+  border-bottom: 1px solid $light-gray;
+  padding-bottom: 30px;
+}

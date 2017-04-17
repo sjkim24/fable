@@ -25,7 +25,6 @@ class Heart extends Component {
   }
   
   toggleLike() {
-    console.log("heart", this.props.token);
     const that = this;
     const name = this.props.name;
     let url;

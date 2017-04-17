@@ -90,29 +90,41 @@ class SearchIndex extends Component {
       return <div className="loader" />;
     };
     
-    console.log(this.props.searchResults);
+    const storiesActive = this.state.activeTab === "stories" ? "search-index-tab-active" : "";
+    const usersActive = this.state.activeTab === "users" ? "search-index-tab-active" : "";
+    const tagsActive = this.state.activeTab === "tags" ? "search-index-tab-active" : "";
     
     return (
-      <div>
-        <form onSubmit={this.search}>
-          <input
-            className="search-index-search"
-            onChange={this.handleOnChange}
-            value={this.state.searchTerm} 
-            placeholder="Search Fable" />
-        </form>
-        <div className="search-index-tabs">
-          <div onClick={this.toggleActiveTab.bind(this, "stories")}>
-            Stories
+      <div className="search-index">
+        <div className="search-index-inner">
+          <form onSubmit={this.search} className="search-form">
+            <input
+              className="search-form-input"
+              onChange={this.handleOnChange}
+              value={this.state.searchTerm} 
+              placeholder="Search Fable" />
+          </form>
+          <div className="search-index-tabs group">
+            <div
+              className={`search-index-tab ${storiesActive}`} 
+              onClick={this.toggleActiveTab.bind(this, "stories")}>
+              Stories
+            </div>
+            <div
+              className={`search-index-tab ${usersActive}`} 
+              onClick={this.toggleActiveTab.bind(this, "users")}>
+              Users
+            </div>
+            <div
+              className={`search-index-tab ${tagsActive}`} 
+              onClick={this.toggleActiveTab.bind(this, "tags")}>
+              Tags
+            </div>
           </div>
-          <div onClick={this.toggleActiveTab.bind(this, "users")}>
-            Users
-          </div>
-          <div onClick={this.toggleActiveTab.bind(this, "tags")}>
-            Tags
-          </div>
+          <ul className="search-index-items">
+            {this.renderActiveTab()}
+          </ul>
         </div>
-        {this.renderActiveTab()}
       </div>
     );
   }
