@@ -2,7 +2,7 @@ json.user do
   json.id @user.id
   json.fullname @user.fullname
   json.desc @user.user_desc
-  json.image_url @user.photo.url
+  json.image_url @user.photo.url.gsub(/^http/, "https")
   if current_user
     json.following @user.following?(current_user.id, @user.id)
   else
@@ -16,13 +16,13 @@ json.latest @latest.each do |story|
   json.username story.user.username
   json.user_fullname story.user.fullname
   json.user_desc story.user.user_desc
-  json.user_image_url story.user.photo.url
+  json.user_image_url story.user.photo.url.gsub(/^http/, "https")
   json.published_date story.published_date
   json.read_time story.read_time
   json.title story.title
   json.subtitle story.subtitle
   if story.has_image?
-    json.image_url story.banner_image.url
+    json.image_url story.banner_image.url.gsub(/^http/, "https")
   else
     json.image_url nil
   end
@@ -50,7 +50,7 @@ json.recommends @recommends.includes(:user).each do |recommend|
   json.author_fullname recommend.user.fullname
   json.author_username recommend.user.username
   if recommend.has_image?
-    json.image_url recommend.banner_image.url
+    json.image_url recommend.banner_image.url.gsub(/^http/, "https")
   else
     json.image_url nil
   end
@@ -64,7 +64,7 @@ json.comments @comments.includes(:story, :user).each do |comment|
   json.story_likes_count comment.story.story_likes.count
   json.story_comments_count comment.story.get_comments_only.count
   json.user_id comment.user_id
-  json.user_image_url comment.user.photo.url
+  json.user_image_url comment.user.photo.url.gsub(/^http/, "https")
   json.username comment.user.username
   json.user_fullname comment.user.fullname
   json.user_desc comment.user.user_desc
@@ -88,7 +88,7 @@ json.followers @user.followers.each do |follower|
   json.id follower.id
   json.fullname follower.fullname
   json.desc follower.user_desc
-  json.image_url follower.photo.url
+  json.image_url follower.photo.url.gsub(/^http/, "https")
   if current_user
     json.following current_user.following?(current_user.id, follower.id)
   else
@@ -100,7 +100,7 @@ json.followings @user.followings.each do |following|
   json.id following.id
   json.fullname following.fullname
   json.desc following.user_desc
-  json.image_url following.photo.url
+  json.image_url following.photo.url.gsub(/^http/, "https")
   if current_user
     json.following current_user.following?(current_user.id, following.id)
   else

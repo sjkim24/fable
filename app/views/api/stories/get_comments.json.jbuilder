@@ -6,7 +6,7 @@ json.array! @comments.each do |comment|
   json.story_likes_count comment.story.story_likes.count
   json.story_comments_count comment.story.get_comments_only.count
   json.user_id comment.user_id
-  json.user_image_url comment.user.photo.url
+  json.user_image_url comment.user.photo.url.gsub(/^http/, "https")
   json.username comment.user.username
   json.user_fullname comment.user.fullname
   json.user_desc comment.user.user_desc
