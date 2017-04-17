@@ -6,6 +6,7 @@ json.users do
   json.array! @users.each do |user|
     json.id user.id
     json.fullname user.fullname
+    json.username user.username
     json.desc user.user_desc
     json.image_url user.photo.url.gsub(/^http/, "https")
     if current_user
