@@ -23,6 +23,11 @@
   width: calc(90% - 20px);
 }
 
+.tag-follows-error {
+  font-size: 14px;
+  padding-left: 10px;
+}
+
 .tag-follows-search-add {
   font-size: 18px;
   text-align: center;
@@ -31,6 +36,7 @@
 
 .tag-follows-searched-tag {
   font-size: 14px;
+  margin-top: 15px;
   padding: 0px 0px 15px 10px;
 }
 

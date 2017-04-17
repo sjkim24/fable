@@ -42,6 +42,10 @@ export default function(state = INITIAL_STATE, action) {
     case FETCH_CURRENT_USER_RESPONSES:
       return { ...state, responses: action.payload.data };
     case CREATE_TAG_FOLLOW:
+      if (action.payload.data.error) {
+        return { ...state };
+      }
+       
       return { ...state, tagFollows: action.payload.data };
     case DELETE_TAG_FOLLOW:
       return { ...state, tagFollows: action.payload.data };

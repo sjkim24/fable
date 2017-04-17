@@ -106,7 +106,6 @@ export function deleteCurrentUserResponse(commentId, token) {
 };
 
 export function createTagFollow(data) {
-  debugger
   const request = axios.post(`api/tag_follows/`, data);
   
   return  {

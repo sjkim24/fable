@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, PropTypes } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Link } from "react-router";
@@ -9,6 +9,10 @@ import {
 
 
 class DropDownMenu extends Component {
+  static contextTypes = {
+    router: PropTypes.object
+  }
+  
   constructor() {
     super();
     
@@ -40,6 +44,7 @@ class DropDownMenu extends Component {
     .then(function(response) {
       $('meta[name="csrf-token"]').attr('content', response.payload.data.csrfToken);
       this.props.setAuthToken(response.payload.data.csrfToken);
+      this.context.router.push("/");
     }.bind(this));
   }
   

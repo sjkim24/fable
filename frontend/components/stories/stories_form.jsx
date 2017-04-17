@@ -7,7 +7,7 @@ import { createStory } from "../../actions/action_stories";
 class StoriesForm extends Component {
   static contextTypes = {
     router: PropTypes.object
-  };
+  }
   
   constructor() {
     super();
@@ -65,7 +65,6 @@ class StoriesForm extends Component {
       if (this.state.file) {
         formData.append("story[banner_image]", this.state.file);
       }
-      console.log(this.props.token);
       formData.append("authenticity_token", this.props.token);
       
       this.props.createStory(formData)

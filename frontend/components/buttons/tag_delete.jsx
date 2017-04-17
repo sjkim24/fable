@@ -15,7 +15,7 @@ class TagDelete extends Component {
     let data = {};
     data["token"] = this.props.token;
     data["id"] = this.props.id;
-    debugger
+
     this.props.deleteTagFollow(data)
     .then(() => {
       that.props.fetchTagFollows();

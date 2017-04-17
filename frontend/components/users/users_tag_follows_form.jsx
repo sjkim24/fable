@@ -12,7 +12,7 @@ class UsersTagFollowsForm extends Component {
     this.state = { 
       searchTerm: "",
       searchedTags: [],
-      userTags: [] 
+      error: false
     };
     
     this.handleOnChange = this.handleOnChange.bind(this);
@@ -21,7 +21,7 @@ class UsersTagFollowsForm extends Component {
   }
   
   handleOnChange(event) {
-    this.setState({ searchTerm: event.target.value }, () => {
+    this.setState({ searchTerm: event.target.value, error: false }, () => {
       this.searchTags();
     });
   }
@@ -33,13 +33,9 @@ class UsersTagFollowsForm extends Component {
   renderSearchedTags() {
     const that = this;
     const tags = this.props.searchedTags.map((tag, i) => {
-      let data = {};
-      data["authenticity_token"] = that.props.token;
-      data["tag_id"] = tag.id;
-      
       return (
         <li
-          onClick={() => this.props.createTagFollow(data)} 
+          onClick={(event) => this.createTagFollow(event, tag.id)} 
           className="tag-follows-searched-tag group"
           key={`searched-tag-${i}`}>
           <div className="searched-tag-desc">{tag.tag_desc}</div>
@@ -66,26 +62,30 @@ class UsersTagFollowsForm extends Component {
     return tags;
   }
   
-  createTagFollow() {
-    // event.preventDefault();
-    // event.persist();
-    // check to make sure i'm not adding a tag following i already have
-    const data = {};
-    const that = this;
+  createTagFollow(event, tagId) {
+    event.persist();
     
-    if (this.props.searchedTags[0]) {
-      data["tag_id"] = this.props.searchedTags[0].id;
-    } else {
-      data["tag_desc"] = this.state.searchTerm;
-    }
-    
-    data["authenticity_token"] = this.props.token;
-    
-    this.props.createTagFollow(data)
-    .then(() => {
-      this.searchTags();
-      this.props.fetchTagFollows();
-    })
+    this.setState({ error: false }, () => {
+      const data = {};
+      const that = this;
+      
+      if (tagId) {
+        data["tag_id"] = tagId
+      } else {
+        data["tag_desc"] = this.state.searchTerm;
+      }
+      
+      data["authenticity_token"] = this.props.token;
+      
+      this.props.createTagFollow(data)
+      .then((response) => {
+        const error = response.payload.data.error ? true : false;
+        this.setState({ error: error }, () => {
+          this.searchTags();
+          this.props.fetchTagFollows();
+        });
+      });
+    });
   }
   
   componentWillMount() {
@@ -96,14 +96,16 @@ class UsersTagFollowsForm extends Component {
     if (!this.props.currentUser || !this.props.tagFollows) {
       return <div className="loader" />;
     }
+
+    const errorDisplay = this.state.error ? "" : "hidden";
     
-    console.log(this.props.searchedTags[0]);
-    // console.log(this.props.tagFollows);
     return (
       <div className="user-tag-follows padding-side">
         <div className="user-tag-follows-inner-container">
           <div className="user-tag-follows-header">Your Tag Follows</div>
-          <form onSubmit={this.createTagFollow} className="tag-follows-form">
+          <form 
+            onSubmit={(event) => this.createTagFollow(event, null)} 
+            className="tag-follows-form">
             <input
               className="tag-follows-search-input" 
               onChange={this.handleOnChange}
@@ -114,6 +116,9 @@ class UsersTagFollowsForm extends Component {
               value="+"
               className="tag-follows-search-add" />
           </form>
+          <div className={`tag-follows-error error ${errorDisplay}`}>
+            You are already following this tag
+          </div>
           <ul className="tag-follows-searched-tags group">
             {this.renderSearchedTags()}
           </ul>
