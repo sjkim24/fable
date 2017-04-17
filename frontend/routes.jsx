@@ -12,6 +12,7 @@ import UsersShow from "./components/users/users_show.jsx";
 import UsersTagFollowsForm from "./components/users/users_tag_follows_form.jsx";
 import UsersStoriesIndex from "./components/users/users_stories_index.jsx";
 import UsersCommentsIndex from "./components/users/users_comments_index.jsx";
+import SearchIndex from "./components/search/search_index.jsx";
 
 export default (
   <Route path="/" component={App}>
@@ -25,6 +26,7 @@ export default (
     <Route path="/users/me/edit_tag_follows" component={UsersTagFollowsForm} />
     <Route path="/users/me/my_stories" component={UsersStoriesIndex} />
     <Route path="/users/me/my_responses" component={UsersCommentsIndex} />
+    <Route path="/search" component={SearchIndex} />
   </Route>
 );
 

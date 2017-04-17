@@ -1,6 +1,13 @@
-import React, { Component } from "react";
+import React, { Component, PropTypes } from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { searchAll } from "../../actions/action_search";
 
 class SearchButton extends Component {
+  static contextTypes = {
+    router: PropTypes.object
+  }
+  
   constructor() {
     super();
     
@@ -14,10 +21,11 @@ class SearchButton extends Component {
   }
   
   handleOnKeyDown(event) {
-    if (event.key === "Enter") {
-      // make an ajax call to search
-      // take them to search results page
-      console.log("make a search!");
+    if (this.state.term.length > 0 && event.key === "Enter") {
+      this.props.searchAll(this.state.term)
+      .then((response) => {
+        this.context.router.push(`/search?q=${this.state.term}&redirect=true`);
+      });
     }
   }
   
@@ -42,4 +50,8 @@ class SearchButton extends Component {
   }
 }
 
-export default SearchButton;
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ searchAll }, dispatch);
+};
+
+export default connect(null, mapDispatchToProps)(SearchButton);

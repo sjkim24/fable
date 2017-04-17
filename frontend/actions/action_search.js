@@ -16,7 +16,7 @@ export function searchTags(searchTerm) {
 };
 
 export function searchAll(searchTerm) {
-  const request = axios.get("/api/search", { search_term: searchTerm });
+  const request = axios.get(`/api/search?search_term=${searchTerm}`);
   
   return {
     type: SEARCH_ALL,

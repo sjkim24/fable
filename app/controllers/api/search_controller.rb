@@ -11,7 +11,7 @@ class Api::SearchController < ApplicationController
     end
     
     @tags = results.where(searchable_type: "Tag")
-    
+
     render :search_results
   end
 end
