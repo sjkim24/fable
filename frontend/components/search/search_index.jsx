@@ -43,6 +43,10 @@ class SearchIndex extends Component {
   renderActiveTab() {
     switch(this.state.activeTab) {
       case("stories"):
+        if (this.props.searchResults.stories.length === 0) {
+          return <div className="search-no-result">No result matched your search</div>;
+        }
+      
         const stories = this.props.searchResults.stories.map((story, i) => {
           return (
             <SearchIndexStoryItem
@@ -54,6 +58,10 @@ class SearchIndex extends Component {
         return stories;
         
       case("users"):
+        if (this.props.searchResults.users.length === 0) {
+          return <div className="search-no-result">No result matched your search</div>;
+        }
+        
         const users = this.props.searchResults.users.map((user, i) => {
           return (
             <SearchIndexUserItem
@@ -65,6 +73,10 @@ class SearchIndex extends Component {
         return users;
         
       case("tags"):
+        if (this.props.searchResults.tags.length === 0) {
+          return <div className="search-no-result">No result matched your search</div>;
+        }
+        
         const tags = this.props.searchResults.tags.map((tag, i) => {
           return (
             <SearchIndexTagItem

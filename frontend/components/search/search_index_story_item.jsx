@@ -77,7 +77,6 @@ class SearchIndexStoryItem extends Component {
   render() {
     const story = this.props.story;
 
-    console.log(story);
     return (
       <li className="stories-item search-story-item">
         <div className="stories-item-header group">
