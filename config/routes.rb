@@ -30,7 +30,7 @@ Rails.application.routes.draw do
     get 'users/:id/followers', :to => 'users#followers'
     get 'users/:id/followings', :to => 'users#followings'
     get 'users/:id/responses', :to => 'users#responses'
-    get 'users/:id/tag_follows', :to => 'users#tag_follows'
+    get 'my_tag_follows', :to => 'users#tag_follows'
     get 'my_stories', :to => 'users#current_user_stories'
     get 'my_responses', :to => 'users#current_user_responses'
     
@@ -38,5 +38,7 @@ Rails.application.routes.draw do
     get 'comments/:id/replies', :to => 'comments#get_replies'
     
     get 'current_user', :to => 'current_user#get_current_user'
+    
+    get "tags/search", :to => 'tags#search_tags'
   end
 end

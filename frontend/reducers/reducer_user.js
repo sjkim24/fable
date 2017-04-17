@@ -10,7 +10,7 @@ const INITIAL_STATE = {
   latest: [],
   recommends: [],
   responses: null,
-  tagFollows: [],
+  tagFollows: null,
   stories: []
 };
 

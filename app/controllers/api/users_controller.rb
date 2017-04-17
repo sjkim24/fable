@@ -47,8 +47,7 @@ class Api::UsersController < ApplicationController
   end
   
   def tag_follows
-    @user = User.find(params[:id])
-    @tag_follows = @user.tag_follows
+    @tag_follows = current_user.tag_follows
     
     render :tag_follows
   end

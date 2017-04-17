@@ -22,7 +22,7 @@ export default (
     <Route path="/comments/:commentId" component={CommentsShow} />
     <Route path="/comments/:commentId/edit" component={CommentsEdit} />
     <Route path="/new_story" component={StoriesForm} />
-    <Route path="/users/:username/edit_tag_follows" component={UsersTagFollowsForm} />
+    <Route path="/users/me/edit_tag_follows" component={UsersTagFollowsForm} />
     <Route path="/users/me/my_stories" component={UsersStoriesIndex} />
     <Route path="/users/me/my_responses" component={UsersCommentsIndex} />
   </Route>

@@ -5,6 +5,7 @@ import ModalReducer from "./reducer_modal";
 import CommentsReducer from "./reducer_comments";
 import RepliesReducer from "./reducer_replies";
 import UserReducer from "./reducer_user";
+import SearchReducer from "./reducer_search";
 
 const rootReducer = combineReducers({
   stories: StoriesReducer,
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
   comments: CommentsReducer,
   replies: RepliesReducer,
   auth: AuthReducer,
-  user: UserReducer
+  user: UserReducer,
+  search: SearchReducer
 });
 
 export default rootReducer;

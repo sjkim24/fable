@@ -2,13 +2,13 @@ class Api::TagsController < ApplicationController
   
   def create
     @tag = Tag.new(tag_params)
-    
-    # if @tag.save
-    #   redirect_to 
   end
   
-  def destroy
+  def search_tags
+    search_term = params[:search_term]
+    @tags = Tag.search_by_tag_desc(search_term)
     
+    render :search_tags
   end
   
   private

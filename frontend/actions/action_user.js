@@ -58,8 +58,8 @@ export function updateUser(userId, data) {
   };
 };
 
-export function fetchTagFollows(userId) {
-  const request = axios.get(`${URL}/${userId}/tag_follows`);
+export function fetchTagFollows() {
+  const request = axios.get("/api/my_tag_follows");
   
   return {
     type: FETCH_TAG_FOLLOWS,

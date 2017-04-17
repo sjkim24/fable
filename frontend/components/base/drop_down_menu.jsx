@@ -21,8 +21,8 @@ class DropDownMenu extends Component {
     switch(name) {
       case("Profile"):
         return `/users/@${this.props.username}`;
-      case("Edit Tag Follows"):
-        return `/users/@${this.props.username}/edit_tag_follows`;
+      case("Tag Follows"):
+        return `/users/me/edit_tag_follows`;
       case("My Stories"):
         return "/users/me/my_stories";
       case ("My Responses"):
