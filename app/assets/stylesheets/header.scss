@@ -45,13 +45,75 @@
   float: left;
   font-size: 14px;
   padding-bottom: 3px;
-  
+}
+
+.header-list-publish-btn {
+  position: relative;
+}
+
+.header-list-story-link-btn,
+.header-list-auth-link {
   &:hover {
     border-bottom: 1px solid $dark-yellow;
     color: $dark-yellow;
     cursor: pointer;
   }
 }
+
+.header-list-publish-text {
+  float: left;
+  margin-right: 5px;
+}
+
+.header-list-publish-arrow {
+  float: left;
+  height: 18px;
+  margin-right: -1px;
+  width: 18px;
+}
+
+// stories tag form //
+
+.stories-tag-form-container {
+  background: #FFFFFF;
+  left: -130px;
+  padding: 20px;
+  position: absolute;
+  top: 20px;
+  width: 260px;
+  z-index: 20;
+}
+
+.stories-tag-form {
+  margin-bottom: 20px;
+}
+
+.stories-tag-form-header {
+  color: #000000;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.stories-tag-form-subheader {
+  color: $gray;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.stories-tag-input {
+  font-size: 14px;
+  width: calc(100% - 11px); // 11px = width of submit button
+}
+
+.stories-tag-submit {
+  font-size: 18px;
+}
+
+.stories-tag-form-publish {
+  width: 70px;
+}
+
+// end //
 
 .header-list-auth-link {
   margin: 6px 15px 0px 15px;
@@ -137,6 +199,11 @@
 }
 
 @media (min-width: 768px) {
+  .stories-tag-form-container {
+    left: -150px;
+    width: 320px;
+  }
+  
   .search-bar-active {
     width: 200px;
   }

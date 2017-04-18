@@ -3,17 +3,11 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Link } from "react-router";
 import Tag from "../buttons/tag.jsx";
-// import { fetchRecs } from "../../actions/recs_fetch";
-// import RecsIndexItem from "./recs_index_item.jsx";
 
 class RecsIndex extends Component {
-  componentWillMount() {
-    // fetch recs
-  }
-  
   renderTopStories() {
     const topStories = this.props.topStories.map((topStory, i) => {
-      console.log(topStory.id);
+      // console.log(topStory.id);
       return (
         <li className="rec-item group" key={`top-story-${i}`}>
           <Link to={`/users/@${topStory.username}`}>
@@ -31,7 +25,7 @@ class RecsIndex extends Component {
   }
   
   render() {
-    console.log(this.props.topStories);
+    // console.log(this.props.topStories);
     return (
       <ul className="recs">
         <li className="rec">

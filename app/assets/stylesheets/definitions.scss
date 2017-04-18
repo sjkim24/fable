@@ -41,6 +41,12 @@
   
 }
 
+.pointer-cursor {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
 .opaque-overlay {
   opacity: 0.5;
 }
