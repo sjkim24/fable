@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { fetchStory } from "../../actions/action_stories";
+import { fetchStory, setStory } from "../../actions/action_stories";
 import { Link } from "react-router";
 import Tag from "../buttons/tag.jsx";
 import Heart from "../buttons/heart.jsx";
@@ -45,7 +45,14 @@ class StoriesShow extends Component {
     return paras;
   }
   
+  componentWillUpdate(nextProps, nextState) {
+    // if (nextProps.story.id !== this.props.params.storyId) {
+    //   this.props.fetchStory(nextProps.story.id);
+    // }
+  }
+  
   componentWillMount() {
+    debugger
     if (!this.props.story) {
       this.props.fetchStory(this.props.params.storyId);
     }
@@ -154,10 +161,14 @@ class StoriesShow extends Component {
   componentDidMount() {
     window.scrollTo(0, 0);
   }
+  
+  componentWillUnmount() {
+    this.props.setStory(null);
+  }
 };
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchStory }, dispatch);
+  return bindActionCreators({ fetchStory, setStory }, dispatch);
 };
 
 function mapStateToProps(state) {
