@@ -34,12 +34,6 @@ class StoriesShow extends Component {
     return tags;
   }
   
-  componentWillMount() {
-    if (!this.props.story) {
-      this.props.fetchStory(this.props.params.storyId);
-    }
-  }
-  
   formattedContent(content) {
     const parsed = JSON.parse(content);
     const paras = parsed.split("\n").map((para, i) => {
@@ -51,13 +45,19 @@ class StoriesShow extends Component {
     return paras;
   }
   
+  componentWillMount() {
+    if (!this.props.story) {
+      this.props.fetchStory(this.props.params.storyId);
+    }
+  }
+  
   render() {
     const story = this.props.story;
     
     if (!story) {
       return <div className="loader" />;
     }
-    
+    console.log("story show", story.id);
     const hasResponse = story.comments_count > 0 ? true : false;
 
     return (

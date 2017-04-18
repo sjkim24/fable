@@ -249,11 +249,13 @@
     border-radius: 50%;
     float: left;
     height: 32px;
+    margin-right: 10px;
     width: 32px;
   }
   
   .rec-item-info {
-    fl
+    display: block;
+    float: left;
   }
   
   .rec-tag {

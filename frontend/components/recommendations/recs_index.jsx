@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { Link } from "react-router";
 import Tag from "../buttons/tag.jsx";
 // import { fetchRecs } from "../../actions/recs_fetch";
 // import RecsIndexItem from "./recs_index_item.jsx";
@@ -12,13 +13,16 @@ class RecsIndex extends Component {
   
   renderTopStories() {
     const topStories = this.props.topStories.map((topStory, i) => {
+      console.log(topStory.id);
       return (
         <li className="rec-item group" key={`top-story-${i}`}>
-          <img src={topStory.user_image_url} alt="user image" className="rec-user-img" />
-          <div className="rec-item-info">
+          <Link to={`/users/@${topStory.username}`}>
+            <img src={topStory.user_image_url} alt="user image" className="rec-user-img" />
+          </Link>
+          <Link to={`/stories/${topStory.id}`} className="rec-item-info">
             <div className="rec-item-title">{topStory.title}</div>
             <div className="rec-item-user-fullname">{topStory.user_fullname}</div>
-          </div>
+          </Link>
         </li>
       );
     });
