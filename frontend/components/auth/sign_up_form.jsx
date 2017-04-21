@@ -51,8 +51,8 @@ class SignUpForm extends Component {
   
   checkPasswords() {
     if (this.state.password !== this.state.passwordConfirm) {
-      return false;
       this.setState({ error: true });
+      return false;
     } else {
       this.setState({ error: false });
       return true;

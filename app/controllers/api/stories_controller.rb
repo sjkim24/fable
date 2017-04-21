@@ -6,7 +6,11 @@ class Api::StoriesController < ApplicationController
     # people they follow
     # tags they follow
     
-    @top_stories = Story.joins(:story_likes).group("stories.id").order("COUNT(stories.id) DESC").limit(3)
+    # sql = "SELECT story_id, COALESCE(COUNT(*), 0) FROM story_likes WHERE story_id IN (15,13,12,11,10,9,8,7,6,5,4,3,2,1) GROUP BY story_id;"
+    # likes = ActiveRecord::Base.connection.execute(sql)
+    # self join story likes table so count of 0 values actually show up
+    
+    @top_stories = Story.joins(:story_likes).group("stories.id").order("COUNT(stories.id) DESC").includes(:user).limit(3)
     
     render :index
   end
