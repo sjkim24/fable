@@ -52,7 +52,6 @@ class StoriesShow extends Component {
   }
   
   componentWillMount() {
-    debugger
     if (!this.props.story) {
       this.props.fetchStory(this.props.params.storyId);
     }
@@ -64,7 +63,7 @@ class StoriesShow extends Component {
     if (!story) {
       return <div className="loader" />;
     }
-    console.log("story show", story.id);
+
     const hasResponse = story.comments_count > 0 ? true : false;
 
     return (

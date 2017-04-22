@@ -13,7 +13,6 @@ class RecsIndex extends Component {
   
   renderTopStories() {
     const topStories = this.props.topStories.map((topStory, i) => {
-      console.log(topStory.id);
       return (
         <li className="rec-item group" key={`top-story-${i}`}>
           <Link to={`/users/@${topStory.username}`}>
@@ -31,7 +30,6 @@ class RecsIndex extends Component {
   }
   
   render() {
-    console.log(this.props.topStories);
     return (
       <ul className="recs">
         <li className="rec">

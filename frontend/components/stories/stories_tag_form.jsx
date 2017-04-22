@@ -70,7 +70,7 @@ class StoriesTagForm extends Component {
   
   render() {
     const display = this.props.active ? "" : "hidden";
-    
+    console.log(display);
     return (
       <div className={`stories-tag-form-container card ${display}`}>
         <div className="stories-tag-form-header">Ready to publish?</div>

@@ -7,6 +7,7 @@ import { toggleModal } from "../../actions/action_modal";
 import { Link } from "react-router";
 import { setCurrentUser } from "../../actions/action_auth";
 import DropDownMenu from "./drop_down_menu.jsx";
+import StoriesTagForm from "../stories/stories_tag_form.jsx";
 
 class Header extends Component {
   static contextTypes = {
@@ -22,6 +23,7 @@ class Header extends Component {
         "header-list-user-container": true, 
         "dropdown-menu": true
       },
+      storiesTagFormActive: false,
       searchBarActive: false
     };
     this.toggleAuthModal = this.toggleAuthModal.bind(this);
@@ -29,6 +31,7 @@ class Header extends Component {
     this.checkRejectThenToggle = this.checkRejectThenToggle.bind(this);
     this.checkAuthThenRender = this.checkAuthThenRender.bind(this);
     this.toggleSearchBar = this.toggleSearchBar.bind(this);
+    this.toggleStoriesTagForm = this.toggleStoriesTagForm.bind(this);
   }
   
   toggleAuthModal() {
@@ -53,6 +56,10 @@ class Header extends Component {
     } else {
       this.toggleAuthModal();
     }
+  }
+  
+  toggleStoriesTagForm() {
+    this.setState({ storiesTagFormActive: !this.state.storiesTagForm });
   }
   
   renderAuthOrUser() {
@@ -93,6 +100,9 @@ class Header extends Component {
     const authLinkDisplay = "";
     const storyLinkDisplay = "hidden"
       
+    const writeLinkDisplay = !this.props.isWritingStory ? "" : "hidden";
+    const publishLinkDisplay = this.props.isWritingStory ? "" : "hidden"; 
+    console.log(this.state.storiesTagFormActive);;
     return(
       <header className="header padding-side group">
         <div className="header-inner group">
@@ -102,9 +112,17 @@ class Header extends Component {
           </Link>
           <ul className="header-list-right">
             <li className="header-list-story-link">
-              <div onClick={this.checkAuthThenRender} className="header-list-story-link-btn">
+              <div 
+                onClick={this.checkAuthThenRender} 
+                className={`header-list-story-link-btn ${writeLinkDisplay}`}>
                 Write a story
               </div>
+              <div 
+                onClick={this.toggleStoriesTagForm} 
+                className={`header-list-publish-link-btn ${publishLinkDisplay}`}>
+                Publish
+              </div>
+              <StoriesTagForm active={this.state.storiesTagFormActive} />
             </li>
             <li className="header-list-auth-user-container">
               {this.renderAuthOrUser()}
@@ -130,7 +148,10 @@ function mapDispatchToProps(dispatch) {
 }
 
 function mapStateToProps(state) {
-  return { modal: state.modal, currentUser: state.auth.currentUser }
+  return { 
+    modal: state.modal, currentUser: state.auth.currentUser, 
+    isWritingStory: state.stories.isWritingStory 
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
