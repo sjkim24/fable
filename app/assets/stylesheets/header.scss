@@ -128,6 +128,10 @@
   width: 70px;
 }
 
+.stories-added-tag {
+  font-size: 12px;
+  height: 26px;
+}
 // end //
 
 .header-list-auth-link {
@@ -138,14 +142,6 @@
   margin: 6px 15px 0px 0px;
   position: relative;
 }
-
-// stories tag form //
-.stories-tag-form-container {
-  position: absolute;
-  right: 0px;
-  top: 20px;
-}
-// end //
 
 .header-list-auth-user-container {
   float: left;

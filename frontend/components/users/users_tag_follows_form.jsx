@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { fetchTagFollows, createTagFollow } from "../../actions/action_user";
-import { searchTags } from "../../actions/action_search";
+import { searchUserTagFollows } from "../../actions/action_search";
 import TagDelete from "../buttons/tag_delete.jsx";
 
 class UsersTagFollowsForm extends Component {
@@ -27,7 +27,7 @@ class UsersTagFollowsForm extends Component {
   }
   
   searchTags() {
-    this.props.searchTags(this.state.searchTerm);
+    this.props.searchUserTagFollows(this.state.searchTerm);
   }
   
   renderSearchedTags() {
@@ -98,7 +98,7 @@ class UsersTagFollowsForm extends Component {
     }
 
     const errorDisplay = this.state.error ? "" : "hidden";
-    
+
     return (
       <div className="user-tag-follows padding-side">
         <div className="user-tag-follows-inner-container">
@@ -133,13 +133,15 @@ class UsersTagFollowsForm extends Component {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchTagFollows, searchTags, createTagFollow }, dispatch);
+  return bindActionCreators({ 
+    fetchTagFollows, searchUserTagFollows, createTagFollow 
+  }, dispatch);
 };
 
 function mapStateToProps(state) {
   return { 
     currentUser: state.auth.currentUser, tagFollows: state.user.tagFollows,
-    searchedTags: state.search.tags, token: state.auth.authToken
+    searchedTags: state.search.userTagFollowsSearch, token: state.auth.authToken
   };
 };
 

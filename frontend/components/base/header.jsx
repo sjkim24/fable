@@ -102,7 +102,7 @@ class Header extends Component {
       
     const writeLinkDisplay = !this.props.isWritingStory ? "" : "hidden";
     const publishLinkDisplay = this.props.isWritingStory ? "" : "hidden"; 
-    console.log(this.state.storiesTagFormActive);;
+    
     return(
       <header className="header padding-side group">
         <div className="header-inner group">
