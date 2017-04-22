@@ -2,6 +2,12 @@ class Api::TagsController < ApplicationController
   
   def create
     @tag = Tag.new(tag_params)
+    
+    if @tag.save
+      
+    else
+      render json: "Error"
+    end
   end
   
   def search_tags
