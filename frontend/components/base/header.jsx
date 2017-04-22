@@ -22,10 +22,14 @@ class Header extends Component {
       tagFormActive: false,
       dropDownMenuActive: false,
       searchBarActive: false,
-      rejectList: { 
+      dropDownRejectList: { 
         "header-list-user-container": true, 
         "dropdown-menu": true
       },
+      tagFormRejectList: {
+        "stories-tag-form-container": true,
+        "stories-tag-form": true
+      }
     };
     this.toggleAuthModal = this.toggleAuthModal.bind(this);
     this.toggleDropDownMenu = this.toggleDropDownMenu.bind(this);
@@ -42,7 +46,7 @@ class Header extends Component {
   checkRejectThenToggle(event) {
     const klass = event.target.parentNode.classList[0];
     
-    if (this.state.dropDownMenuActive && !this.state.rejectList[klass]) {
+    if (this.state.dropDownMenuActive && !this.state.dropDownRejectList[klass]) {
       this.setState({ dropDownMenuActive: false });
     }
   }
@@ -61,9 +65,16 @@ class Header extends Component {
   }
   
   toggleStoriesTagForm(event) {
-    // console.log(event.target, event.currentTarget);
-    // if (event.target === event.currentTarget) {
+    const klass = event.target.parentNode.classList[0];
+    
+    console.log(event.target.parentNode.classList[0]);
+    // debugger
+    if (!this.state.tagFormRejectList[klass]) {
       this.setState({ tagFormActive: !this.state.tagFormActive});
+    }
+    // console.log(event.target, event.currentTarget);
+    // if event.target isn't form container and 
+    // if (event.target === event.currentTarget) {
     // }
     // clearly that doesn't work well, toggle it properly
   }
@@ -143,7 +154,7 @@ class Header extends Component {
     );
   }
   
-  componentDidMount() {    
+  componentDidMount() { 
     document.body.addEventListener("click", this.checkRejectThenToggle);
   }
 }

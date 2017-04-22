@@ -38,15 +38,21 @@ class SignUpForm extends Component {
         this.setState({ password: event.target.value });
         break;
       case "password-confirm":
-        this.setState({ passwordConfirm: event.target.value });
+        this.setState({ passwordConfirm: event.target.value }, () => {
+          if (this.checkPasswords()) {
+            document.querySelector(".auth-form-input-password-confirm").setCustomValidity("");
+          } else {
+            document.querySelector(".auth-form-input-password-confirm").setCustomValidity("Passwords need to be matching");
+          }
+        });
         break;
     };
   }
   
   checkPasswords() {
     if (this.state.password !== this.state.passwordConfirm) {
-      return false;
       this.setState({ error: true });
+      return false;
     } else {
       this.setState({ error: false });
       return true;
@@ -115,6 +121,8 @@ class SignUpForm extends Component {
               Email address
             </label>
             <input
+              required
+              type="email"
               id="auth-input-username"
               className="auth-input auth-input-email" 
               placeholder="youremail@example.com" 
@@ -128,6 +136,7 @@ class SignUpForm extends Component {
               Full Name
             </label>
             <input
+              required
               id="auth-input-fullname"
               className="auth-input auth-input-fullname" 
               placeholder="Enter your real name" 
@@ -141,6 +150,7 @@ class SignUpForm extends Component {
               Username
             </label>
             <input
+              required
               id="auth-input-username"
               className="auth-input auth-input-username" 
               placeholder="Enter your cool name" 
@@ -154,6 +164,7 @@ class SignUpForm extends Component {
               Password
             </label>
             <input
+              required
               id="auth-input-password"
               className="auth-input auth-input-password" 
               placeholder="Please enter your password"
@@ -168,16 +179,13 @@ class SignUpForm extends Component {
               Password confirmation
             </label>
             <input
+              required
               id="auth-input-password-confirm"
-              className="auth-input auth-form-input-password" 
+              className="auth-input auth-form-input-password-confirm" 
               placeholder="Please confirm your password"
               type="password"
               onChange={(event) => this.handleChange(event, "password-confirm")} 
-              value={this.state.passwordConfirm} 
-              onBlur={this.checkPasswords} />
-          </div>
-          <div className={`password-confirmation-error ${errorDisplay}`}>
-            Please enter a matching password
+              value={this.state.passwordConfirm} />
           </div>
           <button type="submit" className="form-button auth-button">
             Sign Up
