@@ -5,7 +5,11 @@ class Api::TagFollowsController < ApplicationController
     if params[:tag_id]
       @tag_follow = TagFollow.new(user_id: current_user.id, tag_id: params[:tag_id])
     else
-      tag = Tag.find_or_create_by(tag_desc: params[:tag_desc])
+      tag = Tag.where('lower(tag_desc) = lower(?)', params[:tag_desc])[0]
+
+      if tag.nil?
+        tag = Tag.create(tag_desc: params[:tag_desc])
+      end
       @tag_follow = TagFollow.new(user_id: current_user.id, tag_id: tag.id)
     end
     
