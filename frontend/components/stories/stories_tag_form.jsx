@@ -2,14 +2,16 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { searchTags } from "../../actions/action_search";
+import Tag from "../buttons/tag.jsx";
 
 class StoriesTagForm extends Component {
   constructor() {
     super();
     
-    this.state = { searchTerm: "" };
+    this.state = { searchTerm: "", addedTagDescs: [], addedTagIds: [] };
     this.handleOnChange = this.handleOnChange.bind(this);
     this.handleOnSubmit = this.handleOnSubmit.bind(this);
+    this.createStory = this.createStory.bind(this);
   }
   
   handleOnChange(event) {
@@ -23,11 +25,11 @@ class StoriesTagForm extends Component {
     const tags = this.props.searchedTags.map((tag, i) => {
       return (
         <li
-          onClick={(event) => this.createTagFollow(event, tag.id)} 
-          className="tag-follows-searched-tag group"
-          key={`searched-tag-${i}`}>
-          <div className="searched-tag-desc">{tag.tag_desc}</div>
-          <div className="searched-tag-count">({tag.tag_count})</div>
+          onClick={this.addTag(tag.id, tag.tag_desc)} 
+          className="stories-searched-tag group"
+          key={`stories-tag-form-tag-${i}`}>
+          <div className="stories-tag-desc">{tag.tag_desc}</div>
+          <div className="stories-tag-count">({tag.tag_count})</div>
         </li>
       );
     });
@@ -35,14 +37,35 @@ class StoriesTagForm extends Component {
     return tags;
   }
   
-  renderAddedTags() {
+  addTag(id, desc) {
+    const ids = this.state.addedTagIds.concat(id);
+    const descs = this.state.addedTagDescs.concat(desc);
     
+    this.setState({ addedTagIds: ids, addedTagDescs: descs });
+  }
+  
+  renderAddedTags() {
+    const tags = this.state.addedTagDescs.map((tag, i) => {
+      <Tag desc={tag.tag_desc} className="stories-added-tag" />
+    });
+    
+    return tags;
   }
   
   handleOnSubmit(event) {
     event.preventDefault();
-    // call window.createStory();
     console.log("stories tag form submit clicked");
+  }
+  
+  createStory() {
+    // but i also need to somehow pass my tag ids to create taggings
+    // window.createStory();
+  }
+  
+  componentDidUpdate(prevProps, prevState) {
+    if (!prevProps.active) {
+      document.querySelector(".stories-tag-input").focus();
+    }
   }
   
   render() {
@@ -71,7 +94,7 @@ class StoriesTagForm extends Component {
         <ul className="stories-tag-form-added-tags group">
           {this.renderAddedTags()}
         </ul>
-        <div className="stories-tag-form-publish button">
+        <div onClick={this.createStory} className="stories-tag-form-publish button">
           Publish
         </div>
       </div>

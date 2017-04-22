@@ -80,6 +80,8 @@ class SignInForm extends Component {
               Email address
             </label>
             <input
+              required
+              type="email"
               id="auth-input-username"
               className="auth-input auth-input-email" 
               placeholder="youremail@example.com" 
@@ -93,6 +95,7 @@ class SignInForm extends Component {
               Password
             </label>
             <input
+              required
               id="auth-input-password"
               className="auth-input auth-input-password" 
               placeholder="Please enter your password"
