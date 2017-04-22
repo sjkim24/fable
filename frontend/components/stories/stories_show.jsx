@@ -52,6 +52,7 @@ class StoriesShow extends Component {
   }
   
   componentWillMount() {
+    debugger
     if (!this.props.story) {
       this.props.fetchStory(this.props.params.storyId);
     }

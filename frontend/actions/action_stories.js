@@ -5,7 +5,6 @@ export const SET_STORY = "SET_STORY";
 export const FETCH_STORIES = "FETCH_STORIES";
 export const CREATE_STORY = "CREATE_STORY";
 export const UPDATE_STORY = "UPDATE_STORY";
-export const TOGGLE_WRITE_STORY = "TOGGLE_WRITE_STORY";
 
 const URL = "/api/stories";
 
@@ -49,12 +48,5 @@ export function updateStory(storyId, data) {
   return {
     type: UPDATE_STORY,
     payload: request
-  };
-};
-
-export function toggleWriteStory(state) {
-  return {
-    type: TOGGLE_WRITE_STORY,
-    payload: state
   };
 };

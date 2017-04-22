@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import ContentForm from "../base/content_form.jsx";
-import { createStory, toggleWriteStory } from "../../actions/action_stories";
+import { createStory } from "../../actions/action_stories";
 
 class StoriesForm extends Component {
   static contextTypes = {
@@ -81,14 +81,6 @@ class StoriesForm extends Component {
     history.back();
   }
   
-  componentWillMount() {
-    if (!this.props.writeStory) {
-      this.props.toggleWriteStory(true);
-    }
-    
-    window.createStory = this.handleOnSubmit.bind(this, event);
-  }
-  
   render() {
     if (!this.props.currentUser) {
       return <div className="loader" />;
@@ -157,23 +149,14 @@ class StoriesForm extends Component {
       </div>
     );
   }
-  
-  componentWillUnmount() {
-    this.props.toggleWriteStory(!this.props.writeStory);
-  }
 };
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ createStory, toggleWriteStory }, dispatch);
+  return bindActionCreators({ createStory }, dispatch);
 };
 
 function mapStateToProps(state) {
-  return { 
-    currentUser: state.auth.currentUser, 
-    story: state.stories.story, 
-    token: state.auth.authToken,
-    writeStory: state.stories.writeStory 
-  }
+  return { currentUser: state.auth.currentUser, story: state.stories.story, token: state.auth.authToken }
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(StoriesForm);

@@ -1,9 +1,12 @@
 import { 
-  FETCH_STORY, FETCH_STORIES, SET_STORY, CREATE_STORY, UPDATE_STORY, 
-  TOGGLE_WRITE_STORY
+  FETCH_STORY, 
+  FETCH_STORIES, 
+  SET_STORY,
+  CREATE_STORY, 
+  UPDATE_STORY
 } from "../actions/action_stories";
 
-const INITIAL_STATE = { all: null, story: null, writeStory: false };
+const INITIAL_STATE = { all: null, story: null };
 
 export default function(state = INITIAL_STATE, action) {
   Object.freeze(state);
@@ -18,8 +21,6 @@ export default function(state = INITIAL_STATE, action) {
       return { ...state, story: action.payload.data };
     case UPDATE_STORY:
       return { ...state, story: action.payload.data };
-    case TOGGLE_WRITE_STORY:
-      return { ...state, writeStory: action.payload };
     default:
       return state;
   };

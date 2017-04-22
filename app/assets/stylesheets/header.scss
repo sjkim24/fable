@@ -45,14 +45,7 @@
   float: left;
   font-size: 14px;
   padding-bottom: 3px;
-}
-
-.header-list-publish-btn {
-  position: relative;
-}
-
-.header-list-story-link-btn,
-.header-list-auth-link {
+  
   &:hover {
     border-bottom: 1px solid $dark-yellow;
     color: $dark-yellow;
@@ -60,6 +53,7 @@
   }
 }
 
+<<<<<<< HEAD
 .header-list-publish-text {
   float: left;
   margin-right: 5px;
@@ -221,11 +215,6 @@
 }
 
 @media (min-width: 768px) {
-  .stories-tag-form-container {
-    left: -150px;
-    width: 320px;
-  }
-  
   .search-bar-active {
     width: 200px;
   }
