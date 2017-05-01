@@ -41,7 +41,7 @@ class Header extends Component {
   checkRejectThenToggle(event) {
     const klass = event.target.parentNode.classList[0];
     
-    if (this.state.dropDownMenuActive && !this.state.dropDownRejectList[klass]) {
+    if (this.state.dropDownMenuActive && !this.state.rejectList[klass]) {
       this.setState({ dropDownMenuActive: false });
     }
   }
@@ -59,7 +59,7 @@ class Header extends Component {
   }
   
   toggleStoriesTagForm() {
-    this.setState({ storiesTagFormActive: !this.state.storiesTagForm });
+    this.setState({ storiesTagFormActive: !this.state.storiesTagFormActive });
   }
   
   renderAuthOrUser() {
@@ -122,7 +122,9 @@ class Header extends Component {
                 className={`header-list-publish-link-btn ${publishLinkDisplay}`}>
                 Publish
               </div>
-              <StoriesTagForm active={this.state.storiesTagFormActive} />
+              <StoriesTagForm
+                toggleStoriesTagForm={this.toggleStoriesTagForm} 
+                active={this.state.storiesTagFormActive} />
             </li>
             <li className="header-list-auth-user-container">
               {this.renderAuthOrUser()}

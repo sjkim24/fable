@@ -8,9 +8,10 @@ class ContentForm extends Component {
   }
   
   componentWillUpdate(nextProps, nextState) {
-    if (nextProps.content) {
-      document.querySelector(".content-form").innerText = nextProps.content;
-    }
+    // if (nextProps.content) {
+    //   document.querySelector(".content-form").innerText = nextProps.content;
+    // }
+    // this was causing text carat to always reset at beginning with content being updated
   }
   
   handleOnInput(event) {

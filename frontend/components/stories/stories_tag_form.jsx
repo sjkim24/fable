@@ -1,11 +1,17 @@
-import React, { Component } from "react";
+import React, { Component, PropTypes } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { searchStoriesTagForm } from "../../actions/action_search";
 import { fetchOrCreateTag } from "../../actions/action_tag";
+import { createTaggings } from "../../actions/action_taggings";
+import { fetchStory } from "../../actions/action_stories";
 import Tag from "../buttons/tag.jsx";
 
 class StoriesTagForm extends Component {
+  static contextTypes = {
+    router: PropTypes.object
+  }
+  
   constructor() {
     super();
     
@@ -13,6 +19,7 @@ class StoriesTagForm extends Component {
     this.handleOnChange = this.handleOnChange.bind(this);
     this.handleOnSubmit = this.handleOnSubmit.bind(this);
     this.createStory = this.createStory.bind(this);
+    this.goBack = this.goBack.bind(this);
   }
   
   handleOnChange(event) {
@@ -42,7 +49,7 @@ class StoriesTagForm extends Component {
     const ids = this.state.addedTagIds.concat(id);
     const descs = this.state.addedTagDescs.concat(desc);
     
-    this.setState({ addedTagIds: ids, addedTagDescs: descs });
+    this.setState({ searchTerm: "", addedTagIds: ids, addedTagDescs: descs });
   }
   
   renderAddedTags() {
@@ -68,14 +75,22 @@ class StoriesTagForm extends Component {
     });
   }
   
-  createStory() {
-    // but i also need to somehow pass my tag ids to create taggings
-    // window.createStory();
+  createStory(event) {
+    window.createStory(event);
+  }
+  
+  goBack() {
+    this.props.toggleStoriesTagForm();
+    history.back();
   }
   
   componentDidUpdate(prevProps, prevState) {
     if (!prevProps.active) {
       document.querySelector(".stories-tag-input").focus();
+    } else if (this.props.story && !prevProps.story) {
+      this.props.createTaggings(this.state.addedTagIds, this.props.story.id, this.props.token);
+      this.props.toggleStoriesTagForm();
+      this.props.fetchStory(this.props.story.id);
     }
   }
   
@@ -105,8 +120,15 @@ class StoriesTagForm extends Component {
         <ul className="stories-tag-form-added-tags group">
           {this.renderAddedTags()}
         </ul>
-        <div onClick={this.createStory} className="stories-tag-form-publish button">
-          Publish
+        <div className="stories-tag-form-buttons group">
+          <div onClick={this.createStory} className="stories-tag-form-button button">
+            Publish
+          </div>
+          <div 
+            className="stories-tag-form-button button" 
+            onClick={this.goBack}>
+            Cancel
+          </div>
         </div>
       </div>
     );
@@ -114,12 +136,16 @@ class StoriesTagForm extends Component {
 };
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ searchStoriesTagForm, fetchOrCreateTag }, dispatch);
+  return bindActionCreators({ 
+    searchStoriesTagForm, fetchOrCreateTag, createTaggings, fetchStory 
+  }, dispatch);
 };
 
 function mapStateToProps(state) {
   return {
-    searchedTags: state.search.storiesTagFormSearch
+    searchedTags: state.search.storiesTagFormSearch, 
+    story: state.stories.story,
+    token: state.auth.authToken
   };
 };
 

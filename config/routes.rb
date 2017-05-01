@@ -40,8 +40,9 @@ Rails.application.routes.draw do
     
     get 'current_user', :to => 'current_user#get_current_user'
     
-    get "tags/search", :to => 'tags#search_tags'
-    get "tags/fetch_or_create", :to => 'tags#fetch_or_create'
-    get "search", :to => 'search#search'
+    get 'tags/search', :to => 'tags#search_tags'
+    get 'tags/fetch_or_create', :to => 'tags#fetch_or_create'
+    get 'search', :to => 'search#search'
+    post 'taggings', :to => 'taggings#create'
   end
 end

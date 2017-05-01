@@ -124,8 +124,13 @@
   font-size: 18px;
 }
 
-.stories-tag-form-publish {
+.stories-tag-form-button {
+  float: left;
   width: 70px;
+  
+  &:nth-child(1) {
+    margin-right: 15px;
+  }
 }
 
 .stories-added-tag {

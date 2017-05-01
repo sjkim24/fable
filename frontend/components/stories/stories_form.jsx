@@ -141,17 +141,13 @@ class StoriesForm extends Component {
               className={`stories-form-preview-img ${prevDisplay}`} />
           </div>
           <ContentForm content={this.state.content} handleContentFormChange={this.handleContentFormChange} />
-          <div className="stories-form-btns group padding-side">
-            <input type="submit" value="Publish" className="stories-form-submit-btn button" />
-            <div 
-              className="stories-form-cancel-btn button" 
-              onClick={this.goBack}>
-              Cancel
-            </div>
-          </div>
         </form>
       </div>
     );
+  }
+  
+  componentDidMount() {
+    window.createStory = this.handleOnSubmit;
   }
   
   componentWillUnmount() {
