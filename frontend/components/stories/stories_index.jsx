@@ -20,7 +20,9 @@ class StoriesIndex extends Component {
   
   renderRecommendations() {
     return (
-      <RecsIndex topStories={this.props.stories.top_stories} />
+      <RecsIndex
+        currentUser={this.props.currentUser}
+        topStories={this.props.stories.top_stories} />
     );
   }
   
@@ -49,7 +51,7 @@ function mapDispatchToProps(dispatch) {
 };
 
 function mapStateToProps(state) {
-  return { stories: state.stories.all };
+  return { stories: state.stories.all, currentUser: state.auth.currentUser };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(StoriesIndex);

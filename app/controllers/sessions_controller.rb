@@ -15,6 +15,11 @@ class SessionsController < Devise::SessionsController
       set_flash_message!(:notice, :signed_in)
       sign_in(resource_name, resource)
       yield resource if block_given?
+      
+      tag_follows = current_user.tag_follows.includes(:tag).map do |tag_follow|
+        { tag_desc: tag_follow.tag.tag_desc }
+      end
+      
       render json: { 
         csrfParam: request_forgery_protection_token,
         csrfToken: form_authenticity_token,
@@ -22,7 +27,8 @@ class SessionsController < Devise::SessionsController
           id: current_user.id,
           fullname: current_user.fullname,
           username: current_user.username,
-          user_image_url: current_user.photo.url
+          user_image_url: current_user.photo.url,
+          tag_follows: tag_follows
         }
       }
     end

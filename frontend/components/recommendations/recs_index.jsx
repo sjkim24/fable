@@ -29,7 +29,21 @@ class RecsIndex extends Component {
     return topStories;
   }
   
+  renderTagFollows() {
+    if (this.props.currentUser) {
+      const tagFollows = this.props.currentUser.tag_follows.map((tagFollow, i) => {
+        return (
+          <Tag key={`tag-follow-${i}`} desc={tagFollow.tag_desc} />
+        )
+      });
+      
+      return tagFollows;
+    }
+  }
+  
   render() {
+    const tagFollowsDisplay = this.props.currentUser ? "" : "hidden";
+    
     return (
       <ul className="recs">
         <li className="rec">
@@ -54,15 +68,10 @@ class RecsIndex extends Component {
             <li className="rec-item">3</li>
           </ul>
         </li>
-        <li className="rec-tags">
+        <li className={`rec-tags ${tagFollowsDisplay}`}>
           <div className="rec-category">Tags you follow</div>
           <ul className="rec-tags-container group">
-            <Tag desc="Sports"/>
-            <Tag desc="Business"/>
-            <Tag desc="Science"/>
-            <Tag desc="Technology"/>
-            <Tag desc="Fashion"/>
-            <Tag desc="Politics"/>
+            {this.renderTagFollows()}
           </ul>
         </li>
       </ul>
