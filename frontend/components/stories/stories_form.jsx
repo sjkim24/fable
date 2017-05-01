@@ -17,7 +17,6 @@ class StoriesForm extends Component {
     this.handleOnChange = this.handleOnChange.bind(this);
     this.handleContentFormChange = this.handleContentFormChange.bind(this);
     this.handleFilePreview = this.handleFilePreview.bind(this);
-    this.goBack = this.goBack.bind(this);
   }
   
   handleOnChange(event, type) {

@@ -11,22 +11,22 @@ class RecsIndex extends Component {
     // fetch recs
   }
   
-  renderTopStories() {
-    const topStories = this.props.topStories.map((topStory, i) => {
+  renderTopLikedStories() {
+    const topLikedStories = this.props.topLikedStories.map((story, i) => {
       return (
         <li className="rec-item group" key={`top-story-${i}`}>
-          <Link to={`/users/@${topStory.username}`}>
-            <img src={topStory.user_image_url} alt="user image" className="rec-user-img" />
+          <Link to={`/users/@${story.username}`}>
+            <img src={story.user_image_url} alt="user image" className="rec-user-img" />
           </Link>
-          <Link to={`/stories/${topStory.id}`} className="rec-item-info">
-            <div className="rec-item-title">{topStory.title}</div>
-            <div className="rec-item-user-fullname">{topStory.user_fullname}</div>
+          <Link to={`/stories/${story.id}`} className="rec-item-info">
+            <div className="rec-item-title">{story.title}</div>
+            <div className="rec-item-user-fullname">{story.user_fullname}</div>
           </Link>
         </li>
       );
     });
     
-    return topStories;
+    return topLikedStories;
   }
   
   renderTagFollows() {
@@ -49,7 +49,7 @@ class RecsIndex extends Component {
         <li className="rec">
           <div className="rec-category">Top Stories</div>
           <ul className="rec-items-container">
-            {this.renderTopStories()}
+            {this.renderTopLikedStories()}
           </ul>
         </li>
         <li className="rec">

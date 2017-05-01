@@ -10,7 +10,7 @@ class Api::StoriesController < ApplicationController
     # likes = ActiveRecord::Base.connection.execute(sql)
     # self join story likes table so count of 0 values actually show up
     
-    @top_stories = Story.joins(:story_likes).group("stories.id").order("COUNT(stories.id) DESC").includes(:user).limit(3)
+    @top_liked_stories = Story.joins(:story_likes).group("stories.id").order("COUNT(stories.id) DESC").includes(:user).limit(3)
     
     render :index
   end
