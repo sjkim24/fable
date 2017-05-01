@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import ContentForm from "../base/content_form.jsx";
-import { createStory, toggleWriteStory } from "../../actions/action_stories";
+import { createStory, toggleIsWritingStory } from "../../actions/action_stories";
 
 class StoriesForm extends Component {
   static contextTypes = {
@@ -82,11 +82,7 @@ class StoriesForm extends Component {
   }
   
   componentWillMount() {
-    if (!this.props.writeStory) {
-      this.props.toggleWriteStory(true);
-    }
-    
-    window.createStory = this.handleOnSubmit.bind(this, event);
+    this.props.toggleIsWritingStory(true);
   }
   
   render() {
@@ -159,21 +155,19 @@ class StoriesForm extends Component {
   }
   
   componentWillUnmount() {
-    this.props.toggleWriteStory(!this.props.writeStory);
+    this.props.toggleIsWritingStory(false);
   }
 };
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ createStory, toggleWriteStory }, dispatch);
+  return bindActionCreators({ createStory, toggleIsWritingStory }, dispatch);
 };
 
 function mapStateToProps(state) {
   return { 
-    currentUser: state.auth.currentUser, 
-    story: state.stories.story, 
-    token: state.auth.authToken,
-    writeStory: state.stories.writeStory 
-  }
+    currentUser: state.auth.currentUser, story: state.stories.story, 
+    token: state.auth.authToken, isWritingStory : state.stories.isWritingStory
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(StoriesForm);

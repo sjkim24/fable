@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { toggleModal } from "../../actions/action_modal";
 import { Link } from "react-router";
-import { toggleWriteStory } from "../../actions/action_stories";
 import { setCurrentUser } from "../../actions/action_auth";
 import DropDownMenu from "./drop_down_menu.jsx";
 import StoriesTagForm from "../stories/stories_tag_form.jsx";
@@ -19,17 +18,13 @@ class Header extends Component {
     super();
     
     this.state = { 
-      tagFormActive: false,
       dropDownMenuActive: false,
-      searchBarActive: false,
-      dropDownRejectList: { 
+      rejectList: { 
         "header-list-user-container": true, 
         "dropdown-menu": true
       },
-      tagFormRejectList: {
-        "stories-tag-form-container": true,
-        "stories-tag-form": true
-      }
+      storiesTagFormActive: false,
+      searchBarActive: false
     };
     this.toggleAuthModal = this.toggleAuthModal.bind(this);
     this.toggleDropDownMenu = this.toggleDropDownMenu.bind(this);
@@ -57,26 +52,14 @@ class Header extends Component {
   
   checkAuthThenRender() {
     if (this.props.currentUser) {
-      this.props.toggleWriteStory(!this.props.writeStory);
       this.context.router.push("/new_story");
     } else {
       this.toggleAuthModal();
     }
   }
   
-  toggleStoriesTagForm(event) {
-    const klass = event.target.parentNode.classList[0];
-    
-    console.log(event.target.parentNode.classList[0]);
-    // debugger
-    if (!this.state.tagFormRejectList[klass]) {
-      this.setState({ tagFormActive: !this.state.tagFormActive});
-    }
-    // console.log(event.target, event.currentTarget);
-    // if event.target isn't form container and 
-    // if (event.target === event.currentTarget) {
-    // }
-    // clearly that doesn't work well, toggle it properly
+  toggleStoriesTagForm() {
+    this.setState({ storiesTagFormActive: !this.state.storiesTagForm });
   }
   
   renderAuthOrUser() {
@@ -113,14 +96,12 @@ class Header extends Component {
     });
   }
   
-  componentWillReceiveProps(nextProps) {
-    this.props.toggleWriteStory(nextProps.writeStory);
-  }
-  
   render() {
     const authLinkDisplay = "";
-    const writeStoryDisplay = !this.props.writeStory ?  "" : "hidden";
-    const publishDisplay = this.props.writeStory ? "" : "hidden";
+    const storyLinkDisplay = "hidden"
+      
+    const writeLinkDisplay = !this.props.isWritingStory ? "" : "hidden";
+    const publishLinkDisplay = this.props.isWritingStory ? "" : "hidden"; 
     
     return(
       <header className="header padding-side group">
@@ -131,14 +112,17 @@ class Header extends Component {
           </Link>
           <ul className="header-list-right">
             <li className="header-list-story-link">
-              <div onClick={this.checkAuthThenRender} className={`header-list-story-link-btn ${writeStoryDisplay}`}>
+              <div 
+                onClick={this.checkAuthThenRender} 
+                className={`header-list-story-link-btn ${writeLinkDisplay}`}>
                 Write a story
               </div>
-              <div onClick={this.toggleStoriesTagForm} className={`header-list-publish-btn pointer-cursor group ${publishDisplay}`}>
-                <div className="header-list-publish-text">Publish</div>
-                <img src="/images/icons/arrow_yellow.png" alt="dropdown arrow" className="header-list-publish-arrow"/>
-                <StoriesTagForm active={this.state.tagFormActive} />
+              <div 
+                onClick={this.toggleStoriesTagForm} 
+                className={`header-list-publish-link-btn ${publishLinkDisplay}`}>
+                Publish
               </div>
+              <StoriesTagForm active={this.state.storiesTagFormActive} />
             </li>
             <li className="header-list-auth-user-container">
               {this.renderAuthOrUser()}
@@ -160,12 +144,13 @@ class Header extends Component {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ toggleModal, setCurrentUser, toggleWriteStory }, dispatch);
+  return bindActionCreators({ toggleModal, setCurrentUser }, dispatch);
 }
 
 function mapStateToProps(state) {
   return { 
-    modal: state.modal, currentUser: state.auth.currentUser, writeStory: state.stories.writeStory 
+    modal: state.modal, currentUser: state.auth.currentUser, 
+    isWritingStory: state.stories.isWritingStory 
   }
 }
 

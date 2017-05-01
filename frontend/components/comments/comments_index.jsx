@@ -13,13 +13,16 @@ class CommentsIndex extends Component {
   }
   
   showComments() {
-    this.setState({ display: true }, () => {
-      this.props.fetchComments(this.props.storyId);
+    const that = this;
+    
+    this.props.fetchComments(this.props.storyId)
+    .then(() => {
+      that.setState({ display: true })
     });
   }
   
   displayTextOrComments() {
-    if (this.props.comments.length > 0 && this.state.display) {
+    if (this.props.comments && this.props.comments.length > 0 && this.state.display) {
       const comments = this.props.comments.map((comment, i) => {
         return <CommentsIndexItem key={`comment-${i}`} comment={comment} />
       });
@@ -35,7 +38,11 @@ class CommentsIndex extends Component {
   }
   
   render() {
-
+    if (!this.props.comments) {
+      
+    }
+    
+    
     return (
       <div id="story-comments" className="comments-container padding-side">
         {this.displayTextOrComments()}

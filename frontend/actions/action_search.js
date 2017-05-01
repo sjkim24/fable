@@ -1,16 +1,26 @@
 import axios from "axios";
 
 export const SEARCH_ALL = "SEARCH_ALL";
-export const SEARCH_TAGS = "SEARCH_TAGS";
+export const SEARCH_USER_TAG_FOLLOWS = "SEARCH_USER_TAG_FOLLOWS";
+export const SEARCH_STORIES_TAG_FORM = "SEARCH_STORIES_TAG_FORM";
 
 const SEARCH_ALL_URL = "/api/search";
 const SEARCH_TAGS_URL = "/api/tags/search";
 
-export function searchTags(searchTerm) {
+export function searchUserTagFollows(searchTerm) {
   const request = axios.get(`/api/tags/search?search_term=${searchTerm}`);
   
   return {
-    type: SEARCH_TAGS,
+    type: SEARCH_USER_TAG_FOLLOWS,
+    payload: request
+  };
+};
+
+export function searchStoriesTagForm(searchTerm) {
+  const request = axios.get(`/api/tags/search?search_term=${searchTerm}`);
+  
+  return {
+    type: SEARCH_STORIES_TAG_FORM,
     payload: request
   };
 };

@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { searchTags } from "../../actions/action_search";
+import { searchStoriesTagForm } from "../../actions/action_search";
+import { fetchOrCreateTag } from "../../actions/action_tag";
 import Tag from "../buttons/tag.jsx";
 
 class StoriesTagForm extends Component {
@@ -16,7 +17,7 @@ class StoriesTagForm extends Component {
   
   handleOnChange(event) {
     this.setState({ searchTerm: event.target.value }, () => {
-      this.props.searchTags(this.state.searchTerm);
+      this.props.searchStoriesTagForm(this.state.searchTerm);
     });
   }
   
@@ -25,7 +26,7 @@ class StoriesTagForm extends Component {
     const tags = this.props.searchedTags.map((tag, i) => {
       return (
         <li
-          onClick={this.addTag(tag.id, tag.tag_desc)} 
+          onClick={() => this.addTag(tag.id, tag.tag_desc)} 
           className="stories-searched-tag group"
           key={`stories-tag-form-tag-${i}`}>
           <div className="stories-tag-desc">{tag.tag_desc}</div>
@@ -45,8 +46,13 @@ class StoriesTagForm extends Component {
   }
   
   renderAddedTags() {
-    const tags = this.state.addedTagDescs.map((tag, i) => {
-      <Tag desc={tag.tag_desc} className="stories-added-tag" />
+    const tags = this.state.addedTagDescs.map((tagDesc, i) => {
+      return (
+        <Tag 
+          key={`stories-form-tag-${i}`} 
+          desc={tagDesc} 
+          className="stories-added-tag" />
+      );
     });
     
     return tags;
@@ -54,7 +60,12 @@ class StoriesTagForm extends Component {
   
   handleOnSubmit(event) {
     event.preventDefault();
-    console.log("stories tag form submit clicked");
+    const that = this;
+    this.props.fetchOrCreateTag(this.state.searchTerm)
+    .then((response) => {
+      const data = response.payload.data;
+      that.addTag(data.id, data.tag_desc);
+    });
   }
   
   createStory() {
@@ -70,7 +81,7 @@ class StoriesTagForm extends Component {
   
   render() {
     const display = this.props.active ? "" : "hidden";
-    
+
     return (
       <div className={`stories-tag-form-container card ${display}`}>
         <div className="stories-tag-form-header">Ready to publish?</div>
@@ -103,12 +114,12 @@ class StoriesTagForm extends Component {
 };
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ searchTags }, dispatch);
+  return bindActionCreators({ searchStoriesTagForm, fetchOrCreateTag }, dispatch);
 };
 
 function mapStateToProps(state) {
   return {
-    searchedTags: state.search.tags
+    searchedTags: state.search.storiesTagFormSearch
   };
 };
 

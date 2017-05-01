@@ -45,14 +45,7 @@
   float: left;
   font-size: 14px;
   padding-bottom: 3px;
-}
-
-.header-list-publish-btn {
-  position: relative;
-}
-
-.header-list-story-link-btn,
-.header-list-auth-link {
+  
   &:hover {
     border-bottom: 1px solid $dark-yellow;
     color: $dark-yellow;
@@ -135,6 +128,10 @@
   width: 70px;
 }
 
+.stories-added-tag {
+  font-size: 12px;
+  height: 26px;
+}
 // end //
 
 .header-list-auth-link {
@@ -143,6 +140,7 @@
 
 .header-list-story-link {
   margin: 6px 15px 0px 0px;
+  position: relative;
 }
 
 .header-list-auth-user-container {
@@ -221,11 +219,6 @@
 }
 
 @media (min-width: 768px) {
-  .stories-tag-form-container {
-    left: -150px;
-    width: 320px;
-  }
-  
   .search-bar-active {
     width: 200px;
   }
