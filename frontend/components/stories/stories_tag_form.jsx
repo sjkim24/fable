@@ -52,10 +52,7 @@ class StoriesTagForm extends Component {
     if (!tags[id]) {
       tags[id] = desc;
     }
-    debugger
-    this.setState({ searchTerm: "", tags: tags }, () => {
-      debugger
-    });
+    this.setState({ searchTerm: "", tags: tags });
   }
   
   removeTag() {
@@ -124,6 +121,7 @@ class StoriesTagForm extends Component {
   
   componentDidUpdate(prevProps, prevState) {
     const isWritingStory = this.props.isWritingStory;
+    
     if (this.props.active !== prevProps.active && !prevProps.active) {
       document.querySelector(".stories-tag-input").focus();
     } else if (isWritingStory.writing && !isWritingStory.edit && this.props.story && !prevProps.story) {
