@@ -1,9 +1,11 @@
 import { 
   FETCH_STORY, FETCH_STORIES, SET_STORY, CREATE_STORY, 
-  UPDATE_STORY, TOGGLE_IS_WRITING_STORY
+  UPDATE_STORY, TOGGLE_IS_WRITING_STORY, TOGGLE_IS_EDITING_STORY
 } from "../actions/action_stories";
 
-const INITIAL_STATE = { all: null, story: null, isWritingStory: false };
+const INITIAL_STATE = { 
+  all: null, story: null, isWritingStory: false, isEditingStory: false
+};
 
 export default function(state = INITIAL_STATE, action) {
   Object.freeze(state);
@@ -20,6 +22,8 @@ export default function(state = INITIAL_STATE, action) {
       return { ...state, story: action.payload.data };
     case TOGGLE_IS_WRITING_STORY:
       return { ...state, isWritingStory: action.payload };
+    case TOGGLE_IS_EDITING_STORY:
+      return { ...state, isEditingStory: action.payload };
     default:
       return state;
   };

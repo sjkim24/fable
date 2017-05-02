@@ -6,7 +6,7 @@ export const FETCH_FOLLOWINGS = "FETCH_FOLLOWINGS"
 export const FETCH_RESPONSES = "FETCH_RESPONSES"
 export const UPDATE_USER = "UPDATE_USER";
 export const FETCH_TAG_FOLLOWS = "FETCH_TAG_FOLLOWS";
-export const FETCH_STORIES = "FETCH_STORIES";
+export const FETCH_CURRENT_USER_STORIES = "FETCH_CURRENT_USER_STORIES";
 export const FETCH_CURRENT_USER_RESPONSES = "FETCH_USERS_RESPONSES";
 export const DELETE_CURRENT_USER_STORY = "DELETE_CURRENT_USER_STORY";
 export const DELETE_CURRENT_USER_RESPONSE = "DELETE_CURRENT_USER_RESPONSE";
@@ -69,11 +69,11 @@ export function fetchTagFollows() {
   }
 }
 
-export function fetchStories(username) {
+export function fetchCurrentUserStories() {
   const request = axios.get("/api/my_stories");
   
   return {
-    type: FETCH_STORIES,
+    type: FETCH_CURRENT_USER_STORIES,
     payload: request
   }
 }

@@ -53,6 +53,16 @@ class StoriesTagForm extends Component {
   }
   
   renderAddedTags() {
+    if (this.props.story) {
+      const taggedTags = this.props.story.tags.map((tag, i) => {
+        return (
+          <Tag key={`stories-form-tagged-tag-${i}`}
+            desc={tag.tag_desc}
+            className="stories-added-tag" />
+        );
+      });
+    }
+    
     const tags = this.state.addedTagDescs.map((tagDesc, i) => {
       return (
         <Tag 
@@ -61,8 +71,11 @@ class StoriesTagForm extends Component {
           className="stories-added-tag" />
       );
     });
-    
-    return tags;
+
+    const allTags = this.props.story ? tags.concat(taggedTags) : tags;
+    // 
+    // debugger
+    return allTags;
   }
   
   handleOnSubmit(event) {
@@ -94,7 +107,7 @@ class StoriesTagForm extends Component {
     }
   }
   
-  render() {
+  render() {    
     const display = this.props.active ? "" : "hidden";
 
     return (
@@ -143,6 +156,7 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state) {
   return {
+    isEditingStory: state.stories.isEditingStory,
     searchedTags: state.search.storiesTagFormSearch, 
     story: state.stories.story,
     token: state.auth.authToken

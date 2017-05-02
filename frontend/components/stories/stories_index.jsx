@@ -28,7 +28,7 @@ class StoriesIndex extends Component {
   }
   
   render() {
-    if (!this.props.stories) {
+    if (!this.props.stories || !this.props.stories.stories) {
       return <div className="loader" />;
     }
     

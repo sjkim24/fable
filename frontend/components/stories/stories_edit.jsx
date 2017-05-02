@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { fetchStory, updateStory } from "../../actions/action_stories";
+import { fetchStory, updateStory, toggleIsEditingStory } from "../../actions/action_stories";
 import ContentForm from "../base/content_form.jsx";
 import NotAllowed from "../base/not_allowed.jsx";
 
@@ -82,6 +82,7 @@ class StoriesEdit extends Component {
   
   componentWillMount() {
     const that = this;
+    this.props.toggleIsEditingStory(true);
     
     this.props.fetchStory(this.props.params.storyId)
     .then((response) => {
@@ -128,13 +129,13 @@ class StoriesEdit extends Component {
         <form className="stories-form" onSubmit={this.handleOnSubmit}>
           <div className="stories-form-input-container padding-side">
             <input
-              className="stories-form-input stories-form-input-title padding-side" 
+              className="stories-form-input stories-form-input-title" 
               name="story[title]"
               placeholder="Title" 
               value={this.state.title} 
               onChange={(event) => this.handleOnChange(event, "title")} />
             <input
-              className="stories-form-input stories-form-input-subtitle padding-side" 
+              className="stories-form-input stories-form-input-subtitle" 
               name="story[subtitle]" 
               placeholder="Subtitle" 
               value={this.state.subtitle} 
@@ -174,10 +175,20 @@ class StoriesEdit extends Component {
       </div>
     );
   }
+  
+  componentDidMount() {
+    // window.updateStory = this.handleOnSubmit
+  }
+  
+  componentWillUnmount() {
+    this.props.toggleIsEditingStory(false);
+  }
 };
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchStory, updateStory }, dispatch);
+  return bindActionCreators({ 
+    fetchStory, updateStory, toggleIsEditingStory 
+  }, dispatch);
 };
 
 function mapStateToProps(state) {

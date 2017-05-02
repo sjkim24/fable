@@ -1,6 +1,6 @@
 import { 
   FETCH_USER, FETCH_FOLLOWERS, FETCH_FOLLOWINGS, FETCH_RESPONSES, UPDATE_USER,
-  FETCH_TAG_FOLLOWS, FETCH_STORIES, FETCH_CURRENT_USER_RESPONSES, CREATE_TAG_FOLLOW,
+  FETCH_TAG_FOLLOWS, FETCH_CURRENT_USER_STORIES, FETCH_CURRENT_USER_RESPONSES, CREATE_TAG_FOLLOW,
   DELETE_TAG_FOLLOW
 } from  "../actions/action_user";
 
@@ -12,7 +12,7 @@ const INITIAL_STATE = {
   recommends: [],
   responses: null,
   tagFollows: null,
-  stories: []
+  stories: null
 };
 
 export default function(state = INITIAL_STATE, action) {
@@ -37,15 +37,12 @@ export default function(state = INITIAL_STATE, action) {
       return { ...state, user: action.payload.data };
     case FETCH_TAG_FOLLOWS:
       return { ...state, tagFollows: action.payload.data };
-    case FETCH_STORIES:
+    case FETCH_CURRENT_USER_STORIES:
       return { ...state, stories: action.payload.data };
     case FETCH_CURRENT_USER_RESPONSES:
       return { ...state, responses: action.payload.data };
     case CREATE_TAG_FOLLOW:
-      if (action.payload.data.error) {
-        return { ...state };
-      }
-       
+      if (action.payload.data.error) { return { ...state }; }
       return { ...state, tagFollows: action.payload.data };
     case DELETE_TAG_FOLLOW:
       return { ...state, tagFollows: action.payload.data };

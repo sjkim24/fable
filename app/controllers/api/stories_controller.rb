@@ -1,5 +1,27 @@
 class Api::StoriesController < ApplicationController
   def index
+    # if current_user
+    #   my_stories = current_user.stories
+    #   followings_stories = current_user.followings
+    #   
+    #   tags = current_user.tag_follows.map do |tag_follow|
+    #     tag_follow.tag
+    #   end
+    #   
+    #   taggings = tags.map do |tag|
+    #     next if Tagging.where(tag_id: tag.id).empty?
+    #     Tagging.where(tag_id: tag.id)
+    #   end
+    #   GET UNIQUE TAGGINGS BASED story_id. NO NEED TO RETRIEVE 20 taggings with story_id 1
+    #   
+    #   binding.pry
+    #   tag_follows_stories = taggings.map do |tagging|
+    #     Story.find(tagging.story_id)
+    #   end
+    #   binding.pry
+    # else
+    #   @stories = Story.all.includes(:user, :tags).order("created_at DESC")
+    # end
     @stories = Story.all.includes(:user, :tags).order("created_at DESC")
     # change up how i serve stories later
     # the index feed will definitely include..

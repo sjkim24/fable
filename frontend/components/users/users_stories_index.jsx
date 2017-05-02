@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Link } from "react-router";
-import { fetchStories } from "../../actions/action_user";
+import { fetchCurrentUserStories } from "../../actions/action_user";
 import UsersStoriesIndexItem from "./users_stories_index_item.jsx";
 
 class UsersStoriesIndex extends Component {
@@ -16,7 +16,7 @@ class UsersStoriesIndex extends Component {
   }
   
   renderStoriesIndexItems() {
-    const stories = this.props.stories.map((story, i) => {
+    const stories = this.props.userStories.map((story, i) => {
       return (
         <UsersStoriesIndexItem
           username={this.props.currentUser.username} 
@@ -28,8 +28,12 @@ class UsersStoriesIndex extends Component {
     return stories;
   }
   
+  componentWillMount() {
+    this.props.fetchCurrentUserStories();
+  }
+  
   render() {
-    if (!this.props.currentUser || !this.props.stories) {
+    if (!this.props.currentUser || !this.props.userStories) {
       return <div className="loader" />;
     } 
     
@@ -40,18 +44,14 @@ class UsersStoriesIndex extends Component {
       </div>
     );
   }
-  
-  componentDidMount() {
-    this.props.fetchStories();
-  }
 };
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchStories }, dispatch);
+  return bindActionCreators({ fetchCurrentUserStories }, dispatch);
 };
 
 function mapStateToProps(state) {
-  return { currentUser: state.auth.currentUser, stories: state.user.stories };
+  return { currentUser: state.auth.currentUser, userStories: state.user.stories };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UsersStoriesIndex);
