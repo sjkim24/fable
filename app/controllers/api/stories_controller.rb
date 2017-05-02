@@ -78,8 +78,8 @@ class Api::StoriesController < ApplicationController
   
   def get_comments_only
     story = Story.find(params[:id])
-    @comments = story.comments.includes(:comments, :user).where(parent_comment_id: nil)
-    
+    @comments = story.comments.where(parent_comment_id: nil)
+
     render :get_comments
   end
 

@@ -18,6 +18,17 @@ class CommentsShow extends Component {
     return tags;
   }
   
+  formattedContent() {
+    const parsed = JSON.parse(this.props.comment.content);
+    const paras = parsed.split("\n").map((para, i) => {
+      return (
+        <p key={`comment-p-${i}`} className="comment-content-p">{para}</p>
+      );
+    });
+    
+    return paras;
+  }
+  
   componentWillMount() {
     if (!this.props.comment) {
       this.props.fetchComment(this.props.params.commentId);
@@ -79,7 +90,7 @@ class CommentsShow extends Component {
           </div>
         </Link>
         <div className="story-content padding-side">
-          {comment.content}
+          {this.formattedContent()}
         </div>
         <div className="story-tags padding-side group">
           {this.renderTags()}
@@ -121,6 +132,8 @@ class CommentsShow extends Component {
         <div className="comment-form-container padding-side">
           <div className="comment-form-header">Response</div>
           <CommentForm
+            parentCommentId={comment.id}
+            storyId={comment.story_id}
             userImgUrl={comment.user_image_url}
             userFullName={comment.user_fullname} />
         </div>

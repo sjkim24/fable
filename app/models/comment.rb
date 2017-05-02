@@ -56,4 +56,16 @@ class Comment < ActiveRecord::Base
     follow = Follow.where(follower_id: follower_id, following_id: self.user.id)[0]
     return follow.nil? ? false : true
   end
+  
+  def get_story_title
+    comment = self
+    parent_comment_id = comment.parent_comment_id
+
+    until parent_comment_id.nil?
+      comment = Comment.find(parent_comment_id)
+      parent_comment_id = comment.parent_comment_id
+    end
+    
+    return comment.story.title
+  end
 end

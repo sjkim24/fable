@@ -60,6 +60,7 @@ class Api::UsersController < ApplicationController
   
   def current_user_responses
     @comments = current_user.comments.order("created_at DESC")
+    # @comments = current_user.get_comments_only.order("created_at DESC")
   
     render :current_user_responses
   end

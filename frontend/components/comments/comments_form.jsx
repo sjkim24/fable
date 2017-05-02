@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { toggleModal } from "../../actions/action_modal";
 import { fetchComments, createComment } from "../../actions/action_comments";
+import { fetchReplies } from "../../actions/action_replies";
 import ContentForm from "../base/content_form.jsx";
 
 class CommentForm extends Component {
@@ -66,7 +67,11 @@ class CommentForm extends Component {
 
   renderContentForm() {
     if (this.state.active) {
-      return <ContentForm handleContentFormChange={this.handleContentFormChange} />;
+      return (
+        <ContentForm
+          isWritingStory={this.props.isWritingStory} 
+          handleContentFormChange={this.handleContentFormChange} />
+      );  
     }
   }
   
@@ -84,12 +89,18 @@ class CommentForm extends Component {
       // for now, i'm not checking parent commend id but do check it for reply create
       let data = {};
       data["comment"] = { content: this.state.content };
+      if (this.props.parentCommentId) {
+        data["comment"]["parent_comment_id"] = this.props.parentCommentId;
+      }
       data["authenticity_token"] = this.props.token;
-      console.log(data);
       this.props.createComment(this.props.storyId, data)
       .then(function(response) {
         that.setState({ active: false }, () => {
-          that.props.fetchComments(that.props.storyId);
+          if (that.props.parentCommentId) { // fetch repleis
+            that.props.fetchReplies(that.props.parentCommentId);
+          } else {
+            that.props.fetchComments(that.props.storyId);
+          }
         });
       })
       .catch(function(error) {
@@ -149,11 +160,16 @@ class CommentForm extends Component {
 };
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ toggleModal, fetchComments, createComment }, dispatch);
+  return bindActionCreators({ 
+    toggleModal, fetchComments, createComment, fetchReplies 
+  }, dispatch);
 };
 
 function mapStateToProps(state) {
-  return { currentUser: state.auth.currentUser, token: state.auth.authToken };
+  return { 
+    currentUser: state.auth.currentUser, token: state.auth.authToken,
+    isWritingStory: state.stories.isWritingStory 
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CommentForm);
