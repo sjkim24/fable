@@ -177,7 +177,7 @@ class StoriesEdit extends Component {
   }
   
   componentDidMount() {
-    // window.updateStory = this.handleOnSubmit
+    window.updateStory = this.handleOnSubmit;
   }
   
   componentWillUnmount() {

@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import { Link } from "react-router";
 import { signOutUser, setAuthToken } from "../../actions/action_auth";
 import { 
-  deleteCurrentUserStory, fetchStories, deleteCurrentUserResponse, fetchCurrentUserResponses 
+  deleteCurrentUserStory, fetchCurrentUserStories, deleteCurrentUserResponse, fetchCurrentUserResponses 
 } from "../../actions/action_user";
 
 
@@ -52,7 +52,7 @@ class DropDownMenu extends Component {
     event.preventDefault();
     this.props.deleteCurrentUserStory(this.props.storyId, this.props.token)
     .then(function(response) {
-      this.props.fetchStories(this.props.currentUser.username);
+      this.props.fetchCurrentUserStories();
     }.bind(this));
   }
   
@@ -128,7 +128,7 @@ class DropDownMenu extends Component {
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({ 
     signOutUser, setAuthToken, deleteCurrentUserStory, 
-    fetchStories, deleteCurrentUserResponse, fetchCurrentUserResponses 
+    fetchCurrentUserStories, deleteCurrentUserResponse, fetchCurrentUserResponses 
   }, dispatch);
 };
 

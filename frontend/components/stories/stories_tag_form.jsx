@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { searchStoriesTagForm } from "../../actions/action_search";
 import { fetchOrCreateTag } from "../../actions/action_tag";
-import { createTaggings } from "../../actions/action_taggings";
+import { createTaggings, updateTaggings } from "../../actions/action_taggings";
 import { fetchStory } from "../../actions/action_stories";
 import Tag from "../buttons/tag.jsx";
 
@@ -15,7 +15,6 @@ class StoriesTagForm extends Component {
   constructor() {
     super();
     
-    // this.state = { searchTerm: "", addedTagDescs: [], addedTagIds: [] };
     this.state = { searchTerm: "", tags: {} };
     this.handleOnChange = this.handleOnChange.bind(this);
     this.handleOnSubmit = this.handleOnSubmit.bind(this);
@@ -26,7 +25,6 @@ class StoriesTagForm extends Component {
   
   handleOnChange(event) {
     this.setState({ searchTerm: event.target.value }, () => {
-      console.log("handleonchange", this.state.tagss);
       this.props.searchStoriesTagForm(this.state.searchTerm);
     });
   }
@@ -60,15 +58,15 @@ class StoriesTagForm extends Component {
     let tags = JSON.parse(JSON.stringify(this.state.tags));
     
     delete tags[desc];
-    this.setState({ tags: tags }, () => { console.log("after remove", this.state.tags);});
+    this.setState({ tags: tags }, () => { debugger });
   }
   
   renderAddedTags() {
-    console.log("render added tags", this.state.tags);
     let tags = [];
     for (var desc in this.state.tags) {
+      const tagDesc = desc;
       const el = <div
-        onClick={() => this.removeTag(desc)} 
+        onClick={() => this.removeTag(tagDesc)} 
         className="stories-form-tag-container" 
         key={`stories-form-tag-${desc}`} >
         <div className="stories-added-tag tag">{desc}</div>
@@ -92,7 +90,16 @@ class StoriesTagForm extends Component {
   }
   
   createStory(event) {
-    window.createStory(event);
+    const isWritingStory = this.props.isWritingStory;
+    if (isWritingStory.writing && !isWritingStory.edit) {
+      window.createStory(event);
+    } else if (isWritingStory.writing && isWritingStory.edit) {
+      window.updateStory(event);
+      this.props.updateTaggings(Object.values(this.state.tags), this.props.story.id, this.props.token);
+      this.props.toggleStoriesTagForm();
+      this.props.fetchStory(this.props.story.id)
+    }
+    // need to reset the state here
   }
   
   goBack() {
@@ -160,17 +167,19 @@ class StoriesTagForm extends Component {
     
     if (this.props.active !== prevProps.active && !prevProps.active) {
       document.querySelector(".stories-tag-input").focus();
+      // this is triggered after user creates a story
     } else if (isWritingStory.writing && !isWritingStory.edit && this.props.story && !prevProps.story) {
       this.props.createTaggings(Object.values(this.state.tags), this.props.story.id, this.props.token);
-      this.props.toggleStoriesTagForm();
-      this.props.fetchStory(this.props.story.id);
+      this.props.toggleStoriesTagForm(); // is this working? check
+      this.props.fetchStory(this.props.story.id); // fetch to get the new taggings
     }
   }
 };
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({ 
-    searchStoriesTagForm, fetchOrCreateTag, createTaggings, fetchStory 
+    searchStoriesTagForm, fetchOrCreateTag, createTaggings, fetchStory,
+    updateTaggings
   }, dispatch);
 };
 

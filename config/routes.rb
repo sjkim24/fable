@@ -44,5 +44,6 @@ Rails.application.routes.draw do
     get 'tags/fetch_or_create', :to => 'tags#fetch_or_create'
     get 'search', :to => 'search#search'
     post 'taggings', :to => 'taggings#create'
+    patch 'taggings', :to => 'taggings#update'
   end
 end
