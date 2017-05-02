@@ -53,8 +53,9 @@ class StoriesTagForm extends Component {
   }
   
   renderAddedTags() {
+    let taggedTags;
     if (this.props.story) {
-      const taggedTags = this.props.story.tags.map((tag, i) => {
+      taggedTags = this.props.story.tags.map((tag, i) => {
         return (
           <Tag key={`stories-form-tagged-tag-${i}`}
             desc={tag.tag_desc}
@@ -71,9 +72,14 @@ class StoriesTagForm extends Component {
           className="stories-added-tag" />
       );
     });
-
-    const allTags = this.props.story ? tags.concat(taggedTags) : tags;
-    // 
+    
+    let allTags;
+    if (this.props.story) {
+      allTags = tags.concat(taggedTags);
+    } else {
+      allTags = tags;
+    }
+    
     // debugger
     return allTags;
   }
@@ -98,16 +104,21 @@ class StoriesTagForm extends Component {
   }
   
   componentDidUpdate(prevProps, prevState) {
-    if (!prevProps.active) {
+    const isWritingStory = this.props.isWritingStory;
+    if (this.props.active !== prevProps.active && !prevProps.active) {
       document.querySelector(".stories-tag-input").focus();
-    } else if (this.props.story && !prevProps.story) {
+    } else if (isWritingStory.writing && !isWritingStory.edit && this.props.story && !prevProps.story) {
       this.props.createTaggings(this.state.addedTagIds, this.props.story.id, this.props.token);
       this.props.toggleStoriesTagForm();
       this.props.fetchStory(this.props.story.id);
     }
   }
   
-  render() {    
+  render() {   
+    if (this.props.isWritingStory.edit && !this.props.story) {
+      return <div className="loader" />;
+    }
+    
     const display = this.props.active ? "" : "hidden";
 
     return (
@@ -156,7 +167,7 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state) {
   return {
-    isEditingStory: state.stories.isEditingStory,
+    isWritingStory: state.stories.isWritingStory,
     searchedTags: state.search.storiesTagFormSearch, 
     story: state.stories.story,
     token: state.auth.authToken

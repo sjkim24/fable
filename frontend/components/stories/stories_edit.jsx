@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { fetchStory, updateStory, toggleIsEditingStory } from "../../actions/action_stories";
+import { fetchStory, updateStory, toggleIsWritingStory } from "../../actions/action_stories";
 import ContentForm from "../base/content_form.jsx";
 import NotAllowed from "../base/not_allowed.jsx";
 
@@ -82,14 +82,13 @@ class StoriesEdit extends Component {
   
   componentWillMount() {
     const that = this;
-    this.props.toggleIsEditingStory(true);
-    
+    this.props.toggleIsWritingStory({ writing: true, edit: true });
     this.props.fetchStory(this.props.params.storyId)
     .then((response) => {
       const story = that.props.story;
       const state = {};
       const content = JSON.parse(story.content);
-
+      
       state.title = story.title;
       state.subtitle = story.subtitle || "";
       state.content = content
@@ -162,7 +161,7 @@ class StoriesEdit extends Component {
               alt="preview img" 
               className={`stories-form-preview-img ${prevDisplay}`} />
           </div>
-          <ContentForm 
+          <ContentForm
             handleContentFormChange={this.handleContentFormChange} 
             content={this.state.content} />
           <div className="stories-form-btns group padding-side">
@@ -181,18 +180,18 @@ class StoriesEdit extends Component {
   }
   
   componentWillUnmount() {
-    this.props.toggleIsEditingStory(false);
+    this.props.toggleIsWritingStory({ writing: false, edit: false });
   }
 };
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ 
-    fetchStory, updateStory, toggleIsEditingStory 
-  }, dispatch);
+  return bindActionCreators({ fetchStory, updateStory, toggleIsWritingStory }, dispatch);
 };
 
 function mapStateToProps(state) {
-  return { story: state.stories.story, currentUser: state.auth.currentUser };
+  return { 
+    story: state.stories.story, currentUser: state.auth.currentUser
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(StoriesEdit);

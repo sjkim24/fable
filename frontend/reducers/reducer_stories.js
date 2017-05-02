@@ -1,10 +1,10 @@
 import { 
   FETCH_STORY, FETCH_STORIES, SET_STORY, CREATE_STORY, 
-  UPDATE_STORY, TOGGLE_IS_WRITING_STORY, TOGGLE_IS_EDITING_STORY
+  UPDATE_STORY, TOGGLE_IS_WRITING_STORY
 } from "../actions/action_stories";
 
 const INITIAL_STATE = { 
-  all: null, story: null, isWritingStory: false, isEditingStory: false
+  all: null, story: null, isWritingStory: { writing: false, edit: false }
 };
 
 export default function(state = INITIAL_STATE, action) {
@@ -22,8 +22,6 @@ export default function(state = INITIAL_STATE, action) {
       return { ...state, story: action.payload.data };
     case TOGGLE_IS_WRITING_STORY:
       return { ...state, isWritingStory: action.payload };
-    case TOGGLE_IS_EDITING_STORY:
-      return { ...state, isEditingStory: action.payload };
     default:
       return state;
   };

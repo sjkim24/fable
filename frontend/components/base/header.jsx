@@ -100,8 +100,8 @@ class Header extends Component {
     const authLinkDisplay = "";
     const storyLinkDisplay = "hidden"
       
-    const writeLinkDisplay = !this.props.isWritingStory ? "" : "hidden";
-    const publishLinkDisplay = this.props.isWritingStory ? "" : "hidden"; 
+    const writeLinkDisplay = !this.props.isWritingStory.writing ? "" : "hidden";
+    const publishLinkDisplay = this.props.isWritingStory.writing ? "" : "hidden"; 
     
     return(
       <header className="header padding-side group">

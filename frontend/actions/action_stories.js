@@ -6,7 +6,6 @@ export const FETCH_STORIES = "FETCH_STORIES";
 export const CREATE_STORY = "CREATE_STORY";
 export const UPDATE_STORY = "UPDATE_STORY";
 export const TOGGLE_IS_WRITING_STORY = "TOGGLE_IS_WRITING_STORY";
-export const TOGGLE_IS_EDITING_STORY = "TOGGLE_IS_EDITING_STORY";
 
 const URL = "/api/stories";
 
@@ -53,16 +52,9 @@ export function updateStory(storyId, data) {
   };
 };
 
-export function toggleIsWritingStory(boolean) {
+export function toggleIsWritingStory(data) {
   return {
     type: TOGGLE_IS_WRITING_STORY,
-    payload: boolean
-  };
-};
-
-export function toggleIsEditingStory(boolean) {
-  return {
-    type: TOGGLE_IS_EDITING_STORY,
-    payload: boolean
+    payload: data
   };
 };

@@ -81,7 +81,7 @@ class StoriesForm extends Component {
   }
   
   componentWillMount() {
-    this.props.toggleIsWritingStory(true);
+    this.props.toggleIsWritingStory({ writing: true, edit: false });
   }
   
   render() {
@@ -150,7 +150,7 @@ class StoriesForm extends Component {
   }
   
   componentWillUnmount() {
-    this.props.toggleIsWritingStory(false);
+    this.props.toggleIsWritingStory({ writing: false, edit: false });
   }
 };
 
