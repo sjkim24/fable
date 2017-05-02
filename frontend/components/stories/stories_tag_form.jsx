@@ -58,7 +58,7 @@ class StoriesTagForm extends Component {
     let tags = JSON.parse(JSON.stringify(this.state.tags));
     
     delete tags[desc];
-    this.setState({ tags: tags }, () => { debugger });
+    this.setState({ tags: tags });
   }
   
   renderAddedTags() {
