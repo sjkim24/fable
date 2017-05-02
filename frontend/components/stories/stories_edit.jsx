@@ -162,6 +162,7 @@ class StoriesEdit extends Component {
               className={`stories-form-preview-img ${prevDisplay}`} />
           </div>
           <ContentForm
+            isWritingStory={this.props.isWritingStory}
             handleContentFormChange={this.handleContentFormChange} 
             content={this.state.content} />
           <div className="stories-form-btns group padding-side">
@@ -190,7 +191,7 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state) {
   return { 
-    story: state.stories.story, currentUser: state.auth.currentUser
+    story: state.stories.story, currentUser: state.auth.currentUser, isWritingStory: state.stories.isWritingStory
   };
 };
 

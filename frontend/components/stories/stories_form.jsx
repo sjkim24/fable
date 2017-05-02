@@ -139,7 +139,10 @@ class StoriesForm extends Component {
               alt="preview img" 
               className={`stories-form-preview-img ${prevDisplay}`} />
           </div>
-          <ContentForm content={this.state.content} handleContentFormChange={this.handleContentFormChange} />
+          <ContentForm
+            isWritingStory={this.props.isWritingStory} 
+            content={this.state.content} 
+            handleContentFormChange={this.handleContentFormChange} />
         </form>
       </div>
     );

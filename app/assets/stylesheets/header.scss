@@ -134,8 +134,23 @@
 }
 
 .stories-added-tag {
+  float: none;
   font-size: 12px;
   height: 26px;
+}
+
+.stories-form-tag-container {
+  float: left;
+  position: relative;
+}
+
+.stories-form-tag-delete-btn {
+  position: absolute;
+  color: black;
+  font-size: 12px;
+  z-index: 100;
+  top: 0;
+  right: 12px;
 }
 // end //
 

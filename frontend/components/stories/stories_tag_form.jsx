@@ -15,11 +15,13 @@ class StoriesTagForm extends Component {
   constructor() {
     super();
     
-    this.state = { searchTerm: "", addedTagDescs: [], addedTagIds: [] };
+    // this.state = { searchTerm: "", addedTagDescs: [], addedTagIds: [] };
+    this.state = { searchTerm: "", tags: {} };
     this.handleOnChange = this.handleOnChange.bind(this);
     this.handleOnSubmit = this.handleOnSubmit.bind(this);
     this.createStory = this.createStory.bind(this);
     this.goBack = this.goBack.bind(this);
+    this.removeTag = this.removeTag.bind(this);
   }
   
   handleOnChange(event) {
@@ -46,10 +48,18 @@ class StoriesTagForm extends Component {
   }
   
   addTag(id, desc) {
-    const ids = this.state.addedTagIds.concat(id);
-    const descs = this.state.addedTagDescs.concat(desc);
+    let tags = JSON.parse(JSON.stringify(this.state.tags))
+    if (!tags[id]) {
+      tags[id] = desc;
+    }
+    debugger
+    this.setState({ searchTerm: "", tags: tags }, () => {
+      debugger
+    });
+  }
+  
+  removeTag() {
     
-    this.setState({ searchTerm: "", addedTagIds: ids, addedTagDescs: descs });
   }
   
   renderAddedTags() {
@@ -57,23 +67,32 @@ class StoriesTagForm extends Component {
     if (this.props.story) {
       taggedTags = this.props.story.tags.map((tag, i) => {
         return (
-          <Tag key={`stories-form-tagged-tag-${i}`}
-            desc={tag.tag_desc}
-            className="stories-added-tag" />
+          <div className="stories-form-tag-container group" key={`stories-form-tagged-tag-${i}`}>
+            <div className="stories-added-tag tag">{tag.tag_desc}</div>
+            <div className="stories-form-tag-delete-btn">x</div>
+          </div>
         );
       });
     }
     
-    const tags = this.state.addedTagDescs.map((tagDesc, i) => {
-      return (
-        <Tag 
-          key={`stories-form-tag-${i}`} 
-          desc={tagDesc} 
-          className="stories-added-tag" />
-      );
-    });
-    
+    let tags = [];
+    for (var id in this.state.tags) {
+      // prop = id, value = desc
+      const el = <div
+        className="stories-form-tag-container group" key={`stories-form-tag-${id}`} >
+        <div className="stories-added-tag tag">{this.state.tags[id]}</div>
+        <div
+          onClick={this.removeTag} 
+          className="stories-form-tag-delete-btn">
+          x
+        </div>
+      </div>;
+      
+      tags.push(el);
+    }
+  
     let allTags;
+    
     if (this.props.story) {
       allTags = tags.concat(taggedTags);
     } else {
@@ -108,7 +127,7 @@ class StoriesTagForm extends Component {
     if (this.props.active !== prevProps.active && !prevProps.active) {
       document.querySelector(".stories-tag-input").focus();
     } else if (isWritingStory.writing && !isWritingStory.edit && this.props.story && !prevProps.story) {
-      this.props.createTaggings(this.state.addedTagIds, this.props.story.id, this.props.token);
+      this.props.createTaggings(Object.keys(this.state.tags), this.props.story.id, this.props.token);
       this.props.toggleStoriesTagForm();
       this.props.fetchStory(this.props.story.id);
     }

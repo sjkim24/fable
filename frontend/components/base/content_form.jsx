@@ -4,17 +4,22 @@ class ContentForm extends Component {
   constructor() {
     super();
     
+    this.state = { edited: false };
     this.handleOnInput = this.handleOnInput.bind(this);
   }
   
   componentWillUpdate(nextProps, nextState) {
-    if (!this.props.content && nextProps.content) {
+    if (!this.state.edited && nextProps.isWritingStory.edit && !this.props.content) {
       document.querySelector(".content-form").innerText = nextProps.content;
     }
   }
   
   handleOnInput(event) {
-    this.props.handleContentFormChange(event.target.innerText);
+    event.persist();
+    
+    this.setState({ edited: true }, () => {
+      this.props.handleContentFormChange(event.target.innerText);
+    });
   }
   
   render() {
