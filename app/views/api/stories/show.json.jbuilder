@@ -28,5 +28,6 @@ else
 end
 
 json.tags @story.tags do |tag|
+  json.id tag.id
   json.tag_desc tag.tag_desc
 end

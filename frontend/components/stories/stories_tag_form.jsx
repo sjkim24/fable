@@ -26,6 +26,7 @@ class StoriesTagForm extends Component {
   
   handleOnChange(event) {
     this.setState({ searchTerm: event.target.value }, () => {
+      console.log("handleonchange", this.state.tagss);
       this.props.searchStoriesTagForm(this.state.searchTerm);
     });
   }
@@ -48,56 +49,36 @@ class StoriesTagForm extends Component {
   }
   
   addTag(id, desc) {
-    let tags = JSON.parse(JSON.stringify(this.state.tags))
-    if (!tags[id]) {
-      tags[id] = desc;
+    let tags = JSON.parse(JSON.stringify(this.state.tags));
+    if (!tags[desc.toLowerCase()]) {
+      tags[desc.toLowerCase()] = id;
     }
     this.setState({ searchTerm: "", tags: tags });
   }
   
-  removeTag() {
+  removeTag(desc) {
+    let tags = JSON.parse(JSON.stringify(this.state.tags));
     
+    delete tags[desc];
+    this.setState({ tags: tags }, () => { console.log("after remove", this.state.tags);});
   }
   
   renderAddedTags() {
-    let taggedTags;
-    if (this.props.story) {
-      taggedTags = this.props.story.tags.map((tag, i) => {
-        return (
-          <div className="stories-form-tag-container group" key={`stories-form-tagged-tag-${i}`}>
-            <div className="stories-added-tag tag">{tag.tag_desc}</div>
-            <div className="stories-form-tag-delete-btn">x</div>
-          </div>
-        );
-      });
-    }
-    
+    console.log("render added tags", this.state.tags);
     let tags = [];
-    for (var id in this.state.tags) {
-      // prop = id, value = desc
+    for (var desc in this.state.tags) {
       const el = <div
-        className="stories-form-tag-container group" key={`stories-form-tag-${id}`} >
-        <div className="stories-added-tag tag">{this.state.tags[id]}</div>
-        <div
-          onClick={this.removeTag} 
-          className="stories-form-tag-delete-btn">
-          x
-        </div>
+        onClick={() => this.removeTag(desc)} 
+        className="stories-form-tag-container" 
+        key={`stories-form-tag-${desc}`} >
+        <div className="stories-added-tag tag">{desc}</div>
+        <div className="stories-form-tag-delete-btn">x</div>
       </div>;
       
       tags.push(el);
     }
-  
-    let allTags;
-    
-    if (this.props.story) {
-      allTags = tags.concat(taggedTags);
-    } else {
-      allTags = tags;
-    }
-    
-    // debugger
-    return allTags;
+
+    return tags;
   }
   
   handleOnSubmit(event) {
@@ -119,15 +100,14 @@ class StoriesTagForm extends Component {
     history.back();
   }
   
-  componentDidUpdate(prevProps, prevState) {
-    const isWritingStory = this.props.isWritingStory;
-    
-    if (this.props.active !== prevProps.active && !prevProps.active) {
-      document.querySelector(".stories-tag-input").focus();
-    } else if (isWritingStory.writing && !isWritingStory.edit && this.props.story && !prevProps.story) {
-      this.props.createTaggings(Object.keys(this.state.tags), this.props.story.id, this.props.token);
-      this.props.toggleStoriesTagForm();
-      this.props.fetchStory(this.props.story.id);
+  componentWillReceiveProps(nextProps) {
+    if (this.props.isWritingStory.edit && !this.props.story && nextProps.story) {
+      let tags = {};
+      nextProps.story.tags.forEach((tag) => {
+        tags[tag.tag_desc] = tag.id;
+      });
+      
+      this.setState({ tags: tags });
     }
   }
   
@@ -173,6 +153,18 @@ class StoriesTagForm extends Component {
         </div>
       </div>
     );
+  }
+  
+  componentDidUpdate(prevProps, prevState) {
+    const isWritingStory = this.props.isWritingStory;
+    
+    if (this.props.active !== prevProps.active && !prevProps.active) {
+      document.querySelector(".stories-tag-input").focus();
+    } else if (isWritingStory.writing && !isWritingStory.edit && this.props.story && !prevProps.story) {
+      this.props.createTaggings(Object.values(this.state.tags), this.props.story.id, this.props.token);
+      this.props.toggleStoriesTagForm();
+      this.props.fetchStory(this.props.story.id);
+    }
   }
 };
 
