@@ -12,9 +12,9 @@ class RecsIndex extends Component {
   }
   
   renderTopLikedStories() {
-    const topLikedStories = this.props.topLikedStories.map((story, i) => {
+    const stories = this.props.topLikedStories.map((story, i) => {
       return (
-        <li className="rec-item group" key={`top-story-${i}`}>
+        <li className="rec-item group" key={`top-liked-story-${i}`}>
           <Link to={`/users/@${story.username}`}>
             <img src={story.user_image_url} alt="user image" className="rec-user-img" />
           </Link>
@@ -26,7 +26,25 @@ class RecsIndex extends Component {
       );
     });
     
-    return topLikedStories;
+    return stories;
+  }
+  
+  renderTopBookmarkedStories() {
+    const stories = this.props.topBookmarkedStories.map((story, i) => {
+      return (
+        <li className="rec-item group" key={`top-bkmrkd-story-${i}`}>
+          <Link to={`/users/@${story.username}`}>
+            <img src={story.user_image_url} alt="user image" className="rec-user-img" />
+          </Link>
+          <Link to={`/stories/${story.id}`} className="rec-item-info">
+            <div className="rec-item-title">{story.title}</div>
+            <div className="rec-item-user-fullname">{story.user_fullname}</div>
+          </Link>
+        </li>
+      );
+    });
+    
+    return stories
   }
   
   renderTagFollows() {
@@ -47,25 +65,15 @@ class RecsIndex extends Component {
     return (
       <ul className="recs">
         <li className="rec">
-          <div className="rec-category">Top Stories</div>
+          <div className="rec-category">Top Liked Stories</div>
           <ul className="rec-items-container">
             {this.renderTopLikedStories()}
           </ul>
         </li>
         <li className="rec">
-          <div className="rec-category">Top Sports</div>
+          <div className="rec-category">Top Bookmarked Stories</div>
           <ul className="rec-items-container">
-            <li className="rec-item">1</li>
-            <li className="rec-item">2</li>
-            <li className="rec-item">3</li>
-          </ul>
-        </li>
-        <li className="rec">
-          <div className="rec-category">Top Technology</div>
-          <ul className="rec-items-container">
-            <li className="rec-item">1</li>
-            <li className="rec-item">2</li>
-            <li className="rec-item">3</li>
+            {this.renderTopBookmarkedStories()}
           </ul>
         </li>
         <li className={`rec-tags ${tagFollowsDisplay}`}>

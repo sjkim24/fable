@@ -22,7 +22,8 @@ class StoriesIndex extends Component {
     return (
       <RecsIndex
         currentUser={this.props.currentUser}
-        topLikedStories={this.props.stories.top_liked_stories} />
+        topLikedStories={this.props.stories.top_liked_stories} 
+        topBookmarkedStories={this.props.stories.top_bookmarked_stories} />
     );
   }
   
