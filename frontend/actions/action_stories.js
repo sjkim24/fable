@@ -3,6 +3,7 @@ import axios from "axios";
 export const FETCH_STORY = "FETCH_STORY";
 export const SET_STORY = "SET_STORY";
 export const FETCH_STORIES = "FETCH_STORIES";
+export const FETCH_STORIES_BY_TAG = "FETCH_STORIES_BY_TAG";
 export const CREATE_STORY = "CREATE_STORY";
 export const UPDATE_STORY = "UPDATE_STORY";
 export const TOGGLE_IS_WRITING_STORY = "TOGGLE_IS_WRITING_STORY";
@@ -30,6 +31,15 @@ export function fetchStories() {
 
   return {
     type: FETCH_STORIES,
+    payload: request
+  };
+};
+
+export function fetchStoriesByTag(tag) {
+  const request = axios.get(`${URL}/?tag=${tag}`);
+  
+  return {
+    type: FETCH_STORIES_BY_TAG,
     payload: request
   };
 };

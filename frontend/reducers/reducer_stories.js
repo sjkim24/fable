@@ -1,6 +1,6 @@
 import { 
   FETCH_STORY, FETCH_STORIES, SET_STORY, CREATE_STORY, 
-  UPDATE_STORY, TOGGLE_IS_WRITING_STORY
+  UPDATE_STORY, TOGGLE_IS_WRITING_STORY, FETCH_STORIES_BY_TAG
 } from "../actions/action_stories";
 
 const INITIAL_STATE = { 
@@ -11,6 +11,8 @@ export default function(state = INITIAL_STATE, action) {
   Object.freeze(state);
   switch(action.type) {
     case FETCH_STORIES:
+      return { ...state, all: action.payload.data };
+    case FETCH_STORIES_BY_TAG:
       return { ...state, all: action.payload.data };
     case FETCH_STORY:
       return { ...state, story: action.payload.data };

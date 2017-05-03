@@ -11,14 +11,14 @@ class Api::TagsController < ApplicationController
   end
   
   def search_tags
-    search_term = params[:search_term]
+    search_term = params[:search_term].downcase
     @tags = Tag.search_by_tag_desc(search_term)
     
     render :search_tags
   end
   
   def fetch_or_create
-    tag_desc = params[:tag_desc]
+    tag_desc = params[:tag_desc].downcase
     tag = Tag.where('lower(tag_desc) = lower(?)', tag_desc)[0]
     
     if tag.nil?

@@ -2,17 +2,23 @@ import React, { Component } from "react";
 import { Link } from "react-router";
 
 class Tag extends Component {
+  capitalizedDesc() {
+    const desc = this.props.desc;
+    const firstLetter = desc.split("")[0].toUpperCase();
+    const rest = desc.split("").slice(1).join("");
+    
+    return `${firstLetter}${rest}`;
+  }
+  
   render() {
     const classProps = this.props.className || "";
     
     return (
-      <div className={`tag ${classProps}`}>
-        {this.props.desc}
-      </div>
+      <Link to={`/?tag=${this.props.desc}`} className={`tag ${classProps}`}>
+        {this.capitalizedDesc()}
+      </Link>
     );
   }
 };
-
-// eventually wrap the tag desc around with link
 
 export default Tag;

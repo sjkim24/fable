@@ -32,12 +32,12 @@ Donec nonummy, dui commodo lectus tellus wisi tortor. Non tellus massa vehicula 
 Sem primis in, at dolor pulvinar ac blandit praesent, libero a aliquet dolores. At scelerisque dui blandit id, sociis pellentesque, egestas vestibulum, sed mauris congue. Urna turpis facilisis malesuada at, lacinia interdum pretium donec cras aliquam vitae, est ac sed leo odio eu id, mauris diam eget donec, sed ut vivamus ac dapibus id rutrum. Odio leo quis nibh, quasi euismod suscipit mollis libero, ipsum et, adipiscing dolor sollicitudin vel sed sagittis magnis, et iaculis lorem orci ipsa.
 Nec arcu, aenean auctor, sem mi orci. Aenean viverra habitasse nunc nunc pharetra. Magna a condimentum non sem. Ut praesent habitant semper justo, iaculis et orci eu dolor euismod. Nec vivamus aliquid ipsum massa, fusce massa nam, sodales metus consectetuer diam, et in lectus.")
 
-tag1 = Tag.create(tag_desc: "Sports")
-tag2 = Tag.create(tag_desc: "Science")
-tag3 = Tag.create(tag_desc: "Technology")
-tag4 = Tag.create(tag_desc: "Business")
-tag5 = Tag.create(tag_desc: "Fashion")
-tag6 = Tag.create(tag_desc: "Politics")
+tag1 = Tag.create(tag_desc: "sports")
+tag2 = Tag.create(tag_desc: "science")
+tag3 = Tag.create(tag_desc: "technology")
+tag4 = Tag.create(tag_desc: "business")
+tag5 = Tag.create(tag_desc: "fashion")
+tag6 = Tag.create(tag_desc: "politics")
 
 tagging1 = Tagging.create(story_id: s1.id, tag_id: tag1.id)
 tagging2 = Tagging.create(story_id: s1.id, tag_id: tag2.id)
