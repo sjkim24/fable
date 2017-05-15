@@ -122,10 +122,11 @@ class StoriesIndexItem extends Component {
           </div>
           <div className="stories-item-resp-book group">
             <Bookmark
+              username={story.username}
               storyId={story.id}
               bookmarked={story.bookmarked}
               className="stories-item-bookmark" 
-              name="storiesIndex" />
+              name={this.props.name || "storiesIndex"} />
             <div className={`stories-item-responses ${profileViewHide}`}>
               {this.renderResponsesCount()}
             </div>

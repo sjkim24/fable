@@ -160,7 +160,7 @@ class UsersShow extends Component {
     
     const imgLoading = this.state.imgLoading ? "disabled-button" : "";
     const prevDisplay = this.state.imgPrevLoaded ? "" : "hidden";
-    
+
     return (
       <div className="user-show">
         <header className="user-show-header">
@@ -219,6 +219,7 @@ class UsersShow extends Component {
             </div>
             <Follow
               userId={user.id}
+              username={this.props.params.username.replace("@", "")}
               following={user.following}
               name="usersShow"
               className="user-show-follow" />

@@ -14,12 +14,12 @@
 
 .sliding-menu-hidden {
   left: -100%;
-  transition: left 1s ease;
+  transition: left 0.65s ease;
 }
 
 .sliding-menu-active {
   left: 0;
-  transition: left 1s ease;
+  transition: left 0.65s ease;
 }
 
 .sliding-menu-header {

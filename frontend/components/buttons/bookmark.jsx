@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { fetchUser } from "../../actions/action_user";
 import { fetchStory, fetchStories } from "../../actions/action_stories";
 import { toggleModal } from "../../actions/action_modal";
 
@@ -52,6 +53,9 @@ class Bookmark extends Component {
         case("storiesShow"):
           that.props.fetchStory(that.props.storyId);
           break;
+        case("usersProfile"):
+          that.props.fetchUser(that.props.username);
+          break;
       };
     })
     .catch((error) => {
@@ -78,7 +82,9 @@ class Bookmark extends Component {
 };
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchStories, fetchStory, toggleModal }, dispatch);
+  return bindActionCreators({ 
+    fetchStories, fetchStory, toggleModal, fetchUser 
+  }, dispatch);
 };
 
 function mapStateToProps(state) {

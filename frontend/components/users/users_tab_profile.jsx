@@ -11,7 +11,14 @@ class ProfileTab extends Component {
   
   renderLatestItems(latest) {
     const stories = latest.map((story, i) => {
-      return <StoriesIndexItem key={`story-${i}`} story={story} profile={true} />
+      return (
+        <StoriesIndexItem
+          username={this.props.username}
+          name="usersProfile" 
+          key={`story-${i}`} 
+          story={story} 
+          profile={true} />
+      );
     });
     
     return stories;

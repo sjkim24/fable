@@ -6,6 +6,7 @@ import { fetchStory } from "../../actions/action_stories";
 import { fetchComment } from "../../actions/action_comments";
 import { toggleModal } from "../../actions/action_modal";
 import { fetchFollowers, fetchFollowings } from "../../actions/action_user";
+import { fetchUser } from "../../actions/action_user";
 
 class Follow extends Component {
   constructor() {
@@ -62,8 +63,7 @@ class Follow extends Component {
           that.props.fetchFollowers(that.props.userShowId);
           break;
         case ("usersShow"):
-          // fetch user here
-          console.log("usersshow hit, i need to update user once again here");
+          that.props.fetchUser(that.props.username)
           break;
       };
     })
@@ -97,7 +97,8 @@ class Follow extends Component {
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({ 
-    fetchStory, fetchComment, toggleModal,fetchFollowers, fetchFollowings 
+    fetchStory, fetchComment, toggleModal,fetchFollowers, fetchFollowings,
+    fetchUser 
   }, dispatch);
 };
 
