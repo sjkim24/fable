@@ -21,13 +21,22 @@ class NavBarLinksItem extends Component {
       return word[0].toUpperCase() + word.slice(1);
     }).join(" ");
     
-    return (
-      <li className={`nav-bar-link nav-bar-link-${this.props.text}`}>
+    let link;
+    if (this.props.text === "home") {
+      link = <Link to="/">Home</Link>;
+    } else {
+      link = (
         <Link 
           to={`/?tag=${this.props.text}`} 
           onClick={this.fetchStoriesByTag}>
           {text}
         </Link>
+      );
+    }
+    
+    return (
+      <li className={`nav-bar-link nav-bar-link-${this.props.text}`}>
+        {link}
       </li>
     );
   }

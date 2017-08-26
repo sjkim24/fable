@@ -31,7 +31,7 @@ class StoriesIndex extends Component {
     if (!this.props.stories || !this.props.stories.stories) {
       return <div className="loader" />;
     }
-    
+    debugger
     return (
       <div className="stories-recs-container group">
         <ul className="stories">
@@ -45,6 +45,14 @@ class StoriesIndex extends Component {
   componentDidMount() {
     window.scrollTo(0, 0);
   }
+  
+  componentDidUpdate(prevProps, prevState){
+    if (this.props.location.search === "" && prevProps.location.search !== "") {
+      this.props.fetchStories();
+    }
+  }
+  
+  
 };
 
 function mapDispatchToProps(dispatch) {
