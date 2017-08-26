@@ -97,8 +97,18 @@
   background: #FFFFFF;
 }
 
+#no-stories {
+  background: white;
+  font-size: 16px;
+  padding: 20px;
+}
+
 @media (min-width: 768px) {
   .padding-side {
     padding: 0px;
+  }
+  
+  #no-stories {
+    font-size: 24px;
   }
 }

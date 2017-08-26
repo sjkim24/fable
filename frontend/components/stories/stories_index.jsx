@@ -31,7 +31,11 @@ class StoriesIndex extends Component {
     if (!this.props.stories || !this.props.stories.stories) {
       return <div className="loader" />;
     }
-    debugger
+  
+    if (this.props.stories.stories.length === 0) {
+      return <div id="no-stories">Sorry, there is no story to view yet</div>;
+    }
+
     return (
       <div className="stories-recs-container group">
         <ul className="stories">
