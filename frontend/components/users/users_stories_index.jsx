@@ -33,6 +33,7 @@ class UsersStoriesIndex extends Component {
   }
   
   render() {
+    console.log("yo");
     if (!this.props.currentUser || !this.props.userStories) {
       return <div className="loader" />;
     } 
