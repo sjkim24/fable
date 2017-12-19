@@ -14,4 +14,4 @@ utilizing React.js/redux architecture. Fable allows users to:
 * Follow users to never miss their stories
 * Search for stories within database by title, content and tags
 
-[fable]: https://boiling-escarpment-40124.herokuapp.com/
+[fable]: https://young-journey-35631.herokuapp.com
