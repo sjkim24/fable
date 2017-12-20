@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.6'
+gem 'rails', '4.2.8'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.15'
 # Use SCSS for stylesheets
@@ -51,7 +51,7 @@ group :development do
   gem 'binding_of_caller'
   gem 'pry-rails'
   gem 'quiet_assets'
-  
+
   # notifies of n + 1 querry problems
   gem 'bullet'
 end
